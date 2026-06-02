@@ -1,0 +1,132 @@
+{
+  "System": {
+    "Surface": {
+      "Primary": {
+        "$value": "{Mapping.System.Slate.Surface.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Slate.Surface.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Slate.Surface.Tertiary}",
+        "$type": "color"
+      },
+      "Quaternary": {
+        "$value": "{Mapping.System.Slate.Surface.Quaternary}",
+        "$type": "color"
+      },
+      "Elevated": {
+        "$value": "{Mapping.System.Slate.Surface.Elevated}",
+        "$type": "color"
+      }
+    },
+    "Background": {
+      "Primary": {
+        "$value": "{Mapping.System.Slate.Background.Primary}",
+        "$type": "color"
+      },
+      "Primary Hover": {
+        "$value": "{Mapping.System.Slate.Background.Primary Hover}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Slate.Background.Secondary}",
+        "$type": "color"
+      },
+      "Secondary Hover": {
+        "$value": "{Mapping.System.Slate.Background.Secondary Hover}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Slate.Background.Tertiary}",
+        "$type": "color"
+      },
+      "Tertiary Hover": {
+        "$value": "{Mapping.System.Slate.Background.Tertiary Hover}",
+        "$type": "color"
+      }
+    },
+    "Text": {
+      "Primary": {
+        "$value": "{Mapping.System.Slate.Text.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Slate.Text.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Slate.Text.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.System.Slate.Text.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.System.Slate.Text.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.System.Slate.Text.On Tertiary}",
+        "$type": "color"
+      },
+      "Link": {
+        "Default": {
+          "$value": "{Mapping.System.Slate.Text.Link.Default}",
+          "$type": "color"
+        },
+        "Hover": {
+          "$value": "{Mapping.System.Slate.Text.Link.Hover}",
+          "$type": "color"
+        },
+        "Visited": {
+          "$value": "{Mapping.System.Slate.Text.Link.Visited}",
+          "$type": "color"
+        }
+      }
+    },
+    "Icon": {
+      "Primary": {
+        "$value": "{Mapping.System.Slate.Icon.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Slate.Icon.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Slate.Icon.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.System.Slate.Icon.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.System.Slate.Icon.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.System.Slate.Icon.On Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Border": {
+      "Primary": {
+        "$value": "{Mapping.System.Slate.Border.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Slate.Border.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Slate.Border.Tertiary}",
+        "$type": "color"
+      }
+    }
+  }
+}

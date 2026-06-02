@@ -1,0 +1,132 @@
+{
+  "System": {
+    "Surface": {
+      "Primary": {
+        "$value": "{Mapping.System.Danger.Surface.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Danger.Surface.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Danger.Surface.Tertiary}",
+        "$type": "color"
+      },
+      "Quaternary": {
+        "$value": "{Mapping.System.Danger.Surface.Quaternary}",
+        "$type": "color"
+      },
+      "Elevated": {
+        "$value": "{Mapping.System.Danger.Surface.Elevated}",
+        "$type": "color"
+      }
+    },
+    "Background": {
+      "Primary": {
+        "$value": "{Mapping.System.Danger.Background.Primary}",
+        "$type": "color"
+      },
+      "Primary Hover": {
+        "$value": "{Mapping.System.Danger.Background.Primary Hover}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Danger.Background.Secondary}",
+        "$type": "color"
+      },
+      "Secondary Hover": {
+        "$value": "{Mapping.System.Danger.Background.Secondary Hover}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Danger.Background.Tertiary}",
+        "$type": "color"
+      },
+      "Tertiary Hover": {
+        "$value": "{Mapping.System.Danger.Background.Tertiary hover}",
+        "$type": "color"
+      }
+    },
+    "Text": {
+      "Primary": {
+        "$value": "{Mapping.System.Danger.Text.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Danger.Text.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Danger.Text.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.System.Danger.Text.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.System.Danger.Text.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.System.Danger.Text.On Tertiary}",
+        "$type": "color"
+      },
+      "Link": {
+        "Default": {
+          "$value": "{Mapping.System.Danger.Text.Link.Default}",
+          "$type": "color"
+        },
+        "Hover": {
+          "$value": "{Mapping.System.Danger.Text.Link.Hover}",
+          "$type": "color"
+        },
+        "Visited": {
+          "$value": "{Mapping.System.Danger.Text.Link.Visited}",
+          "$type": "color"
+        }
+      }
+    },
+    "Icon": {
+      "Primary": {
+        "$value": "{Mapping.System.Danger.Icon.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Danger.Icon.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Danger.Icon.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.System.Danger.Icon.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.System.Danger.Icon.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.System.Danger.Icon.On Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Border": {
+      "Primary": {
+        "$value": "{Mapping.System.Danger.Border.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.System.Danger.Border.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.System.Danger.Border.Tertiary}",
+        "$type": "color"
+      }
+    }
+  }
+}

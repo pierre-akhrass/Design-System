@@ -1,0 +1,4 @@
+@mixin ds-button-size($font-size, $padding-y, $padding-x) {
+  font-size: $font-size;
+  padding: $padding-y $padding-x;
+}

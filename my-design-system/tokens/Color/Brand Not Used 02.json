@@ -1,0 +1,178 @@
+{
+  "Brand": {
+    "Surface": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Not Used 02.Surface.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Not Used 02.Surface.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Not Used 02.Surface.Tertiary}",
+        "$type": "color"
+      },
+      "Quaternary": {
+        "$value": "{Mapping.Brand.Not Used 02.Surface.Quaternary}",
+        "$type": "color"
+      },
+      "Elevated": {
+        "$value": "{Mapping.Brand.Not Used 02.Surface.Elevated}",
+        "$type": "color"
+      }
+    },
+    "Background": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Not Used 02.Backgroud.Primary}",
+        "$type": "color"
+      },
+      "Primary Hover": {
+        "$value": "{Mapping.Brand.Not Used 02.Backgroud.Primary Hover}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Not Used 02.Backgroud.Secondary}",
+        "$type": "color"
+      },
+      "Secondary Hover": {
+        "$value": "{Mapping.Brand.Not Used 02.Backgroud.Hover}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Not Used 02.Backgroud.Tertiary}",
+        "$type": "color"
+      },
+      "Tertiary Hover": {
+        "$value": "{Mapping.Brand.Not Used 02.Backgroud.Tertiary Hover}",
+        "$type": "color"
+      }
+    },
+    "Text": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Not Used 02.Text.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Not Used 02.Text.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Not Used 02.Text.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Not Used 02.Text.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Not Used 02.Text.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Not Used 02.Text.On Tertiary}",
+        "$type": "color"
+      },
+      "Link": {
+        "Default": {
+          "$value": "{Mapping.Brand.Not Used 02.Text.Link.Default}",
+          "$type": "color"
+        },
+        "Visited": {
+          "$value": "{Mapping.Brand.Not Used 02.Text.Link.Visited}",
+          "$type": "color"
+        },
+        "Hover": {
+          "$value": "{Mapping.Brand.Not Used 02.Text.Link.Hover}",
+          "$type": "color"
+        }
+      }
+    },
+    "Icon": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Not Used 02.Icon.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Not Used 02.Icon.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Not Used 02.Icon.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Not Used 02.Icon.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Not Used 02.Icon.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Not Used 02.Icon.On Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Border": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Not Used 02.Border.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Not Used 02.Border.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Not Used 02.Border.Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Static": {
+      "50": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.50}",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.100}",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.200}",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.300}",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.400}",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.500}",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.600}",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.700}",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.800}",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.900}",
+        "$type": "color"
+      },
+      "1000": {
+        "$value": "{Mapping.Brand.Not Used 02.Static.1000}",
+        "$type": "color"
+      }
+    }
+  }
+}

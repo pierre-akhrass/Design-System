@@ -1,0 +1,132 @@
+{
+  "Schema": {
+    "Surface": {
+      "Primary": {
+        "$value": "{Brand.Surface.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Brand.Surface.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Brand.Surface.Tertiary}",
+        "$type": "color"
+      },
+      "Quaternary": {
+        "$value": "{Brand.Surface.Quaternary}",
+        "$type": "color"
+      },
+      "Elevated": {
+        "$value": "{Brand.Surface.Elevated}",
+        "$type": "color"
+      }
+    },
+    "Background": {
+      "Primary": {
+        "$value": "{Brand.Background.Primary}",
+        "$type": "color"
+      },
+      "Primary Hover": {
+        "$value": "{Brand.Background.Primary Hover}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Brand.Background.Secondary}",
+        "$type": "color"
+      },
+      "Secondary Hover": {
+        "$value": "{Brand.Background.Secondary Hover}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Brand.Background.Tertiary}",
+        "$type": "color"
+      },
+      "Tertiary Hover": {
+        "$value": "{Brand.Background.Tertiary Hover}",
+        "$type": "color"
+      }
+    },
+    "Text": {
+      "Primary": {
+        "$value": "{Brand.Text.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Brand.Text.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Brand.Text.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Brand.Text.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Brand.Text.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Brand.Text.On Tertiary}",
+        "$type": "color"
+      },
+      "Link": {
+        "Default": {
+          "$value": "{Mapping.Brand.Teal Blue.Text.Link.Default}",
+          "$type": "color"
+        },
+        "Hover": {
+          "$value": "{Mapping.Brand.Teal Blue.Text.Link.Hover}",
+          "$type": "color"
+        },
+        "Visited": {
+          "$value": "{Mapping.Brand.Teal Blue.Text.Link.Visited}",
+          "$type": "color"
+        }
+      }
+    },
+    "Icon": {
+      "Primary": {
+        "$value": "{Brand.Icon.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Brand.Icon.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Brand.Icon.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Brand.Icon.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Brand.Icon.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Brand.Icon.On Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Border": {
+      "Primary": {
+        "$value": "{Brand.Border.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Brand.Border.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Brand.Border.Tertiary}",
+        "$type": "color"
+      }
+    }
+  }
+}

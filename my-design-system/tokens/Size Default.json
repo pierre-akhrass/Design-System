@@ -1,0 +1,532 @@
+{
+  "space": {
+    "0": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      }
+    },
+    "100": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "150": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "250": {
+      "$type": "dimension",
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      }
+    },
+    "300": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "400": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "500": {
+      "$type": "dimension",
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      }
+    },
+    "600": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "700": {
+      "$type": "dimension",
+      "$value": {
+        "value": 56,
+        "unit": "px"
+      }
+    },
+    "800": {
+      "$type": "dimension",
+      "$value": {
+        "value": 64,
+        "unit": "px"
+      }
+    },
+    "1000": {
+      "$type": "dimension",
+      "$value": {
+        "value": 80,
+        "unit": "px"
+      }
+    },
+    "1200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 96,
+        "unit": "px"
+      }
+    },
+    "1600": {
+      "$type": "dimension",
+      "$value": {
+        "value": 120,
+        "unit": "px"
+      }
+    },
+    "050": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "Negative 050": {
+      "$type": "dimension",
+      "$value": {
+        "value": -4,
+        "unit": "px"
+      }
+    },
+    "Negative 100": {
+      "$type": "dimension",
+      "$value": {
+        "value": -8,
+        "unit": "px"
+      }
+    },
+    "Negative 200": {
+      "$type": "dimension",
+      "$value": {
+        "value": -16,
+        "unit": "px"
+      }
+    },
+    "Negative 300": {
+      "$type": "dimension",
+      "$value": {
+        "value": -24,
+        "unit": "px"
+      }
+    },
+    "Negative 400": {
+      "$type": "dimension",
+      "$value": {
+        "value": -32,
+        "unit": "px"
+      }
+    }
+  },
+  "icon": {
+    "Small": {
+      "$type": "dimension",
+      "$value": "{space.200}"
+    },
+    "Medium": {
+      "$type": "dimension",
+      "$value": "{space.250}"
+    },
+    "Large": {
+      "$type": "dimension",
+      "$value": "{space.300}"
+    },
+    "XLarge": {
+      "$type": "dimension",
+      "$value": "{space.400}"
+    },
+    "2XLarge": {
+      "$type": "dimension",
+      "$value": "{space.600}"
+    },
+    "3XLarge": {
+      "$type": "dimension",
+      "$value": "{space.800}"
+    }
+  },
+  "radius": {
+    "None": {
+      "$type": "dimension",
+      "$value": "{Size.Radius.Null}"
+    },
+    "Small": {
+      "$type": "dimension",
+      "$value": "{Size.Radius.Smal}"
+    },
+    "Medium": {
+      "$type": "dimension",
+      "$value": "{Size.Radius.Medium}"
+    },
+    "Large": {
+      "$type": "dimension",
+      "$value": "{Size.Radius.Large}"
+    },
+    "X Large": {
+      "$type": "dimension",
+      "$value": "{Size.Radius.X Large}"
+    },
+    "2X Large": {
+      "$type": "dimension",
+      "$value": "{Size.Radius.2X Large}"
+    },
+    "Full": {
+      "$type": "dimension",
+      "$value": "{Size.Radius.Full}"
+    }
+  },
+  "depth": {
+    "0": {
+      "$type": "dimension",
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      }
+    },
+    "100": {
+      "$type": "dimension",
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      }
+    },
+    "150": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "200": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "300": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "400": {
+      "$type": "dimension",
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "600": {
+      "$type": "dimension",
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "012": {
+      "$type": "dimension",
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      }
+    },
+    "025": {
+      "$type": "dimension",
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "050": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "075": {
+      "$type": "dimension",
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      }
+    },
+    "Negative 012": {
+      "$type": "dimension",
+      "$value": {
+        "value": -1,
+        "unit": "px"
+      }
+    },
+    "Negative 025": {
+      "$type": "dimension",
+      "$value": {
+        "value": -2,
+        "unit": "px"
+      }
+    },
+    "Negative 050": {
+      "$type": "dimension",
+      "$value": {
+        "value": -4,
+        "unit": "px"
+      }
+    },
+    "Negative 075": {
+      "$type": "dimension",
+      "$value": {
+        "value": -6,
+        "unit": "px"
+      }
+    },
+    "Negative 100": {
+      "$type": "dimension",
+      "$value": {
+        "value": -8,
+        "unit": "px"
+      }
+    },
+    "Negative 150": {
+      "$type": "dimension",
+      "$value": {
+        "value": -12,
+        "unit": "px"
+      }
+    },
+    "Negative 200": {
+      "$type": "dimension",
+      "$value": {
+        "value": -16,
+        "unit": "px"
+      }
+    },
+    "Negative 400": {
+      "$type": "dimension",
+      "$value": {
+        "value": -32,
+        "unit": "px"
+      }
+    },
+    "Negative 600": {
+      "$type": "dimension",
+      "$value": {
+        "value": -48,
+        "unit": "px"
+      }
+    }
+  },
+  "border": {
+    "Border Width 0": {
+      "$type": "dimension",
+      "$value": "{Size.Stroke.Border Width 0}"
+    },
+    "Border Width 1": {
+      "$type": "dimension",
+      "$value": "{Size.Stroke.Border Width 1}"
+    },
+    "Border Width 2": {
+      "$type": "dimension",
+      "$value": "{Size.Stroke.Border Width 2}"
+    },
+    "Border Width 4": {
+      "$type": "dimension",
+      "$value": "{Size.Stroke.Border Width 4}"
+    }
+  },
+  "opacity": {
+    "10": {
+      "$type": "number",
+      "$value": 10
+    },
+    "20": {
+      "$type": "number",
+      "$value": 20
+    },
+    "40": {
+      "$type": "number",
+      "$value": 40
+    },
+    "60": {
+      "$type": "number",
+      "$value": 60
+    },
+    "80": {
+      "$type": "number",
+      "$value": 80
+    },
+    "90": {
+      "$type": "number",
+      "$value": 90
+    }
+  },
+  "z index": {
+    "Dropdown": {
+      "$type": "number",
+      "$value": 10
+    },
+    "Sticky": {
+      "$type": "number",
+      "$value": 20
+    },
+    "Modal": {
+      "$type": "number",
+      "$value": 30
+    },
+    "Tooltip": {
+      "$type": "number",
+      "$value": 40
+    }
+  },
+  "gap": {
+    "null": {
+      "$type": "number",
+      "$value": "{space.0}"
+    },
+    "3xs": {
+      "$type": "dimension",
+      "$value": "{space.050}"
+    },
+    "2xs": {
+      "$type": "dimension",
+      "$value": "{space.100}"
+    },
+    "xs": {
+      "$type": "dimension",
+      "$value": "{space.150}"
+    },
+    "s": {
+      "$type": "dimension",
+      "$value": "{space.200}"
+    },
+    "m": {
+      "$type": "dimension",
+      "$value": "{space.300}"
+    },
+    "l": {
+      "$type": "dimension",
+      "$value": "{space.400}"
+    },
+    "xl": {
+      "$type": "dimension",
+      "$value": "{space.600}"
+    },
+    "xxl": {
+      "$type": "dimension",
+      "$value": "{space.800}"
+    }
+  },
+  "blur": {
+    "Small": {
+      "$type": "dimension",
+      "$value": "{space.050}"
+    },
+    "Medium": {
+      "$type": "dimension",
+      "$value": "{space.100}"
+    },
+    "Large": {
+      "$type": "dimension",
+      "$value": "{space.200}"
+    }
+  },
+  "padding": {
+    "action": {
+      "2xs": {
+        "$type": "dimension",
+        "$value": "{space.050}"
+      },
+      "xs": {
+        "$type": "dimension",
+        "$value": "{space.100}"
+      },
+      "s": {
+        "$type": "dimension",
+        "$value": "{space.200}"
+      },
+      "m": {
+        "$type": "dimension",
+        "$value": "{space.300}"
+      },
+      "l": {
+        "$type": "dimension",
+        "$value": "{space.400}"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{space.600}"
+      },
+      "2xl": {
+        "$type": "dimension",
+        "$value": "{space.800}"
+      }
+    },
+    "container": {
+      "xs": {
+        "$type": "dimension",
+        "$value": "{space.200}"
+      },
+      "s": {
+        "$type": "dimension",
+        "$value": "{space.300}"
+      },
+      "m": {
+        "$type": "dimension",
+        "$value": "{space.400}"
+      },
+      "l": {
+        "$type": "dimension",
+        "$value": "{space.600}"
+      },
+      "xl": {
+        "$type": "dimension",
+        "$value": "{space.800}"
+      }
+    }
+  },
+  "avatar": {
+    "XSmall": {
+      "$type": "dimension",
+      "$value": "{space.300}"
+    },
+    "Small": {
+      "$type": "dimension",
+      "$value": "{space.400}"
+    },
+    "Medium": {
+      "$type": "dimension",
+      "$value": "{space.500}"
+    },
+    "Large": {
+      "$type": "dimension",
+      "$value": "{space.600}"
+    },
+    "XLarge": {
+      "$type": "dimension",
+      "$value": "{space.800}"
+    }
+  }
+}

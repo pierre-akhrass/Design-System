@@ -1,0 +1,2704 @@
+{
+  "Mapping": {
+    "System": {
+      "Slate": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Slate.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Slate.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Slate.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Slate.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.System.Slate.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.System.Slate.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Slate.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.System.Slate.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Slate.400}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.System.Slate.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.System.Gray.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.600}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.System.Gray.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.System.Blue.600}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Slate.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Slate.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Slate.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Slate.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Slate.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Slate.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.System.Gray.600}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          }
+        }
+      },
+      "Neutral": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Gray.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.System.Gray.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.System.Gray.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.System.Gray.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.400}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.System.Gray.400}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.System.Gray.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.500}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.System.Gray.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.System.Gray.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Neutral.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Neutral.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Neutral.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Neutral.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Neutral.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Neutral.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.System.Gray.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.600}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          }
+        }
+      },
+      "Success": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Green.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Green.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Green.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Green.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.System.Green.700}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.System.Green.800}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Green.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.System.Green.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Green.400}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.System.Green.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.System.Green.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Green.800}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Green.700}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.System.Green.1000}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.System.Green.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Success.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Success.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Success.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Success.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Success.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Success.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.System.Green.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Green.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Green.200}",
+            "$type": "color"
+          }
+        }
+      },
+      "Warning": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Yellow.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Yellow.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Yellow.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Yellow.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.System.Yellow.500}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.System.Yellow.600}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Yellow.400}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.System.Yellow.500}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Yellow.200}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.System.Yellow.300}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.System.Yellow.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Yellow.800}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Yellow.700}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.Yellow.1000}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.Yellow.1000}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.System.Yellow.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.System.Yellow.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Warning.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Warning.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Warning.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Warning.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Warning.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Warning.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.System.Yellow.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Yellow.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Yellow.200}",
+            "$type": "color"
+          }
+        }
+      },
+      "Danger": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Red.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Red.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Red.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Red.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.System.Red.600}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.System.Red.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Red.500}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.System.Red.600}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Red.200}",
+            "$type": "color"
+          },
+          "Tertiary hover": {
+            "$value": "{Color.System.Red.300}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.System.Red.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Red.800}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Red.700}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.System.Red.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.System.Red.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Danger.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Danger.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Danger.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Danger.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Danger.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Danger.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.System.Red.600}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Red.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Red.200}",
+            "$type": "color"
+          }
+        }
+      },
+      "Focus": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Blue.100}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Blue.200}",
+            "$type": "color"
+          },
+          "Tertiar": {
+            "$value": "{Color.System.Blue.300}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Blue.400}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.System.Blue.600}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.System.Blue.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Blue.500}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.System.Blue.600}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Blue.200}",
+            "$type": "color"
+          },
+          "Tertiary hover": {
+            "$value": "{Color.System.Blue.300}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.System.Blue.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Blue.800}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Blue.700}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.System.Blue.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Focus.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Focus.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Focus.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Focus.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Focus.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Focus.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.System.Blue.500}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Blue.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Blue.200}",
+            "$type": "color"
+          }
+        }
+      },
+      "Documentation": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Gray.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.Documentation.Pink.500}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Documentation.Pink.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Documentation.Pink.300}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Documentation.Pink.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Documentation.Pink.100}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.Documentation.Pink.200}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Documentation.Pink.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Documentation.Pink.600}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Documentation.Pink.500}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.Documentation.Pink.1000}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.Documentation.Pink.1000}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Documentation.Pink.800}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Documentation.Pink.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Documentation.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Documentation.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Documentation.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Documentation.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Documentation.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Documentation.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Documentation.Pink.800}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Documentation.Pink.500}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Documentation.Pink.300}",
+            "$type": "color"
+          }
+        }
+      },
+      "Disabled": {
+        "Background": {
+          "Primary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Tertiary hover": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.System.Gray.500}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.500}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.500}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.Gray.600}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.Gray.600}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.System.Gray.600}",
+            "$type": "color"
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.System.Disabled.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.System.Disabled.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.System.Disabled.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.System.Disabled.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.System.Disabled.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.System.Disabled.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.System.Gray.400}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.400}",
+            "$type": "color"
+          }
+        }
+      },
+      "White": {
+        "100": {
+          "$value": "{Color.System.White.opacity-5}",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "{Color.System.White.opacity-10}",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "{Color.System.White.opacity-20}",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "{Color.System.White.opacity-30}",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "{Color.System.White.opacity-60}",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "{Color.System.White.opacity-80}",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "{Color.System.White.opacity-85}",
+          "$type": "color"
+        },
+        "800": {
+          "$value": "{Color.System.White.opacity-90}",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "{Color.System.White.opacity-95}",
+          "$type": "color"
+        },
+        "1000": {
+          "$value": "{Color.System.White.White}",
+          "$type": "color"
+        }
+      },
+      "Black": {
+        "100": {
+          "$value": "{Color.System.Black.opacity-5}",
+          "$type": "color"
+        },
+        "200": {
+          "$value": "{Color.System.Black.opacity-10}",
+          "$type": "color"
+        },
+        "300": {
+          "$value": "{Color.System.Black.opacity-20}",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "{Color.System.Black.opacity-30}",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "{Color.System.Black.opacity-60}",
+          "$type": "color"
+        },
+        "600": {
+          "$value": "{Color.System.Black.opacity-80}",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "{Color.System.Black.opacity-85}",
+          "$type": "color"
+        },
+        "800": {
+          "$value": "{Color.System.Black.opacity-90}",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "{Color.System.Black.opacity-95}",
+          "$type": "color"
+        },
+        "1000": {
+          "$value": "{Color.System.Black.Black}",
+          "$type": "color"
+        }
+      },
+      "Shadow": {
+        "Light": {
+          "$value": "{Color.System.Shadow.opacity-5}",
+          "$type": "color"
+        },
+        "Medium": {
+          "$value": "{Color.System.Shadow.opacity-10}",
+          "$type": "color"
+        },
+        "Strong": {
+          "$value": "{Color.System.Shadow.opacity-20}",
+          "$type": "color"
+        }
+      },
+      "Scrim": {
+        "Light": {
+          "$value": "{Color.System.Shadow.opacity-40}",
+          "$type": "color"
+        },
+        "Medium": {
+          "$value": "{Color.System.Shadow.opacity-60}",
+          "$type": "color"
+        },
+        "Strong": {
+          "$value": "{Color.System.Shadow.opacity-80}",
+          "$type": "color"
+        }
+      }
+    },
+    "Brand": {
+      "Teal Blue": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.Brand.Deep Navy.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Deep Navy.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Deep Navy.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.Brand.Deep Navy.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.Brand.Deep Navy.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Deep Navy.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Deep Navy.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Deep Navy.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Deep Navy.400}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.Brand.Deep Navy.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Deep Navy.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Deep Navy.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Deep Navy.600}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Deep Navy.1000}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Deep Navy.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Teal Blue.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Teal Blue.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Teal Blue.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Teal Blue.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Teal Blue.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Teal Blue.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Deep Navy.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Deep Navy.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Deep Navy.200}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Deep Navy.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Deep Navy.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Deep Navy.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Deep Navy.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Deep Navy.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Deep Navy.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Deep Navy.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Deep Navy.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Deep Navy.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Deep Navy.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Deep Navy.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Dark Turquoise": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.Brand.Sky Blue.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Sky Blue.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Sky Blue.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.Brand.Sky Blue.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Backgroud": {
+          "Primary": {
+            "$value": "{Color.Brand.Sky Blue.700}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Sky Blue.800}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Sky Blue.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Sky Blue.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Sky Blue.400}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.Brand.Sky Blue.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Sky Blue.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Sky Blue.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Sky Blue.600}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.Brand.Sky Blue.100}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Sky Blue.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Sky Blue.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Dark Turquoise.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Dark Turquoise.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Dark Turquoise.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Dark Turquoise.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Dark Turquoise.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Dark Turquoise.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Sky Blue.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Sky Blue.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Sky Blue.200}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Sky Blue.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Sky Blue.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Sky Blue.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Sky Blue.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Sky Blue.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Sky Blue.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Sky Blue.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Sky Blue.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Sky Blue.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Sky Blue.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Sky Blue.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Pale Blue": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.Brand.Pale Blue.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Pale Blue.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Pale Blue.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.Brand.Pale Blue.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.Brand.Pale Blue.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Pale Blue.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Pale Blue.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Pale Blue.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Pale Blue.400}",
+            "$type": "color"
+          },
+          "Tertiary hover": {
+            "$value": "{Color.Brand.Pale Blue.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Pale Blue.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Pale Blue.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Pale Blue.600}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Pale Blue.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Pale Blue.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Pale Blue.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Pale Blue.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Pale Blue.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Pale Blue.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Pale Blue.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Pale Blue.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Pale Blue.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Pale Blue.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Pale Blue.200}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Pale Blue.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Pale Blue.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Pale Blue.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Pale Blue.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Pale Blue.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Pale Blue.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Pale Blue.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Pale Blue.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Pale Blue.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Pale Blue.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Pale Blue.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Golden Beige": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.Brand.Golden Beige.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Golden Beige.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Golden Beige.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.Brand.Golden Beige.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.Brand.Golden Beige.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Golden Beige.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Golden Beige.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Golden Beige.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Golden Beige.400}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.Brand.Golden Beige.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Golden Beige.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Golden Beige.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Golden Beige.600}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Golden Beige.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Golden Beige.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Golden Beige.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Golden Beige.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Golden Beige.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Golden Beige.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Golden Beige.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Golden Beige.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Golden Beige.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Golden Beige.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Golden Beige.200}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Golden Beige.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Golden Beige.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Golden Beige.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Golden Beige.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Golden Beige.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Golden Beige.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Golden Beige.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Golden Beige.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Golden Beige.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Golden Beige.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Golden Beige.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Vibrant Teal": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.Brand.Vibrant Teal.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Vibrant Teal.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Vibrant Teal.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.Brand.Vibrant Teal.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Backgroud": {
+          "Primary": {
+            "$value": "{Color.Brand.Vibrant Teal.700}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Vibrant Teal.800}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Vibrant Teal.500}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Vibrant Teal.600}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Vibrant Teal.300}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.Brand.Vibrant Teal.400}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Vibrant Teal.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Vibrant Teal.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Vibrant Teal.600}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.System.White.White}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Vibrant Teal.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Vibrant Teal.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Vibrant Teal.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Vibrant Teal.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Vibrant Teal.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Vibrant Teal.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Vibrant Teal.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Vibrant Teal.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Vibrant Teal.700}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Vibrant Teal.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Vibrant Teal.300}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Vibrant Teal.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Vibrant Teal.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Vibrant Teal.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Vibrant Teal.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Vibrant Teal.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Vibrant Teal.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Vibrant Teal.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Vibrant Teal.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Vibrant Teal.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Vibrant Teal.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Vibrant Teal.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Silver": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Gray.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.Brand.Silver.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Silver.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Silver.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Silver.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Silver.400}",
+            "$type": "color"
+          },
+          "Tertiary hover": {
+            "$value": "{Color.Brand.Silver.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Silver.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Silver.800}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Silver.700}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.Brand.Silver.200}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.Brand.Silver.1000}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Silver.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Silver.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Silver.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Silver.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Silver.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Silver.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Silver.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Silver.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Silver.500}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Silver.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Silver.300}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Silver.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Silver.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Silver.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Silver.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Silver.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Silver.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Silver.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Silver.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Silver.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Silver.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Silver.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Not Used 01": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Gray.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 01.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Not Used 01.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 01.700}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Not Used 01.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 01.400}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.Brand.Not Used 01.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 01.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 01.600}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 01.500}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.Brand.Not Used 01.200}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.Brand.Not Used 01.100}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Not Used 01.800}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Not Used 01.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Not Used 01.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Not Used 01.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Not Used 01.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Not Used 01.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Not Used 01.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Not Used 01.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 01.1000}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 01.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 01.300}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Not Used 01.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Not Used 01.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Not Used 01.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Not Used 01.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Not Used 01.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Not Used 01.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Not Used 01.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Not Used 01.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Not Used 01.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Not Used 01.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Not Used 01.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Not Used 02": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Gray.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Backgroud": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 02.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Not Used 02.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 02.500}",
+            "$type": "color"
+          },
+          "Hover": {
+            "$value": "{Color.Brand.Not Used 02.600}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 02.100}",
+            "$type": "color"
+          },
+          "Tertiary Hover": {
+            "$value": "{Color.Brand.Not Used 02.200}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 02.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 02.800}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 02.700}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.Brand.Not Used 02.100}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.Brand.Not Used 02.1000}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Not Used 02.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Not Used 02.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Not Used 02.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Not Used 02.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Not Used 02.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Not Used 02.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Not Used 02.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Not Used 02.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 02.500}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 02.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 02.300}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "{Color.Brand.Not Used 02.50}",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Not Used 02.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Not Used 02.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Not Used 02.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Not Used 02.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Not Used 02.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Not Used 02.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Not Used 02.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Not Used 02.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Not Used 02.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Not Used 02.1000}",
+            "$type": "color"
+          }
+        }
+      },
+      "Not Used 03": {
+        "Surface": {
+          "Primary": {
+            "$value": "{Color.System.Gray.50}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.System.Gray.100}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.System.Gray.200}",
+            "$type": "color"
+          },
+          "Quaternary": {
+            "$value": "{Color.System.Gray.300}",
+            "$type": "color"
+          },
+          "Elevated": {
+            "$value": "{Color.System.White.opacity-60}",
+            "$type": "color"
+          }
+        },
+        "Background": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 03.800}",
+            "$type": "color"
+          },
+          "Primary Hover": {
+            "$value": "{Color.Brand.Not Used 03.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 03.600}",
+            "$type": "color"
+          },
+          "Secondary Hover": {
+            "$value": "{Color.Brand.Not Used 03.700}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 03.400}",
+            "$type": "color"
+          },
+          "Tertiary hover": {
+            "$value": "{Color.Brand.Not Used 03.500}",
+            "$type": "color"
+          }
+        },
+        "Text": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 03.900}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 03.800}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 03.700}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Color.Brand.Not Used 03.200}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Color.Brand.Not Used 03.1000}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Color.Brand.Not Used 03.900}",
+            "$type": "color"
+          },
+          "Link": {
+            "Default": {
+              "$value": "{Color.System.Blue.700}",
+              "$type": "color"
+            },
+            "Hover": {
+              "$value": "{Color.System.Blue.800}",
+              "$type": "color"
+            },
+            "Visited": {
+              "$value": "{Color.Brand.Not Used 03.700}",
+              "$type": "color"
+            }
+          }
+        },
+        "Icon": {
+          "Primary": {
+            "$value": "{Mapping.Brand.Not Used 03.Text.Primary}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Mapping.Brand.Not Used 03.Text.Secondary}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Mapping.Brand.Not Used 03.Text.Tertiary}",
+            "$type": "color"
+          },
+          "On Primary": {
+            "$value": "{Mapping.Brand.Not Used 03.Text.On Primary}",
+            "$type": "color"
+          },
+          "On Secondary": {
+            "$value": "{Mapping.Brand.Not Used 03.Text.On Secondary}",
+            "$type": "color"
+          },
+          "On Tertiary": {
+            "$value": "{Mapping.Brand.Not Used 03.Text.On Tertiary}",
+            "$type": "color"
+          }
+        },
+        "Border": {
+          "Primary": {
+            "$value": "{Color.Brand.Not Used 03.500}",
+            "$type": "color"
+          },
+          "Secondary": {
+            "$value": "{Color.Brand.Not Used 03.400}",
+            "$type": "color"
+          },
+          "Tertiary": {
+            "$value": "{Color.Brand.Not Used 03.300}",
+            "$type": "color"
+          }
+        },
+        "Static": {
+          "50": {
+            "$value": "#ffffff",
+            "$type": "color"
+          },
+          "100": {
+            "$value": "{Color.Brand.Not Used 03.100}",
+            "$type": "color"
+          },
+          "200": {
+            "$value": "{Color.Brand.Not Used 03.200}",
+            "$type": "color"
+          },
+          "300": {
+            "$value": "{Color.Brand.Not Used 03.300}",
+            "$type": "color"
+          },
+          "400": {
+            "$value": "{Color.Brand.Not Used 03.400}",
+            "$type": "color"
+          },
+          "500": {
+            "$value": "{Color.Brand.Not Used 03.500}",
+            "$type": "color"
+          },
+          "600": {
+            "$value": "{Color.Brand.Not Used 03.600}",
+            "$type": "color"
+          },
+          "700": {
+            "$value": "{Color.Brand.Not Used 03.700}",
+            "$type": "color"
+          },
+          "800": {
+            "$value": "{Color.Brand.Not Used 03.800}",
+            "$type": "color"
+          },
+          "900": {
+            "$value": "{Color.Brand.Not Used 03.900}",
+            "$type": "color"
+          },
+          "1000": {
+            "$value": "{Color.Brand.Not Used 03.1000}",
+            "$type": "color"
+          }
+        }
+      }
+    }
+  }
+}

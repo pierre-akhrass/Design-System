@@ -1,0 +1,53 @@
+@use '../../styles/tokens/variables' as *;
+@use '../../styles/mixins' as *;
+
+.ds-button {
+  border: $size-stroke-border-width-1 solid transparent;
+  border-radius: $radius-medium;
+  cursor: pointer;
+  font-family: $ui-font-family;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.2;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.ds-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ds-button--primary {
+  background-color: $mapping-system-slate-background-primary;
+  border-color: $mapping-system-slate-background-primary;
+  color: $mapping-system-slate-text-on-primary;
+}
+
+.ds-button--primary:hover:not(:disabled) {
+  background-color: $mapping-system-slate-background-primary-hover;
+  border-color: $mapping-system-slate-background-primary-hover;
+}
+
+.ds-button--secondary {
+  background-color: $mapping-system-slate-background-secondary;
+  border-color: $mapping-system-slate-border-secondary;
+  color: $mapping-system-slate-text-on-secondary;
+}
+
+.ds-button--secondary:hover:not(:disabled) {
+  background-color: $mapping-system-slate-background-secondary-hover;
+}
+
+.ds-button--sm {
+  @include ds-button-size($ui-size-small * 1px, $padding-action-xs, $padding-action-s);
+  height: $dimensions-button-height-sm;
+}
+
+.ds-button--md {
+  @include ds-button-size($ui-size-medium * 1px, $padding-action-s, $padding-action-m);
+  height: $dimensions-button-height-md;
+}
+
+.ds-button--lg {
+  @include ds-button-size($ui-size-large * 1px, $padding-action-m, $padding-action-l);
+  height: $dimensions-button-height-lg;
+}

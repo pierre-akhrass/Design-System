@@ -1,0 +1,178 @@
+{
+  "Brand": {
+    "Surface": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Surface.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Surface.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Surface.Tertiary}",
+        "$type": "color"
+      },
+      "Quaternary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Surface.Quaternary}",
+        "$type": "color"
+      },
+      "Elevated": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Surface.Elevated}",
+        "$type": "color"
+      }
+    },
+    "Background": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Backgroud.Primary}",
+        "$type": "color"
+      },
+      "Primary Hover": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Backgroud.Primary Hover}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Backgroud.Secondary}",
+        "$type": "color"
+      },
+      "Secondary Hover": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Backgroud.Secondary Hover}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Backgroud.Tertiary}",
+        "$type": "color"
+      },
+      "Tertiary Hover": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Backgroud.Tertiary Hover}",
+        "$type": "color"
+      }
+    },
+    "Text": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Text.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Text.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Text.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Text.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Text.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Text.On Tertiary}",
+        "$type": "color"
+      },
+      "Link": {
+        "Default": {
+          "$value": "{Mapping.Brand.Dark Turquoise.Text.Link.Default}",
+          "$type": "color"
+        },
+        "Visited": {
+          "$value": "{Mapping.Brand.Dark Turquoise.Text.Link.Visited}",
+          "$type": "color"
+        },
+        "Hover": {
+          "$value": "{Mapping.Brand.Dark Turquoise.Text.Link.Hover}",
+          "$type": "color"
+        }
+      }
+    },
+    "Icon": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Icon.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Icon.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Icon.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Icon.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Icon.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Icon.On Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Border": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Border.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Border.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Border.Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Static": {
+      "50": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.50}",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.100}",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.200}",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.300}",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.400}",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.500}",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.600}",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.700}",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.800}",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.900}",
+        "$type": "color"
+      },
+      "1000": {
+        "$value": "{Mapping.Brand.Dark Turquoise.Static.1000}",
+        "$type": "color"
+      }
+    }
+  }
+}

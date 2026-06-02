@@ -1,0 +1,178 @@
+{
+  "Brand": {
+    "Surface": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Pale Blue.Surface.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Pale Blue.Surface.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Pale Blue.Surface.Tertiary}",
+        "$type": "color"
+      },
+      "Quaternary": {
+        "$value": "{Mapping.Brand.Pale Blue.Surface.Quaternary}",
+        "$type": "color"
+      },
+      "Elevated": {
+        "$value": "{Mapping.Brand.Pale Blue.Surface.Elevated}",
+        "$type": "color"
+      }
+    },
+    "Background": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Pale Blue.Background.Primary}",
+        "$type": "color"
+      },
+      "Primary Hover": {
+        "$value": "{Mapping.Brand.Pale Blue.Background.Primary Hover}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Pale Blue.Background.Secondary}",
+        "$type": "color"
+      },
+      "Secondary Hover": {
+        "$value": "{Mapping.Brand.Pale Blue.Background.Secondary Hover}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Pale Blue.Background.Tertiary}",
+        "$type": "color"
+      },
+      "Tertiary Hover": {
+        "$value": "{Mapping.Brand.Pale Blue.Background.Tertiary hover}",
+        "$type": "color"
+      }
+    },
+    "Text": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Pale Blue.Text.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Pale Blue.Text.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Pale Blue.Text.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Pale Blue.Text.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Pale Blue.Text.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Pale Blue.Text.On Tertiary}",
+        "$type": "color"
+      },
+      "Link": {
+        "Default": {
+          "$value": "{Mapping.Brand.Pale Blue.Text.Link.Default}",
+          "$type": "color"
+        },
+        "Visited": {
+          "$value": "{Mapping.Brand.Pale Blue.Text.Link.Visited}",
+          "$type": "color"
+        },
+        "Hover": {
+          "$value": "{Mapping.Brand.Pale Blue.Text.Link.Hover}",
+          "$type": "color"
+        }
+      }
+    },
+    "Icon": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Pale Blue.Icon.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Pale Blue.Icon.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Pale Blue.Icon.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Pale Blue.Icon.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Pale Blue.Icon.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Pale Blue.Icon.On Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Border": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Pale Blue.Border.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Pale Blue.Border.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Pale Blue.Border.Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Static": {
+      "50": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.50}",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.100}",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.200}",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.300}",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.400}",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.500}",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.600}",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.700}",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.800}",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.900}",
+        "$type": "color"
+      },
+      "1000": {
+        "$value": "{Mapping.Brand.Pale Blue.Static.1000}",
+        "$type": "color"
+      }
+    }
+  }
+}

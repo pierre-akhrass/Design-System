@@ -1,0 +1,13 @@
+@use './tokens/variables' as *;
+@use './tokens/maps' as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: $schema-text-primary;
+  background-color: $schema-surface-primary;
+  font-family: $ui-font-family;
+}

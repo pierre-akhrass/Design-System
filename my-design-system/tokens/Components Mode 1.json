@@ -1,0 +1,130 @@
+{
+  "dimensions": {
+    "button": {
+      "height": {
+        "sm": {
+          "$type": "dimension",
+          "$value": "{space.400}"
+        },
+        "md": {
+          "$type": "dimension",
+          "$value": "{space.600}"
+        },
+        "lg": {
+          "$type": "dimension",
+          "$value": "{space.700}"
+        }
+      }
+    },
+    "tag": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{space.300}"
+      },
+      "corner-radius": {
+        "$type": "dimension",
+        "$value": "{Size.Radius.Full}"
+      },
+      "icon-size": {
+        "$type": "dimension",
+        "$value": "{icon.Small}"
+      }
+    },
+    "documentation": {
+      "height": {
+        "$type": "dimension",
+        "$value": "{space.400}"
+      },
+      "icon-size": {
+        "$type": "dimension",
+        "$value": "{icon.Small}"
+      },
+      "icon-gap": {
+        "$type": "dimension",
+        "$value": "{space.050}"
+      }
+    },
+    "card": {
+      "icon-size": {
+        "$type": "dimension",
+        "$value": "{icon.Large}"
+      },
+      "width": {
+        "min": {
+          "$type": "dimension",
+          "$value": {
+            "value": 320,
+            "unit": "px"
+          }
+        },
+        "max": {
+          "$type": "dimension",
+          "$value": {
+            "value": 480,
+            "unit": "px"
+          }
+        }
+      },
+      "height": {
+        "min": {
+          "$type": "dimension",
+          "$value": "{space.300}"
+        },
+        "max": {
+          "$type": "dimension",
+          "$value": "{space.300}"
+        }
+      }
+    },
+    "modal": {
+      "width": {
+        "s": {
+          "$type": "dimension",
+          "$value": {
+            "value": 400,
+            "unit": "px"
+          }
+        },
+        "m": {
+          "$type": "dimension",
+          "$value": {
+            "value": 600,
+            "unit": "px"
+          }
+        },
+        "l": {
+          "$type": "dimension",
+          "$value": {
+            "value": 800,
+            "unit": "px"
+          }
+        }
+      }
+    },
+    "drawer": {
+      "width": {
+        "s": {
+          "$type": "dimension",
+          "$value": {
+            "value": 320,
+            "unit": "px"
+          }
+        },
+        "m": {
+          "$type": "dimension",
+          "$value": {
+            "value": 480,
+            "unit": "px"
+          }
+        },
+        "l": {
+          "$type": "dimension",
+          "$value": {
+            "value": 640,
+            "unit": "px"
+          }
+        }
+      }
+    }
+  }
+}

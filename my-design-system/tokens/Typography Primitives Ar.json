@@ -1,0 +1,126 @@
+{
+  "Family": {
+    "Title": {
+      "$type": "fontFamily",
+      "$value": "{Font.Family.Ar.Display}"
+    },
+    "Body": {
+      "$type": "fontFamily",
+      "$value": "{Font.Family.Ar.Primary}"
+    },
+    "Mono": {
+      "$type": "fontFamily",
+      "$value": "{Font.Family.Ar.Mono}"
+    }
+  },
+  "Size": {
+    "100": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.100}"
+    },
+    "150": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.100}"
+    },
+    "200": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.200}"
+    },
+    "300": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.300}"
+    },
+    "400": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.400}"
+    },
+    "500": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.500}"
+    },
+    "600": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.600}"
+    },
+    "700": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.700}"
+    },
+    "800": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.800}"
+    },
+    "900": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.900}"
+    },
+    "1000": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.1000}"
+    },
+    "1100": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.1100}"
+    },
+    "1200": {
+      "$type": "number",
+      "$value": "{Typography.Font Size.1200}"
+    }
+  },
+  "Weight": {
+    "Bold Condensed": {
+      "$type": "fontFamily",
+      "$value": "77 Bold Condensed"
+    },
+    "Bold": {
+      "$type": "number",
+      "$value": 700
+    },
+    "Semibold": {
+      "$type": "number",
+      "$value": 600
+    },
+    "Medium": {
+      "$type": "number",
+      "$value": 500
+    },
+    "Regular": {
+      "$type": "number",
+      "$value": 400
+    },
+    "Light": {
+      "$type": "number",
+      "$value": 300
+    }
+  },
+  "Letter Spacing": {
+    "tracking-1": {
+      "$type": "number",
+      "$value": "{Typography.Letter spacing.tracking-1}"
+    },
+    "tracking-2": {
+      "$type": "number",
+      "$value": "{Typography.Letter spacing.tracking-2}"
+    },
+    "tracking-3": {
+      "$type": "number",
+      "$value": "{Typography.Letter spacing.tracking-3}"
+    },
+    "tracking-4": {
+      "$type": "number",
+      "$value": "{Typography.Letter spacing.tracking-4}"
+    },
+    "tracking-5": {
+      "$type": "number",
+      "$value": "{Typography.Letter spacing.tracking-5}"
+    },
+    "tracking-6": {
+      "$type": "number",
+      "$value": "{Typography.Letter spacing.tracking-6}"
+    },
+    "tracking-7": {
+      "$type": "number",
+      "$value": "{Typography.Letter spacing.tracking-7}"
+    }
+  }
+}

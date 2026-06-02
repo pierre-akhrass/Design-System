@@ -1,0 +1,178 @@
+{
+  "Brand": {
+    "Surface": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Surface.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Surface.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Surface.Tertiary}",
+        "$type": "color"
+      },
+      "Quaternary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Surface.Quaternary}",
+        "$type": "color"
+      },
+      "Elevated": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Surface.Elevated}",
+        "$type": "color"
+      }
+    },
+    "Background": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Backgroud.Primary}",
+        "$type": "color"
+      },
+      "Primary Hover": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Backgroud.Primary Hover}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Backgroud.Secondary}",
+        "$type": "color"
+      },
+      "Secondary Hover": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Backgroud.Secondary Hover}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Backgroud.Tertiary}",
+        "$type": "color"
+      },
+      "Tertiary Hover": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Backgroud.Tertiary Hover}",
+        "$type": "color"
+      }
+    },
+    "Text": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Text.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Text.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Text.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Text.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Text.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Text.On Tertiary}",
+        "$type": "color"
+      },
+      "Link": {
+        "Default": {
+          "$value": "{Mapping.Brand.Vibrant Teal.Text.Link.Default}",
+          "$type": "color"
+        },
+        "Visited": {
+          "$value": "{Mapping.Brand.Vibrant Teal.Text.Link.Visited}",
+          "$type": "color"
+        },
+        "Hover": {
+          "$value": "{Mapping.Brand.Vibrant Teal.Text.Link.Hover}",
+          "$type": "color"
+        }
+      }
+    },
+    "Icon": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Icon.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Icon.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Icon.Tertiary}",
+        "$type": "color"
+      },
+      "On Primary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Icon.On Primary}",
+        "$type": "color"
+      },
+      "On Secondary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Icon.On Secondary}",
+        "$type": "color"
+      },
+      "On Tertiary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Icon.On Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Border": {
+      "Primary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Border.Primary}",
+        "$type": "color"
+      },
+      "Secondary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Border.Secondary}",
+        "$type": "color"
+      },
+      "Tertiary": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Border.Tertiary}",
+        "$type": "color"
+      }
+    },
+    "Static": {
+      "50": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.50}",
+        "$type": "color"
+      },
+      "100": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.100}",
+        "$type": "color"
+      },
+      "200": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.200}",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.300}",
+        "$type": "color"
+      },
+      "400": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.400}",
+        "$type": "color"
+      },
+      "500": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.500}",
+        "$type": "color"
+      },
+      "600": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.600}",
+        "$type": "color"
+      },
+      "700": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.700}",
+        "$type": "color"
+      },
+      "800": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.800}",
+        "$type": "color"
+      },
+      "900": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.900}",
+        "$type": "color"
+      },
+      "1000": {
+        "$value": "{Mapping.Brand.Vibrant Teal.Static.1000}",
+        "$type": "color"
+      }
+    }
+  }
+}

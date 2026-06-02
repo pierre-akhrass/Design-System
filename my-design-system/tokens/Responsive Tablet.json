@@ -1,0 +1,226 @@
+{
+  "Global settings": {
+    "Device": {
+      "$type": "fontFamily",
+      "$value": "tablet"
+    },
+    "Device Width": {
+      "$type": "dimension",
+      "$value": {
+        "value": 768,
+        "unit": "px"
+      }
+    },
+    "Root Font Size": {
+      "$type": "number",
+      "$value": "{Size.300}"
+    },
+    "Scale": {
+      "$type": "number",
+      "$value": 1
+    },
+    "Root Font Size 2": {
+      "$type": "number",
+      "$value": "{Size.300}"
+    },
+    "Columns": {
+      "$type": "dimension",
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "Margin": {
+      "$type": "dimension",
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "Gutter": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    }
+  },
+  "Content Width": {
+    "Full Bleed": {
+      "$type": "dimension",
+      "$value": "{Global settings.Device Width}"
+    },
+    "Full": {
+      "$type": "dimension",
+      "$value": {
+        "value": 720,
+        "unit": "px"
+      }
+    },
+    "Major A": {
+      "$type": "dimension",
+      "$value": {
+        "value": 352,
+        "unit": "px"
+      }
+    },
+    "Major B": {
+      "$type": "dimension",
+      "$value": {
+        "value": 352,
+        "unit": "px"
+      }
+    },
+    "Half": {
+      "$type": "dimension",
+      "$value": {
+        "value": 352,
+        "unit": "px"
+      }
+    },
+    "Minor A": {
+      "$type": "dimension",
+      "$value": {
+        "value": 223.3300018310547,
+        "unit": "px"
+      }
+    },
+    "Minor B": {
+      "$type": "dimension",
+      "$value": {
+        "value": 352,
+        "unit": "px"
+      }
+    }
+  },
+  "Typography": {
+    "Font Size": {
+      "100": {
+        "$type": "number",
+        "$value": 12
+      },
+      "150": {
+        "$type": "number",
+        "$value": 14
+      },
+      "200": {
+        "$type": "number",
+        "$value": 16
+      },
+      "300": {
+        "$type": "number",
+        "$value": 20
+      },
+      "400": {
+        "$type": "number",
+        "$value": 24
+      },
+      "500": {
+        "$type": "number",
+        "$value": 28
+      },
+      "600": {
+        "$type": "number",
+        "$value": 36
+      },
+      "700": {
+        "$type": "number",
+        "$value": 40
+      },
+      "800": {
+        "$type": "number",
+        "$value": 48
+      },
+      "900": {
+        "$type": "number",
+        "$value": 60
+      },
+      "1000": {
+        "$type": "number",
+        "$value": 76
+      },
+      "1100": {
+        "$type": "number",
+        "$value": 96
+      },
+      "1200": {
+        "$type": "number",
+        "$value": 96
+      }
+    },
+    "Line Height": {
+      "line-height-tight": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.25,
+          "unit": "px"
+        }
+      },
+      "line-height-normal": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.5,
+          "unit": "px"
+        }
+      },
+      "line-height-loose": {
+        "$type": "dimension",
+        "$value": {
+          "value": 1.75,
+          "unit": "px"
+        }
+      }
+    },
+    "Letter spacing": {
+      "tracking-1": {
+        "$type": "dimension",
+        "$value": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "tracking-2": {
+        "$type": "dimension",
+        "$value": {
+          "value": -0.5,
+          "unit": "px"
+        }
+      },
+      "tracking-3": {
+        "$type": "dimension",
+        "$value": {
+          "value": -1,
+          "unit": "px"
+        }
+      },
+      "tracking-4": {
+        "$type": "dimension",
+        "$value": {
+          "value": -1.5,
+          "unit": "px"
+        }
+      },
+      "tracking-5": {
+        "$type": "dimension",
+        "$value": {
+          "value": -2,
+          "unit": "px"
+        }
+      },
+      "tracking-6": {
+        "$type": "dimension",
+        "$value": {
+          "value": -2.5,
+          "unit": "px"
+        }
+      },
+      "tracking-7": {
+        "$type": "dimension",
+        "$value": {
+          "value": -3,
+          "unit": "px"
+        }
+      }
+    }
+  }
+}

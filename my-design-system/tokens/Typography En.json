@@ -1,0 +1,196 @@
+{
+  "Display": {
+    "Font Family": {
+      "$type": "fontFamily",
+      "$value": "{Family.Title}"
+    },
+    "Size": {
+      "XL": {
+        "$type": "dimension",
+        "$value": "{Size.1100}"
+      },
+      "L": {
+        "$type": "dimension",
+        "$value": "{Size.1000}"
+      },
+      "M": {
+        "$type": "dimension",
+        "$value": "{Size.900}"
+      },
+      "S": {
+        "$type": "dimension",
+        "$value": "{Size.800}"
+      }
+    },
+    "Font Weight": {
+      "$type": "fontWeight",
+      "$value": "{Weight.Bold}"
+    },
+    "Display Weight": {
+      "$type": "fontFamily",
+      "$value": "{Weight.Bold Condensed}"
+    }
+  },
+  "Heading": {
+    "Font Family": {
+      "$type": "fontFamily",
+      "$value": "{Family.Body}"
+    },
+    "Size": {
+      "H1": {
+        "$type": "dimension",
+        "$value": "{Size.800}"
+      },
+      "H2": {
+        "$type": "dimension",
+        "$value": "{Size.700}"
+      },
+      "H3": {
+        "$type": "dimension",
+        "$value": "{Size.600}"
+      },
+      "H4": {
+        "$type": "dimension",
+        "$value": "{Size.500}"
+      },
+      "H5": {
+        "$type": "dimension",
+        "$value": "{Size.400}"
+      },
+      "H6": {
+        "$type": "dimension",
+        "$value": "{Size.300}"
+      },
+      "subtitle": {
+        "$type": "dimension",
+        "$value": "{Size.300}"
+      }
+    },
+    "Font Weight": {
+      "Bold": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Bold}"
+      },
+      "Medium": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Medium}"
+      },
+      "Light": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Light}"
+      }
+    }
+  },
+  "Body": {
+    "Font Family": {
+      "$type": "fontFamily",
+      "$value": "{Font.Family.En.Primary}"
+    },
+    "Paragraph": {
+      "Size": {
+        "Large": {
+          "$type": "dimension",
+          "$value": "{Size.300}"
+        },
+        "Default": {
+          "$type": "dimension",
+          "$value": "{Size.200}"
+        },
+        "Article": {
+          "$type": "dimension",
+          "$value": "{Size.200}"
+        },
+        "Small": {
+          "$type": "dimension",
+          "$value": "{Size.100}"
+        }
+      }
+    },
+    "Font Weight": {
+      "Regular": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Regular}"
+      },
+      "Strong": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Bold}"
+      }
+    }
+  },
+  "UI": {
+    "Size": {
+      "xlarge": {
+        "$type": "dimension",
+        "$value": "{Size.300}"
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": "{Size.200}"
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": "{Size.150}"
+      },
+      "small": {
+        "$type": "dimension",
+        "$value": "{Size.100}"
+      }
+    },
+    "Font Family": {
+      "$type": "fontFamily",
+      "$value": "{Font.Family.En.Primary}"
+    },
+    "Font Weight": {
+      "default": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Regular}"
+      },
+      "medium": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Medium}"
+      },
+      "strong": {
+        "$type": "fontWeight",
+        "$value": "{Weight.Semibold}"
+      }
+    }
+  },
+  "Documenatation": {
+    "Font Family": {
+      "$type": "fontFamily",
+      "$value": "{Font.Family.En.Mono}"
+    },
+    "Size": {
+      "Inline": {
+        "$type": "dimension",
+        "$value": "{Size.200}"
+      },
+      "Block": {
+        "$type": "dimension",
+        "$value": "{Size.200}"
+      },
+      "Utility": {
+        "$type": "dimension",
+        "$value": "{Size.100}"
+      }
+    },
+    "Font Weight": {
+      "$type": "fontWeight",
+      "$value": "{Weight.Regular}"
+    },
+    "Line Height": {
+      "Inline": {
+        "$type": "dimension",
+        "$value": "{Typography.Line Height.line-height-normal}"
+      },
+      "Block": {
+        "$type": "dimension",
+        "$value": "{Typography.Line Height.line-height-loose}"
+      },
+      "Utility": {
+        "$type": "dimension",
+        "$value": "{Typography.Line Height.line-height-tight}"
+      }
+    }
+  }
+}
