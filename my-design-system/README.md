@@ -16,6 +16,19 @@ npm install
 - `npm run storybook`: Start Storybook docs on port 6006.
 - `npm run build-storybook`: Build static Storybook output.
 
+## Fonts
+
+This library loads Noto Sans via Fontsource:
+
+- in `src/index.ts` for package consumers
+- in `.storybook/preview.ts` for Storybook
+
+- `@fontsource/noto-sans/400.css`
+- `@fontsource/noto-sans/500.css`
+- `@fontsource/noto-sans/700.css`
+
+If you prefer consumer-managed font loading in downstream apps, remove these imports and document font installation in the consuming project.
+
 ## Local Usage
 
 Build first:

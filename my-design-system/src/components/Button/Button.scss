@@ -1,53 +1,272 @@
 @use '../../styles/tokens/variables' as *;
-@use '../../styles/mixins' as *;
+
+@mixin ds-button-shadow-default {
+  box-shadow: 0 1px $depth-025 $depth-0 $mapping-system-shadow-light;
+}
+
+@mixin ds-button-shadow-focus {
+  box-shadow:
+    0 0 0 $depth-025 $mapping-system-slate-border-secondary,
+    0 0 0 $depth-050 $mapping-system-focus-border-secondary;
+}
+
+@mixin ds-button-shadow-hover {
+  box-shadow:
+    0 2px $depth-100 $depth-negative-025 $mapping-system-shadow-medium,
+    0 4px $depth-100 $depth-negative-025 $mapping-system-shadow-medium;
+}
+
+@mixin ds-button-shadow-pressed {
+  box-shadow: 0 2px 0 0 rgba(255, 255, 255, 0.15) inset;
+}
+
+@mixin ds-button-outlined-plain-state-colors {
+  &.ds-button--default,
+  &.ds-button--disabled {
+    background: transparent;
+  }
+
+  &.ds-button--focus {
+    background: $mapping-system-slate-background-primary;
+  }
+
+  &.ds-button--hover {
+    background: $mapping-system-slate-background-secondary;
+  }
+
+  &.ds-button--pressed {
+    background: $mapping-system-slate-background-tertiary;
+  }
+
+  &:focus-visible:not(:disabled) {
+    background: $mapping-system-slate-background-primary;
+  }
+
+  &:hover:not(:disabled) {
+    background: $mapping-system-slate-background-secondary;
+  }
+
+  &:active:not(:disabled) {
+    background: $mapping-system-slate-background-tertiary;
+  }
+}
 
 .ds-button {
+  align-items: center;
   border: $size-stroke-border-width-1 solid transparent;
   border-radius: $radius-medium;
   cursor: pointer;
+  display: flex;
   font-family: $ui-font-family;
   font-weight: $ui-font-weight-strong;
+  gap: $gap-2xs;
+  height: $dimensions-button-height-md;
+  justify-content: center;
   line-height: 1.2;
+  padding: $padding-action-s $padding-action-m;
+  color: $mapping-system-slate-text-on-primary;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-.ds-button:disabled {
+.ds-button:disabled,
+.ds-button.ds-button--disabled {
   cursor: not-allowed;
-  opacity: 0.6;
 }
 
-.ds-button--primary {
+.ds-button:focus-visible {
+  outline: none;
+}
+
+.ds-button__icon {
+  display: inline-flex;
+  line-height: 0;
+}
+
+.ds-button__label {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.ds-button--icon-only {
+  align-items: center;
+  display: flex;
+  gap: $gap-2xs;
+  height: $dimensions-button-height-md;
+  justify-content: center;
+  padding: $padding-action-s $padding-action-m;
+  width: $dimensions-button-height-md;
+}
+
+.ds-button--filled {
   background-color: $mapping-system-slate-background-primary;
   border-color: $mapping-system-slate-background-primary;
   color: $mapping-system-slate-text-on-primary;
+  @include ds-button-shadow-default;
+
+  &.ds-button--focus {
+    @include ds-button-shadow-focus;
+  }
+
+  &:focus-visible:not(:disabled) {
+    @include ds-button-shadow-focus;
+  }
+
+  &.ds-button--hover {
+    @include ds-button-shadow-hover;
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    @include ds-button-shadow-hover;
+  }
+
+  &.ds-button--pressed {
+    @include ds-button-shadow-pressed;
+  }
+
+  &:active:not(:disabled) {
+    @include ds-button-shadow-pressed;
+  }
+
+  &.ds-button--disabled {
+    background-color: $mapping-system-disabled-background-secondary;
+    border-color: $mapping-system-disabled-background-secondary;
+    color: $mapping-system-disabled-text-on-primary;
+  }
+
+  &:disabled {
+    background-color: $mapping-system-disabled-background-secondary;
+    border-color: $mapping-system-disabled-background-secondary;
+    color: $mapping-system-disabled-text-on-primary;
+    box-shadow: none;
+  }
 }
 
-.ds-button--primary:hover:not(:disabled) {
-  background-color: $mapping-system-slate-background-primary-hover;
-  border-color: $mapping-system-slate-background-primary-hover;
+.ds-button--outlined,
+.ds-button--plain {
+  color: $mapping-system-slate-text-primary;
+  @include ds-button-outlined-plain-state-colors;
+
+  &.ds-button--default,
+  &.ds-button--disabled {
+    @include ds-button-shadow-default;
+  }
+
+  &.ds-button--focus {
+    @include ds-button-shadow-focus;
+  }
+
+  &:focus-visible:not(:disabled) {
+    @include ds-button-shadow-focus;
+  }
+
+  &.ds-button--hover {
+    @include ds-button-shadow-default;
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    @include ds-button-shadow-default;
+  }
+
+  &.ds-button--pressed {
+    @include ds-button-shadow-pressed;
+  }
+
+  &:active:not(:disabled) {
+    @include ds-button-shadow-pressed;
+  }
 }
 
-.ds-button--secondary {
-  background-color: $mapping-system-slate-background-secondary;
+.ds-button--outlined {
+  background: transparent;
   border-color: $mapping-system-slate-border-secondary;
-  color: $mapping-system-slate-text-on-secondary;
+
+  &.ds-button--focus {
+    background: transparent;
+  }
+
+  &:focus-visible:not(:disabled) {
+    background: transparent;
+  }
+
+  &.ds-button--hover {
+    background: $mapping-system-slate-surface-secondary;
+    border-color: $mapping-system-slate-border-primary;
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    background: $mapping-system-slate-surface-secondary;
+    border-color: $mapping-system-slate-border-primary;
+  }
+
+  &.ds-button--pressed {
+    background: $mapping-system-slate-surface-tertiary;
+    border-color: $mapping-system-slate-border-primary;
+  }
+
+  &:active:not(:disabled) {
+    background: $mapping-system-slate-surface-tertiary;
+    border-color: $mapping-system-slate-border-primary;
+  }
+
+  &.ds-button--disabled {
+    background: transparent;
+    color: $mapping-system-disabled-text-on-primary;
+    border-color: $mapping-system-disabled-border-secondary;
+  }
+
+  &:disabled {
+    background: transparent;
+    color: $mapping-system-disabled-text-on-primary;
+    border-color: $mapping-system-disabled-border-secondary;
+  }
 }
 
-.ds-button--secondary:hover:not(:disabled) {
-  background-color: $mapping-system-slate-background-secondary-hover;
+.ds-button--plain {
+  border: none;
+
+  &.ds-button--default {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &.ds-button--focus {
+    background: transparent;
+  }
+
+  &:focus-visible:not(:disabled) {
+    background: transparent;
+  }
+
+  &.ds-button--hover {
+    background: $mapping-system-slate-surface-secondary;
+  }
+
+  &:hover:not(:disabled):not(:active) {
+    background: $mapping-system-slate-surface-secondary;
+  }
+
+  &.ds-button--pressed {
+    background: $mapping-system-slate-surface-tertiary;
+  }
+
+  &:active:not(:disabled) {
+    background: $mapping-system-slate-surface-tertiary;
+  }
+
+  &.ds-button--disabled {
+    background: transparent;
+    box-shadow: none;
+    color: $mapping-system-disabled-text-on-primary;
+  }
+
+  &:disabled {
+    background: transparent;
+    box-shadow: none;
+    color: $mapping-system-disabled-text-on-primary;
+  }
 }
 
-.ds-button--sm {
-  @include ds-button-size($ui-size-small * 1px, $padding-action-xs, $padding-action-s);
-  height: $dimensions-button-height-sm;
-}
-
-.ds-button--md {
-  @include ds-button-size($ui-size-medium * 1px, $padding-action-s, $padding-action-m);
-  height: $dimensions-button-height-md;
-}
-
-.ds-button--lg {
-  @include ds-button-size($ui-size-large * 1px, $padding-action-m, $padding-action-l);
-  height: $dimensions-button-height-lg;
+.ds-button svg {
+  height: 1em;
+  width: 1em;
 }
