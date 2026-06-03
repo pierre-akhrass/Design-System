@@ -23,3 +23,5 @@ export type {
 } from './components/NavItem'
 export { Dropdown, DropdownDivider } from './components/Dropdown'
 export type { DropdownProps, DropdownDividerProps } from './components/Dropdown'
+export { Navbar } from './components/Navbar'
+export type { NavbarProps } from './components/Navbar'

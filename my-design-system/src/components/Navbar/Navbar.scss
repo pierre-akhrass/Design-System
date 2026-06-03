@@ -1,0 +1,44 @@
+@use '../../styles/tokens/variables' as *;
+
+/* Spec:
+   display: flex;
+   width: var(--sds-responsive-device-width);
+   height: var(--sds-size-space-1200);
+   padding: 8px var(--padding-container-m, 32px);
+   justify-content: space-between;
+   align-items: center;
+   background: var(--sds-color-black-400);
+*/
+.ds-navbar {
+  display: flex;
+  width: $global-settings-device-width;
+  height: $space-1200;
+  padding: 8px $padding-container-m;
+  justify-content: space-between;
+  align-items: center;
+  background: $mapping-system-black-400;
+  box-sizing: border-box;
+  gap: $padding-container-m;
+}
+
+.ds-navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: #ffffff; // brand wordmark color
+}
+
+.ds-navbar__items {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1 1 auto;
+}
+
+.ds-navbar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  color: #ffffff;
+}
