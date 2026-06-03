@@ -1,4 +1,4 @@
 export { Navbar } from './Navbar'
-export type { NavbarProps } from './Navbar'
+export type { NavbarProps, NavbarColorMode } from './Navbar'
 export { NavbarMenu } from './NavbarMenu'
-export type { NavbarMenuProps } from './NavbarMenu'
+export type { NavbarMenuProps, NavbarMenuRow } from './NavbarMenu'

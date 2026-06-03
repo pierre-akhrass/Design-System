@@ -4,8 +4,9 @@ import { Navbar, NavbarMenu } from './'
 import type { NavbarMenuRow } from './NavbarMenu'
 import { NavItem } from '../NavItem'
 import type { DropdownColorMode } from '../Dropdown/Dropdown'
+import type { NavbarColorMode } from './Navbar'
 
-const Logo = () => (
+const Logo = ({ colorMode }: { colorMode: NavbarColorMode }) => (
   <span
     style={{
       display: 'inline-flex',
@@ -13,7 +14,7 @@ const Logo = () => (
       gap: 8,
       fontWeight: 800,
       fontSize: 20,
-      color: '#fff',
+      color: colorMode === 'dark' ? '#fff' : '#111',
     }}
   >
     <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
@@ -52,22 +53,22 @@ const SearchIcon = () => (
  *  - { type: 'navItem', label, selected? }
  *      -> renders a <NavItem> link (no chevron)
  *
- *  - { type: 'dropdown', label, colorMode?, rows }
+ *  - { type: 'dropdown', label, dropdownColorMode?, rows }
  *      -> renders a <NavItem> trigger that opens a <Dropdown>
  *         (chevron is shown automatically).
- *         `rows` supports every Dropdown variant
- *         (item / divider / button / custom).
  */
 type LinkEntry =
   | { type: 'navItem'; label: string; selected?: boolean }
   | {
       type: 'dropdown'
       label: string
-      colorMode?: DropdownColorMode
+      /** Override the dropdown panel's color mode (defaults to navbar's). */
+      dropdownColorMode?: DropdownColorMode
       rows: NavbarMenuRow[]
     }
 
 type PlaygroundArgs = {
+  colorMode: NavbarColorMode
   links: LinkEntry[]
   showLogo: boolean
   showActions: boolean
@@ -83,11 +84,11 @@ type Story = StoryObj<PlaygroundArgs>
 
 export const Playground: Story = {
   args: {
+    colorMode: 'dark',
     links: [
       {
         type: 'dropdown',
         label: 'Products',
-        colorMode: 'dark',
         rows: [
           { kind: 'item', label: 'Overview' },
           { kind: 'item', label: 'Features' },
@@ -100,7 +101,6 @@ export const Playground: Story = {
       {
         type: 'dropdown',
         label: 'Solutions',
-        colorMode: 'light',
         rows: [
           { kind: 'item', label: 'For Teams' },
           { kind: 'item', label: 'For Enterprise' },
@@ -119,20 +119,22 @@ export const Playground: Story = {
     showActions: true,
   },
   argTypes: {
+    colorMode: { control: 'inline-radio', options: ['light', 'dark'] },
     links: {
       control: 'object',
       description:
         'Each entry is either { type: "navItem", label } (renders a NavItem — no chevron) ' +
-        'or { type: "dropdown", label, colorMode, rows } (renders a NavItem trigger + ' +
+        'or { type: "dropdown", label, dropdownColorMode?, rows } (renders a NavItem trigger + ' +
         'Dropdown — chevron shown automatically). Rows mirror Dropdown variants: ' +
         '{ kind: "item" | "divider" | "button" | "custom", ... }.',
     },
     showLogo: { control: 'boolean' },
     showActions: { control: 'boolean' },
   },
-  render: ({ links, showLogo, showActions }) => (
+  render: ({ colorMode, links, showLogo, showActions }) => (
     <Navbar
-      logo={showLogo ? <Logo /> : undefined}
+      colorMode={colorMode}
+      logo={showLogo ? <Logo colorMode={colorMode} /> : undefined}
       actions={
         showActions ? (
           <>
@@ -149,8 +151,8 @@ export const Playground: Story = {
             <NavbarMenu
               key={`${entry.label}-${i}`}
               label={entry.label}
-              colorMode="dark"
-              dropdownColorMode={entry.colorMode ?? 'dark'}
+              colorMode={colorMode}
+              dropdownColorMode={entry.dropdownColorMode ?? colorMode}
               iconRight={<Chevron />}
               rows={entry.rows}
             />
@@ -160,7 +162,7 @@ export const Playground: Story = {
           <NavItem
             key={`${entry.label}-${i}`}
             orientation="horizontal"
-            colorMode="dark"
+            colorMode={colorMode}
             label={entry.label}
             selected={entry.selected}
           />
@@ -173,7 +175,8 @@ export const Playground: Story = {
 export const Default: Story = {
   render: () => (
     <Navbar
-      logo={<Logo />}
+      colorMode="dark"
+      logo={<Logo colorMode="dark" />}
       actions={
         <>
           <CircleIcon />
@@ -198,7 +201,6 @@ export const Default: Story = {
       <NavbarMenu
         label="Solutions"
         colorMode="dark"
-        dropdownColorMode="light"
         iconRight={<Chevron />}
         rows={[
           { kind: 'item', label: 'For Teams' },
@@ -214,6 +216,55 @@ export const Default: Story = {
           key={label}
           orientation="horizontal"
           colorMode="dark"
+          label={label}
+          selected={i === 0}
+        />
+      ))}
+    </Navbar>
+  ),
+}
+
+export const Light: Story = {
+  render: () => (
+    <Navbar
+      colorMode="light"
+      logo={<Logo colorMode="light" />}
+      actions={
+        <>
+          <CircleIcon />
+          <MapIcon />
+          <SearchIcon />
+        </>
+      }
+    >
+      <NavbarMenu
+        label="Products"
+        colorMode="light"
+        iconRight={<Chevron />}
+        rows={[
+          { kind: 'item', label: 'Overview' },
+          { kind: 'item', label: 'Features' },
+          { kind: 'item', label: 'Integrations' },
+          { kind: 'divider' },
+          { kind: 'item', label: 'Changelog' },
+          { kind: 'button', label: 'Get a demo', variant: 'filled' },
+        ]}
+      />
+      <NavbarMenu
+        label="Solutions"
+        colorMode="light"
+        iconRight={<Chevron />}
+        rows={[
+          { kind: 'item', label: 'For Teams' },
+          { kind: 'item', label: 'For Enterprise' },
+          { kind: 'item', label: 'For Startups' },
+        ]}
+      />
+      {['Community', 'Resources', 'Pricing', 'Contact'].map((label, i) => (
+        <NavItem
+          key={label}
+          orientation="horizontal"
+          colorMode="light"
           label={label}
           selected={i === 0}
         />

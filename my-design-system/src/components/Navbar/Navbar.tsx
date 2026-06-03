@@ -1,5 +1,8 @@
+// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Navbar/Navbar.tsx
 import type { HTMLAttributes, ReactNode } from 'react'
 import './Navbar.scss'
+
+export type NavbarColorMode = 'light' | 'dark'
 
 export interface NavbarProps extends HTMLAttributes<HTMLElement> {
   /** Left-aligned content (typically the brand / logo). */
@@ -10,6 +13,8 @@ export interface NavbarProps extends HTMLAttributes<HTMLElement> {
   actions?: ReactNode
   /** Accessible label for the `<nav>` landmark. */
   ariaLabel?: string
+  /** Light or dark surface. Defaults to `dark`. */
+  colorMode?: NavbarColorMode
 }
 
 export const Navbar = ({
@@ -17,11 +22,13 @@ export const Navbar = ({
   children,
   actions,
   ariaLabel = 'Primary',
+  colorMode = 'dark',
   className,
   ...props
 }: NavbarProps) => {
-  const classes = ['ds-navbar', className].filter(Boolean).join(' ')
-
+  const classes = ['ds-navbar', `ds-navbar--mode-${colorMode}`, className]
+    .filter(Boolean)
+    .join(' ')
   return (
     <nav className={classes} aria-label={ariaLabel} {...props}>
       {logo && <div className="ds-navbar__logo">{logo}</div>}
