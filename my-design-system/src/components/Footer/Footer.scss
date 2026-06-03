@@ -1,0 +1,862 @@
+@use '../../styles/tokens/variables' as *;
+
+// ─── Base Styles ──────────────────────────────────────────────────────────────
+
+.ds-footer {
+  background: $mapping-system-slate-surface-secondary;
+  font-family: $ui-font-family;
+  width: 100%;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  // Inner max-width container
+  &__container {
+    max-width: 1440px;
+    margin-inline: auto;
+    padding-inline: $padding-container-xl; // 64px
+
+    @media (max-width: 767px) {
+      padding-inline: $padding-container-xs; // 16px
+    }
+  }
+
+  // Logo wrapper
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+    padding-block: $padding-action-xs;
+
+    img {
+      height: auto;
+      max-height: 46px;
+      width: auto;
+      display: block;
+    }
+
+    @media (max-width: 767px) {
+      display: flex;
+      justify-content: center;
+      padding-block: 0;
+    }
+  }
+
+  // Description paragraph
+  &__description {
+    font-size: #{$ui-size-large}px;
+    font-weight: $ui-font-weight-default;
+    color: $mapping-system-slate-text-tertiary;
+    line-height: 1.5;
+    margin: 0;
+    letter-spacing: $letter-spacing-tracking-1;
+  }
+
+  // Socials icon row
+  &__socials {
+    display: flex;
+    gap: $gap-xs;
+    align-items: center;
+    flex-wrap: wrap;
+
+    @media (max-width: 767px) {
+      justify-content: center;
+    }
+  }
+
+  // Individual social button (48×48px)
+  &__social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: $dimensions-button-height-md;  // 48px
+    height: $dimensions-button-height-md;
+    border-radius: $radius-medium;
+    background: $mapping-system-slate-surface-secondary;
+    border: $border-border-width-0 solid transparent;
+    cursor: pointer;
+    color: $mapping-system-slate-text-primary;
+    box-shadow: 0 1px $depth-025 $depth-0 $mapping-system-shadow-light;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+
+    svg {
+      width: $icon-large;  // 24px
+      height: $icon-large;
+    }
+
+    &:hover {
+      background: $mapping-system-slate-surface-tertiary;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $mapping-system-focus-border-primary;
+      outline-offset: 2px;
+    }
+  }
+
+  // Navigation column
+  &__nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-3xs;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__nav-group-title {
+    font-size: #{$ui-size-medium}px;
+    font-weight: $ui-font-weight-strong;
+    color: $mapping-system-slate-text-primary;
+    padding: $padding-action-l $padding-action-s $space-200;
+    margin: 0;
+    line-height: 1.5;
+    letter-spacing: $letter-spacing-tracking-1;
+    white-space: nowrap;
+  }
+
+  // Nav link (in column or horizontal row)
+  &__nav-item {
+    display: inline-flex;
+    align-items: center;
+    height: 40px;
+    padding-inline: $padding-action-s;
+    border-radius: $radius-medium;
+    font-size: #{$ui-size-large}px;
+    font-weight: $ui-font-weight-default;
+    color: $mapping-system-slate-text-tertiary;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    font-family: $ui-font-family;
+    line-height: 1.5;
+    letter-spacing: $letter-spacing-tracking-1;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $mapping-system-slate-text-primary;
+    }
+  }
+
+  // Horizontal nav items row (V10, V12, V14)
+  &__nav-items-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: $gap-3xs;
+
+    @media (max-width: 767px) {
+      justify-content: center;
+    }
+  }
+
+  // Copyright text
+  &__copyright {
+    font-size: #{$ui-size-large}px;
+    font-weight: $ui-font-weight-default;
+    color: $mapping-system-slate-text-tertiary;
+    line-height: 1.5;
+    margin: 0;
+    letter-spacing: $letter-spacing-tracking-1;
+
+    a {
+      color: $mapping-system-slate-text-link-default;
+      text-decoration: none;
+
+      &:hover {
+        color: $mapping-system-slate-text-link-hover;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Bottom separator bar
+  &__bottom {
+    border-top: $border-border-width-1 solid $mapping-system-slate-border-tertiary;
+  }
+
+  // Newsletter section
+  &__newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-2xs;
+  }
+
+  &__newsletter-label {
+    font-size: #{$ui-size-large}px;
+    font-weight: $ui-font-weight-default;
+    color: $mapping-system-slate-text-secondary;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  // Large semibold heading inside newsletter section (V4, V9, V15)
+  &__newsletter-heading {
+    font-size: 24px;
+    font-weight: 700;
+    color: $mapping-system-slate-text-primary;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tracking-1;
+  }
+
+  // Nav item with a platform icon prefix (used in 'Follow us' columns)
+  &__nav-item--with-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: $gap-xs;
+  }
+
+  &__social-nav-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__newsletter-form {
+    display: flex;
+    gap: $gap-xs;
+    align-items: stretch;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+    }
+  }
+
+  &__newsletter-input {
+    flex: 1;
+    min-width: 0;
+    height: $dimensions-button-height-lg;  // 56px
+    padding-inline: $padding-action-s;
+    border: $border-border-width-1 solid $mapping-system-slate-border-secondary;
+    border-radius: $radius-medium;
+    font-size: #{$ui-size-large}px;
+    font-family: $ui-font-family;
+    color: $mapping-system-slate-text-primary;
+    background: $mapping-system-white-1000;
+    outline: none;
+
+    &::placeholder {
+      color: $mapping-system-slate-text-tertiary;
+    }
+
+    &:focus {
+      border-color: $mapping-system-slate-background-primary;
+    }
+  }
+
+  &__newsletter-btn {
+    height: $dimensions-button-height-lg;  // 56px
+    padding-inline: $padding-action-m;
+    background: $mapping-system-slate-background-primary;
+    color: $mapping-system-slate-text-on-primary;
+    border: none;
+    border-radius: $radius-medium;
+    font-size: #{$ui-size-large}px;
+    font-family: $ui-font-family;
+    font-weight: $ui-font-weight-strong;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background: $mapping-system-slate-background-primary-hover;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  // Instagram 2×2 grid
+  &__instagram-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $gap-3xs;
+  }
+
+  &__instagram-img {
+    aspect-ratio: 1;
+    background: $mapping-system-slate-surface-tertiary;
+    border-radius: $radius-small;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+}
+
+// ─── V1: Logo left + Socials right (single bar) ───────────────────────────────
+
+.ds-footer--v1 {
+  .ds-footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: $space-600;  // 48px → total 160px
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: center;
+      gap: $space-300;
+      padding-block: $space-400;
+    }
+  }
+}
+
+// ─── V2: Logo+desc+socials | 4 nav cols | copyright bar ──────────────────────
+
+.ds-footer--v2 {
+  .ds-footer__body {
+    display: flex;
+    gap: $gap-m;
+    padding-block: $padding-container-xl $padding-container-l;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: center;
+      gap: $space-300;
+      padding-block: $space-600 $space-400;
+    }
+  }
+
+  .ds-footer__col-brand {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-m;
+    flex-shrink: 0;
+    width: 352px;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .ds-footer__nav-columns {
+    display: flex;
+    flex: 1;
+    gap: 0;
+
+    @media (max-width: 767px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+  }
+
+  .ds-footer__bottom-inner {
+    padding-block: $space-300;
+    text-align: center;
+  }
+}
+
+// ─── V3: Copyright left + copyright right (single bar) ───────────────────────
+
+.ds-footer--v3 {
+  .ds-footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: $space-400;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: center;
+      gap: $space-200;
+      padding-block: $space-400;
+      text-align: center;
+    }
+  }
+}
+
+// ─── V4: Logo centered | desc | newsletter | socials | copyright bar ──────────
+
+.ds-footer--v4 {
+  .ds-footer__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $gap-m;
+    padding-block: $padding-container-xl $padding-container-l;
+    text-align: center;
+    max-width: 600px;
+    margin-inline: auto;
+
+    @media (max-width: 767px) {
+      padding-block: $space-600 $space-400;
+      max-width: 100%;
+    }
+  }
+
+  .ds-footer__newsletter-form {
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  }
+
+  .ds-footer__bottom-inner {
+    padding-block: $space-300;
+    text-align: center;
+  }
+}
+
+// ─── V5: Brand col | 2 nav cols | Instagram grid | bottom: copyright+socials ──
+
+.ds-footer--v5 {
+  // Newsletter form in V5 is always stacked (input full-width, button below)
+  .ds-footer__newsletter-form {
+    flex-direction: column;
+  }
+
+  .ds-footer__newsletter-btn {
+    width: 100%;
+  }
+
+  .ds-footer__body {
+    display: flex;
+    gap: $gap-m;
+    padding-block: $padding-container-xl $padding-container-l;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: $space-400;
+      padding-block: $space-600 $space-400;
+    }
+  }
+
+  .ds-footer__col-brand {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-m;
+    width: 400px;
+    flex-shrink: 0;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  .ds-footer__nav-columns {
+    display: flex;
+    flex: 1;
+    gap: 0;
+
+    @media (max-width: 767px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+  }
+
+  .ds-footer__col-instagram {
+    flex-shrink: 0;
+    width: 265px;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-2xs;
+    padding-top: $padding-action-l;
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  .ds-footer__instagram-title {
+    font-size: #{$ui-size-medium}px;
+    font-weight: $ui-font-weight-strong;
+    color: $mapping-system-slate-text-primary;
+    margin: 0 0 $gap-2xs;
+    padding-inline: $padding-action-s;
+    line-height: 1.5;
+  }
+
+  .ds-footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: $space-300;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: $space-200;
+      text-align: center;
+    }
+  }
+}
+
+// ─── V6: Logo+desc (col1) + 4 nav groups (no bottom bar) ─────────────────────
+
+.ds-footer--v6 {
+  .ds-footer__body {
+    display: flex;
+    gap: $gap-m;
+    padding-block: $padding-container-l;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: $space-300;
+      padding-block: $space-600 $space-400;
+    }
+  }
+
+  .ds-footer__col-brand {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-m;
+    width: 370px;
+    flex-shrink: 0;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .ds-footer__nav-columns {
+    display: flex;
+    flex: 1;
+    gap: 0;
+
+    @media (max-width: 767px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+  }
+}
+
+// ─── V7: Logo left + copyright right (single bar) ────────────────────────────
+
+.ds-footer--v7 {
+  .ds-footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: $space-600;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      align-items: center;
+      gap: $space-200;
+      padding-block: $space-400;
+      text-align: center;
+    }
+  }
+}
+
+// ─── V8: 5 nav groups | logo + copyright bottom bar ──────────────────────────
+
+.ds-footer--v8 {
+  .ds-footer__body {
+    display: flex;
+    gap: 0;
+    padding-block: $padding-container-xl $padding-container-l;
+
+    @media (max-width: 767px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-block: $space-600 $space-400;
+    }
+  }
+
+  .ds-footer__bottom-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: $space-300;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: $space-200;
+      text-align: center;
+    }
+  }
+}
+
+// ─── V9: Logo+desc (col1) + newsletter form (col right) ──────────────────────
+
+.ds-footer--v9 {
+  .ds-footer__body {
+    display: flex;
+    gap: $gap-m;
+    padding-block: $padding-container-xl;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: $space-400;
+      padding-block: $space-600 $space-400;
+    }
+  }
+
+  .ds-footer__col-brand {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-m;
+    width: 360px;
+    flex-shrink: 0;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .ds-footer__col-newsletter {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $gap-2xs;
+    padding-left: $gap-xxl;
+
+    @media (max-width: 767px) {
+      padding-left: 0;
+    }
+  }
+}
+
+// ─── V10: Logo + nav items (center) + socials (right) + copyright bar ─────────
+
+.ds-footer--v10 {
+  .ds-footer__body {
+    display: flex;
+    align-items: center;
+    gap: $gap-m;
+    padding-block: $space-300;
+    min-height: 176px;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      min-height: auto;
+      padding-block: $space-400;
+      gap: $space-200;
+    }
+  }
+
+  .ds-footer__col-logo {
+    flex-shrink: 0;
+    width: 280px;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  .ds-footer__col-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .ds-footer__col-socials {
+    flex-shrink: 0;
+    width: 280px;
+    display: flex;
+    justify-content: flex-end;
+
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  .ds-footer__bottom-inner {
+    display: flex;
+    justify-content: center;
+    padding-block: $space-300;
+  }
+}
+
+// ─── V11: Copyright left + Socials right (minimal bar) ───────────────────────
+
+.ds-footer--v11 {
+  .ds-footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $gap-m;
+    padding-block: $space-300;
+    min-height: 176px;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      min-height: auto;
+      padding-block: $space-400;
+      gap: $space-200;
+      text-align: center;
+    }
+  }
+}
+
+// ─── V12: Copyright left + nav items + socials right (bar) ───────────────────
+
+.ds-footer--v12 {
+  .ds-footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $gap-m;
+    padding-block: $space-300;
+    min-height: 176px;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      min-height: auto;
+      padding-block: $space-400;
+      gap: $space-200;
+      text-align: center;
+    }
+  }
+
+  .ds-footer__right-group {
+    display: flex;
+    align-items: center;
+    gap: $gap-m;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: $space-200;
+    }
+  }
+}
+
+// ─── V13: 4 nav columns | socials + copyright centered ───────────────────────
+
+.ds-footer--v13 {  // Nav groups are center-aligned in V13
+  .ds-footer__nav-group {
+    align-items: center;
+  }
+
+  .ds-footer__nav-group-title {
+    text-align: center;
+  }
+
+  .ds-footer__nav-item {
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .ds-footer__body {
+    display: flex;
+    gap: 0;
+    padding-block: $padding-container-xl $padding-container-l;
+
+    @media (max-width: 767px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-block: $space-600 $space-400;
+    }
+  }
+
+  .ds-footer__bottom-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $gap-2xs;
+    padding-block: $space-300;
+    text-align: center;
+  }
+}
+
+// ─── V14: Nav items left + logo center + nav items right (bar) ───────────────
+
+.ds-footer--v14 {
+  .ds-footer__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $gap-m;
+    padding-block: $space-600;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      padding-block: $space-400;
+      gap: $space-200;
+      text-align: center;
+    }
+  }
+}
+
+// ─── V15: 3 cols: logo+desc | newsletter | socials label+icons ───────────────
+
+.ds-footer--v15 {
+  .ds-footer__body {
+    display: flex;
+    gap: $gap-m;
+    padding-block: $padding-container-l;
+
+    @media (max-width: 767px) {
+      flex-direction: column;
+      gap: $space-400;
+      padding-block: $space-600 $space-400;
+    }
+  }
+
+  .ds-footer__col-brand {
+    display: flex;
+    flex-direction: column;
+    gap: $gap-m;
+    flex: 1;
+
+    @media (max-width: 767px) {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  .ds-footer__col-newsletter {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-2xs;
+    justify-content: center;
+  }
+
+  .ds-footer__col-socials {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-2xs;
+    justify-content: center;
+
+    @media (max-width: 767px) {
+      align-items: center;
+    }
+  }
+
+  .ds-footer__socials-label {
+    font-size: 24px;
+    font-weight: 700;
+    color: $mapping-system-slate-text-primary;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: $letter-spacing-tracking-1;
+  }
+}
