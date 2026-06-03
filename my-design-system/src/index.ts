@@ -21,3 +21,5 @@ export type {
   NavItemShape,
   NavItemColorMode,
 } from './components/NavItem'
+export { Dropdown, DropdownDivider } from './components/Dropdown'
+export type { DropdownProps, DropdownDividerProps } from './components/Dropdown'
