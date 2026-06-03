@@ -15,11 +15,13 @@ import { FooterV13 } from './FooterV13'
 import { FooterV14 } from './FooterV14'
 import { FooterV15 } from './FooterV15'
 import type { FooterNavGroup, FooterNavItem, FooterSocialLink } from './Footer.types'
+import logoSrc from '../../assets/logo.svg'
 
 // ─── Shared Demo Data ─────────────────────────────────────────────────────────
+// To use your own logo: replace src/assets/logo.svg with your file.
 
 const demoLogo = {
-  src: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="144" height="46" viewBox="0 0 144 46"><rect width="144" height="46" rx="4" fill="%23D1D9E0"/><text x="72" y="29" font-family="sans-serif" font-size="13" font-weight="700" fill="%23374151" text-anchor="middle">Your Logo</text></svg>',
+  src: logoSrc,
   alt: 'Company Logo',
   href: '#',
 }

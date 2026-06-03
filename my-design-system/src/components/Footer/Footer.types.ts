@@ -1,4 +1,4 @@
-import type { HTMLAttributes } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 
 export interface FooterNavItem {
   label: string
@@ -6,6 +6,8 @@ export interface FooterNavItem {
   onClick?: () => void
   /** When set, renders a social platform icon before the label (for 'Follow us' columns) */
   platform?: FooterSocialPlatform
+  /** Custom icon node — overrides the built-in platform SVG */
+  icon?: ReactNode
 }
 
 export interface FooterNavGroup {
@@ -20,6 +22,8 @@ export interface FooterSocialLink {
   href?: string
   onClick?: () => void
   ariaLabel?: string
+  /** Custom icon node (img, svg, component) — overrides the built-in SVG */
+  icon?: ReactNode
 }
 
 export interface FooterLogoProps {
