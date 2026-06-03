@@ -1,0 +1,27 @@
+.ds-overlay {
+  display: flex;
+  width: 647px;
+  height: 250px;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Light mode uses the secondary hover background */
+.ds-overlay--mode-light {
+  background: var(--sds-color-background-default-secondary-hover, #0A111A);
+}
+
+/* Dark mode uses an inverted/dark surface */
+.ds-overlay--mode-dark {
+  background: var(--sds-color-background-default-secondary-hover, #E9ECF0);
+}
+
+/* Opacity steps */
+.ds-overlay--opacity-5   { opacity: 0.05; }
+.ds-overlay--opacity-10  { opacity: 0.10; }
+.ds-overlay--opacity-25  { opacity: 0.25; }
+.ds-overlay--opacity-50  { opacity: 0.50; }
+.ds-overlay--opacity-75  { opacity: 0.75; }
+.ds-overlay--opacity-90  { opacity: 0.90; }
+.ds-overlay--opacity-100 { opacity: 1; }
