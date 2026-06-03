@@ -11,3 +11,13 @@ export type {
   BreadcrumbItemData,
   BreadcrumbItemVariant,
 } from './components/Breadcrumbs'
+export { NavItem } from './components/NavItem'
+export type {
+  NavItemProps,
+  NavItemState,
+  NavItemOrientation,
+  NavItemLevel,
+  NavItemHierarchy,
+  NavItemShape,
+  NavItemColorMode,
+} from './components/NavItem'
