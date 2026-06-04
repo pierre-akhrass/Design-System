@@ -91,9 +91,11 @@
   z-index: 4;
 }
 .ds-map__pin:focus-visible {
-  outline: 2px solid #0384cb;
-  outline-offset: 2px;
+  outline: none;
   border-radius: 50%;
+  box-shadow:
+    0 0 0 2px var(--sds-color-border-default-secondary, #d2d9e0),
+    0 0 0 4px var(--sds-color-border-focus-default, rgba(35, 47, 55, 0.4));
 }
 
 /* ---------- popup ---------- */
@@ -167,6 +169,17 @@
   font-size: 14px;
   color: var(--sds-color-text-default-default, #4a4a4a);
   line-height: 1.5;
+}
+
+/* CTA inside popup — uses shared Button component */
+.ds-map__popup-cta {
+  display: flex;
+  width: 147px;
+  height: var(--dimensions-button-height-md, 48px);
+  padding: var(--padding-action-s, 16px) var(--padding-action-m, 24px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-2xs, 8px);
 }
 
 /* ---------- filter bar ---------- */
@@ -302,14 +315,58 @@
 
 /* ---------- dark mode adjustments ---------- */
 .ds-map--mode-dark {
+  color: #ffffff;
+
   .ds-map__header {
-    background: rgba(20, 30, 45, 0.85);
+    background: var(--sds-color-background-default-secondary, #1e2c3e);
     color: #ffffff;
   }
-  .ds-map__header-title {
+  .ds-map__header-title { color: #ffffff; }
+  .ds-map__header-desc  { color: #d2d9e0; }
+
+  .ds-map__pin {
+    color: #ffffff;
+    filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.4));
+  }
+
+  /* Filter bar */
+  .ds-map__filters {
+    background: var(--sds-color-background-default-secondary, #1e2c3e);
     color: #ffffff;
   }
-  .ds-map__header-desc {
-    color: #d2d9e0;
+  .ds-map__filters::before { background: #4a5a6e; }
+
+  .ds-map__search,
+  .ds-map__select select {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+  }
+  .ds-map__search input::placeholder { color: #b5c1cb; }
+  .ds-map__select svg { color: #ffffff; }
+  .ds-map__select select option { color: #292929; }
+
+  /* Popup */
+  .ds-map__popup {
+    background: var(--sds-color-background-default-secondary, #1e2c3e);
+    box-shadow:
+      0 4px 6px -2px rgba(0, 0, 0, 0.3),
+      0 10px 15px -3px rgba(0, 0, 0, 0.35);
+  }
+  .ds-map__popup-title { color: #ffffff; }
+  .ds-map__popup-desc  { color: #d2d9e0; }
+  .ds-map__popup-close { color: #ffffff; }
+  .ds-map__popup-close:hover { background: rgba(255, 255, 255, 0.1); }
+  .ds-map__popup-thumb { background: rgba(255, 255, 255, 0.08); }
+
+  /* CTA Button — invert for dark surface */
+  .ds-map__popup-cta.ds-button.ds-button--filled {
+    background-color: #ffffff;
+    border-color: #ffffff;
+    color: #1e2c3e;
+  }
+  .ds-map__popup-cta.ds-button.ds-button--filled:hover:not(:disabled) {
+    background-color: #e9ecf0;
+    border-color: #e9ecf0;
   }
 }
