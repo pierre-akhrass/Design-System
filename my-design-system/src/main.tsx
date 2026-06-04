@@ -1,7 +1,8 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { Button } from './index'
-import { AvatarShowcase } from './components/AvatarShowcase/AvatarShowcase'
+import { AvatarShowcase } from './components/Showcase/AvatarShowcase/AvatarShowcase'
+import { IllustrationShowcase } from './components/Showcase/IllustrationShowcase/IllustrationShowcase'
 import './styles/global.scss'
 import './showcase.scss'
 
@@ -58,6 +59,11 @@ createRoot(document.getElementById('root')!).render(
 
         {/* ── Avatar section ──────────────────────────────────────────── */}
         <AvatarShowcase />
+
+        <hr className="showcase-divider" />
+
+        {/* ── Illustration section ─────────────────────────────────────── */}
+        <IllustrationShowcase />
 
       </main>
     </div>

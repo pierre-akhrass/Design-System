@@ -9,3 +9,6 @@ export type { ButtonProps, ButtonState, ButtonVariant } from './components/Butto
 
 export { Avatar, AvatarGroup, AvatarBlock } from './components/Avatar'
 export type { AvatarProps, AvatarType, AvatarSize, AvatarGroupProps, AvatarGroupSpacing, AvatarBlockProps } from './components/Avatar'
+
+export { Illustration } from './components/Illustration'
+export type { IllustrationProps, IllustrationName, IllustrationSize } from './components/Illustration'

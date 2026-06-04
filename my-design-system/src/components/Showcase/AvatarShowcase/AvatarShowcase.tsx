@@ -1,6 +1,6 @@
-import { Avatar } from '../Avatar/Avatar'
-import { AvatarGroup } from '../Avatar/AvatarGroup'
-import { AvatarBlock } from '../Avatar/AvatarBlock'
+import { Avatar } from '../../Avatar/Avatar'
+import { AvatarGroup } from '../../Avatar/AvatarGroup'
+import { AvatarBlock } from '../../Avatar/AvatarBlock'
 import './AvatarShowcase.scss'
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
