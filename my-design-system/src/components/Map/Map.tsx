@@ -263,41 +263,43 @@ export const Map = ({
             />
           </label>
 
-          <label className="ds-map__select">
-            <select
-              value={country}
-              onChange={(e) => {
-                setCountry(e.target.value)
-                emit({ country: e.target.value })
-              }}
-            >
-              <option value="">Country</option>
-              {countries.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDownIcon />
-          </label>
+          <div className="ds-map__filters-row">
+            <label className="ds-map__select">
+              <select
+                value={country}
+                onChange={(e) => {
+                  setCountry(e.target.value)
+                  emit({ country: e.target.value })
+                }}
+              >
+                <option value="">Country</option>
+                {countries.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDownIcon />
+            </label>
 
-          <label className="ds-map__select">
-            <select
-              value={project}
-              onChange={(e) => {
-                setProject(e.target.value)
-                emit({ project: e.target.value })
-              }}
-            >
-              <option value="">Project</option>
-              {projects.map((o) => (
-                <option key={o.value} value={o.value}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDownIcon />
-          </label>
+            <label className="ds-map__select">
+              <select
+                value={project}
+                onChange={(e) => {
+                  setProject(e.target.value)
+                  emit({ project: e.target.value })
+                }}
+              >
+                <option value="">Project</option>
+                {projects.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+              <ChevronDownIcon />
+            </label>
+          </div>
         </div>
       )}
 
