@@ -1,0 +1,256 @@
+// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Map/Map.scss
+.ds-map {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  border-radius: 12px;
+  background-color: #cfe1ee; /* fallback ocean color */
+  background-size: cover;
+  background-position: center;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+/* ---------- modes ---------- */
+.ds-map--mode-light {
+  color: #292929;
+}
+.ds-map--mode-dark {
+  color: #292929; /* pin / text color on map */
+}
+
+/* ---------- header card ---------- */
+.ds-map__header {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  max-width: 320px;
+  padding: 16px 20px;
+  border-radius: 8px;
+  background: rgba(245, 247, 250, 0.92);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  z-index: 2;
+}
+.ds-map__header-title {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #292929;
+  margin-bottom: 6px;
+}
+.ds-map__header-desc {
+  font-size: 12px;
+  line-height: 1.45;
+  color: #4a4a4a;
+}
+
+/* ---------- pins ---------- */
+.ds-map__pin {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: #292929;
+  line-height: 0;
+  transition: transform 120ms ease;
+  z-index: 1;
+}
+.ds-map__pin:hover,
+.ds-map__pin--active {
+  transform: translate(-50%, -100%) scale(1.1);
+}
+.ds-map__pin:focus-visible {
+  outline: 2px solid #0384cb;
+  outline-offset: 2px;
+  border-radius: 50%;
+}
+
+/* ---------- popup ---------- */
+.ds-map__popup {
+  position: absolute;
+  transform: translate(16px, -100%);
+  width: 260px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #d2d9e0;
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+.ds-map__popup-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  background: transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #292929;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-map__popup-close:hover {
+  background: #f0f0f0;
+}
+.ds-map__popup-thumb {
+  flex: 0 0 72px;
+  height: 72px;
+  background: #e9ecf0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ds-map__popup-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.ds-map__popup-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ds-map__popup-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: #292929;
+}
+.ds-map__popup-desc {
+  font-size: 12px;
+  color: #4a4a4a;
+  line-height: 1.4;
+}
+.ds-map__popup-cta {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #292929;
+  color: #ffffff;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.ds-map__popup-cta:hover {
+  background: #000;
+}
+
+/* ---------- filter bar ---------- */
+.ds-map__filters {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+.ds-map__search {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: #ffffff;
+  border: 1px solid #d2d9e0;
+  border-radius: 6px;
+  color: #828282;
+  min-width: 180px;
+}
+.ds-map__search input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: 13px;
+  color: #292929;
+  width: 100%;
+}
+.ds-map__select {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+.ds-map__select select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 6px 28px 6px 10px;
+  background: #ffffff;
+  border: 1px solid #d2d9e0;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #292929;
+  cursor: pointer;
+  min-width: 110px;
+}
+.ds-map__select svg {
+  position: absolute;
+  right: 8px;
+  pointer-events: none;
+  color: #828282;
+}
+
+/* ---------- re-center pill ---------- */
+.ds-map__recenter {
+  position: absolute;
+  right: 24px;
+  bottom: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: #ffffff;
+  color: #292929;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 2;
+}
+.ds-map__recenter:hover {
+  background: #f5f7fa;
+}
+.ds-map__recenter-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 18px;
+  padding: 0 4px;
+  margin-left: 2px;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  color: #4a4a4a;
+  background: #e9ecf0;
+  border-radius: 4px;
+}
+
+/* ---------- dark mode adjustments ---------- */
+.ds-map--mode-dark {
+  .ds-map__header {
+    background: rgba(20, 30, 45, 0.85);
+    color: #ffffff;
+  }
+  .ds-map__header-title {
+    color: #ffffff;
+  }
+  .ds-map__header-desc {
+    color: #d2d9e0;
+  }
+}
