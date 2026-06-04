@@ -1,6 +1,10 @@
 @use './tokens/variables' as *;
 @use './tokens/maps' as *;
 
+:root {
+  --sds-color-background-default-default: #E9ECF0;
+}
+
 * {
   box-sizing: border-box;
 }

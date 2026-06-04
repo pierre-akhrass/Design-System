@@ -120,8 +120,9 @@ const ChevronDownIcon = () => (
 )
 
 const CloseIcon = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path d="M6 6l12 12M18 6 6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <path d="M15.625 4.375L4.375 15.625" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M15.625 15.625L4.375 4.375" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 )
 
@@ -173,7 +174,12 @@ export const Map = ({
   const containerStyle: CSSProperties = {
     ...(mapImage
       ? {
-          background: `url(${mapImage}) #E9ECF0 50% / cover no-repeat`,
+          backgroundImage: `url(${mapImage})`,
+          backgroundColor: 'rgb(233, 233, 233)',
+          backgroundPosition: '50% 50%',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+          backgroundBlendMode: 'color-burn',
         }
       : null),
     ...style,

@@ -76,14 +76,19 @@
   border: 0;
   padding: 0;
   cursor: pointer;
-  color: #292929;
+  color: var(--sds-color-icon-neutral-secondary, #292929);
   line-height: 0;
-  transition: transform 120ms ease;
+  filter: drop-shadow(2px 2px 8px rgba(0, 0, 0, 0.10));
+  transition: transform 180ms ease;
   z-index: 1;
 }
-.ds-map__pin:hover,
-.ds-map__pin--active {
+.ds-map__pin svg { display: block; }
+.ds-map__pin:hover {
   transform: translate(-50%, -100%) scale(1.1);
+}
+.ds-map__pin--active {
+  transform: translate(-50%, -100%) scale(1.6);
+  z-index: 4;
 }
 .ds-map__pin:focus-visible {
   outline: 2px solid #0384cb;
@@ -103,13 +108,7 @@
   align-items: center;
   gap: var(--sds-size-space-200, 8px);
   border-radius: var(--Size-Radius-Medium, 8px);
-  background:
-    linear-gradient(
-      0deg,
-      var(--sds-color-background-default-tertiary, rgba(255, 255, 255, 0.6)) 0%,
-      var(--sds-color-background-default-tertiary, rgba(255, 255, 255, 0.6)) 100%
-    ),
-    var(--sds-color-background-default-default, #E9ECF0);
+  background: var(--sds-color-background-default-default, #E9ECF0);
   box-shadow:
     0 4px var(--sds-size-depth-100, 6px) var(--sds-size-depth-negative-100, -2px)
       var(--Mapping-System-Shadow-Medium, rgba(35, 47, 55, 0.1)),
@@ -193,9 +192,10 @@
   left: 50%;
   top: 24px;
   transform: translateX(-50%);
-  width: 34px;
-  height: 0;
-  border-top: 2px solid var(--sds-color-border-default-default, #292929);
+  width: 39px;
+  height: 5px;
+  background: #D9D9D9;
+  border-radius: 999px;
 }
 
 .ds-map__search {
