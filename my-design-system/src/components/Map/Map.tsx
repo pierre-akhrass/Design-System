@@ -182,7 +182,11 @@ export const Map = ({
   const classes = ['ds-map', `ds-map--mode-${mode}`, className].filter(Boolean).join(' ')
 
   const containerStyle: CSSProperties = {
-    ...(mapImage ? { backgroundImage: `url(${mapImage})` } : null),
+    ...(mapImage
+      ? {
+          background: `url(${mapImage}) #E9ECF0 50% / cover no-repeat`,
+        }
+      : null),
     ...style,
   }
 

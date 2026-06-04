@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Map, type MapPin } from './Map'
+import mapImg from '../../assets/map.png'
 
 const pins: MapPin[] = [
   {
@@ -93,6 +94,7 @@ const meta: Meta<typeof Map> = {
     title: 'Our Global Reach',
     description:
       'Al-Futtaim Group landmark projects include Dubai Festival City, Festival Plaza, and Al Badia, shaping vibrant communities with world-class infrastructure.',
+    mapImage: mapImg,
     pins,
     countries: [
       { label: 'UAE', value: 'ae' },
