@@ -6,6 +6,7 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from 'react'
+import { Button } from '../Button/Button'
 import './Map.scss'
 
 export type MapMode = 'light' | 'dark'
@@ -21,6 +22,8 @@ export interface MapPin {
   country?: string
   project?: string
   thumbnail?: string
+  /** URL the popup 'More Details' button navigates to */
+  href?: string
 }
 
 export interface MapFilterOption {
@@ -41,10 +44,9 @@ export interface MapProps extends HTMLAttributes<HTMLDivElement> {
   projects?: MapFilterOption[]
   /** Show the bottom-left filter bar */
   showFilters?: boolean
-  /** Show the bottom-right re-center button */
-  showRecenter?: boolean
-  onRecenter?: () => void
   onPinClick?: (pin: MapPin) => void
+  /** Fired when the popup 'More Details' button is clicked */
+  onMoreDetails?: (pin: MapPin) => void
   onFilterChange?: (filters: {
     search: string
     country: string
@@ -105,27 +107,15 @@ const PinIcon = () => (
 )
 
 const SearchIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
-    <path d="m20 20-3.5-3.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M8.75 15C12.2018 15 15 12.2018 15 8.75C15 5.29822 12.2018 2.5 8.75 2.5C5.29822 2.5 2.5 5.29822 2.5 8.75C2.5 12.2018 5.29822 15 8.75 15Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M13.1694 13.1694L17.4999 17.4999" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 )
 
 const ChevronDownIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <path d="m6 9 6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
-
-const ReturnIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <path
-      d="M9 14 4 9l5-5M4 9h11a5 5 0 0 1 5 5v6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
   </svg>
 )
 
@@ -144,9 +134,8 @@ export const Map = ({
   countries = [],
   projects = [],
   showFilters = true,
-  showRecenter = true,
-  onRecenter,
   onPinClick,
+  onMoreDetails,
   onFilterChange,
   activePinId,
   className,
@@ -217,45 +206,62 @@ export const Map = ({
         </button>
       ))}
 
-      {/* Popup card next to active pin */}
-      {activePin && (
-        <div
-          className="ds-map__popup"
-          style={{ left: `${activePin.x}%`, top: `${activePin.y}%` }}
-          role="dialog"
-        >
-          <button
-            type="button"
-            className="ds-map__popup-close"
-            aria-label="Close"
-            onClick={() => setInternalActive(undefined)}
+      {/* Popup card next to active pin (auto-flip to stay inside viewport) */}
+      {activePin && (() => {
+        const flipX = activePin.x > 55
+        const flipY = activePin.y < 45
+        const tx = flipX ? 'calc(-100% - 16px)' : '16px'
+        const ty = flipY ? '16px' : '-100%'
+        return (
+          <div
+            className="ds-map__popup"
+            style={{
+              left: `${activePin.x}%`,
+              top: `${activePin.y}%`,
+              transform: `translate(${tx}, ${ty})`,
+            }}
+            role="dialog"
           >
-            <CloseIcon />
-          </button>
-          <div className="ds-map__popup-thumb">
-            {activePin.thumbnail ? (
-              <img src={activePin.thumbnail} alt="" />
-            ) : (
-              <span aria-hidden="true" />
-            )}
-          </div>
-          <div className="ds-map__popup-body">
-            <div className="ds-map__popup-title">{activePin.label ?? 'Title'}</div>
-            <div className="ds-map__popup-desc">
-              {activePin.description ?? 'Story text for whatever goes here.'}
-            </div>
-            <button type="button" className="ds-map__popup-cta">
-              More Details
+            <button
+              type="button"
+              className="ds-map__popup-close"
+              aria-label="Close"
+              onClick={() => setInternalActive(undefined)}
+            >
+              <CloseIcon />
             </button>
+            <div className="ds-map__popup-thumb">
+              {activePin.thumbnail ? (
+                <img src={activePin.thumbnail} alt="" />
+              ) : (
+                <span aria-hidden="true" />
+              )}
+            </div>
+            <div className="ds-map__popup-body">
+              <div className="ds-map__popup-title">{activePin.label ?? 'Title'}</div>
+              <div className="ds-map__popup-desc">
+                {activePin.description ?? 'Story text for whatever goes here.'}
+              </div>
+              <Button
+                className="ds-map__popup-cta"
+                variant="filled"
+                onClick={() => {
+                  onMoreDetails?.(activePin)
+                  if (activePin.href) window.open(activePin.href, '_self')
+                }}
+              >
+                More Details
+              </Button>
+            </div>
           </div>
-        </div>
-      )}
+        )
+      })()}
+
 
       {/* Filter bar (bottom-left) */}
       {showFilters && (
         <div className="ds-map__filters" role="group" aria-label="Map filters">
           <label className="ds-map__search">
-            <SearchIcon />
             <input
               type="text"
               placeholder="Search"
@@ -265,6 +271,7 @@ export const Map = ({
                 emit({ search: e.target.value })
               }}
             />
+            <SearchIcon />
           </label>
 
           <div className="ds-map__filters-row">
@@ -307,14 +314,6 @@ export const Map = ({
         </div>
       )}
 
-      {/* Re-center pill (bottom-right) */}
-      {showRecenter && (
-        <button type="button" className="ds-map__recenter" onClick={onRecenter}>
-          <ReturnIcon />
-          <span>Re-center</span>
-          <kbd className="ds-map__recenter-kbd">⇧2</kbd>
-        </button>
-      )}
     </div>
   )
 }
