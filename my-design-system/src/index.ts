@@ -15,3 +15,6 @@ export type { IllustrationProps, IllustrationName, IllustrationSize } from './co
 
 export { Media, VideoPlayer, VideoGallery } from './components/Media'
 export type { MediaProps, MediaRatio, VideoPlayerProps, VideoGalleryProps, VideoItem } from './components/Media'
+
+export { Footer } from './components/Footer'
+export type { FooterProps, FooterNewsletterProps, FooterNavColumn, FooterLink, OpeningHourGroup, OpeningHourRow, SocialLink, SocialPlatform } from './components/Footer'

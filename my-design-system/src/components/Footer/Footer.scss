@@ -1,0 +1,433 @@
+@use '../../styles/tokens/variables' as *;
+
+// ─── Footer ───────────────────────────────────────────────────────────────────
+
+.ds-footer {
+  background-color: $mapping-system-slate-surface-primary;
+  display: flex;
+  flex-direction: column;
+  font-family: $ui-font-family;
+  width: 100%;
+}
+
+// ─── Newsletter bar ("Top") ───────────────────────────────────────────────────
+
+.ds-footer__top {
+  align-items: center;
+  background-color: $mapping-system-slate-surface-tertiary;
+  display: flex;
+  flex-direction: row;
+  gap: $gap-xxl;
+  justify-content: space-between;
+  padding: $padding-container-l $padding-container-xl;
+
+  @media (max-width: 900px) {
+    gap: $gap-l;
+    padding: $padding-container-m $padding-container-m;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $gap-m;
+    padding: $padding-container-m $padding-container-xs;
+  }
+}
+
+.ds-footer__top-text {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: $gap-3xs;
+}
+
+.ds-footer__top-title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ds-footer__top-subtitle {
+  color: $mapping-system-slate-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-footer__top-form {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  gap: $gap-2xs;
+  min-width: 0;
+  width: 380px;
+
+  @media (max-width: 900px) {
+    width: 320px;
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+.ds-footer__email-input {
+  background-color: $mapping-system-slate-surface-primary;
+  border: 1px solid $mapping-system-neutral-border-tertiary;
+  border-radius: $radius-medium;
+  color: $mapping-system-slate-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  height: 56px;
+  min-width: 180px;
+  outline: none;
+  padding: 0 $padding-action-s;
+  transition: border-color 0.15s;
+  width: 340px;
+
+  &::placeholder {
+    color: $mapping-system-slate-text-tertiary;
+  }
+
+  &:focus {
+    border-color: $mapping-system-slate-background-secondary;
+  }
+
+  @media (max-width: 768px) {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+  }
+}
+
+.ds-footer__subscribe-btn {
+  background-color: $mapping-system-slate-background-primary;
+  border: none;
+  border-radius: $radius-medium;
+  box-shadow: 0 1px 2px $mapping-system-shadow-light;
+  color: $mapping-system-slate-text-on-primary;
+  cursor: pointer;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-strong;
+  height: 56px;
+  padding: 0 $padding-action-m;
+  transition: background-color 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $mapping-system-slate-background-primary-hover;
+  }
+}
+
+// ─── Opening Hours ────────────────────────────────────────────────────────────
+
+.ds-footer__hours {
+  background-color: $mapping-system-slate-surface-secondary;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-l;
+  padding: $padding-container-l $padding-container-xl;
+
+  @media (max-width: 900px) {
+    padding: $padding-container-m $padding-container-m;
+  }
+
+  @media (max-width: 640px) {
+    padding: $padding-container-m $padding-container-xs;
+  }
+}
+
+.ds-footer__hours-title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 24px;
+  }
+}
+
+.ds-footer__hours-grid {
+  display: grid;
+  gap: $gap-l;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ds-footer__hours-group {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+}
+
+.ds-footer__hours-group-title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-footer__hours-rows {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+}
+
+.ds-footer__hours-row-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+}
+
+.ds-footer__hours-row {
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-footer__hours-days {
+  color: $mapping-system-slate-text-tertiary;
+  font-weight: $ui-font-weight-default;
+}
+
+.ds-footer__hours-time {
+  color: $mapping-system-slate-text-primary;
+  font-weight: $ui-font-weight-default;
+}
+
+.ds-footer__hours-divider {
+  border: none;
+  border-top: 1px solid $mapping-system-neutral-border-tertiary;
+  margin: 0;
+}
+
+// ─── Navigation ("Container") ─────────────────────────────────────────────────
+
+.ds-footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+  padding: $padding-container-l $padding-container-xl;
+
+  @media (max-width: 900px) {
+    padding: $padding-container-m $padding-container-m;
+  }
+
+  @media (max-width: 640px) {
+    padding: $padding-container-m $padding-container-xs;
+  }
+}
+
+// Navigation columns ("sections")
+.ds-footer__sections {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ds-footer__column {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+  min-width: 0;
+}
+
+.ds-footer__column-title {
+  color: $mapping-system-slate-text-tertiary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin: 0;
+  padding: $padding-action-l $padding-action-s $gap-2xs;
+  text-transform: uppercase;
+
+  @media (max-width: 640px) {
+    padding: $padding-action-m $padding-action-s $gap-2xs;
+  }
+}
+
+.ds-footer__column-link {
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: $radius-medium;
+  color: $mapping-system-slate-text-secondary;
+  cursor: pointer;
+  display: flex;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  font-weight: $ui-font-weight-default;
+  height: 40px;
+  line-height: 1.5;
+  padding: $padding-action-xs $padding-action-s;
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+  width: 100%;
+
+  &:hover {
+    background-color: $mapping-system-slate-surface-secondary;
+    color: $mapping-system-slate-text-primary;
+  }
+}
+
+// ─── Bottom bar ("Bottom") ────────────────────────────────────────────────────
+
+.ds-footer__bottom {
+  border-top: 1px solid $mapping-system-neutral-border-tertiary;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+  padding-top: $padding-container-s;
+}
+
+// Legal links ("Privacy + Terms")
+.ds-footer__legal {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap-m;
+  justify-content: center;
+}
+
+.ds-footer__legal-link {
+  background: none;
+  border: none;
+  color: $mapping-system-slate-text-secondary;
+  cursor: pointer;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  padding: $padding-action-xs 0;
+  text-decoration: none;
+  transition: color 0.15s;
+
+  &:hover {
+    color: $mapping-system-slate-text-primary;
+    text-decoration: underline;
+  }
+}
+
+// Brand row: logo | copyright | social
+.ds-footer__brand {
+  align-items: center;
+  display: flex;
+  gap: $gap-s;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    gap: $gap-m;
+    align-items: flex-start;
+  }
+}
+
+.ds-footer__logo {
+  align-items: center;
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+
+  img,
+  svg {
+    display: block;
+    height: 42px;
+    width: auto;
+  }
+}
+
+.ds-footer__copyright {
+  color: $mapping-system-slate-text-tertiary;
+  flex-shrink: 0;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+// Social icons ("Social media container" > "Social")
+.ds-footer__social {
+  align-items: center;
+  display: flex;
+  flex: 1 0 0;
+  gap: $gap-s;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.ds-footer__social-btn {
+  align-items: center;
+  background: none;
+  border: 1px solid $mapping-system-neutral-border-secondary;
+  border-radius: #{$radius-full}px;
+  box-shadow: 0 1px 2px $mapping-system-shadow-light;
+  color: $mapping-system-slate-text-secondary;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 48px;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+  width: 48px;
+
+  &:hover {
+    background-color: $mapping-system-slate-surface-secondary;
+    border-color: $mapping-system-slate-text-primary;
+    color: $mapping-system-slate-text-primary;
+  }
+}
+
+.ds-footer__social-icon {
+  display: flex;
+}
+
+// Screen-reader only utility
+.sr-only {
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
