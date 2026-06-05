@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { Button } from './index'
 import { AvatarShowcase } from './components/Showcase/AvatarShowcase/AvatarShowcase'
 import { IllustrationShowcase } from './components/Showcase/IllustrationShowcase/IllustrationShowcase'
+import { MediaShowcase } from './components/Showcase/MediaShowcase/MediaShowcase'
 import './styles/global.scss'
 import './showcase.scss'
 
@@ -64,6 +65,11 @@ createRoot(document.getElementById('root')!).render(
 
         {/* ── Illustration section ─────────────────────────────────────── */}
         <IllustrationShowcase />
+
+        <hr className="showcase-divider" />
+
+        {/* ── Media section ────────────────────────────────────────────── */}
+        <MediaShowcase />
 
       </main>
     </div>

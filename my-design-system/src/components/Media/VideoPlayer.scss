@@ -1,0 +1,227 @@
+@use '../../styles/tokens/variables' as *;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// VideoPlayer — video player with custom controls bar
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-video-player {
+  border-radius: $radius-large;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+// ─── Media area ───────────────────────────────────────────────────────────────
+
+.ds-video-player__media {
+  aspect-ratio: 16 / 9;
+  background-color: $mapping-system-slate-surface-secondary;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+}
+
+.ds-video-player__video,
+.ds-video-player__poster {
+  bottom: 0;
+  display: block;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.ds-video-player__placeholder {
+  background-color: $mapping-system-slate-surface-secondary;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+// ─── Big play button ──────────────────────────────────────────────────────────
+
+.ds-video-player__big-play {
+  align-items: center;
+  background: transparent;
+  border: none;
+  bottom: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+
+  // When playing, hide unless the user hovers over the media area
+  &--playing .ds-video-player__big-play-circle {
+    opacity: 0;
+  }
+
+  &--playing:hover .ds-video-player__big-play-circle {
+    opacity: 1;
+  }
+}
+
+.ds-video-player__big-play-circle {
+  align-items: center;
+  background-color: $mapping-system-white-400; // 30% white
+  border-radius: $radius-full;
+  color: $mapping-system-white-1000;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+
+  .ds-video-player__big-play:hover & {
+    background-color: $mapping-system-white-500; // 60% white
+  }
+
+  .ds-video-player__big-play:active & {
+    transform: scale(0.95);
+  }
+}
+
+// ─── Controls bar ─────────────────────────────────────────────────────────────
+
+.ds-video-player__controls {
+  // dark gradient that bleeds into the bottom of the video area
+  background: linear-gradient(180deg, transparent 0%, rgba(8, 9, 13, 0.9) 100%);
+  bottom: 0;
+  color: $mapping-system-white-1000;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+  left: 0;
+  padding: $gap-xxl $padding-container-m $gap-s;
+  position: absolute;
+  right: 0;
+  z-index: 3;
+}
+
+// ─── Info row (title + timestamp) ────────────────────────────────────────────
+
+.ds-video-player__info {
+  align-items: flex-end;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ds-video-player__title {
+  color: $mapping-system-white-1000;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 60%;
+}
+
+.ds-video-player__time {
+  color: $mapping-system-slate-surface-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  white-space: nowrap;
+}
+
+// ─── Progress bar ─────────────────────────────────────────────────────────────
+
+.ds-video-player__progress {
+  cursor: pointer;
+  height: 2px;
+  position: relative;
+  width: 100%;
+}
+
+.ds-video-player__progress-track {
+  background-color: $mapping-system-white-1000;
+  border-radius: 20px;
+  height: 100%;
+  opacity: 0.4;
+  position: absolute;
+  width: 100%;
+}
+
+.ds-video-player__progress-fill {
+  background-color: $mapping-system-white-1000;
+  border-radius: 20px;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transition: width 0.1s linear;
+}
+
+// ─── Controllers ("Controllers" in Figma) ────────────────────────────────────
+
+.ds-video-player__controllers {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ds-video-player__controllers-left,
+.ds-video-player__controllers-right {
+  align-items: center;
+  display: flex;
+  gap: $gap-3xs;
+}
+
+.ds-video-player__btn {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: $radius-medium;
+  color: $mapping-system-white-1000;
+  cursor: pointer;
+  display: flex;
+  height: 48px;
+  justify-content: center;
+  padding: 0;
+  position: relative;
+  transition: background-color 0.12s ease, color 0.12s ease;
+  width: 48px;
+
+  &:hover {
+    background-color: $mapping-system-white-200;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $mapping-system-white-1000;
+    outline-offset: 2px;
+  }
+
+  // Active state — muted volume or subtitles on
+  &--active {
+    color: $mapping-brand-teal-blue-surface-quaternary;
+
+    &::after {
+      background-color: $mapping-brand-teal-blue-surface-quaternary;
+      border-radius: $radius-full;
+      bottom: 6px;
+      content: '';
+      height: 3px;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      width: 3px;
+    }
+  }
+
+  &--more {
+    height: 40px;
+    width: 40px;
+  }
+}

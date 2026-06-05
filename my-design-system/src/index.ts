@@ -12,3 +12,6 @@ export type { AvatarProps, AvatarType, AvatarSize, AvatarGroupProps, AvatarGroup
 
 export { Illustration } from './components/Illustration'
 export type { IllustrationProps, IllustrationName, IllustrationSize } from './components/Illustration'
+
+export { Media, VideoPlayer, VideoGallery } from './components/Media'
+export type { MediaProps, MediaRatio, VideoPlayerProps, VideoGalleryProps, VideoItem } from './components/Media'

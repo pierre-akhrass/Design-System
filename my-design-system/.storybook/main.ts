@@ -6,7 +6,7 @@ const config: StorybookConfig = {
     options: {},
   },
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [],
+  addons: ['@storybook/addon-docs'],
 }
 
 export default config
