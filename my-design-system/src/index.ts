@@ -27,3 +27,12 @@ export { Navbar } from './components/Navbar'
 export type { NavbarProps } from './components/Navbar'
 export { Overlay } from './components/Overlay'
 export type { OverlayProps, OverlayMode, OverlayOpacity } from './components/Overlay'
+export { Hero } from './components/Hero'
+export type {
+  HeroProps,
+  HeroVariant,
+  HeroMode,
+  HeroAction,
+  HeroBrandCard,
+  HeroStatus,
+} from './components/Hero'
