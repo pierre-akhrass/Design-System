@@ -6,3 +6,19 @@ import './styles/global.scss'
 
 export { Button } from './components/Button'
 export type { ButtonProps, ButtonState, ButtonVariant } from './components/Button'
+
+export { Carousel, CarouselSlide } from './components/Carousel'
+export type {
+  CarouselProps,
+  CarouselSlideProps,
+  CarouselTheme,
+} from './components/Carousel'
+
+export { SocialMediaPost } from './components/SocialMediaPost'
+export type {
+  SocialMediaPostPagination,
+  SocialMediaPostPlatform,
+  SocialMediaPostProps,
+  SocialMediaPostTheme,
+  SocialMediaPostType,
+} from './components/SocialMediaPost'
