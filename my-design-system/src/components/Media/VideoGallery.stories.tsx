@@ -154,6 +154,7 @@ export const Playground: Story = {
 // ─── Interactive ──────────────────────────────────────────────────────────────
 
 export const Interactive: Story = {
+  tags: ['!autodocs'],
   args: {
     mainVideo: {},
     suggestedVideos: {},

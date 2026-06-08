@@ -7,6 +7,14 @@ const RATIOS: MediaRatio[] = ['square', 'video', 'story', 'vertical', 'horizonta
 const meta: Meta<typeof Media> = {
   title: 'Components/Media',
   component: Media,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Responsive image/video container with configurable aspect ratios (`square`, `video`, `story`, `vertical`, `horizontal`) and an optional dark overlay.',
+      },
+    },
+  },
   args: {
     ratio: 'video',
     overlay: true,
@@ -60,6 +68,7 @@ export const Playground: Story = {
 
 export const AllRatios: Story = {
   name: 'All Ratios',
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>

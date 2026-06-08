@@ -14,6 +14,14 @@ const StarIcon = () => (
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Primary interactive element. Supports `filled`, `outlined`, and `plain` variants with optional leading/trailing icons or icon-only mode.',
+      },
+    },
+  },
   args: {
     children: 'Button',
     variant: 'filled',
@@ -89,6 +97,7 @@ export const Playground: Story = {
 
 export const AllStates: Story = {
   name: 'All States',
+  tags: ['!autodocs'],
   parameters: {
     controls: { disable: true },
   },

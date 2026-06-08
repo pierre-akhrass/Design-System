@@ -107,6 +107,12 @@ const meta: Meta<typeof Footer> = {
   component: Footer,
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      description: {
+        component:
+          'Full-page footer with optional newsletter bar, opening hours grid, navigation columns, and a bottom bar (logo + legal links + copyright + social icons). Supports `light` and `dark` themes.',
+      },
+    },
   },
   args: {
     theme: 'light',

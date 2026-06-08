@@ -191,6 +191,7 @@ export const Playground: Story = {
 
 export const WithPoster: Story = {
   name: 'With poster image',
+  tags: ['!autodocs'],
   args: {
     poster: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800',
     title: 'Mountain Timelapse',

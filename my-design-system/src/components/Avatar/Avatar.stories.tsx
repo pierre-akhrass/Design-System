@@ -17,6 +17,14 @@ const PersonIcon = () => (
 const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Displays a user or entity identity through initials, an image, or a shape placeholder. Can be grouped with `AvatarGroup` or extended with text via `AvatarBlock`.',
+      },
+    },
+  },
   args: {
     type: 'initial',
     size: 'medium',
@@ -89,6 +97,7 @@ export const Playground: Story = {
 // ─── Size × Type matrix ───────────────────────────────────────────────────────
 
 export const SizeTypeMatrix: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <div style={matrixWrapperStyle}>
@@ -122,6 +131,7 @@ export const SizeTypeMatrix: Story = {
 // ─── Avatar Group — Overlap ───────────────────────────────────────────────────
 
 export const GroupOverlap: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <AvatarGroup spacing="overlap" overflowCount={99} showOverflow>
@@ -135,6 +145,7 @@ export const GroupOverlap: Story = {
 // ─── Avatar Group — Spaced ────────────────────────────────────────────────────
 
 export const GroupSpaced: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <AvatarGroup spacing="spaced" overflowCount={99} showOverflow>
@@ -148,6 +159,7 @@ export const GroupSpaced: Story = {
 // ─── Avatar Group — No overflow ───────────────────────────────────────────────
 
 export const GroupNoOverflow: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
@@ -168,6 +180,7 @@ export const GroupNoOverflow: Story = {
 // ─── Avatar Block ─────────────────────────────────────────────────────────────
 
 export const BlockImage: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <AvatarBlock
@@ -181,6 +194,7 @@ export const BlockImage: Story = {
 }
 
 export const BlockInitial: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <AvatarBlock
@@ -192,6 +206,7 @@ export const BlockInitial: Story = {
 }
 
 export const BlockShape: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <AvatarBlock
@@ -203,6 +218,7 @@ export const BlockShape: Story = {
 }
 
 export const BlockTitleOnly: Story = {
+  tags: ['!autodocs'],
   parameters: { controls: { disable: true } },
   render: () => (
     <AvatarBlock

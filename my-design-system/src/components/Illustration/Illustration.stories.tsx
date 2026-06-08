@@ -12,6 +12,14 @@ const allNames: IllustrationName[] = [
 const meta: Meta<typeof Illustration> = {
   title: 'Components/Illustration',
   component: Illustration,
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Renders a named SVG illustration in a themed colour context. Supports `light` and `dark` themes, named size presets (`sm` / `md` / `lg` / `xl`) or a custom pixel number.',
+      },
+    },
+  },
   args: {
     name: 'mechanical-01',
     theme: 'light',
@@ -38,29 +46,15 @@ const meta: Meta<typeof Illustration> = {
 export default meta
 type Story = StoryObj<typeof Illustration>
 
-// ─── Design token colours (mirrors _variables.scss) ──────────────────────────
-// Keep in sync with the SCSS token values. When style-dictionary regenerates
-// _variables.scss from updated Figma tokens, update these two constants too.
-const TOKEN_BG_LIGHT = '#f5f7fa' // $mapping-system-slate-surface-primary
-const TOKEN_BG_DARK  = '#141f2e' // $mapping-system-slate-background-primary
-
 // ─── Story 1: Playground ──────────────────────────────────────────────────────
 // Wraps the illustration in a background that matches the chosen theme so the
 // icon is always seen against the correct Figma canvas colour.
 export const Playground: Story = {
   name: 'Playground',
-  parameters: { layout: 'fullscreen' },
   render: (args) => {
-    const isDark = args.theme === 'dark'
+    const bg = args.theme === 'dark' ? '#141f2e' : undefined
     return (
-      <div style={{
-        minHeight: '100vh',
-        background: isDark ? TOKEN_BG_DARK : TOKEN_BG_LIGHT,
-        transition: 'background 0.2s ease',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
+      <div style={{ background: bg, display: 'inline-flex', padding: bg ? 24 : 0, borderRadius: 8, transition: 'background 0.2s ease' }}>
         <Illustration {...args} />
       </div>
     )
@@ -119,6 +113,7 @@ function AllIllustrationsCanvas({ theme = 'light' }: { theme?: IllustrationTheme
 
 export const AllIllustrations: Story = {
   name: 'All Illustrations',
+  tags: ['!autodocs'],
   parameters: { layout: 'fullscreen' },
   args: { theme: 'light' },
   argTypes: {
