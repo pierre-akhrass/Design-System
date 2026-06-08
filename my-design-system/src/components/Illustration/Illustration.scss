@@ -1,0 +1,18 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-illustration {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  // Default color — inherits from parent or uses brand navy
+  color: $mapping-brand-teal-blue-background-primary;
+
+  &__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    // Preserve aspect ratio without cropping
+    overflow: visible;
+  }
+}

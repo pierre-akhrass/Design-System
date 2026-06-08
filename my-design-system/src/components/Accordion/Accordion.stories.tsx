@@ -5,6 +5,7 @@ import './Accordion.stories.scss'
 const meta: Meta<typeof Accordion> = {
   title: 'Components/Accordion',
   component: Accordion,
+  tags: ['autodocs'],
   args: {
     theme: 'light',
     allowMultiple: false,
@@ -18,8 +19,14 @@ const meta: Meta<typeof Accordion> = {
       control: 'boolean',
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Expandable content sections with single or multiple open behavior for dense information layouts.',
+      },
+    },
+  },
 }
-
 export default meta
 
 type Story = StoryObj<typeof Accordion>

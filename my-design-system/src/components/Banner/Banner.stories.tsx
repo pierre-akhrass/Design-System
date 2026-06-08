@@ -5,6 +5,7 @@ import './Banner.stories.scss'
 const meta: Meta<typeof Banner> = {
   title: 'Components/Banner',
   component: Banner,
+  tags: ['autodocs'],
   args: {
     theme: 'light',
     layout: 'media-right',
@@ -24,8 +25,14 @@ const meta: Meta<typeof Banner> = {
       options: ['large', 'medium', 'small'],
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Promotional hero-style banner with media, text, and call-to-action slots across responsive layouts.',
+      },
+    },
+  },
 }
-
 export default meta
 
 type Story = StoryObj<typeof Banner>

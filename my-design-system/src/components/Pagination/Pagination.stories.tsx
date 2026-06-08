@@ -6,6 +6,7 @@ import './Pagination.stories.scss'
 const meta: Meta<typeof Pagination> = {
   title: 'Components/Pagination',
   component: Pagination,
+  tags: ['autodocs'],
   tags: ['ai-generated'],
   args: {
     theme: 'light',
@@ -27,8 +28,14 @@ const meta: Meta<typeof Pagination> = {
     canGoPrevious: { control: 'boolean' },
     canGoNext: { control: 'boolean' },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Paged navigation controls with previous/next actions and numbered page selection.',
+      },
+    },
+  },
 }
-
 export default meta
 
 type Story = StoryObj<typeof Pagination>

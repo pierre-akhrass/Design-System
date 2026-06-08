@@ -5,6 +5,7 @@ import { TextBlock } from './TextBlock'
 const meta: Meta<typeof TextBlock> = {
   title: 'Components/Text Block',
   component: TextBlock,
+  tags: ['autodocs'],
   args: {
     theme: 'light',
     showMeta: true,
@@ -18,8 +19,14 @@ const meta: Meta<typeof TextBlock> = {
       options: ['light', 'dark'],
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Structured text container for title, subtitle, and body copy with theme-aware typography.',
+      },
+    },
+  },
 }
-
 export default meta
 
 type Story = StoryObj<typeof TextBlock>

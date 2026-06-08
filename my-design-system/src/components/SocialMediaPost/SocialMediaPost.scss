@@ -1,0 +1,174 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-social-media-post {
+  --ds-smp-card-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-smp-card-fg: #{$mapping-system-slate-text-primary};
+  --ds-smp-badge-bg: transparent;
+  --ds-smp-badge-fg: #{$mapping-system-slate-text-primary};
+  --ds-smp-placeholder: #{$mapping-system-slate-surface-quaternary};
+  --ds-smp-text-card-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-text-card-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-pagination-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-pagination-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-caption-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-caption-fg: #{$mapping-system-slate-text-on-primary};
+
+  border-radius: $radius-medium;
+  color: var(--ds-smp-card-fg);
+  display: block;
+  font-family: $ui-font-family;
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+.ds-social-media-post--dark {
+  --ds-smp-card-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-card-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-badge-bg: transparent;
+  --ds-smp-badge-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-placeholder: #{$mapping-system-slate-background-secondary};
+  --ds-smp-text-card-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-smp-text-card-fg: #{$mapping-system-slate-text-primary};
+  --ds-smp-pagination-bg: #{$mapping-system-slate-surface-primary};
+  --ds-smp-pagination-fg: #{$mapping-system-slate-text-primary};
+  --ds-smp-caption-bg: #{$mapping-system-slate-background-secondary};
+  --ds-smp-caption-fg: #{$mapping-system-slate-text-on-secondary};
+}
+
+.ds-social-media-post__badge {
+  align-items: center;
+  background-color: var(--ds-smp-badge-bg);
+  border-radius: $radius-full + 0px;
+  color: var(--ds-smp-badge-fg);
+  display: inline-flex;
+  height: 36px;
+  justify-content: center;
+  position: absolute;
+  right: $space-150;
+  top: $space-150;
+  width: 36px;
+  z-index: 2;
+}
+
+.ds-social-media-post__media {
+  background-color: var(--ds-smp-card-bg);
+  border-radius: $radius-medium;
+  overflow: hidden;
+  position: relative;
+}
+
+.ds-social-media-post__media--image,
+.ds-social-media-post__media--video {
+  align-items: center;
+  aspect-ratio: 4 / 5;
+  display: flex;
+  justify-content: center;
+}
+
+.ds-social-media-post__media--image img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.ds-social-media-post__placeholder {
+  align-items: center;
+  color: var(--ds-smp-placeholder);
+  display: inline-flex;
+  justify-content: center;
+}
+
+.ds-social-media-post__play {
+  align-items: center;
+  color: var(--ds-smp-card-fg);
+  display: inline-flex;
+  height: 64px;
+  justify-content: center;
+  opacity: 0.85;
+  width: 64px;
+}
+
+.ds-social-media-post__type-tag {
+  align-items: center;
+  bottom: $space-150;
+  color: var(--ds-smp-card-fg);
+  display: inline-flex;
+  height: 24px;
+  justify-content: center;
+  left: $space-150;
+  position: absolute;
+  width: 24px;
+}
+
+.ds-social-media-post__pagination {
+  align-items: center;
+  background-color: var(--ds-smp-pagination-bg);
+  border-radius: $radius-small;
+  bottom: $space-150;
+  color: var(--ds-smp-pagination-fg);
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: $ui-font-weight-medium;
+  gap: $gap-3xs;
+  left: $space-150;
+  padding: 4px 8px;
+  position: absolute;
+}
+
+.ds-social-media-post__pagination-button {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: $radius-small;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  height: 18px;
+  justify-content: center;
+  padding: 0;
+  width: 18px;
+}
+
+.ds-social-media-post__pagination-button:hover {
+  background-color: $mapping-system-white-200;
+}
+
+.ds-social-media-post__pagination-count {
+  font-variant-numeric: tabular-nums;
+  padding-inline: 2px;
+}
+
+.ds-social-media-post__caption {
+  background-color: var(--ds-smp-caption-bg);
+  bottom: 0;
+  color: var(--ds-smp-caption-fg);
+  font-size: 10px;
+  left: 0;
+  line-height: 1.4;
+  padding: 8px 12px;
+  position: absolute;
+  right: 0;
+}
+
+.ds-social-media-post__media--text {
+  background-color: var(--ds-smp-text-card-bg);
+  color: var(--ds-smp-text-card-fg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  padding: $padding-action-s;
+}
+
+.ds-social-media-post__text {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-social-media-post__hashtags {
+  font-size: 10px;
+  margin: 0;
+  opacity: 0.7;
+}

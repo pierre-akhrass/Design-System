@@ -1,0 +1,36 @@
+.ds-button-matrix {
+  display: grid;
+  gap: 1rem;
+  max-width: 960px;
+  width: 100%;
+}
+
+.ds-button-matrix__header-row,
+.ds-button-matrix__row {
+  align-items: center;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 120px repeat(5, minmax(120px, 1fr));
+}
+
+.ds-button-matrix__label,
+.ds-button-matrix__state-chip,
+.ds-button-matrix__section-title {
+  color: #2f3a4a;
+  font-family: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.875rem;
+}
+
+.ds-button-matrix__state-chip {
+  background: #2f3f55;
+  border-radius: 8px;
+  color: #f5f8fc;
+  justify-self: start;
+  padding: 0.25rem 0.625rem;
+}
+
+.ds-button-matrix__section-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}

@@ -5,6 +5,7 @@ import './Avatar.stories.scss'
 const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
+  tags: ['autodocs'],
   args: {
     size: 'medium',
     variant: 'image',
@@ -25,8 +26,14 @@ const meta: Meta<typeof Avatar> = {
       options: ['light', 'dark'],
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: 'User/profile visual with image, initials, or icon fallback, with size and theme variations.',
+      },
+    },
+  },
 }
-
 export default meta
 
 type Story = StoryObj<typeof Avatar>

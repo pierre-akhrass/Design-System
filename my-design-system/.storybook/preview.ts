@@ -18,6 +18,8 @@ const preview: Preview = {
       handlers: mswHandlers,
     },
     controls: {
+      expanded: true,
+      sort: 'requiredFirst',
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
