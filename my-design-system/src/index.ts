@@ -36,3 +36,9 @@ export type {
   HeroBrandCard,
   HeroStatus,
 } from './components/Hero'
+export { Checkbox } from './components/Checkbox'
+export type { CheckboxProps, CheckboxState, CheckboxPlacement } from './components/Checkbox'
+export { Radio } from './components/Radio'
+export type { RadioProps, RadioState, RadioPlacement } from './components/Radio'
+export { Switch } from './components/Switch'
+export type { SwitchProps, SwitchState, SwitchPlacement } from './components/Switch'
