@@ -152,23 +152,38 @@ All state is managed by the parent — no internal state is held inside the comp
 export default meta
 type Story = StoryObj<typeof VideoPlayer>
 
-// ─── Default ──────────────────────────────────────────────────────────────────
+// ─── Playground ───────────────────────────────────────────────────────────────
 
-export const Default: Story = {
-  name: 'Default — placeholder media',
-  parameters: {
-    docs: {
-      source: {
-        language: 'tsx',
-        code: `import { VideoPlayer } from '@your-org/design-system'
+export const Playground: Story = {
+  name: 'Playground',
+  render: (args) => {
+    const DURATION = args.duration ?? 6752
+    const [isPlaying, setIsPlaying]     = useState(false)
+    const [currentTime, setCurrentTime] = useState(args.currentTime ?? 2858)
+    const [isMuted, setIsMuted]         = useState(false)
+    const [showSubtitles, setSubtitles] = useState(false)
 
-<VideoPlayer
-  title="Shop and Drop"
-  currentTime={2858}
-  duration={6752}
-/>`,
-      },
-    },
+    return (
+      <VideoPlayer
+        title={args.title}
+        src={args.src}
+        poster={args.poster}
+        showControls={args.showControls}
+        isPlaying={isPlaying}
+        currentTime={currentTime}
+        duration={DURATION}
+        isMuted={isMuted}
+        showSubtitles={showSubtitles}
+        onPlayPause={() => setIsPlaying((p) => !p)}
+        onSeek={(f) => setCurrentTime(Math.round(f * DURATION))}
+        onRewind={() => setCurrentTime((t) => Math.max(0, t - 15))}
+        onForward={() => setCurrentTime((t) => Math.min(DURATION, t + 15))}
+        onMuteToggle={() => setIsMuted((m) => !m)}
+        onSubtitlesToggle={() => setSubtitles((s) => !s)}
+        onFullscreen={() => { /* implement in app */ }}
+        onMore={() => { /* implement in app */ }}
+      />
+    )
   },
 }
 
@@ -182,173 +197,30 @@ export const WithPoster: Story = {
     currentTime: 120,
     duration: 360,
   },
-  parameters: {
-    docs: {
-      source: {
-        language: 'tsx',
-        code: `import { VideoPlayer } from '@your-org/design-system'
-
-<VideoPlayer
-  title="Mountain Timelapse"
-  poster="https://example.com/thumbnail.jpg"
-  src="https://example.com/video.mp4"
-  currentTime={120}
-  duration={360}
-/>`,
-      },
-    },
-  },
-}
-
-// ─── Playing state ────────────────────────────────────────────────────────────
-
-export const Playing: Story = {
-  name: 'isPlaying — true',
-  args: {
-    isPlaying: true,
-    currentTime: 2858,
-    duration: 6752,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'When `isPlaying` is `true` the play button switches to a pause icon. The big centred button is hidden by default and reappears on hover.',
-      },
-    },
-  },
-}
-
-// ─── Progress states ──────────────────────────────────────────────────────────
-
-export const NotStarted: Story = {
-  name: 'Progress — 0 %',
-  args: { currentTime: 0, duration: 3600, title: 'Episode 1 — Introduction' },
-}
-
-export const AlmostDone: Story = {
-  name: 'Progress — 90 %',
-  args: { currentTime: 3240, duration: 3600, title: 'Episode 1 — Introduction' },
-}
-
-// ─── Muted ────────────────────────────────────────────────────────────────────
-
-export const Muted: Story = {
-  name: 'isMuted — true',
-  args: { isMuted: true },
-  parameters: {
-    docs: {
-      description: {
-        story: 'When `isMuted` is `true` the volume icon swaps to a muted speaker and an accent dot appears beneath it.',
-      },
-    },
-  },
-}
-
-// ─── Subtitles on ─────────────────────────────────────────────────────────────
-
-export const SubtitlesOn: Story = {
-  name: 'showSubtitles — true',
-  args: { showSubtitles: true },
-  parameters: {
-    docs: {
-      description: {
-        story: 'When `showSubtitles` is `true` an accent dot appears beneath the CC button to indicate active subtitles.',
-      },
-    },
-  },
-}
-
-// ─── Controls hidden ──────────────────────────────────────────────────────────
-
-export const NoControls: Story = {
-  name: 'showControls — false',
-  args: { showControls: false, poster: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800' },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Set `showControls` to `false` to render a bare 16:9 media frame without any UI overlay.',
-      },
-      source: {
-        language: 'tsx',
-        code: `import { VideoPlayer } from '@your-org/design-system'
-
-// Bare media frame — no controls overlay
-<VideoPlayer
-  poster="https://example.com/thumbnail.jpg"
-  showControls={false}
-/>`,
-      },
-    },
-  },
-}
-
-// ─── Interactive demo ─────────────────────────────────────────────────────────
-
-export const Interactive: Story = {
-  name: 'Interactive — full controls demo',
-  parameters: {
-    docs: {
-      description: {
-        story: 'All state is managed with `useState` in the render function below. Click any control to see the parent state update in real time.',
-      },
-      source: {
-        language: 'tsx',
-        code: `import { useState } from 'react'
-import { VideoPlayer } from '@your-org/design-system'
-
-const DURATION = 6752 // total seconds
-
-export function MyVideoPlayer() {
-  const [isPlaying, setIsPlaying]     = useState(false)
-  const [currentTime, setCurrentTime] = useState(0)
-  const [isMuted, setIsMuted]         = useState(false)
-  const [showSubtitles, setSubtitles] = useState(false)
-
-  return (
-    <VideoPlayer
-      title="Shop and Drop"
-      isPlaying={isPlaying}
-      currentTime={currentTime}
-      duration={DURATION}
-      isMuted={isMuted}
-      showSubtitles={showSubtitles}
-      onPlayPause={() => setIsPlaying((p) => !p)}
-      onSeek={(fraction) => setCurrentTime(Math.round(fraction * DURATION))}
-      onRewind={() => setCurrentTime((t) => Math.max(0, t - 15))}
-      onForward={() => setCurrentTime((t) => Math.min(DURATION, t + 15))}
-      onMuteToggle={() => setIsMuted((m) => !m)}
-      onSubtitlesToggle={() => setSubtitles((s) => !s)}
-      onFullscreen={() => { /* open fullscreen */ }}
-      onMore={() => { /* open options menu */ }}
-    />
-  )
-}`,
-      },
-    },
-  },
-  render: () => {
-    const DURATION = 6752
-    const [isPlaying, setIsPlaying]       = useState(false)
-    const [currentTime, setCurrentTime]   = useState(2858)
-    const [isMuted, setIsMuted]           = useState(false)
-    const [showSubtitles, setSubtitles]   = useState(false)
+  render: (args) => {
+    const DURATION = args.duration ?? 360
+    const [isPlaying, setIsPlaying]     = useState(false)
+    const [currentTime, setCurrentTime] = useState(args.currentTime ?? 120)
+    const [isMuted, setIsMuted]         = useState(false)
+    const [showSubtitles, setSubtitles] = useState(false)
 
     return (
       <VideoPlayer
-        title="Shop and Drop"
+        title={args.title}
+        src={args.src}
+        poster={args.poster}
+        showControls={args.showControls}
         isPlaying={isPlaying}
         currentTime={currentTime}
         duration={DURATION}
         isMuted={isMuted}
         showSubtitles={showSubtitles}
         onPlayPause={() => setIsPlaying((p) => !p)}
-        onSeek={(fraction) => setCurrentTime(Math.round(fraction * DURATION))}
+        onSeek={(f) => setCurrentTime(Math.round(f * DURATION))}
         onRewind={() => setCurrentTime((t) => Math.max(0, t - 15))}
         onForward={() => setCurrentTime((t) => Math.min(DURATION, t + 15))}
         onMuteToggle={() => setIsMuted((m) => !m)}
         onSubtitlesToggle={() => setSubtitles((s) => !s)}
-        onFullscreen={() => alert('Fullscreen: implement in your app')}
-        onMore={() => alert('More options: implement in your app')}
       />
     )
   },

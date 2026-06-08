@@ -44,66 +44,23 @@ const meta: Meta<typeof Media> = {
 export default meta
 type Story = StoryObj<typeof Media>
 
-export const Default: Story = {
+export const Playground: Story = {
+  name: 'Playground',
   parameters: {
     docs: {
       source: {
         language: 'tsx',
         code: `import { Media } from '@your-org/design-system'
 
-// Renders a placeholder — no image required
-<Media ratio="video" />`,
+<Media ratio="video" src="https://example.com/image.jpg" overlay />`,
       },
     },
   },
 }
 
-export const WithImage: Story = {
-  args: {
-    src: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800',
-    alt: 'Mountain landscape',
-    ratio: 'video',
-  },
-  parameters: {
-    docs: {
-      source: {
-        language: 'tsx',
-        code: `import { Media } from '@your-org/design-system'
-
-<Media
-  ratio="video"
-  src="https://example.com/image.jpg"
-  alt="Mountain landscape"
-  overlay
-/>`,
-      },
-    },
-  },
-}
-
-export const Placeholder: Story = {
-  name: 'Placeholder (no src)',
-  args: { src: undefined },
-}
-
-export const Ratios: Story = {
-  name: 'All Ratios — Placeholder',
-  parameters: {
-    docs: {
-      source: {
-        language: 'tsx',
-        code: `import { Media } from '@your-org/design-system'
-import type { MediaRatio } from '@your-org/design-system'
-
-// 'square' | 'video' | 'story' | 'vertical' | 'horizontal'
-const ratios: MediaRatio[] = ['square', 'video', 'story', 'vertical', 'horizontal']
-
-{ratios.map((ratio) => (
-  <Media key={ratio} ratio={ratio} />
-))}`,
-      },
-    },
-  },
+export const AllRatios: Story = {
+  name: 'All Ratios',
+  parameters: { controls: { disable: true } },
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
       {RATIOS.map((r) => (
@@ -112,29 +69,7 @@ const ratios: MediaRatio[] = ['square', 'video', 'story', 'vertical', 'horizonta
             ratio="{r}"
           </p>
           <div style={{ maxWidth: r === 'story' ? 240 : 480 }}>
-            <Media ratio={r} />
-          </div>
-        </div>
-      ))}
-    </div>
-  ),
-}
-
-export const RatiosWithImage: Story = {
-  name: 'All Ratios — With Image',
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
-      {RATIOS.map((r) => (
-        <div key={r} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-          <p style={{ fontFamily: 'monospace', fontSize: 12, margin: 0, color: '#666' }}>
-            ratio="{r}"
-          </p>
-          <div style={{ maxWidth: r === 'story' ? 240 : 480 }}>
-            <Media
-              ratio={r}
-              src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
-              alt="Mountain landscape"
-            />
+            <Media ratio={r} src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Sample" />
           </div>
         </div>
       ))}

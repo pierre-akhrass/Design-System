@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Footer } from './Footer'
-import type { FooterNavColumn, OpeningHourGroup, SocialLink } from './Footer'
+import type { FooterNavColumn, OpeningHourGroup, SocialLink, FooterTheme } from './Footer'
+import LogoAlFuttaim from '../../assets/logo-al-futtaim.svg?react'
+
+// ─── Design token BG colours (mirrors _variables.scss) ────────────────────────
+// light → $mapping-system-slate-surface-primary    #f5f7fa
+// dark  → $mapping-system-slate-background-primary #141f2e
+const TOKEN_BG_LIGHT = '#f5f7fa'
+const TOKEN_BG_DARK  = '#141f2e'
 
 // ─── Sample data ──────────────────────────────────────────────────────────────
 
@@ -100,34 +107,18 @@ const meta: Meta<typeof Footer> = {
   component: Footer,
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      description: {
-        component: `
-A fully controlled, data-driven footer with four independently togglable sections.
-
-### Sections (Figma names)
-| Section | Figma name | Prop |
-|---|---|---|
-| Newsletter bar | "Top" | \`showNewsletterBar\` |
-| Opening hours panel | "Opening Hours" | \`showOpeningHours\` |
-| Navigation columns | "sections" | \`navColumns\` |
-| Bottom bar | "Bottom" | \`legalLinks\`, \`logo\`, \`copyright\`, \`socialLinks\` |
-
-### Key controlled props
-| Prop | Type | Description |
-|---|---|---|
-| \`newsletter\` | \`FooterNewsletterProps\` | Title, subtitle, placeholder, label and \`onSubscribe\` callback |
-| \`openingHours\` | \`OpeningHourGroup[]\` | Up to 4 timing columns, 2 rows each |
-| \`navColumns\` | \`FooterNavColumn[]\` | Up to 5 columns of nav links |
-| \`legalLinks\` | \`FooterLink[]\` | Privacy Policy, T&C links |
-| \`socialLinks\` | \`SocialLink[]\` | platform + href + \`onClick\` |
-| \`logo\` | \`ReactNode\` | Pass any image, SVG, or component |
-| \`copyright\` | \`string\` | Copyright line |
-        `,
-      },
-    },
+  },
+  args: {
+    theme: 'light',
+    showNewsletterBar: true,
+    showOpeningHours: true,
   },
   argTypes: {
+    theme: {
+      control: 'inline-radio',
+      options: ['light', 'dark'],
+      description: 'Color theme — light uses slate surface palette, dark uses slate background palette.',
+    },
     showNewsletterBar: {
       control: 'boolean',
       description: 'Show/hide the newsletter subscription bar ("Top" in Figma).',
@@ -140,7 +131,7 @@ A fully controlled, data-driven footer with four independently togglable section
     },
     newsletter: {
       control: 'object',
-      description: 'Newsletter bar content — title, subtitle, placeholder, button label, and `onSubscribe` callback.',
+      description: 'Newsletter bar content.',
       table: { category: 'Newsletter bar' },
     },
     openingHoursTitle: {
@@ -150,17 +141,17 @@ A fully controlled, data-driven footer with four independently togglable section
     },
     openingHours: {
       control: 'object',
-      description: 'Array of timing groups. Each group has a `title` and exactly two `rows` (days + hours).',
+      description: 'Array of timing groups.',
       table: { category: 'Opening hours' },
     },
     navColumns: {
       control: 'object',
-      description: 'Up to 5 navigation columns. Each has a `title` and `links[]` array.',
+      description: 'Up to 5 navigation columns.',
       table: { category: 'Navigation' },
     },
     logo: {
       control: false,
-      description: 'Logo slot — pass any `ReactNode` (img, SVG, component).',
+      description: 'Logo slot — pass any ReactNode.',
       table: { category: 'Bottom bar' },
     },
     copyright: {
@@ -170,12 +161,12 @@ A fully controlled, data-driven footer with four independently togglable section
     },
     legalLinks: {
       control: 'object',
-      description: 'Legal links row ("Privacy + Terms" in Figma). Each item: `{ label, href?, onClick? }`.',
+      description: 'Legal links row.',
       table: { category: 'Bottom bar' },
     },
     socialLinks: {
       control: 'object',
-      description: 'Social icon buttons. Each item: `{ platform, href?, ariaLabel?, onClick? }`. Platforms: `linkedin | instagram | youtube | x`.',
+      description: 'Social icon buttons.',
       table: { category: 'Bottom bar' },
     },
   },
@@ -184,140 +175,26 @@ A fully controlled, data-driven footer with four independently togglable section
 export default meta
 type Story = StoryObj<typeof Footer>
 
-// ─── Default — all sections ───────────────────────────────────────────────────
-
-export const Default: Story = {
-  name: 'Default — all sections',
-  args: {
-    navColumns: NAV_COLUMNS,
-    openingHours: OPENING_HOURS,
-    copyright: '©Ogilvy 2026. All Rights Reserved. Designed by OgilvyOne',
-    socialLinks: SOCIAL,
-  },
-}
-
-// ─── Without newsletter bar ───────────────────────────────────────────────────
-
-export const NoNewsletterBar: Story = {
-  name: 'showNewsletterBar — false',
-  args: {
-    showNewsletterBar: false,
-    navColumns: NAV_COLUMNS,
-    openingHours: OPENING_HOURS,
-    copyright: '©2026. All Rights Reserved.',
-    socialLinks: SOCIAL,
-  },
-}
-
-// ─── Without opening hours ────────────────────────────────────────────────────
-
-export const NoOpeningHours: Story = {
-  name: 'showOpeningHours — false',
-  args: {
-    showOpeningHours: false,
-    navColumns: NAV_COLUMNS,
-    copyright: '©2026. All Rights Reserved.',
-    socialLinks: SOCIAL,
-  },
-}
-
-// ─── Nav only (minimal) ───────────────────────────────────────────────────────
-
-export const NavOnly: Story = {
-  name: 'Nav only — minimal',
-  args: {
-    showNewsletterBar: false,
-    showOpeningHours: false,
-    navColumns: NAV_COLUMNS,
-    copyright: '©2026. All Rights Reserved.',
-    socialLinks: SOCIAL,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Both top sections hidden. Only the navigation columns and the bottom bar are rendered.',
-      },
-    },
-  },
-}
-
-// ─── Custom newsletter ────────────────────────────────────────────────────────
-
-export const CustomNewsletter: Story = {
-  name: 'Custom newsletter content',
-  args: {
-    showOpeningHours: false,
-    newsletter: {
-      title: 'Never miss a deal.',
-      subtitle: 'Subscribe and get weekly offers straight to your inbox.',
-      emailPlaceholder: 'your@email.com',
-      subscribeLabel: 'Join Now',
-      onSubscribe: (email) => alert(`Subscribed: ${email}`),
-    },
-    navColumns: NAV_COLUMNS,
-    copyright: '©2026. All Rights Reserved.',
-    socialLinks: SOCIAL,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Pass a custom `newsletter` object to override every text string and wire up the `onSubscribe` callback.',
-      },
-    },
-  },
-}
-
-// ─── Custom logo ──────────────────────────────────────────────────────────────
-
-export const WithLogo: Story = {
-  name: 'With logo slot',
-  args: {
-    showOpeningHours: false,
-    navColumns: NAV_COLUMNS,
-    socialLinks: SOCIAL,
-    copyright: '©2026. All Rights Reserved.',
-    logo: (
-      <svg viewBox="0 0 120 40" width="120" height="40" aria-label="Brand logo">
-        <rect width="120" height="40" rx="4" fill="#141f2e" />
-        <text x="12" y="26" fill="#ffffff" fontFamily="Noto Sans, sans-serif" fontSize="16" fontWeight="700">
-          BRAND
-        </text>
-      </svg>
-    ),
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'The `logo` prop accepts any `ReactNode` — an `<img>`, an inline SVG, or a component.',
-      },
-    },
-  },
-}
-
-// ─── Social-only bottom bar ───────────────────────────────────────────────────
-
-export const CustomSocial: Story = {
-  name: 'Custom social links',
-  args: {
-    showNewsletterBar: false,
-    showOpeningHours: false,
-    navColumns: NAV_COLUMNS,
-    copyright: '©2026. All Rights Reserved.',
-    legalLinks: [
-      { label: 'Privacy Policy', href: '/privacy' },
-      { label: 'Terms & Conditions', href: '/terms' },
-      { label: 'Cookie Policy', href: '/cookies' },
-    ],
-    socialLinks: [
-      { platform: 'linkedin',  href: 'https://linkedin.com',  ariaLabel: 'Follow us on LinkedIn' },
-      { platform: 'instagram', href: 'https://instagram.com', ariaLabel: 'Follow us on Instagram' },
-    ],
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'Pass any subset of the 4 platforms and any number of legal links.',
-      },
-    },
+// ─── Playground ───────────────────────────────────────────────────────────────
+export const Playground: Story = {
+  name: 'Playground',
+  render: (args) => {
+    const bg = args.theme === 'dark' ? TOKEN_BG_DARK : TOKEN_BG_LIGHT
+    return (
+      <div style={{ background: bg, minHeight: '100vh', transition: 'background 0.2s ease' }}>
+        <Footer
+          {...args}
+          navColumns={NAV_COLUMNS}
+          openingHours={OPENING_HOURS}
+          copyright="©Ogilvy 2026. All Rights Reserved. Designed by OgilvyOne"
+          legalLinks={[
+            { label: 'Privacy Policy', href: '#' },
+            { label: 'Terms & Conditions', href: '#' },
+          ]}
+          socialLinks={SOCIAL}
+          logo={<LogoAlFuttaim aria-label="Al-Futtaim" />}
+        />
+      </div>
+    )
   },
 }

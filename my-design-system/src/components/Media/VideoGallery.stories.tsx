@@ -107,94 +107,47 @@ const MAIN_VIDEO: VideoItem = {
   duration: 6752,
 }
 
-// ─── Default (all placeholders) ───────────────────────────────────────────────
+// ─── Playground ───────────────────────────────────────────────────────────────
 
-export const Default: Story = {
-  name: 'Default — placeholder media',
+export const Playground: Story = {
+  name: 'Playground',
   args: {
     mainVideo: MAIN_VIDEO,
     suggestedVideos: SAMPLE_VIDEOS,
   },
-  parameters: {
-    docs: {
-      source: {
-        language: 'tsx',
-        code: `import { VideoGallery } from '@your-org/design-system'
-import type { VideoItem } from '@your-org/design-system'
+  render: (args) => {
+    const [mainVideo, setMainVideo]         = useState<VideoItem>(args.mainVideo)
+    const [activeIndex, setActiveIndex]     = useState<number | undefined>(undefined)
+    const [isPlaying, setIsPlaying]         = useState(false)
+    const [currentTime, setCurrentTime]     = useState(args.mainVideo.currentTime ?? 0)
+    const [isMuted, setIsMuted]             = useState(false)
+    const [showSubtitles, setShowSubtitles] = useState(false)
 
-const mainVideo: VideoItem = {
-  title: 'Shop and Drop',
-  currentTime: 2858,
-  duration: 6752,
-}
+    const handleVideoSelect = (index: number, item: VideoItem) => {
+      setMainVideo(item)
+      setActiveIndex(index)
+      setCurrentTime(item.currentTime ?? 0)
+      setIsPlaying(false)
+    }
 
-// Items 0–2 → right sidebar ("Suggested Videos")
-// Items 3–5 → bottom thumbnail row
-const suggestedVideos: VideoItem[] = [
-  { id: 'ep1', title: 'Episode 1', duration: 1800 },
-  { id: 'ep2', title: 'Episode 2', duration: 2100 },
-  { id: 'ep3', title: 'Episode 3', duration: 2400 },
-  { id: 'ep4', title: 'Episode 4', duration: 1800 },
-  { id: 'ep5', title: 'Episode 5', duration: 2100 },
-  { id: 'ep6', title: 'Episode 6', duration: 2700 },
-]
-
-<VideoGallery
-  mainVideo={mainVideo}
-  suggestedVideos={suggestedVideos}
-/>`,
-      },
-    },
-  },
-}
-
-// ─── Sidebar only ─────────────────────────────────────────────────────────────
-
-export const SidebarOnly: Story = {
-  name: 'Sidebar only (3 suggestions)',
-  args: {
-    mainVideo: MAIN_VIDEO,
-    suggestedVideos: SAMPLE_VIDEOS.slice(0, 3),
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: 'When fewer than 4 items are provided, only the sidebar renders. The bottom row is omitted.',
-      },
-    },
-  },
-}
-
-// ─── Active thumbnail ─────────────────────────────────────────────────────────
-
-export const ActiveThumbnail: Story = {
-  name: 'activeVideoIndex — 1',
-  args: {
-    mainVideo: { ...SAMPLE_VIDEOS[1] },
-    suggestedVideos: SAMPLE_VIDEOS,
-    activeVideoIndex: 1,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story: '`activeVideoIndex={1}` highlights the second suggested video with a teal border to indicate it is the current selection.',
-      },
-      source: {
-        language: 'tsx',
-        code: `import { VideoGallery } from '@your-org/design-system'
-
-// Highlight episode 2 (index 1) as the active selection
-<VideoGallery
-  mainVideo={episodeTwo}
-  suggestedVideos={allEpisodes}
-  activeVideoIndex={1}
-  onVideoSelect={(index, item) => {
-    setActiveVideoIndex(index)
-    setMainVideo(item)
-  }}
-/>`,
-      },
-    },
+    return (
+      <VideoGallery
+        mainVideo={{ ...mainVideo, currentTime }}
+        suggestedVideos={args.suggestedVideos}
+        activeVideoIndex={activeIndex}
+        onVideoSelect={handleVideoSelect}
+        isPlaying={isPlaying}
+        isMuted={isMuted}
+        showSubtitles={showSubtitles}
+        showControls={args.showControls}
+        onPlayPause={() => setIsPlaying((p) => !p)}
+        onSeek={(f) => setCurrentTime(Math.round(f * (mainVideo.duration ?? 0)))}
+        onRewind={() => setCurrentTime((t) => Math.max(0, t - 15))}
+        onForward={() => setCurrentTime((t) => Math.min(mainVideo.duration ?? 0, t + 15))}
+        onMuteToggle={() => setIsMuted((m) => !m)}
+        onSubtitlesToggle={() => setShowSubtitles((s) => !s)}
+      />
+    )
   },
 }
 

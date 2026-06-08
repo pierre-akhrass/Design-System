@@ -2,6 +2,8 @@ import { useRef } from 'react'
 import type { HTMLAttributes, ReactNode } from 'react'
 import './Footer.scss'
 
+export type FooterTheme = 'light' | 'dark'
+
 // ─── Social icon SVGs ─────────────────────────────────────────────────────────
 
 const LinkedInIcon = () => (
@@ -80,6 +82,13 @@ export interface SocialLink {
 }
 
 export interface FooterProps extends HTMLAttributes<HTMLElement> {
+  // ── Theme ───────────────────────────────────────────────────────────────────
+  /**
+   * Color theme for the footer.
+   * light → slate surface backgrounds (Figma light design)
+   * dark  → slate background palette (Figma dark design)
+   */
+  theme?: FooterTheme
   // ── Section visibility ──────────────────────────────────────────────────────
   /** Show the newsletter subscription bar ("Top" in Figma). Default: true */
   showNewsletterBar?: boolean
@@ -180,6 +189,7 @@ const SOCIAL_ICONS: Record<SocialPlatform, React.FC> = {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export const Footer = ({
+  theme = 'light',
   showNewsletterBar = true,
   showOpeningHours = true,
   newsletter = DEFAULT_NEWSLETTER,
@@ -197,8 +207,10 @@ export const Footer = ({
   const nl = { ...DEFAULT_NEWSLETTER, ...newsletter }
   const emailRef = useRef<HTMLInputElement>(null)
 
+  const classes = ['ds-footer', `ds-footer--${theme}`, className].filter(Boolean).join(' ')
+
   return (
-    <footer className={['ds-footer', className].filter(Boolean).join(' ')} {...rest}>
+    <footer className={classes} {...rest}>
 
       {/* ── Newsletter bar ("Top") ─────────────────────────────────────── */}
       {showNewsletterBar && (

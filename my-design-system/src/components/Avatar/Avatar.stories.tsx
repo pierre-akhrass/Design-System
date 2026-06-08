@@ -79,60 +79,11 @@ const chipStyle: CSSProperties = {
   textAlign: 'center',
 }
 
-// ─── Individual stories ───────────────────────────────────────────────────────
+// ─── Playground ───────────────────────────────────────────────────────────────
 
-export const InitialXSmall: Story = {
-  args: { type: 'initial', size: 'xsmall', initials: 'A' },
-}
-
-export const InitialSmall: Story = {
-  args: { type: 'initial', size: 'small', initials: 'B' },
-}
-
-export const InitialMedium: Story = {
-  args: { type: 'initial', size: 'medium', initials: 'C' },
-}
-
-export const InitialLarge: Story = {
-  args: { type: 'initial', size: 'large', initials: 'D' },
-}
-
-export const InitialXLarge: Story = {
-  args: { type: 'initial', size: 'xlarge', initials: 'E' },
-}
-
-export const ImageMedium: Story = {
-  args: {
-    type: 'image',
-    size: 'medium',
-    src: 'https://i.pravatar.cc/150?img=3',
-    alt: 'User avatar',
-  },
-}
-
-export const ImageLarge: Story = {
-  args: {
-    type: 'image',
-    size: 'large',
-    src: 'https://i.pravatar.cc/150?img=8',
-    alt: 'User avatar',
-  },
-}
-
-export const ShapeMedium: Story = {
-  args: {
-    type: 'shape',
-    size: 'medium',
-    icon: <PersonIcon />,
-  },
-}
-
-export const ShapeLarge: Story = {
-  args: {
-    type: 'shape',
-    size: 'large',
-    icon: <PersonIcon />,
-  },
+export const Playground: Story = {
+  name: 'Playground',
+  args: { type: 'initial', size: 'medium', initials: 'A' },
 }
 
 // ─── Size × Type matrix ───────────────────────────────────────────────────────

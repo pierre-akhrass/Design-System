@@ -1,6 +1,7 @@
 export { Footer } from './Footer'
 export type {
   FooterProps,
+  FooterTheme,
   FooterNewsletterProps,
   FooterNavColumn,
   FooterLink,

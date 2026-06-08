@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Illustration } from './Illustration'
-import type { IllustrationName, IllustrationSize } from './Illustration'
+import type { IllustrationName, IllustrationTheme } from './Illustration'
 
 const allNames: IllustrationName[] = [
   'mechanical-01', 'mechanical-02', 'mechanical-03', 'mechanical-04', 'mechanical-05',
@@ -14,6 +14,7 @@ const meta: Meta<typeof Illustration> = {
   component: Illustration,
   args: {
     name: 'mechanical-01',
+    theme: 'light',
     size: 'lg',
   },
   argTypes: {
@@ -21,12 +22,14 @@ const meta: Meta<typeof Illustration> = {
       control: 'select',
       options: allNames,
     },
+    theme: {
+      control: 'inline-radio',
+      options: ['light', 'dark'],
+    },
     size: {
-      // 'inline-radio' for named presets; user can also type a number
-      // in the Default story controls panel via the free-text fallback.
       control: { type: 'select' },
       options: ['sm', 'md', 'lg', 'xl', 48, 64, 80, 104, 128, 160, 200, 256],
-      description: 'Named preset (sm/md/lg/xl) or any custom pixel number.',
+      description: 'Named preset (sm/md/lg/xl) or custom pixel number.',
     },
     color: { control: 'color' },
   },
@@ -35,75 +38,94 @@ const meta: Meta<typeof Illustration> = {
 export default meta
 type Story = StoryObj<typeof Illustration>
 
-export const Default: Story = {}
+// ─── Design token colours (mirrors _variables.scss) ──────────────────────────
+// Keep in sync with the SCSS token values. When style-dictionary regenerates
+// _variables.scss from updated Figma tokens, update these two constants too.
+const TOKEN_BG_LIGHT = '#f5f7fa' // $mapping-system-slate-surface-primary
+const TOKEN_BG_DARK  = '#141f2e' // $mapping-system-slate-background-primary
 
-export const Sizes: Story = {
-  name: 'Sizes',
-  render: (args) => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
-      {/* Named presets */}
-      <div>
-        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#999', marginBottom: 16 }}>Named presets</p>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32 }}>
-          {([['sm', 48], ['md', 80], ['lg', 104], ['xl', 160]] as [IllustrationSize, number][]).map(([s, px]) => (
-            <div key={s} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <Illustration {...args} size={s} />
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#333' }}>{s}</span>
-              <span style={{ fontSize: 11, color: '#888' }}>{px}px</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      {/* Custom pixel sizes */}
-      <div>
-        <p style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.07em', textTransform: 'uppercase', color: '#999', marginBottom: 16 }}>Custom pixels</p>
-        <div style={{ display: 'flex', alignItems: 'flex-end', gap: 32 }}>
-          {[32, 48, 64, 96, 128, 192].map((px) => (
-            <div key={px} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-              <Illustration {...args} size={px} />
-              <span style={{ fontSize: 11, color: '#888' }}>{px}px</span>
-              <code style={{ fontSize: 10, color: '#aaa' }}>size={`{${px}}`}</code>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  ),
-  args: { name: 'mechanical-01' },
-}
-
-export const Colors: Story = {
+// ─── Story 1: Playground ──────────────────────────────────────────────────────
+// Wraps the illustration in a background that matches the chosen theme so the
+// icon is always seen against the correct Figma canvas colour.
+export const Playground: Story = {
+  name: 'Playground',
+  parameters: { layout: 'fullscreen' },
   render: (args) => {
-    const colors = [
-      { label: 'Deep Navy', color: '#003e7e' },
-      { label: 'Vibrant Teal', color: '#008c94' },
-      { label: 'Golden Beige', color: '#b4814f' },
-      { label: 'Danger', color: '#d32f2f' },
-      { label: 'Slate', color: '#546e7a' },
-    ]
+    const isDark = args.theme === 'dark'
     return (
-      <div style={{ display: 'flex', gap: 24 }}>
-        {colors.map(({ label, color }) => (
-          <div key={label} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-            <Illustration {...args} color={color} />
-            <span style={{ fontSize: 12, color: '#666' }}>{label}</span>
-          </div>
-        ))}
+      <div style={{
+        minHeight: '100vh',
+        background: isDark ? TOKEN_BG_DARK : TOKEN_BG_LIGHT,
+        transition: 'background 0.2s ease',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}>
+        <Illustration {...args} />
       </div>
     )
   },
-  args: { name: 'mechanical-10', size: 'lg' },
+}
+
+// ─── Story 2: All Illustrations ───────────────────────────────────────────────
+// theme is driven by the Controls panel (inline-radio in the args panel).
+// name / size / color are hidden since they don't apply to the full grid.
+function AllIllustrationsCanvas({ theme = 'light' }: { theme?: IllustrationTheme }) {
+  const isDark = theme === 'dark'
+
+  // Figma token colours:
+  // light bg → $mapping-system-slate-surface-primary    #f5f7fa
+  // dark  bg → $mapping-system-slate-background-primary #141f2e
+  const bg         = isDark ? '#141f2e' : '#f5f7fa'
+  const labelColor = isDark ? '#8099b3' : '#6b6b6b'
+
+  return (
+    <div
+      style={{
+        minHeight: '100vh',
+        background: bg,
+        padding: '40px 48px',
+        transition: 'background 0.2s ease',
+        fontFamily: "'Noto Sans', sans-serif",
+      }}
+    >
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(10, 1fr)',
+        gap: '12px 8px',
+      }}>
+        {allNames.map((name) => (
+          <div key={name} style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: 6,
+          }}>
+            <Illustration name={name} size="sm" theme={theme} />
+            <span style={{
+              fontSize: 9,
+              color: labelColor,
+              textAlign: 'center',
+              letterSpacing: '0.03em',
+            }}>
+              {name.replace('mechanical-', '')}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export const AllIllustrations: Story = {
-  render: () => (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 24, padding: 16 }}>
-      {allNames.map((name) => (
-        <div key={name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
-          <Illustration name={name} size="lg" />
-          <span style={{ fontSize: 11, color: '#666' }}>{name}</span>
-        </div>
-      ))}
-    </div>
-  ),
+  name: 'All Illustrations',
+  parameters: { layout: 'fullscreen' },
+  args: { theme: 'light' },
+  argTypes: {
+    // Only theme is controllable for this story
+    name:  { table: { disable: true } },
+    size:  { table: { disable: true } },
+    color: { table: { disable: true } },
+  },
+  render: (args) => <AllIllustrationsCanvas theme={args.theme} />,
 }
