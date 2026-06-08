@@ -1,0 +1,130 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-pagination {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: $gap-3xs;
+}
+
+.ds-pagination__list {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: $gap-3xs;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-pagination__item {
+  display: inline-flex;
+}
+
+.ds-pagination__page,
+.ds-pagination__control {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 1px calc(#{$depth-025} / 2) $mapping-system-shadow-light;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: $label-large-strong;
+  gap: $gap-2xs;
+  height: 40px;
+  justify-content: center;
+  min-width: 40px;
+  padding: $padding-action-xs $padding-action-s;
+  position: relative;
+}
+
+.ds-pagination__page.is-active::after {
+  background: $mapping-system-slate-background-primary;
+  border-radius: inherit;
+  content: '';
+  inset: 0;
+  opacity: 0.25;
+  pointer-events: none;
+  position: absolute;
+}
+
+.ds-pagination__page.is-truncation {
+  color: $mapping-system-slate-text-tertiary;
+  cursor: default;
+}
+
+.ds-pagination__page.is-truncation:disabled {
+  opacity: 1;
+}
+
+.ds-pagination__control.is-icon-only {
+  padding: $padding-action-xs;
+  width: 40px;
+}
+
+.ds-pagination__control.is-label {
+  padding: $padding-action-xs $padding-action-s;
+}
+
+.ds-pagination__control:disabled,
+.ds-pagination__page:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.ds-pagination__control-label {
+  white-space: nowrap;
+}
+
+.ds-pagination__icon {
+  display: inline-flex;
+  line-height: 0;
+}
+
+@media (max-width: 640px) {
+  .ds-pagination__page,
+  .ds-pagination__control {
+    border-radius: 6px;
+    font-size: $ui-size-medium * 1px;
+    gap: $gap-3xs;
+    height: 36px;
+    min-width: 36px;
+    padding: $padding-action-2xs $padding-action-xs;
+  }
+
+  .ds-pagination__control.is-icon-only {
+    width: 36px;
+  }
+}
+
+.ds-pagination--light {
+  color: $mapping-system-slate-text-secondary;
+
+  .ds-pagination__page.is-active {
+    color: $mapping-system-slate-text-primary;
+  }
+}
+
+.ds-pagination--dark {
+  color: $color-system-gray-100;
+
+  .ds-pagination__page,
+  .ds-pagination__control {
+    box-shadow: 0 1px calc(#{$depth-025} / 2) $mapping-system-shadow-medium;
+  }
+
+  .ds-pagination__page.is-active {
+    color: $color-system-gray-100;
+  }
+
+  .ds-pagination__page.is-active::after {
+    background: $color-system-gray-100;
+    opacity: 0.2;
+  }
+
+  .ds-pagination__page.is-truncation {
+    color: $mapping-system-slate-border-primary;
+  }
+}

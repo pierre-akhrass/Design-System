@@ -1,0 +1,128 @@
+@use '../../styles/tokens/variables' as *;
+
+@mixin avatar-size($size) {
+  block-size: $size;
+  inline-size: $size;
+}
+
+.ds-avatar {
+  align-items: center;
+  border: $size-stroke-border-width-1 solid transparent;
+  border-radius: $radius-full;
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.ds-avatar--x-small {
+  @include avatar-size($avatar-x-small);
+}
+
+.ds-avatar--small {
+  @include avatar-size($avatar-small);
+}
+
+.ds-avatar--medium {
+  @include avatar-size($avatar-medium);
+}
+
+.ds-avatar--large {
+  @include avatar-size($avatar-large);
+}
+
+.ds-avatar--x-large {
+  @include avatar-size($avatar-x-large);
+}
+
+.ds-avatar__image {
+  block-size: 100%;
+  inline-size: 100%;
+  object-fit: cover;
+}
+
+.ds-avatar__glyph,
+.ds-avatar__initials {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  line-height: 1;
+}
+
+.ds-avatar__glyph svg {
+  block-size: 58%;
+  inline-size: 58%;
+}
+
+.ds-avatar__initials {
+  font-family: $font-family-en-primary;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.ds-avatar--x-small .ds-avatar__initials {
+  font-size: 10px;
+}
+
+.ds-avatar--small .ds-avatar__initials {
+  font-size: 11px;
+}
+
+.ds-avatar--medium .ds-avatar__initials {
+  font-size: 12px;
+}
+
+.ds-avatar--large .ds-avatar__initials {
+  font-size: 14px;
+}
+
+.ds-avatar--x-large .ds-avatar__initials {
+  font-size: 18px;
+}
+
+.ds-avatar--light.ds-avatar--image {
+  background: $mapping-system-slate-surface-secondary;
+  border-color: $mapping-system-slate-border-tertiary;
+  color: $mapping-system-slate-icon-secondary;
+}
+
+.ds-avatar--light.ds-avatar--initial {
+  background: $mapping-system-slate-background-tertiary;
+  border-color: $mapping-system-slate-background-tertiary;
+  color: $mapping-system-slate-text-on-tertiary;
+}
+
+.ds-avatar--light.ds-avatar--shape {
+  background: $color-system-blue-600;
+  border-color: $color-system-blue-600;
+  color: $color-system-white-white;
+}
+
+.ds-avatar--dark.ds-avatar--image {
+  background: $mapping-system-slate-background-secondary;
+  border-color: $mapping-system-slate-border-primary;
+  color: $mapping-system-slate-icon-on-secondary;
+}
+
+.ds-avatar--dark.ds-avatar--initial {
+  background: $mapping-system-slate-background-secondary;
+  border-color: $mapping-system-slate-background-secondary;
+  color: $mapping-system-slate-text-on-secondary;
+}
+
+.ds-avatar--dark.ds-avatar--shape {
+  background: $color-system-blue-600;
+  border-color: $color-system-blue-600;
+  color: $color-system-white-white;
+}
+
+@media (max-width: 640px) {
+  .ds-avatar--x-large {
+    @include avatar-size($avatar-large);
+  }
+
+  .ds-avatar--large {
+    @include avatar-size($avatar-medium);
+  }
+}

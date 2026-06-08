@@ -21,9 +21,11 @@ export const Button = ({
   className,
   type = 'button',
   disabled,
+  'aria-label': ariaLabel,
   ...props
 }: ButtonProps) => {
   const isDisabled = state === 'disabled' || Boolean(disabled)
+  const computedAriaLabel = ariaLabel ?? (iconOnly ? 'Icon button' : undefined)
 
   const classes = [
     'ds-button',
@@ -36,7 +38,7 @@ export const Button = ({
     .join(' ')
 
   return (
-    <button className={classes} disabled={isDisabled} type={type} {...props}>
+    <button className={classes} disabled={isDisabled} type={type} aria-label={computedAriaLabel} {...props}>
       {icon && <span className="ds-button__icon">{icon}</span>}
       {!iconOnly && children && <span className="ds-button__label">{children}</span>}
     </button>

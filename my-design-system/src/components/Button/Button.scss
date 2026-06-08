@@ -270,3 +270,25 @@
   height: 1em;
   width: 1em;
 }
+
+@media (max-width: 640px) {
+  .ds-button {
+    font-size: $ui-size-medium * 1px;
+    gap: $gap-3xs;
+    height: 40px;
+    max-width: 100%;
+    padding: $padding-action-xs $padding-action-s;
+    white-space: normal;
+  }
+
+  .ds-button__label {
+    text-align: center;
+    white-space: normal;
+  }
+
+  .ds-button--icon-only {
+    height: 40px;
+    padding: $padding-action-xs;
+    width: 40px;
+  }
+}
