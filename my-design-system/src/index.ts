@@ -22,3 +22,11 @@ export type {
   SocialMediaPostTheme,
   SocialMediaPostType,
 } from './components/SocialMediaPost'
+
+export { List, ListItem } from './components/List'
+export type {
+  ListItemProps,
+  ListItemVariant,
+  ListProps,
+  ListTheme,
+} from './components/List'

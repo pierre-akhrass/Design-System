@@ -40,11 +40,7 @@ const captionText =
 const xText =
   "Style isn't just what you wear—it's how you wear it. Confidence is the best accessory."
 
-const PaginatedInstagram = ({
-  theme,
-}: {
-  theme: 'light' | 'dark'
-}) => {
+const PaginatedInstagram = ({ theme }: { theme: 'light' | 'dark' }) => {
   const [page, setPage] = useState(2)
   const total = 6
   return (
@@ -63,30 +59,17 @@ const PaginatedInstagram = ({
 }
 
 const meta: Meta<typeof SocialMediaPost> = {
-  title: 'Components/SocialMediaPost',
+  title: 'Components/SocialMediaPost/Playground',
   component: SocialMediaPost,
-  excludeStories: /^(Playground|Facebook|Instagram|TikTok|YouTube|X|ShowcaseLight|ShowcaseDark)$/,
-  parameters: {
-    layout: 'fullscreen',
-  },
-  args: {
-    theme: 'light',
-    platform: 'facebook',
-    type: 'image',
-  },
+  parameters: { layout: 'fullscreen' },
+  args: { theme: 'light', platform: 'facebook', type: 'image' },
   argTypes: {
-    theme: {
-      control: 'inline-radio',
-      options: ['light', 'dark'],
-    },
+    theme: { control: 'inline-radio', options: ['light', 'dark'] },
     platform: {
       control: 'inline-radio',
       options: ['facebook', 'instagram', 'tiktok', 'youtube', 'x'],
     },
-    type: {
-      control: 'inline-radio',
-      options: ['image', 'video', 'text'],
-    },
+    type: { control: 'inline-radio', options: ['image', 'video', 'text'] },
   },
 }
 
@@ -94,54 +77,23 @@ export default meta
 
 type Story = StoryObj<typeof SocialMediaPost>
 
-export const Default: Story = {
-  args: { theme: 'light', platform: 'facebook', type: 'image' },
-}
-
-export const Playground: Story = {
-  name: 'Playground/Default',
-  args: {
-    theme: 'light',
-    platform: 'facebook',
-    type: 'image',
-    caption: captionText,
-    text: xText,
-    hashtags: '#FashionForward #StyleMatters',
-  },
-}
-
 export const Facebook: Story = {
-  name: 'Playground/Facebook',
-  args: {
-    platform: 'facebook',
-    type: 'image',
-    caption: captionText,
-  },
+  args: { platform: 'facebook', type: 'image', caption: captionText },
 }
 
 export const Instagram: Story = {
-  name: 'Playground/Instagram',
   render: (args) => <PaginatedInstagram theme={args.theme ?? 'light'} />,
 }
 
 export const TikTok: Story = {
-  name: 'Playground/TikTok',
-  args: {
-    platform: 'tiktok',
-    type: 'video',
-  },
+  args: { platform: 'tiktok', type: 'video' },
 }
 
 export const YouTube: Story = {
-  name: 'Playground/YouTube',
-  args: {
-    platform: 'youtube',
-    type: 'video',
-  },
+  args: { platform: 'youtube', type: 'video' },
 }
 
 export const X: Story = {
-  name: 'Playground/X',
   args: {
     platform: 'x',
     type: 'text',
@@ -159,11 +111,7 @@ const platforms: {
   hashtags?: string
 }[] = [
   { platform: 'facebook', type: 'image', caption: captionText },
-  {
-    platform: 'instagram',
-    type: 'image',
-    pagination: { current: 2, total: 6 },
-  },
+  { platform: 'instagram', type: 'image', pagination: { current: 2, total: 6 } },
   { platform: 'tiktok', type: 'video' },
   { platform: 'youtube', type: 'video' },
   {
@@ -202,11 +150,11 @@ const ShowcaseTemplate = ({ theme }: { theme: 'light' | 'dark' }) => (
 )
 
 export const ShowcaseLight: Story = {
-  name: 'Playground/Showcase – Light',
+  name: 'Showcase – Light',
   render: () => <ShowcaseTemplate theme="light" />,
 }
 
 export const ShowcaseDark: Story = {
-  name: 'Playground/Showcase – Dark',
+  name: 'Showcase – Dark',
   render: () => <ShowcaseTemplate theme="dark" />,
 }

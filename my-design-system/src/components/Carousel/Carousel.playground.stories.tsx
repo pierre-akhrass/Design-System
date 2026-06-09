@@ -38,7 +38,7 @@ const renderSlides = (count = 6) =>
   ))
 
 const meta: Meta<typeof Carousel> = {
-  title: 'Components/Carousel',
+  title: 'Components/Carousel/Playground',
   component: Carousel,
   parameters: {
     layout: 'fullscreen',
@@ -80,12 +80,49 @@ export default meta
 
 type Story = StoryObj<typeof Carousel>
 
-export const Default: Story = {
-  args: {
-    theme: 'light',
-    showNavigation: true,
-    showFade: true,
-    prevLabel: 'Prev',
-    nextLabel: 'Next',
-  },
+export const Light: Story = {
+  args: { theme: 'light' },
+}
+
+export const Dark: Story = {
+  args: { theme: 'dark' },
+}
+
+export const PlainSlides: Story = {
+  name: 'Plain (no docs header)',
+  render: (args) => <Carousel {...args}>{renderSlides(8)}</Carousel>,
+}
+
+export const WithoutNavigation: Story = {
+  args: { showNavigation: false },
+  render: (args) => <Carousel {...args}>{renderSlides(8)}</Carousel>,
+}
+
+export const WithoutFade: Story = {
+  args: { showFade: false },
+  render: (args) => <Carousel {...args}>{renderSlides(8)}</Carousel>,
+}
+
+export const FewSlides: Story = {
+  render: (args) => <Carousel {...args}>{renderSlides(3)}</Carousel>,
+}
+
+export const CustomContent: Story = {
+  render: (args) => (
+    <Carousel {...args}>
+      {Array.from({ length: 6 }, (_, index) => (
+        <CarouselSlide
+          key={index}
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            fontWeight: 600,
+            justifyContent: 'center',
+          }}
+        >
+          Slide {index + 1}
+        </CarouselSlide>
+      ))}
+    </Carousel>
+  ),
 }

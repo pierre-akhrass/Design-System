@@ -1,0 +1,95 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories } from '@storybook/addon-docs/blocks'
+import * as CarouselStories from './Carousel.stories'
+
+<Meta of={CarouselStories} name="Docs" />
+
+<Title>Carousel</Title>
+<Subtitle>A horizontally-scrolling container with edge fades, accessible navigation, and theme-aware design tokens.</Subtitle>
+
+## Overview
+
+`Carousel` arranges any children into a single horizontally scrollable track. It transparently handles:
+
+- Smooth native scrolling (no JS animation library)
+- Prev / Next buttons that **disable** themselves at the edges
+- Edge fade gradients that appear only when more content is hidden in that direction
+- A `light` and `dark` theme that consume the same shared design tokens
+- A reusable `<CarouselSlide />` helper for the "card" placeholders
+
+## How it was built
+
+### 1. Anatomy
+
+```tsx
+<div class="ds-carousel ds-carousel--{theme}">
+  <div class="ds-carousel__viewport">
+    <div class="ds-carousel__track" ref={trackRef}>
+      {children}
+    </div>
+    <div class="ds-carousel__fade ds-carousel__fade--start" data-visible={canScrollPrev} />
+    <div class="ds-carousel__fade ds-carousel__fade--end"   data-visible={canScrollNext} />
+    <button class="ds-carousel__button ds-carousel__button--prev">…</button>
+    <button class="ds-carousel__button ds-carousel__button--next">…</button>
+  </div>
+</div>
+```
+
+### 2. Scroll detection
+
+The component keeps two pieces of local state — `canScrollPrev` and `canScrollNext`. These are recomputed on:
+
+- the track's `scroll` event (passive listener)
+- a `ResizeObserver` watching the track and every child
+
+That way the fades and buttons stay accurate when the viewport resizes, when slides are added/removed, and during smooth scroll animations.
+
+### 3. Public API
+
+```ts
+interface CarouselProps extends HTMLAttributes<HTMLDivElement> {
+  theme?:          'light' | 'dark'   // default 'light'
+  showNavigation?: boolean            // default true
+  showFade?:       boolean            // default true
+  prevLabel?:      string             // default 'Prev'
+  nextLabel?:      string             // default 'Next'
+  scrollAmount?:   number             // px per click; default 80% of viewport
+}
+```
+
+### 4. Tokens used
+
+| Concern | Token |
+|---|---|
+| Background | `$mapping-system-slate-surface-primary` (light) / `$mapping-system-slate-background-primary` (dark) |
+| Text | `$mapping-system-slate-text-primary` / `$mapping-system-slate-text-on-primary` |
+| Slide background | `$mapping-system-slate-surface-secondary` / `$mapping-system-slate-background-secondary` |
+| Padding | `$padding-container-l` |
+| Gap between slides | `$gap-s` |
+| Radius | `$radius-large`, `$radius-medium` |
+| Focus ring | `$mapping-system-focus-border-primary` |
+
+### 5. Theming via CSS variables
+
+Each `.ds-carousel` exposes scoped CSS custom properties (`--ds-carousel-bg`, `--ds-carousel-fg`, …). The `--dark` modifier just **reassigns** those variables, so consumers don't need to override individual rules:
+
+```scss
+.ds-carousel--dark {
+  --ds-carousel-bg: #{$mapping-system-slate-background-primary};
+  --ds-carousel-fg: #{$mapping-system-slate-text-on-primary};
+}
+```
+
+### 6. Accessibility
+
+- Real `<button>` elements with `aria-label`s
+- Buttons are physically `disabled` at the edges (not just styled)
+- Track scrollbar is hidden but native keyboard scrolling still works
+
+## Playground
+
+<Primary />
+<Controls />
+
+## All stories
+
+<Stories />

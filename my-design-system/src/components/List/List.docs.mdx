@@ -1,0 +1,118 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories } from '@storybook/addon-docs/blocks'
+import * as ListStories from './List.stories'
+
+<Meta of={ListStories} name="Docs" />
+
+<Title>List</Title>
+<Subtitle>A composable list primitive with five item variants — document, user, numbered, bulleted, and card.</Subtitle>
+
+## Overview
+
+`List` and its child `ListItem` provide a single, opinionated way to display vertical collections of related items. The component handles five common content shapes:
+
+| `variant` | Leading | Trailing |
+|---|---|---|
+| `document` | Document icon | `meta` text + download button |
+| `user`     | Avatar circle with user glyph | "Add +" button |
+| `numbered` | Zero-padded `index` (e.g. `01`) | — |
+| `bulleted` | Bullet `•` | — |
+| `card`     | Square avatar with image glyph | External-link button (supports `description`) |
+
+Every variant uses the same outer container, leading/body/trailing flex layout, and shared design tokens — only the slot contents change. This makes the API predictable while keeping the visual language consistent.
+
+## How it was built
+
+### 1. Anatomy
+
+```tsx
+<ul class="ds-list ds-list--{theme} [ds-list--bordered]">
+  <li class="ds-list__item ds-list__item--{variant}">
+    <span class="ds-list__leading [ds-list__leading--{modifier}]">…</span>
+    <span class="ds-list__body">
+      <span class="ds-list__label">{label}</span>
+      <span class="ds-list__description">{description}</span>
+    </span>
+    <span class="ds-list__trailing">
+      …
+    </span>
+  </li>
+</ul>
+```
+
+### 2. Public API
+
+```ts
+interface ListProps extends HTMLAttributes<HTMLUListElement> {
+  theme?:     'light' | 'dark'
+  bordered?:  boolean
+}
+
+type ListItemVariant = 'document' | 'user' | 'numbered' | 'bulleted' | 'card'
+
+interface ListItemProps extends HTMLAttributes<HTMLLIElement> {
+  variant?:        ListItemVariant   // default 'document'
+  index?:          number            // numbered variant
+  label?:          ReactNode
+  meta?:           ReactNode         // document variant trailing text
+  description?:    ReactNode         // card variant subtitle
+  leading?:        ReactNode         // override leading slot
+  trailing?:       ReactNode         // override trailing slot
+  actionLabel?:    ReactNode         // user variant button text
+  actionIcon?:     ReactNode         // override action icon
+  onActionClick?:  () => void
+}
+```
+
+The `leading` / `trailing` props let you replace the default slot content without giving up the variant's layout — useful for one-off uses.
+
+### 3. How variants are rendered
+
+Internally, `ListItem` chooses the icon / index / button based on `variant`, with consumer-supplied `leading` / `trailing` always taking precedence. This keeps the JSX terse for common cases while still supporting customization:
+
+```tsx
+<ListItem variant="document" label="Annual report" meta="1.2 MB" />
+<ListItem variant="user"     label="Jane Doe" actionLabel="Add" />
+<ListItem variant="numbered" index={3}        label="Third item" />
+<ListItem variant="bulleted"                  label="Highlight" />
+<ListItem variant="card"     label="Hero card" description="Subtitle" />
+```
+
+### 4. Tokens used
+
+| Concern | Token |
+|---|---|
+| Foreground | `$mapping-system-slate-text-primary` / `-on-primary` |
+| Muted text | `$mapping-system-slate-text-secondary` / `-on-tertiary` |
+| Avatar bg | `$mapping-system-slate-surface-tertiary` / `-background-secondary` |
+| Border | `$mapping-system-slate-border-tertiary` |
+| Radius | `$radius-medium`, `$radius-small` |
+| Hover surface | `$mapping-system-slate-surface-secondary` / `-background-secondary` |
+
+### 5. Theming via CSS variables
+
+```scss
+.ds-list--dark {
+  --ds-list-fg:           #{$mapping-system-slate-text-on-primary};
+  --ds-list-fg-muted:     #{$mapping-system-slate-text-on-tertiary};
+  --ds-list-avatar-bg:    #{$mapping-system-slate-background-secondary};
+  --ds-list-action-hover: #{$mapping-system-slate-background-secondary};
+}
+```
+
+Switching `theme` flips every variant in one place, exactly like the rest of this system.
+
+### 6. Accessibility
+
+- Real `<ul>` / `<li>` markup so assistive tech announces it as a list
+- Action buttons render as `<button>` with `aria-label`s for icon-only cases
+- Decorative SVGs are `aria-hidden`
+- The numbered variant relies on visible text for sequence (no CSS-only numbering)
+
+## Playground
+
+<Primary />
+<Controls />
+
+## All stories
+
+<Stories />
