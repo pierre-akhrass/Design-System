@@ -2,7 +2,18 @@
 @use './tokens/maps' as *;
 
 :root {
-  --sds-color-background-default-default: #E9ECF0;
+  // ---------------------------------------------------------------------------
+  // Selection colors (mirrors the "Selection colors" panel in Figma).
+  // These are the single source of truth for "branded" surface/text/border
+  // colors used across components (NavItem, Buttons, Breadcrumbs, etc.).
+  //
+  // Override these on `:root`, on a theme container, or per-section to retheme
+  // every component that consumes them — no component CSS edits required.
+  // ---------------------------------------------------------------------------
+  --sds-color-text-default-default: #{$mapping-system-slate-text-primary};
+  --sds-color-background-default-default: #{$mapping-system-slate-surface-secondary};
+  --sds-color-background-default-tertiary: #{$mapping-system-slate-surface-tertiary};
+  --sds-color-border-brand-secondary: #{$mapping-brand-vibrant-teal-border-primary};
 }
 
 * {

@@ -1,19 +1,36 @@
 @use '../../styles/tokens/variables' as *;
 
+// -----------------------------------------------------------------------------
+// NavItem
+//
+// Colors come from the global "Selection colors" CSS custom properties
+// (declared in src/styles/global.scss). Override them at :root or on a parent
+// to retheme every NavItem (and every other component using the same vars).
+//
+//   --sds-color-text-default-default        // label / icon color
+//   --sds-color-background-default-default  // hover pill background
+//   --sds-color-background-default-tertiary // active pill background
+//   --sds-color-border-brand-secondary      // active line underline
+// -----------------------------------------------------------------------------
+
 .ds-nav-item {
   display: inline-flex;
   align-items: center;
   gap: $gap-2xs;
-  height: $space-800;
-  padding: $gap-2xs $padding-action-s;
+  width: auto;
   border: 0;
   border-radius: $radius-medium;
   background: transparent;
-  color: $mapping-system-slate-text-secondary;
+  color: var(--sds-color-text-default-default);
+
+  /* Label / large / default — shared by tier-1 and tier-2 */
   font-family: $ui-font-family;
-  font-weight: $ui-font-weight-default;
-  font-size: 1rem;
-  line-height: 1.2;
+  font-size: $ui-size-large * 1px;          /* 16px */
+  font-style: normal;
+  font-weight: $ui-font-weight-default;     /* 400 */
+  line-height: 150%;                        /* 24px */
+  letter-spacing: $letter-spacing-tracking-1;
+
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
@@ -29,7 +46,6 @@
   display: inline-flex;
   align-items: center;
   line-height: 0;
-
   svg {
     width: 1em;
     height: 1em;
@@ -41,74 +57,79 @@
   align-items: center;
 }
 
-/* ---------- Hierarchy ---------- */
+/* ---------- Hierarchy ----------
+ * Per Figma, sizing is driven by hierarchy. Typography is identical
+ * across tiers (Label/large/default) and lives on the base class above.
+ *
+ *   Tier 1 (top-level): height 64px, padding 8px 8px, centered.
+ *   Tier 2 (nested):    height 48px, padding 8px 16px, left-aligned.
+ */
 .ds-nav-item--tier-1 {
-  font-weight: $ui-font-weight-strong;
-}
-
-.ds-nav-item--tier-2 {
-  font-weight: $ui-font-weight-default;
-  font-size: 0.9375rem;
-}
-
-/* ---------- Nesting / Level ---------- */
-.ds-nav-item--nested {
-  padding-left: calc(#{$padding-action-s} + #{$gap-m});
-}
-
-/* ---------- Orientation ---------- */
-.ds-nav-item--vertical {
-  width: 100%;
-  justify-content: flex-start;
-}
-
-.ds-nav-item--horizontal {
-  width: auto;
+  height: $space-800;
+  padding: $gap-2xs $padding-action-xs;
   justify-content: center;
 }
+.ds-nav-item--tier-2 {
+  height: $space-600;
+  padding: $gap-2xs $padding-action-s;
+}
 
-/* ---------- Shape: PILL (filled background on hover / active) ---------- */
+/* ---------- Nesting / Level ----------
+ * Per Figma, the only supported nested variant is Tier 1 + Nested.
+ * (There is no Tier 2 + Nested combination.)
+ *
+ *   Tier 1 Nested: height 48px, padding 8px 48px.
+ */
+.ds-nav-item--tier-1.ds-nav-item--nested {
+  height: $space-600;
+  padding: $gap-2xs $padding-action-xl;
+}
+
+/* ---------- Orientation ----------
+ * Layout direction (column vs row) is owned by the parent Navigation
+ * container. Item sizing is driven by hierarchy above.
+ */
+
+/* ---------- Shape: PILL (hover + active backgrounds) ---------- */
 .ds-nav-item--shape-pill {
   &.ds-nav-item--hover,
   &:hover {
-    background: $mapping-system-slate-surface-secondary;
+    background: var(--sds-color-background-default-default);
+    color: var(--sds-color-text-default-default);
   }
-
   &.ds-nav-item--active,
   &.ds-nav-item--selected,
   &:active {
-    background: $mapping-system-slate-surface-secondary;
-    color: $mapping-system-slate-text-secondary;
+    background: var(--sds-color-background-default-tertiary);
+    color: var(--sds-color-text-default-default);
   }
 }
 
-/* ---------- Shape: LINE ---------- */
+/* ---------- Shape: LINE (underline indicator on active) ----------
+ * When combined with .ds-nav-item--tier-1.ds-nav-item--active, this
+ * matches the Figma "Active Line" spec exactly:
+ *   height: 64px; padding: 8px 8px; justify/align: center; gap: 8px;
+ *   border-radius: 0;
+ *   border-bottom: 2px solid var(--sds-color-border-brand-secondary);
+ */
 .ds-nav-item--shape-line {
-  padding: $gap-2xs $padding-action-xs;
-  justify-content: center;
   border-radius: $radius-none;
-  border-bottom: $size-stroke-border-width-2 solid $mapping-system-neutral-background-secondary;
-  color: $mapping-system-slate-text-secondary;
+  border-bottom: $size-stroke-border-width-2 solid transparent;
+  color: var(--sds-color-text-default-default);
 
   &.ds-nav-item--hover,
   &:hover {
-    height: $space-600;
-    padding: $gap-2xs $padding-action-s;
-    background: transparent;
-    color: $mapping-system-slate-text-secondary;
+    background: var(--sds-color-background-default-default);
     border-radius: $radius-medium;
     border-bottom-color: transparent;
   }
-
   &.ds-nav-item--active,
   &.ds-nav-item--selected,
   &:active {
-    height: $space-600;
-    padding: $gap-2xs $padding-action-s;
-    background: $mapping-system-slate-surface-secondary;
-    color: $mapping-system-slate-text-secondary;
-    border-radius: $radius-medium;
-    border-bottom-color: transparent;
+    background: transparent;
+    color: var(--sds-color-text-default-default);
+    border-radius: $radius-none;
+    border-bottom-color: var(--sds-color-border-brand-secondary);
     box-shadow: none;
   }
 }
@@ -116,13 +137,12 @@
 /* ---------- Color mode: DARK ---------- */
 .ds-nav-item--mode-dark {
   color: $mapping-system-slate-text-on-primary;
-
   &.ds-nav-item--shape-pill {
     &.ds-nav-item--hover,
     &:hover {
       background: $mapping-system-slate-background-secondary;
+      color: $mapping-system-slate-text-on-primary;
     }
-
     &.ds-nav-item--active,
     &.ds-nav-item--selected,
     &:active {
@@ -130,11 +150,11 @@
       color: $mapping-system-slate-text-on-primary;
     }
   }
-
   &.ds-nav-item--shape-line {
+    color: $mapping-system-slate-text-on-primary;
     &.ds-nav-item--active,
     &.ds-nav-item--selected {
-      box-shadow: inset 0 -2px 0 0 $mapping-system-slate-text-on-primary;
+      border-bottom-color: var(--sds-color-border-brand-secondary);
     }
   }
 }
