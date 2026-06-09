@@ -20,25 +20,24 @@ export interface BreadcrumbItemData {
 
 export interface BreadcrumbsProps extends HTMLAttributes<HTMLElement> {
   items: BreadcrumbItemData[]
-  /** Node rendered between items. Defaults to a chevron-right glyph. */
-  separator?: ReactNode
   /** Accessible label for the nav landmark. */
   ariaLabel?: string
 }
 
-const DefaultSeparator = () => (
+const ChevronSeparator = () => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     aria-hidden="true"
     className="ds-breadcrumbs__separator-icon"
-    viewBox="0 0 24 24"
     width="16"
     height="16"
+    viewBox="0 0 16 16"
+    fill="none"
   >
     <path
-      d="M9 6l6 6-6 6"
-      fill="none"
+      d="M6 3L11 8L6 13"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />
@@ -62,17 +61,18 @@ export const BreadcrumbItem = ({
   const classes = ['ds-breadcrumbs__item', `ds-breadcrumbs__item--${variant}`, className]
     .filter(Boolean)
     .join(' ')
-
   const label = variant === 'collapsed' && !children ? '…' : children
-
   if (variant === 'current') {
     return (
-      <span className={classes} aria-current="page" {...(props as HTMLAttributes<HTMLSpanElement>)}>
+      <span
+        className={classes}
+        aria-current="page"
+        {...(props as HTMLAttributes<HTMLSpanElement>)}
+      >
         {label}
       </span>
     )
   }
-
   if (href || onClick) {
     return (
       <a
@@ -86,7 +86,6 @@ export const BreadcrumbItem = ({
       </a>
     )
   }
-
   return (
     <span
       className={classes}
@@ -100,14 +99,11 @@ export const BreadcrumbItem = ({
 
 export const Breadcrumbs = ({
   items,
-  separator,
   ariaLabel = 'Breadcrumb',
   className,
   ...props
 }: BreadcrumbsProps) => {
   const classes = ['ds-breadcrumbs', className].filter(Boolean).join(' ')
-  const sep = separator ?? <DefaultSeparator />
-
   return (
     <nav className={classes} aria-label={ariaLabel} {...props}>
       <ol className="ds-breadcrumbs__list">
@@ -118,7 +114,6 @@ export const Breadcrumbs = ({
             : item.collapsed
               ? 'collapsed'
               : 'ancestor'
-
           return (
             <li key={item.key ?? index} className="ds-breadcrumbs__list-item">
               <BreadcrumbItem variant={variant} href={item.href} onClick={item.onClick}>
@@ -126,7 +121,7 @@ export const Breadcrumbs = ({
               </BreadcrumbItem>
               {!isLast && (
                 <span className="ds-breadcrumbs__separator" aria-hidden="true">
-                  {sep}
+                  <ChevronSeparator />
                 </span>
               )}
             </li>
