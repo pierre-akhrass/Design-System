@@ -18,3 +18,6 @@ export type { MediaProps, MediaRatio, VideoPlayerProps, VideoGalleryProps, Video
 
 export { Footer } from './components/Footer'
 export type { FooterProps, FooterNewsletterProps, FooterNavColumn, FooterLink, OpeningHourGroup, OpeningHourRow, SocialLink, SocialPlatform } from './components/Footer'
+
+export { Tag } from './components/Tag'
+export type { TagProps, TagState, TagTheme } from './components/Tag'

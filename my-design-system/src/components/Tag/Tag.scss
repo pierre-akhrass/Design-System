@@ -1,0 +1,83 @@
+@use '../../styles/tokens/variables' as *;
+
+// ── Light theme ───────────────────────────────────────────────────────────────
+
+@mixin ds-tag-theme-light {
+  background-color: $mapping-system-slate-surface-tertiary; // #d2d9e0
+  color: $mapping-system-slate-text-primary; // #292929
+
+  &.ds-tag--hover,
+  &:hover {
+    background-color: $mapping-system-slate-surface-quaternary; // #b5c1cb
+    color: $mapping-system-slate-text-secondary; // #545454
+  }
+}
+
+// ── Dark theme ────────────────────────────────────────────────────────────────
+
+@mixin ds-tag-theme-dark {
+  background-color: $color-system-slate-700; // #1e2c3e
+  color: $color-system-gray-100; // #ececec
+
+  &.ds-tag--hover,
+  &:hover {
+    background-color: $mapping-system-slate-background-secondary; // #2a3c50
+    color: $color-system-gray-300; // #bcbcbc
+  }
+}
+
+// ── Base ──────────────────────────────────────────────────────────────────────
+
+.ds-tag {
+  align-items: center;
+  border-radius: #{$dimensions-tag-corner-radius}px;
+  cursor: default;
+  display: inline-flex;
+  font-family: $ui-font-family;
+  font-size: $ui-size-small;
+  font-weight: $ui-font-weight-strong;
+  gap: $gap-3xs;
+  height: $dimensions-tag-height;
+  line-height: 1.5;
+  padding: 0 $padding-action-xs;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+
+  // Default: light theme
+  @include ds-tag-theme-light;
+}
+
+// ── Explicit theme classes ────────────────────────────────────────────────────
+
+.ds-tag--light {
+  @include ds-tag-theme-light;
+}
+
+.ds-tag--dark {
+  @include ds-tag-theme-dark;
+}
+
+// ── Auto dark mode ────────────────────────────────────────────────────────────
+
+@media (prefers-color-scheme: dark) {
+  .ds-tag:not(.ds-tag--light):not(.ds-tag--dark) {
+    @include ds-tag-theme-dark;
+  }
+}
+
+// ── Sub-elements ─────────────────────────────────────────────────────────────
+
+.ds-tag__icon {
+  align-items: center;
+  color: inherit;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: $dimensions-tag-icon-size;
+  line-height: 0;
+  width: $dimensions-tag-icon-size;
+}
+
+.ds-tag__label {
+  display: inline-flex;
+  white-space: nowrap;
+}
