@@ -3,6 +3,7 @@ import './Avatar.scss'
 
 export type AvatarType = 'initial' | 'image' | 'shape'
 export type AvatarSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+export type AvatarTheme = 'light' | 'dark'
 
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   type?: AvatarType
@@ -15,6 +16,8 @@ export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
   alt?: string
   /** SVG or icon node — used when type="shape". Should use fill="currentColor". */
   icon?: ReactNode
+  /** Color theme — light uses surface palette, dark uses background palette */
+  theme?: AvatarTheme
 }
 
 export const Avatar = ({
@@ -24,10 +27,11 @@ export const Avatar = ({
   src,
   alt = '',
   icon,
+  theme,
   className,
   ...props
 }: AvatarProps) => {
-  const classes = ['ds-avatar', `ds-avatar--${size}`, `ds-avatar--${type}`, className]
+  const classes = ['ds-avatar', `ds-avatar--${size}`, `ds-avatar--${type}`, theme && `ds-avatar--${theme}`, className]
     .filter(Boolean)
     .join(' ')
 

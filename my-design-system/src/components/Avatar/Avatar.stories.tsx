@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Avatar } from './Avatar'
+import type { AvatarTheme } from './Avatar'
 import { AvatarGroup } from './AvatarGroup'
 import { AvatarBlock } from './AvatarBlock'
 
@@ -12,16 +13,44 @@ const PersonIcon = () => (
   </svg>
 )
 
+// ─── Token bg colours ─────────────────────────────────────────────────────────
+const TOKEN_BG_LIGHT = '#f5f7fa'
+const TOKEN_BG_DARK  = '#141f2e'
+
+const IMG = [
+  'https://i.pravatar.cc/150?img=1',
+  'https://i.pravatar.cc/150?img=2',
+  'https://i.pravatar.cc/150?img=3',
+]
+
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Avatar> = {
   title: 'Components/Avatar',
   component: Avatar,
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
-        component:
-          'Displays a user or entity identity through initials, an image, or a shape placeholder. Can be grouped with `AvatarGroup` or extended with text via `AvatarBlock`.',
+        component: `
+An **Avatar** represents a user or entity through one of three types: \`initial\` (letter monogram), \`image\` (photo), or \`shape\` (icon placeholder).
+
+---
+
+### Sub-components
+
+| Component | Purpose |
+|---|---|
+| \`Avatar\` | Single avatar circle |
+| \`AvatarGroup\` | Row of avatars with optional overflow badge |
+| \`AvatarBlock\` | Avatar + title + description row |
+
+---
+
+### Theming
+
+Pass \`theme="dark"\` to any of the three components for the dark-mode palette. They also respond automatically to \`prefers-color-scheme: dark\` when no theme prop is set.
+        `,
       },
     },
   },
@@ -29,201 +58,433 @@ const meta: Meta<typeof Avatar> = {
     type: 'initial',
     size: 'medium',
     initials: 'A',
+    theme: 'light',
   },
   argTypes: {
+    // ── Avatar ──────────────────────────────────────────────────────────────
     type: {
       control: 'inline-radio',
       options: ['initial', 'image', 'shape'],
+      description: 'Visual representation style.',
+      table: { category: 'Avatar' },
     },
     size: {
       control: 'inline-radio',
       options: ['xsmall', 'small', 'medium', 'large', 'xlarge'],
+      description: 'Diameter of the avatar circle.',
+      table: { category: 'Avatar' },
+    },
+    theme: {
+      control: 'inline-radio',
+      options: ['light', 'dark'],
+      description: 'Color theme — shared across Avatar, Avatar Group, and Avatar Block.',
+      table: { category: 'Avatar' },
+    },
+    initials: {
+      control: 'text',
+      description: 'Letter(s) shown when `type="initial"`.',
+      table: { category: 'Avatar' },
+    },
+    src: {
+      control: 'text',
+      description: 'Image URL shown when `type="image"`.',
+      table: { category: 'Avatar' },
+    },
+    alt: {
+      control: 'text',
+      description: 'Accessible label for the image.',
+      table: { category: 'Avatar' },
+    },
+    icon: {
+      control: false,
+      description: 'React node rendered inside the circle when `type="shape"`.',
+      table: { category: 'Avatar' },
+    },
+    // ── Avatar Group ────────────────────────────────────────────────────────
+    spacing: {
+      control: 'inline-radio',
+      options: ['overlap', 'spaced'],
+      description: 'Overlap stacks avatars with a negative margin; spaced uses a gap.',
+      table: { category: 'Avatar Group' },
+    },
+    showOverflow: {
+      control: 'boolean',
+      description: 'Whether to render the overflow count badge.',
+      table: { category: 'Avatar Group' },
+    },
+    overflowCount: {
+      control: 'number',
+      description: 'Number displayed inside the overflow badge.',
+      table: { category: 'Avatar Group' },
+    },
+    // ── Avatar Block ────────────────────────────────────────────────────────
+    title: {
+      control: 'text',
+      description: 'Primary text label next to the avatar.',
+      table: { category: 'Avatar Block' },
+    },
+    description: {
+      control: 'text',
+      description: 'Secondary/supporting text below the title.',
+      table: { category: 'Avatar Block' },
     },
   },
 }
 
 export default meta
-
 type Story = StoryObj<typeof Avatar>
-
-// ─── Matrix helpers ───────────────────────────────────────────────────────────
 
 const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'] as const
 const types = ['initial', 'image', 'shape'] as const
-
-const matrixWrapperStyle: CSSProperties = {
-  display: 'grid',
-  gap: '1.25rem',
-  maxWidth: '680px',
-  width: '100%',
-}
-
-const matrixHeaderRowStyle: CSSProperties = {
-  display: 'grid',
-  gridTemplateColumns: '80px repeat(5, 80px)',
-  gap: '0.5rem',
-  alignItems: 'center',
-}
-
-const matrixRowStyle: CSSProperties = {
-  display: 'grid',
-  gridTemplateColumns: '80px repeat(5, 80px)',
-  gap: '0.5rem',
-  alignItems: 'center',
-}
-
-const labelStyle: CSSProperties = {
-  fontFamily: "'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
-  fontSize: '0.8125rem',
-  color: '#2f3a4a',
-}
-
-const chipStyle: CSSProperties = {
-  ...labelStyle,
-  background: '#2f3f55',
-  borderRadius: '8px',
-  color: '#f5f8fc',
-  padding: '0.2rem 0.5rem',
-  textAlign: 'center',
-}
 
 // ─── Playground ───────────────────────────────────────────────────────────────
 
 export const Playground: Story = {
   name: 'Playground',
-  args: { type: 'initial', size: 'medium', initials: 'A' },
+  tags: ['!autodocs'],
+  args: {
+    spacing: 'overlap',
+    showOverflow: true,
+    overflowCount: 5,
+    title: 'Jane Doe',
+    description: 'Product Designer',
+  } as any,
+  render: (args) => {
+    const isDark = args.theme === 'dark'
+    const bg = isDark ? TOKEN_BG_DARK : TOKEN_BG_LIGHT
+    const a = args as any
+
+    // Avatar: fill the right slot per type
+    const avatarExtra =
+      args.type === 'image'
+        ? { src: args.src || IMG[0], alt: args.alt || 'User' }
+        : args.type === 'shape'
+        ? { icon: <PersonIcon /> }
+        : {}
+
+    // AvatarGroup props
+    const spacing   = a.spacing       ?? 'overlap'
+    const showOvf   = a.showOverflow  ?? true
+    const ovfCount  = a.overflowCount ?? 5
+
+    // AvatarBlock props
+    const blockTitle = a.title       ?? 'Jane Doe'
+    const blockDesc  = a.description
+
+    const sectionLabel: CSSProperties = {
+      color: isDark ? '#bcbcbc' : '#6b6b6b',
+      display: 'block',
+      fontFamily: 'ui-monospace, SFMono-Regular, monospace',
+      fontSize: 11,
+      fontWeight: 600,
+      letterSpacing: '0.06em',
+      marginBottom: 12,
+      textTransform: 'uppercase',
+    }
+
+    return (
+      <div style={{
+        background: bg,
+        borderRadius: 12,
+        display: 'inline-flex',
+        gap: 48,
+        padding: 24,
+        transition: 'background 0.2s ease',
+        alignItems: 'flex-start',
+      }}>
+
+        {/* Avatar */}
+        <div>
+          <span style={sectionLabel}>Avatar</span>
+          <Avatar {...args} {...avatarExtra} />
+        </div>
+
+        {/* Avatar Group */}
+        <div>
+          <span style={sectionLabel}>Avatar Group</span>
+          <AvatarGroup spacing={spacing} showOverflow={showOvf} overflowCount={ovfCount} theme={args.theme}>
+            <Avatar type="image" size="xsmall" src={IMG[0]} alt="User 1" theme={args.theme} />
+            <Avatar type="image" size="xsmall" src={IMG[1]} alt="User 2" theme={args.theme} />
+            <Avatar type="image" size="xsmall" src={IMG[2]} alt="User 3" theme={args.theme} />
+          </AvatarGroup>
+        </div>
+
+        {/* Avatar Block */}
+        <div>
+          <span style={sectionLabel}>Avatar Block</span>
+          <AvatarBlock
+            avatar={<Avatar type="image" size="medium" src={IMG[0]} alt={blockTitle} theme={args.theme} />}
+            title={blockTitle}
+            description={blockDesc}
+            theme={args.theme}
+          />
+        </div>
+
+      </div>
+    )
+  },
 }
 
-// ─── Size × Type matrix ───────────────────────────────────────────────────────
+// ─── All Avatars — exact Figma layout (light + dark) ─────────────────────────
 
-export const SizeTypeMatrix: Story = {
+export const AllAvatars: Story = {
+  name: 'All Avatars',
   tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div style={matrixWrapperStyle}>
-      <div style={matrixHeaderRowStyle}>
-        <span />
-        {sizes.map((s) => (
-          <span key={s} style={chipStyle}>{s}</span>
-        ))}
-      </div>
-      {types.map((type) => (
-        <div key={type} style={matrixRowStyle}>
-          <span style={labelStyle}>{type}</span>
-          {sizes.map((size) => (
-            <div key={size} style={{ display: 'flex', justifyContent: 'center' }}>
-              <Avatar
-                type={type}
-                size={size}
-                initials="A"
-                src="https://i.pravatar.cc/150?img=3"
-                alt="User"
-                icon={<PersonIcon />}
-              />
+  parameters: { layout: 'fullscreen' },
+  args: { theme: 'light' },
+  argTypes: {
+    type:     { table: { disable: true } },
+    size:     { table: { disable: true } },
+    initials: { table: { disable: true } },
+    src:      { table: { disable: true } },
+    alt:      { table: { disable: true } },
+    icon:     { table: { disable: true } },
+  },
+  render: (args) => {
+    const theme = (args.theme ?? 'light') as AvatarTheme
+    const isDark = theme === 'dark'
+    const bg = isDark ? TOKEN_BG_DARK : TOKEN_BG_LIGHT
+
+    const sectionLabel: CSSProperties = {
+      color: isDark ? '#bcbcbc' : '#6b6b6b',
+      display: 'block',
+      fontFamily: "'Noto Sans', sans-serif",
+      fontSize: 11,
+      fontWeight: 600,
+      letterSpacing: '0.06em',
+      marginBottom: 16,
+      textTransform: 'uppercase',
+    }
+
+    const rowLabel: CSSProperties = {
+      color: isDark ? '#bcbcbc' : '#6b6b6b',
+      fontFamily: 'ui-monospace, SFMono-Regular, monospace',
+      fontSize: 11,
+    }
+
+    const chip: CSSProperties = {
+      background: isDark ? '#2a3c50' : '#2f3f55',
+      borderRadius: 5,
+      color: '#f5f8fc',
+      fontFamily: 'ui-monospace, SFMono-Regular, monospace',
+      fontSize: 10,
+      padding: '2px 6px',
+      textAlign: 'center',
+      whiteSpace: 'nowrap',
+    }
+
+    return (
+      <div style={{
+        background: bg,
+        boxSizing: 'border-box',
+        fontFamily: "'Noto Sans', sans-serif",
+        minHeight: '100vh',
+        padding: '48px 64px',
+        transition: 'background 0.2s ease',
+      }}>
+        <div style={{ alignItems: 'flex-start', display: 'flex', flexWrap: 'wrap', gap: 80 }}>
+
+          {/* ── Column 1: Type × Size grid ─────────────────────────────── */}
+          <div>
+            <span style={sectionLabel}>Avatar</span>
+            <div style={{
+              alignItems: 'center',
+              display: 'grid',
+              gap: '14px 10px',
+              gridTemplateColumns: '60px repeat(5, 52px)',
+            }}>
+              {/* Header */}
+              <span />
+              {sizes.map(s => <span key={s} style={chip}>{s}</span>)}
+
+              {/* Rows */}
+              {types.flatMap(type => [
+                <span key={`lbl-${type}`} style={rowLabel}>{type}</span>,
+                ...sizes.map(size => (
+                  <div key={`${type}-${size}`} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <Avatar
+                      type={type}
+                      size={size}
+                      initials="A"
+                      src={IMG[0]}
+                      alt="User"
+                      icon={<PersonIcon />}
+                      theme={theme}
+                    />
+                  </div>
+                )),
+              ])}
             </div>
-          ))}
+          </div>
+
+          {/* ── Column 2: Groups ────────────────────────────────────────── */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
+            <span style={sectionLabel}>Avatar Group</span>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <span style={rowLabel}>Spaced</span>
+              <AvatarGroup spacing="spaced" overflowCount={5} showOverflow theme={theme}>
+                <Avatar type="image" size="xsmall" src={IMG[0]} alt="User 1" theme={theme} />
+                <Avatar type="image" size="xsmall" src={IMG[1]} alt="User 2" theme={theme} />
+                <Avatar type="image" size="xsmall" src={IMG[2]} alt="User 3" theme={theme} />
+              </AvatarGroup>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <span style={rowLabel}>Overlap</span>
+              <AvatarGroup spacing="overlap" overflowCount={5} showOverflow theme={theme}>
+                <Avatar type="image" size="xsmall" src={IMG[0]} alt="User 1" theme={theme} />
+                <Avatar type="image" size="xsmall" src={IMG[1]} alt="User 2" theme={theme} />
+                <Avatar type="image" size="xsmall" src={IMG[2]} alt="User 3" theme={theme} />
+              </AvatarGroup>
+            </div>
+          </div>
+
+          {/* ── Column 3: Avatar Block ──────────────────────────────────── */}
+          <div>
+            <span style={sectionLabel}>Avatar Block</span>
+            <AvatarBlock
+              avatar={<Avatar type="image" size="medium" src={IMG[0]} alt="Jane Doe" theme={theme} />}
+              title="Jane Doe"
+              description="Product Designer"
+              theme={theme}
+            />
+          </div>
+
+        </div>
+      </div>
+    )
+  },
+}
+
+// ─── Doc stories (appear inline in the Docs tab) ─────────────────────────────
+
+const docRow: CSSProperties = { display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }
+const docLabel: CSSProperties = {
+  color: '#6b6b6b',
+  fontFamily: 'ui-monospace, SFMono-Regular, monospace',
+  fontSize: 11,
+  minWidth: 52,
+}
+
+/** All three avatar types side by side. */
+export const Types: Story = {
+  tags: ['!dev'],
+  parameters: {
+    controls: { disable: true },
+    docs: { description: { story: 'Use `type` to switch between an initial monogram, a photo, or a shape placeholder icon.' } },
+  },
+  render: () => (
+    <div style={docRow}>
+      {(['initial', 'image', 'shape'] as const).map(type => (
+        <div key={type} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+          <Avatar type={type} size="medium" initials="A" src={IMG[0]} alt="User" icon={<PersonIcon />} />
+          <span style={docLabel}>{type}</span>
         </div>
       ))}
     </div>
   ),
 }
 
-// ─── Avatar Group — Overlap ───────────────────────────────────────────────────
-
-export const GroupOverlap: Story = {
-  tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
+/** All five sizes using the initial type. */
+export const Sizes: Story = {
+  tags: ['!dev'],
+  parameters: {
+    controls: { disable: true },
+    docs: { description: { story: 'Five size steps from `xsmall` (24 px) to `xlarge` (56 px).' } },
+  },
   render: () => (
-    <AvatarGroup spacing="overlap" overflowCount={99} showOverflow>
-      <Avatar type="image" size="xsmall" src="https://i.pravatar.cc/150?img=1" alt="User 1" />
-      <Avatar type="image" size="xsmall" src="https://i.pravatar.cc/150?img=2" alt="User 2" />
-      <Avatar type="image" size="xsmall" src="https://i.pravatar.cc/150?img=3" alt="User 3" />
-    </AvatarGroup>
-  ),
-}
-
-// ─── Avatar Group — Spaced ────────────────────────────────────────────────────
-
-export const GroupSpaced: Story = {
-  tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <AvatarGroup spacing="spaced" overflowCount={99} showOverflow>
-      <Avatar type="image" size="xsmall" src="https://i.pravatar.cc/150?img=4" alt="User 4" />
-      <Avatar type="image" size="xsmall" src="https://i.pravatar.cc/150?img=5" alt="User 5" />
-      <Avatar type="image" size="xsmall" src="https://i.pravatar.cc/150?img=6" alt="User 6" />
-    </AvatarGroup>
-  ),
-}
-
-// ─── Avatar Group — No overflow ───────────────────────────────────────────────
-
-export const GroupNoOverflow: Story = {
-  tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-      <AvatarGroup spacing="overlap">
-        <Avatar type="initial" size="xsmall" initials="A" />
-        <Avatar type="initial" size="xsmall" initials="B" />
-        <Avatar type="initial" size="xsmall" initials="C" />
-      </AvatarGroup>
-      <AvatarGroup spacing="spaced">
-        <Avatar type="initial" size="xsmall" initials="A" />
-        <Avatar type="initial" size="xsmall" initials="B" />
-        <Avatar type="initial" size="xsmall" initials="C" />
-      </AvatarGroup>
+    <div style={{ ...docRow, alignItems: 'flex-end' }}>
+      {(['xsmall', 'small', 'medium', 'large', 'xlarge'] as const).map(size => (
+        <div key={size} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8 }}>
+          <Avatar type="initial" size={size} initials="A" />
+          <span style={docLabel}>{size}</span>
+        </div>
+      ))}
     </div>
   ),
 }
 
-// ─── Avatar Block ─────────────────────────────────────────────────────────────
-
-export const BlockImage: Story = {
-  tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
+/** Overlap and spaced group variants with an overflow badge. */
+export const Group: Story = {
+  tags: ['!dev'],
+  parameters: {
+    controls: { disable: true },
+    docs: { description: { story: '`spacing="overlap"` stacks avatars with a negative margin. `spacing="spaced"` uses a regular gap. Both support an overflow count badge.' } },
+  },
   render: () => (
-    <AvatarBlock
-      avatar={
-        <Avatar type="image" size="medium" src="https://i.pravatar.cc/150?img=7" alt="Jane Doe" />
-      }
-      title="Jane Doe"
-      description="Product Designer"
-    />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {(['overlap', 'spaced'] as const).map(spacing => (
+        <div key={spacing} style={docRow}>
+          <span style={{ ...docLabel, minWidth: 60 }}>{spacing}</span>
+          <AvatarGroup spacing={spacing} overflowCount={5} showOverflow>
+            <Avatar type="image" size="xsmall" src={IMG[0]} alt="User 1" />
+            <Avatar type="image" size="xsmall" src={IMG[1]} alt="User 2" />
+            <Avatar type="image" size="xsmall" src={IMG[2]} alt="User 3" />
+          </AvatarGroup>
+        </div>
+      ))}
+    </div>
   ),
 }
 
-export const BlockInitial: Story = {
-  tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
+/** AvatarBlock with each avatar type and an optional description. */
+export const Block: Story = {
+  tags: ['!dev'],
+  parameters: {
+    controls: { disable: true },
+    docs: { description: { story: 'Pass any `Avatar` as the `avatar` slot. The `description` prop is optional.' } },
+  },
   render: () => (
-    <AvatarBlock
-      avatar={<Avatar type="initial" size="medium" initials="A" />}
-      title="Ahmed"
-      description="Engineering Lead"
-    />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <AvatarBlock avatar={<Avatar type="image"   size="medium" src={IMG[0]} alt="Jane"  />} title="Jane Doe"    description="Product Designer" />
+      <AvatarBlock avatar={<Avatar type="initial" size="medium" initials="A"             />} title="Ahmed Ali"   description="Engineering Lead" />
+      <AvatarBlock avatar={<Avatar type="shape"   size="medium" icon={<PersonIcon />}    />} title="Team Account" />
+    </div>
   ),
 }
 
-export const BlockShape: Story = {
-  tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
+/** Light and dark themes side by side. */
+export const Themes: Story = {
+  tags: ['!dev'],
+  parameters: {
+    controls: { disable: true },
+    docs: { description: { story: 'Pass `theme="dark"` for the dark palette. Without a theme prop the component responds to `prefers-color-scheme: dark` automatically.' } },
+  },
   render: () => (
-    <AvatarBlock
-      avatar={<Avatar type="shape" size="medium" icon={<PersonIcon />} />}
-      title="Team Account"
-      description="Shared workspace"
-    />
+    <div style={{ display: 'flex', gap: 0, borderRadius: 12, overflow: 'hidden' }}>
+      {(['light', 'dark'] as const).map(theme => {
+        const isDark = theme === 'dark'
+        return (
+          <div key={theme} style={{
+            background: isDark ? TOKEN_BG_DARK : TOKEN_BG_LIGHT,
+            padding: '24px 32px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 20,
+            flex: 1,
+          }}>
+            <span style={{ ...docLabel, color: isDark ? '#bcbcbc' : '#6b6b6b' }}>{theme}</span>
+            <div style={{ display: 'flex', gap: 12 }}>
+              <Avatar type="initial" size="medium" initials="A" theme={theme} />
+              <Avatar type="image"   size="medium" src={IMG[0]} alt="User" theme={theme} />
+              <Avatar type="shape"   size="medium" icon={<PersonIcon />} theme={theme} />
+            </div>
+            <AvatarGroup spacing="overlap" overflowCount={3} showOverflow theme={theme}>
+              <Avatar type="image" size="xsmall" src={IMG[0]} alt="User 1" theme={theme} />
+              <Avatar type="image" size="xsmall" src={IMG[1]} alt="User 2" theme={theme} />
+              <Avatar type="image" size="xsmall" src={IMG[2]} alt="User 3" theme={theme} />
+            </AvatarGroup>
+            <AvatarBlock
+              avatar={<Avatar type="image" size="medium" src={IMG[0]} alt="Jane" theme={theme} />}
+              title="Jane Doe"
+              description="Product Designer"
+              theme={theme}
+            />
+          </div>
+        )
+      })}
+    </div>
   ),
 }
 
-export const BlockTitleOnly: Story = {
-  tags: ['!autodocs'],
-  parameters: { controls: { disable: true } },
-  render: () => (
-    <AvatarBlock
-      avatar={<Avatar type="initial" size="medium" initials="S" />}
-      title="Sara"
-    />
-  ),
-}

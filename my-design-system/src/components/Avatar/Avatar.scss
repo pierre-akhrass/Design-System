@@ -187,3 +187,68 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+// ─── Image avatar: tinted background (visible on transparent/broken images) ──
+
+.ds-avatar--image {
+  background-color: $mapping-brand-teal-blue-surface-secondary; // #dae7f7 light blue
+}
+
+// ─── Theme mixins ─────────────────────────────────────────────────────────────
+// Dual-state: static class (.ds-avatar-*--dark) for prop-forced +
+//             @media (prefers-color-scheme: dark) for auto-detection
+
+// AvatarGroup overflow badge
+@mixin ds-avatar-group-theme-light {
+  .ds-avatar-group__overflow {
+    background-color: $mapping-system-neutral-surface-tertiary; // #d7d7d7
+    color: $mapping-system-neutral-text-secondary;              // #545454
+  }
+}
+
+@mixin ds-avatar-group-theme-dark {
+  .ds-avatar-group__overflow {
+    background-color: $color-system-gray-600; // #6b6b6b
+    color: $color-system-gray-100;            // #ececec
+  }
+}
+
+.ds-avatar-group--light { @include ds-avatar-group-theme-light; }
+.ds-avatar-group--dark  { @include ds-avatar-group-theme-dark; }
+
+@media (prefers-color-scheme: dark) {
+  .ds-avatar-group:not(.ds-avatar-group--light):not(.ds-avatar-group--dark) {
+    @include ds-avatar-group-theme-dark;
+  }
+}
+
+// AvatarBlock text
+@mixin ds-avatar-block-theme-light {
+  .ds-avatar-block__title       { color: $mapping-system-slate-text-primary; }   // #292929
+  .ds-avatar-block__description { color: $mapping-system-slate-text-tertiary; }  // #6b6b6b
+}
+
+@mixin ds-avatar-block-theme-dark {
+  .ds-avatar-block__title       { color: $color-system-gray-100; }  // #ececec
+  .ds-avatar-block__description { color: $color-system-gray-400; }  // #9d9d9d
+}
+
+.ds-avatar-block--light { @include ds-avatar-block-theme-light; }
+.ds-avatar-block--dark  { @include ds-avatar-block-theme-dark; }
+
+@media (prefers-color-scheme: dark) {
+  .ds-avatar-block:not(.ds-avatar-block--light):not(.ds-avatar-block--dark) {
+    @include ds-avatar-block-theme-dark;
+  }
+}
+
+// Image avatar: dark bg instead of light blue tint
+.ds-avatar--dark.ds-avatar--image {
+  background-color: $mapping-system-slate-background-secondary; // #2a3c50
+}
+
+@media (prefers-color-scheme: dark) {
+  .ds-avatar--image:not(.ds-avatar--light):not(.ds-avatar--dark) {
+    background-color: $mapping-system-slate-background-secondary;
+  }
+}
