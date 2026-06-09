@@ -1,68 +1,129 @@
-// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Checkbox/Checkbox.stories.tsx
-import { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
-import { Checkbox, type CheckboxState } from './Checkbox'
+import { useEffect, useState } from 'react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
+import { Checkbox, type CheckboxState, type CheckboxPlacement } from './Checkbox'
 
-const meta: Meta<typeof Checkbox> = {
+type PlaygroundArgs = {
+  label: string
+  description: string
+  state: CheckboxState
+  placement: CheckboxPlacement
+  disabled: boolean
+}
+
+const meta: Meta<PlaygroundArgs> = {
   title: 'Inputs/Checkbox',
   component: Checkbox,
+  tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+    docs: {
+      description: {
+        component: `
+## Checkbox
+
+A tri-state form control for selecting one or more options independently. Renders
+as a native \`<input type="checkbox">\` wrapped in a clickable \`<label>\` with an
+optional title and description.
+
+### Anatomy
+- **Box** — the visual indicator (empty / check / minus for indeterminate).
+- **Label** — primary text describing the option.
+- **Description** — optional secondary text shown under the label.
+
+### States
+
+| State           | Meaning                                                                   |
+| --------------- | ------------------------------------------------------------------------- |
+| \`unchecked\`     | Not selected. Default.                                                    |
+| \`checked\`       | Selected.                                                                 |
+| \`indeterminate\` | Mixed selection — typically used by a parent over a partially-selected list. |
+
+### Variants
+
+| Prop          | Values                                          | Purpose                                              |
+| ------------- | ----------------------------------------------- | ---------------------------------------------------- |
+| \`state\`       | \`unchecked\` · \`checked\` · \`indeterminate\`     | Visual + functional state.                           |
+| \`placement\`   | \`left\` · \`right\`                              | Box position relative to the label.                  |
+| \`label\`       | \`ReactNode\`                                     | Primary text.                                        |
+| \`description\` | \`ReactNode\`                                     | Optional secondary text shown under the label.       |
+| \`disabled\`    | \`boolean\`                                       | Disables interaction and dims the control.           |
+| \`onChange\`    | \`(next, e) => void\`                             | Fires with the next state (\`checked\` / \`unchecked\`). |
+
+### Usage
+
+\`\`\`tsx
+import { useState } from 'react'
+import { Checkbox, type CheckboxState } from '@company/design-system'
+
+const [state, setState] = useState<CheckboxState>('unchecked')
+
+<Checkbox
+  label="Accept terms"
+  description="You can withdraw consent at any time."
+  state={state}
+  onChange={setState}
+/>
+\`\`\`
+
+### Accessibility
+- Native \`<input type="checkbox">\` — full keyboard + screen-reader support out of the box.
+- \`aria-checked="mixed"\` is set automatically for the indeterminate state.
+- Clicking the label toggles the box (the label is connected via \`htmlFor\`).
+        `.trim(),
+      },
+    },
+  },
   argTypes: {
-    state: { control: 'inline-radio', options: ['checked', 'unchecked', 'indeterminate'] },
-    placement: { control: 'inline-radio', options: ['left', 'right'] },
+    label: { control: 'text', description: 'Primary label text.' },
+    description: { control: 'text', description: 'Optional secondary text shown under the label.' },
+    state: {
+      control: 'inline-radio',
+      options: ['unchecked', 'checked', 'indeterminate'],
+      description: 'Visual + functional state.',
+    },
+    placement: {
+      control: 'inline-radio',
+      options: ['left', 'right'],
+      description: 'Box position relative to the label.',
+    },
+    disabled: { control: 'boolean', description: 'Disables interaction and dims the control.' },
   },
   args: {
     label: 'Checkbox Label',
     description: 'Description',
     state: 'unchecked',
     placement: 'left',
+    disabled: false,
   },
 }
 export default meta
 
-type Story = StoryObj<typeof Checkbox>
+type Story = StoryObj<PlaygroundArgs>
 
-export const Checked: Story = { args: { state: 'checked' } }
-export const Unchecked: Story = { args: { state: 'unchecked' } }
-export const Indeterminate: Story = { args: { state: 'indeterminate' } }
-
-export const PlacementRight: Story = {
-  args: { state: 'checked', placement: 'right' },
-  render: (args) => <div style={{ width: 320 }}><Checkbox {...args} /></div>,
-}
-
-export const AllStates: Story = {
-  render: () => (
-    <div style={{ display: 'grid', gap: 24, padding: 24 }}>
-      {(['left', 'right'] as const).map((placement) => (
-        <div
-          key={placement}
-          style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 32 }}
-        >
-          {(['checked', 'unchecked', 'indeterminate'] as CheckboxState[]).map((s) => (
-            <div key={s} style={{ width: 280 }}>
-              <Checkbox
-                state={s}
-                placement={placement}
-                label="Checkbox Label"
-                description="Description"
-              />
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
-  ),
-}
-
-export const Interactive: Story = {
+export const Playground: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Interactive playground covering every Checkbox variant. Toggle the box to see `onChange` flip the state, or force a state via the **state** control.',
+      },
+    },
+  },
   render: (args) => {
-    const [state, setState] = useState<CheckboxState>('unchecked')
+    const [state, setState] = useState<CheckboxState>(args.state)
+    // Keep local state in sync when the Controls panel changes the arg.
+    useEffect(() => setState(args.state), [args.state])
     return (
-      <Checkbox
-        {...args}
-        state={state}
-        onChange={(next) => setState(next)}
-      />
+      <div style={{ width: 320 }}>
+        <Checkbox
+          label={args.label}
+          description={args.description}
+          state={state}
+          placement={args.placement}
+          disabled={args.disabled}
+          onChange={(next) => setState(next)}
+        />
+      </div>
     )
   },
 }
