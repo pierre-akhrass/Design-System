@@ -61,6 +61,17 @@ const meta: Meta<typeof Tag> = {
     // Hide the raw ReactNode props from controls — they are driven by the booleans above
     iconStart: { control: false, table: { disable: true } },
     iconEnd:   { control: false, table: { disable: true } },
+    // Custom color overrides
+    bgColor: {
+      control: 'color',
+      description: 'Override the background color.',
+      table: { category: 'Colors' },
+    },
+    textColor: {
+      control: 'color',
+      description: 'Override text and icon color.',
+      table: { category: 'Colors' },
+    },
   },
 }
 

@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from 'react'
+import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
 import './Tag.scss'
 
 export type TagState = 'default' | 'hover'
@@ -10,6 +10,10 @@ export interface TagProps extends HTMLAttributes<HTMLSpanElement> {
   iconEnd?: ReactNode
   state?: TagState
   theme?: TagTheme
+  /** Override the background color */
+  bgColor?: string
+  /** Override the text (and icon) color */
+  textColor?: string
 }
 
 export const Tag = ({
@@ -18,7 +22,10 @@ export const Tag = ({
   iconEnd,
   state = 'default',
   theme,
+  bgColor,
+  textColor,
   className,
+  style,
   ...props
 }: TagProps) => {
   const classes = [
@@ -30,8 +37,14 @@ export const Tag = ({
     .filter(Boolean)
     .join(' ')
 
+  const inlineStyle: CSSProperties = {
+    ...(bgColor    && { backgroundColor: bgColor }),
+    ...(textColor  && { color: textColor }),
+    ...style,
+  }
+
   return (
-    <span className={classes} {...props}>
+    <span className={classes} style={inlineStyle} {...props}>
       {iconStart && <span className="ds-tag__icon ds-tag__icon--start">{iconStart}</span>}
       <span className="ds-tag__label">{label}</span>
       {iconEnd && <span className="ds-tag__icon ds-tag__icon--end">{iconEnd}</span>}

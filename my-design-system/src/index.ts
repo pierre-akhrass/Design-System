@@ -21,3 +21,6 @@ export type { FooterProps, FooterNewsletterProps, FooterNavColumn, FooterLink, O
 
 export { Tag } from './components/Tag'
 export type { TagProps, TagState, TagTheme } from './components/Tag'
+
+export { Tooltip } from './components/Tooltip'
+export type { TooltipProps, TooltipPlacement, TooltipTheme } from './components/Tooltip'
