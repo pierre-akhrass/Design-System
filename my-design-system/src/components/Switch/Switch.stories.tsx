@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Switch, type SwitchState } from './Switch'
 
 const meta: Meta<typeof Switch> = {
-  title: 'Components/Switch',
+  title: 'Inputs/Switch',
   component: Switch,
   argTypes: {
     state: { control: 'inline-radio', options: ['checked', 'unchecked'] },

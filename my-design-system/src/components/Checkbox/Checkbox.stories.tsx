@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Checkbox, type CheckboxState } from './Checkbox'
 
 const meta: Meta<typeof Checkbox> = {
-  title: 'Components/Checkbox',
+  title: 'Inputs/Checkbox',
   component: Checkbox,
   argTypes: {
     state: { control: 'inline-radio', options: ['checked', 'unchecked', 'indeterminate'] },

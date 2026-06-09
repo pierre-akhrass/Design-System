@@ -42,3 +42,13 @@ export { Radio } from './components/Radio'
 export type { RadioProps, RadioState, RadioPlacement } from './components/Radio'
 export { Switch } from './components/Switch'
 export type { SwitchProps, SwitchState, SwitchPlacement } from './components/Switch'
+
+export {
+  Sidebar,
+  SidebarItem,
+  SidebarNestedItem,
+  SidebarTier2Item,
+  SidebarCategory,
+  SidebarDivider,
+} from './components/Sidebar'
+export type { SidebarProps, SidebarItemProps, SidebarColorMode } from './components/Sidebar'

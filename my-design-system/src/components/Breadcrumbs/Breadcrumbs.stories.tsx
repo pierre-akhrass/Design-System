@@ -16,7 +16,7 @@ type PlaygroundArgs = {
 type MetaArgs = BreadcrumbsProps & PlaygroundArgs
 
 const meta: Meta<MetaArgs> = {
-  title: 'Components/Breadcrumbs',
+  title: 'Navigation/Breadcrumbs',
   component: Breadcrumbs,
   tags: ['autodocs'],
   parameters: {

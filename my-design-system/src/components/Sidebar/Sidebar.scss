@@ -1,0 +1,122 @@
+@use '../../styles/tokens/variables' as *;
+
+// -----------------------------------------------------------------------------
+// Sidebar
+//
+// Card-style vertical navigation surface. Composes NavItems with category
+// headers, dividers, and expandable Tier 1 groups. Colors come from the
+// global "Selection colors" CSS custom properties (see global.scss) so
+// theming propagates automatically.
+// -----------------------------------------------------------------------------
+
+.ds-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  min-height: 480px;
+  padding: $padding-container-s $padding-container-xs;
+  background: $mapping-system-slate-surface-primary;
+  border-radius: $radius-large;
+  box-sizing: border-box;
+  font-family: $ui-font-family;
+  color: var(--sds-color-text-default-default);
+  gap: $gap-2xs;
+}
+
+.ds-sidebar--mode-dark {
+  background: $mapping-system-slate-background-secondary;
+  color: $mapping-system-slate-text-on-primary;
+}
+
+/* ---------- Logo ---------- */
+.ds-sidebar__logo {
+  display: flex;
+  align-items: center;
+  padding: $gap-s $padding-action-s $gap-m;
+}
+
+/* ---------- Nav body ---------- */
+.ds-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ---------- Expandable group ---------- */
+.ds-sidebar__group {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+
+  // Make the Tier 1 trigger inside a group span the full width and
+  // left-align its label (overrides NavItem's default centered Tier 1).
+  > .ds-nav-item--tier-1 {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+.ds-sidebar__nested {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+
+  // Nested items also stretch and left-align inside the sidebar context.
+  > .ds-nav-item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+/* ---------- Category heading ---------- */
+.ds-sidebar__category {
+  padding: $gap-s $padding-action-s $gap-2xs;
+  font-family: $ui-font-family;
+  font-size: 12px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $mapping-system-slate-text-tertiary;
+}
+
+.ds-sidebar--mode-dark .ds-sidebar__category {
+  color: $mapping-system-slate-text-on-tertiary;
+  opacity: 0.7;
+}
+
+/* ---------- Divider ---------- */
+.ds-sidebar__divider {
+  height: 1px;
+  margin: $gap-2xs $padding-action-s;
+  background: $mapping-system-slate-border-tertiary;
+}
+
+.ds-sidebar--mode-dark .ds-sidebar__divider {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ---------- Tier 2 standalone items stretch like everything else ---------- */
+.ds-sidebar__nav > .ds-nav-item--tier-2 {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+/* ---------- Footer ---------- */
+.ds-sidebar__footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap-l;
+  padding: $gap-m $padding-action-s;
+  margin-top: $gap-2xs;
+  color: $mapping-system-slate-text-secondary;
+}
+
+.ds-sidebar--mode-dark .ds-sidebar__footer {
+  color: $mapping-system-slate-text-on-primary;
+  opacity: 0.85;
+}

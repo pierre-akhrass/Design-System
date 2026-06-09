@@ -1,10 +1,25 @@
-// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Navbar/Navbar.scss
 @use '../../styles/tokens/variables' as *;
 
+// -----------------------------------------------------------------------------
+// Navbar
+//
+// Responsive primary navigation surface.
+//   ≥ 769px : inline layout (logo, items menubar, actions visible).
+//   ≤ 768px : burger menu — items collapse into either:
+//             (a) the default stacked vertical list (no `mobileMenu` prop), or
+//             (b) a custom drawer (usually a <Sidebar>) passed via `mobileMenu`.
+// -----------------------------------------------------------------------------
+
 .ds-navbar {
-  display: flex;
+  display: block;
   width: 100%;
   max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ds-navbar__bar {
+  display: flex;
+  width: 100%;
   height: $space-1200;
   padding: 8px $padding-container-m;
   justify-content: space-between;
@@ -19,7 +34,8 @@
   color: #ffffff;
 
   .ds-navbar__logo,
-  .ds-navbar__actions {
+  .ds-navbar__actions,
+  .ds-navbar__burger {
     color: #ffffff;
   }
 }
@@ -30,7 +46,8 @@
   color: $mapping-system-slate-text-primary;
 
   .ds-navbar__logo,
-  .ds-navbar__actions {
+  .ds-navbar__actions,
+  .ds-navbar__burger {
     color: $mapping-system-slate-text-primary;
   }
 }
@@ -70,4 +87,131 @@
   padding-top: 8px;
   z-index: 1000;
   min-width: 220px;
+}
+
+/* ---------- Burger button (hidden on desktop) ---------- */
+.ds-navbar__burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: $radius-medium;
+  cursor: pointer;
+  color: inherit;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+.ds-navbar--mode-light .ds-navbar__burger:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- Custom mobile menu drawer (mobileMenu prop) ----------
+ * Hidden by default; shown only on mobile when the burger is open.
+ * Mounted on every breakpoint so screen readers can still find it,
+ * but visually collapsed via CSS.
+ */
+.ds-navbar__mobile-menu {
+  display: none;
+  width: 100%;
+}
+
+/* ---------- Tablet & smaller (≤ 1024px): tighter spacing ---------- */
+@media (max-width: 1024px) {
+  .ds-navbar__bar {
+    padding: 8px $padding-container-s;
+    gap: $padding-container-s;
+  }
+  .ds-navbar__actions {
+    gap: 12px;
+  }
+}
+
+/* ---------- Mobile (≤ 768px): burger menu ---------- */
+@media (max-width: 768px) {
+  // Allow the items panel (or drawer) to wrap onto a new row below the bar.
+  .ds-navbar__bar {
+    flex-wrap: wrap;
+    padding: 8px $padding-container-xs;
+    gap: $padding-container-xs;
+  }
+
+  // Hide inline items + actions until the burger is opened.
+  .ds-navbar__items,
+  .ds-navbar__actions {
+    display: none;
+  }
+
+  .ds-navbar__burger {
+    display: inline-flex;
+  }
+
+  // ----- (a) Default stacked vertical menu (no `mobileMenu` prop) -----
+  .ds-navbar--mobile-open:not(.ds-navbar--has-mobile-menu) {
+    .ds-navbar__items {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      width: 100%;
+      flex-basis: 100%;
+      padding: $gap-xs 0 $gap-s;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+
+      > .ds-nav-item,
+      > .ds-navbar__menu,
+      > .ds-navbar__menu > .ds-nav-item {
+        display: flex;
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    .ds-navbar__actions {
+      display: flex;
+      gap: 16px;
+      width: 100%;
+      flex-basis: 100%;
+      padding: $gap-2xs 0 $gap-s;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .ds-navbar__menu {
+      display: block;
+      width: 100%;
+    }
+    .ds-navbar__menu-panel {
+      position: static;
+      padding-top: 4px;
+      min-width: 0;
+      width: 100%;
+    }
+  }
+
+  // Light-mode separator lines (default mode only).
+  .ds-navbar--mode-light.ds-navbar--mobile-open:not(.ds-navbar--has-mobile-menu) {
+    .ds-navbar__items,
+    .ds-navbar__actions {
+      border-top-color: rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  // ----- (b) Custom drawer (mobileMenu prop, typically a <Sidebar>) -----
+  .ds-navbar--has-mobile-menu.ds-navbar--mobile-open {
+    .ds-navbar__mobile-menu {
+      display: block;
+      width: 100%;
+      flex-basis: 100%;
+    }
+  }
 }

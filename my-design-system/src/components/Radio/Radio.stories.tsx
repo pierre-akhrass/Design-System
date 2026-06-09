@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Radio, type RadioState } from './Radio'
 
 const meta: Meta<typeof Radio> = {
-  title: 'Components/Radio',
+  title: 'Inputs/Radio',
   component: Radio,
   argTypes: {
     state: { control: 'inline-radio', options: ['checked', 'unchecked'] },

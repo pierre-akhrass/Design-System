@@ -24,7 +24,7 @@ type PlaygroundArgs = {
 }
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Components/Dropdown',
+  title: 'Navigation/Dropdown',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',
