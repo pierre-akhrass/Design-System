@@ -52,16 +52,10 @@ const meta: Meta<PlaygroundArgs> = {
         component: `
 ## NavItem
 
-A single navigation entry used inside primary navigation surfaces (sidebar, top bar, nested menus).
-Renders as an \`<a>\` with optional leading/trailing icons and supports multiple visual
-treatments so it can adapt to vertical sidebars, horizontal tab bars, light/dark surfaces,
-and nested hierarchies.
-
-### Orientation
-A standalone \`NavItem\` looks **identical** in both orientations (content-width pill,
-label centered). The \`orientation\` prop is metadata for the parent Navigation
-container — it decides whether items stack in a column (\`vertical\`) or sit on a row
-(\`horizontal\`).
+A single navigation entry used inside primary navigation surfaces (sidebar, top bar,
+nested menus). Renders as an \`<a>\` with optional leading/trailing icons and supports
+multiple visual treatments so it can adapt to vertical sidebars, horizontal tab bars,
+light/dark surfaces, and nested hierarchies.
 
 ### Anatomy
 - **Label** — visible link text.
@@ -69,33 +63,86 @@ container — it decides whether items stack in a column (\`vertical\`) or sit o
 - **Trailing icon** (\`iconRight\`) — optional glyph after the label (e.g. chevron for expandable items).
 - **Selection indicator** — pill background or underline depending on \`shape\`.
 
+### Sizing model
+Per the Figma spec, **hierarchy** is the single source of truth for item size and
+internal alignment. \`orientation\` only describes how the *parent* container lays
+items out (row vs. column).
+
+| Variant                  | Height | Padding   | Alignment           |
+| ------------------------ | ------ | --------- | ------------------- |
+| Tier 1 (parent)          | 64px   | 8px 8px   | centered            |
+| Tier 1 + Nested          | 48px   | 8px 48px  | inherits (centered) |
+| Tier 2                   | 48px   | 8px 16px  | left-aligned        |
+| **Tier 2 + Nested**      | —      | —         | *not supported*     |
+
+### Typography
+Shared by both tiers (Figma "Label / large / default"):
+
+\`\`\`
+font-family:    Noto Sans
+font-size:      16px
+font-weight:    400
+line-height:    150%   (24px)
+letter-spacing: 0
+\`\`\`
+
 ### Variants
 
-| Prop          | Values                                          | Purpose                                                   |
-| ------------- | ----------------------------------------------- | --------------------------------------------------------- |
-| \`state\`       | \`default\` · \`hover\` · \`active\`                | Forced interaction state (useful for design previews).    |
-| \`orientation\` | \`vertical\` · \`horizontal\`                     | Parent layout direction (column vs row).                  |
-| \`level\`       | \`parent\` · \`nested\`  *(shown as "Nesting")*   | Top-level item vs. nested under a parent.                 |
-| \`hierarchy\`   | \`tier-1\` · \`tier-2\`                           | Visual depth in the nav tree.                             |
-| \`shape\`       | \`pill\` · \`line\`                               | Selection treatment: filled pill or underline indicator.  |
-| \`colorMode\`   | \`light\` · \`dark\`                              | Surface color mode.                                       |
-| \`selected\`    | \`boolean\`                                       | Marks the current route (adds \`aria-current="page"\`).   |
+| Prop          | Values                                          | Purpose                                                                       |
+| ------------- | ----------------------------------------------- | ----------------------------------------------------------------------------- |
+| \`state\`       | \`default\` · \`hover\` · \`active\`                | Forced interaction state (useful for design previews).                        |
+| \`orientation\` | \`vertical\` · \`horizontal\`                     | Parent layout direction (column vs row). Does **not** change per-item sizing. |
+| \`level\`       | \`parent\` · \`nested\`  *(shown as "Nesting")*   | Top-level item vs. nested under a parent (Tier 1 only).                       |
+| \`hierarchy\`   | \`tier-1\` · \`tier-2\`                           | Drives height, padding, and alignment.                                        |
+| \`shape\`       | \`pill\` · \`line\`                               | Selection treatment: filled pill or underline indicator.                      |
+| \`colorMode\`   | \`light\` · \`dark\`                              | Surface color mode.                                                           |
+| \`selected\`    | \`boolean\`                                       | Marks the current route (adds \`aria-current="page"\`).                         |
 
 > In Storybook, **State** and **Shape** are merged into one dropdown
 > (\`Default\` · \`Hover\` · \`Active Pill\` · \`Active Line\`) to match the Figma playground.
 
-### Theming
-Hover/active/text colors come from CSS variables defined in \`src/styles/global.scss\`:
+### Active Line spec (Tier 1)
+Combining \`hierarchy="tier-1"\` + \`shape="line"\` + \`state="active"\` matches the
+Figma "Active Line" spec exactly:
 
-\`\`\`css
---sds-color-text-default-default
---sds-color-background-default-default   /* hover pill */
---sds-color-background-default-tertiary  /* active pill */
---sds-color-border-brand-secondary       /* active line underline */
+\`\`\`
+height: 64px; padding: 8px 8px; justify/align: center; gap: 8px;
+border-radius: 0;
+border-bottom: 2px solid var(--sds-color-border-brand-secondary);
 \`\`\`
 
-Override these on \`:root\` or a section element to retheme every consumer.
-        `.trim(),
+### Theming
+Hover/active/text colors come from CSS custom properties defined in
+\`src/styles/global.scss\`. Override them on \`:root\` or a section element to retheme
+every consumer — no component edits required.
+
+\`\`\`css
+--sds-color-text-default-default         /* label / icon color          */
+--sds-color-background-default-default   /* hover pill background       */
+--sds-color-background-default-tertiary  /* active pill background      */
+--sds-color-border-brand-secondary       /* active line underline color */
+\`\`\`
+
+### Usage
+
+\`\`\`tsx
+import { NavItem } from '@company/design-system'
+
+<NavItem
+  href="/dashboard"
+  label="Dashboard"
+  hierarchy="tier-1"
+  shape="pill"
+  selected
+/>
+\`\`\`
+
+### Accessibility
+- Renders as a real \`<a href>\` so keyboard and screen-reader navigation work out of the box.
+- When \`selected\` is true, \`aria-current="page"\` is applied automatically.
+- Icons are decorative (\`aria-hidden\`); the label provides the accessible name.
+- Focus ring uses the system focus border token and is visible on keyboard navigation only.
+                `.trim(),
       },
     },
   },
