@@ -6,7 +6,10 @@ const description =
   'An interactive content component that allows users to browse through a collection of items, media, or information within a limited space. Carousels support sequential navigation through slides, cards, or visual content while helping surface featured content, highlights, or grouped experiences in an engaging and organized manner.'
 
 const getPageStyle = (theme: 'light' | 'dark' = 'light'): CSSProperties => ({
-  backgroundColor: theme === 'dark' ? '#141f2e' : '#ffffff',
+  backgroundColor:
+    theme === 'dark'
+      ? '#141f2e'
+      : 'var(--sds-color-white-800, rgba(255, 255, 255, 0.9))',
   boxSizing: 'border-box',
   color: theme === 'dark' ? '#ffffff' : '#1f1f1f',
   display: 'flex',

@@ -6,7 +6,10 @@ const description =
   'A reusable content template designed to create consistent social media assets across multiple platforms and formats. Social Media Post templates support platform-specific layouts and content structures for channels such as Facebook, Instagram, TikTok, YouTube, and X while maintaining brand consistency and visual cohesion.'
 
 const getPageStyle = (theme: 'light' | 'dark' = 'light'): CSSProperties => ({
-  backgroundColor: theme === 'dark' ? '#141f2e' : '#ffffff',
+  backgroundColor:
+    theme === 'dark'
+      ? '#141f2e'
+      : 'var(--sds-color-white-800, rgba(255, 255, 255, 0.9))',
   boxSizing: 'border-box',
   color: theme === 'dark' ? '#ffffff' : '#1f1f1f',
   display: 'flex',

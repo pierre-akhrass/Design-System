@@ -6,7 +6,10 @@ const description =
   'A structured content component used to organize and display related items in a clear and scannable format. Lists help users browse, compare, and navigate information efficiently while supporting various content types such as text, media, actions, metadata, or grouped collections.'
 
 const getPageStyle = (theme: 'light' | 'dark' = 'light'): CSSProperties => ({
-  backgroundColor: theme === 'dark' ? '#0a111a' : '#f5f5f5',
+  backgroundColor:
+    theme === 'dark'
+      ? '#0a111a'
+      : 'var(--sds-color-white-800, rgba(255, 255, 255, 0.9))',
   boxSizing: 'border-box',
   color: theme === 'dark' ? '#ffffff' : '#1f1f1f',
   display: 'flex',

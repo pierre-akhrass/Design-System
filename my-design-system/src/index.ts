@@ -30,3 +30,18 @@ export type {
   ListProps,
   ListTheme,
 } from './components/List'
+
+export {
+  Search,
+  SearchTabs,
+  SearchTab,
+  SearchResults,
+} from './components/Search'
+export type {
+  SearchProps,
+  SearchSize,
+  SearchTheme,
+  SearchTabsProps,
+  SearchTabProps,
+  SearchResultsProps,
+} from './components/Search'

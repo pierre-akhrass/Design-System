@@ -1,9 +1,9 @@
 import type { CSSProperties } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { List, ListItem } from './List'
+import { Search } from './Search'
 
 const description =
-  'A structured content component used to organize and display related items in a clear and scannable format. Lists help users browse, compare, and navigate information efficiently while supporting various content types such as text, media, actions, metadata, or grouped collections.'
+  'An enhanced search interaction pattern that provides users with advanced discovery and filtering capabilities beyond a standard search field. Expanded Search can include autocomplete suggestions, recent searches, categorized results, filters, recommendations, and contextual guidance to help users quickly find relevant content, products, or destinations within the experience.'
 
 const getPageStyle = (theme: 'light' | 'dark' = 'light'): CSSProperties => ({
   backgroundColor:
@@ -39,50 +39,53 @@ const descriptionStyle: CSSProperties = {
   fontSize: '14px',
   lineHeight: 1.5,
   margin: 0,
-  maxWidth: '420px',
+  maxWidth: '640px',
   opacity: 0.85,
 }
 
-const meta: Meta<typeof List> = {
-  title: 'Components/List',
-  component: List,
-  excludeStories: /^(Playground|Light|Dark|Bordered|DocumentItem|UserItem|NumberedItem|BulletedItem|CardItem|ShowcaseLight|ShowcaseDark)$/,
+const meta: Meta<typeof Search> = {
+  title: 'Components/Search',
+  component: Search,
   parameters: {
     layout: 'fullscreen',
   },
   args: {
     theme: 'light',
-    bordered: false,
+    size: 'default',
+    placeholder: 'Search for something',
+    clearLabel: 'Clear Search',
+    showClear: true,
   },
   argTypes: {
     theme: {
       control: 'inline-radio',
       options: ['light', 'dark'],
     },
-    bordered: { control: 'boolean' },
+    size: {
+      control: 'inline-radio',
+      options: ['default', 'compact'],
+    },
+    placeholder: { control: 'text' },
+    clearLabel: { control: 'text' },
+    showClear: { control: 'boolean' },
   },
   render: (args) => (
     <div style={getPageStyle(args.theme)}>
       <header style={headerStyle}>
-        <h1 style={titleStyle}>Lists{args.theme === 'dark' ? ': Dark' : ''}</h1>
+        <h1 style={titleStyle}>
+          Expanded Search{args.theme === 'dark' ? ': Dark' : ''}
+        </h1>
         <p style={descriptionStyle}>{description}</p>
       </header>
-      <div style={{ width: '320px' }}>
-        <List {...args}>
-          <ListItem variant="document" label="Document name" meta="270 Kbs" />
-          <ListItem variant="user" label="Username" actionLabel="Add" />
-          <ListItem variant="numbered" index={1} label="List item" />
-          <ListItem variant="bulleted" label="List item" />
-        </List>
-      </div>
+      <Search {...args} />
     </div>
   ),
 }
 
 export default meta
 
-type Story = StoryObj<typeof List>
+type Story = StoryObj<typeof Search>
 
 export const Default: Story = {
-  args: { theme: 'light', bordered: false },
+  args: { theme: 'light', size: 'default' },
 }
