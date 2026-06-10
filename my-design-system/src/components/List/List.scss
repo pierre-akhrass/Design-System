@@ -4,6 +4,7 @@
   --ds-list-fg: #{$mapping-system-slate-text-primary};
   --ds-list-fg-muted: #{$mapping-system-slate-text-secondary};
   --ds-list-item-bg: transparent;
+  --ds-list-item-hover-bg: #{$mapping-system-slate-surface-secondary};
   --ds-list-item-border: #{$mapping-system-slate-border-tertiary};
   --ds-list-divider: #{$mapping-system-slate-border-tertiary};
   --ds-list-avatar-bg: #{$mapping-system-slate-surface-tertiary};
@@ -14,7 +15,6 @@
   display: flex;
   flex-direction: column;
   font-family: $ui-font-family;
-  gap: $gap-2xs;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -23,29 +23,41 @@
 
 .ds-list--dark {
   --ds-list-fg: #{$mapping-system-slate-text-on-primary};
-  --ds-list-fg-muted: #{$mapping-system-slate-text-on-tertiary};
-  --ds-list-item-border: transparent;
+  --ds-list-fg-muted: rgba(255, 255, 255, 0.6);
+  --ds-list-item-hover-bg: #{$mapping-system-slate-background-secondary-hover};
+  --ds-list-item-border: #{$mapping-system-slate-background-secondary};
   --ds-list-divider: #{$mapping-system-slate-background-secondary};
   --ds-list-avatar-bg: #{$mapping-system-slate-background-secondary};
-  --ds-list-avatar-fg: #{$mapping-system-slate-text-on-secondary};
-  --ds-list-action-hover: #{$mapping-system-slate-background-secondary};
-}
-
-.ds-list--bordered .ds-list__item {
-  border: 1px solid var(--ds-list-item-border);
+  --ds-list-avatar-fg: rgba(255, 255, 255, 0.85);
+  --ds-list-action-hover: #{$mapping-system-slate-background-secondary-hover};
 }
 
 .ds-list__item {
   align-items: center;
   background-color: var(--ds-list-item-bg);
-  border-radius: $radius-medium;
+  border-bottom: 1px solid var(--ds-list-divider);
   color: var(--ds-list-fg);
   display: flex;
   font-size: 14px;
   gap: $gap-xs;
-  padding: 10px 14px;
+  padding: 10px 4px;
   position: relative;
   transition: background-color 0.2s ease;
+}
+
+.ds-list__item:last-child {
+  border-bottom: none;
+}
+
+/* Bordered variant: full border around each item, restore the gap */
+.ds-list--bordered {
+  gap: $gap-2xs;
+}
+
+.ds-list--bordered .ds-list__item {
+  border: 1px solid var(--ds-list-item-border);
+  border-radius: $radius-medium;
+  padding: 10px 14px;
 }
 
 .ds-list__leading {
@@ -150,7 +162,7 @@
   background: transparent;
   border: none;
   border-radius: $radius-small;
-  color: var(--ds-list-fg-muted);
+  color: var(--ds-list-fg);
   cursor: pointer;
   display: inline-flex;
   height: 24px;
@@ -162,12 +174,11 @@
 
 .ds-list__action-icon:hover {
   background-color: var(--ds-list-action-hover);
-  color: var(--ds-list-fg);
 }
 
 .ds-list__item--card {
   align-items: center;
-  padding: 12px 14px;
+  padding: 12px 4px;
 }
 
 .ds-list__item--card .ds-list__leading--avatar {
@@ -177,4 +188,10 @@
 
 .ds-list__item--card .ds-list__body {
   gap: 2px;
+}
+
+/* Optional highlighted state used by the Showcase animation column */
+.ds-list__item[data-highlighted='true'] {
+  background-color: var(--ds-list-item-hover-bg);
+  border-radius: $radius-small;
 }

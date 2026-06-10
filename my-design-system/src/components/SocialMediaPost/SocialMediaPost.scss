@@ -1,6 +1,7 @@
 @use '../../styles/tokens/variables' as *;
 
 .ds-social-media-post {
+  // Light theme (default)
   --ds-smp-card-bg: #{$mapping-system-slate-surface-tertiary};
   --ds-smp-card-fg: #{$mapping-system-slate-text-primary};
   --ds-smp-badge-bg: transparent;
@@ -12,6 +13,8 @@
   --ds-smp-pagination-fg: #{$mapping-system-slate-text-on-primary};
   --ds-smp-caption-bg: #{$mapping-system-slate-background-primary};
   --ds-smp-caption-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-tag-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-tag-fg: #{$mapping-system-slate-text-on-primary};
 
   border-radius: $radius-medium;
   color: var(--ds-smp-card-fg);
@@ -23,23 +26,25 @@
 }
 
 .ds-social-media-post--dark {
-  --ds-smp-card-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-card-bg: #{$mapping-system-slate-background-secondary-hover};
   --ds-smp-card-fg: #{$mapping-system-slate-text-on-primary};
   --ds-smp-badge-bg: transparent;
   --ds-smp-badge-fg: #{$mapping-system-slate-text-on-primary};
-  --ds-smp-placeholder: #{$mapping-system-slate-background-secondary};
+  --ds-smp-placeholder: #{$mapping-system-slate-background-primary-hover};
   --ds-smp-text-card-bg: #{$mapping-system-slate-surface-tertiary};
   --ds-smp-text-card-fg: #{$mapping-system-slate-text-primary};
-  --ds-smp-pagination-bg: #{$mapping-system-slate-surface-primary};
+  --ds-smp-pagination-bg: #{$mapping-system-slate-surface-tertiary};
   --ds-smp-pagination-fg: #{$mapping-system-slate-text-primary};
-  --ds-smp-caption-bg: #{$mapping-system-slate-background-secondary};
-  --ds-smp-caption-fg: #{$mapping-system-slate-text-on-secondary};
+  --ds-smp-caption-bg: #{$mapping-system-slate-background-primary-hover};
+  --ds-smp-caption-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-tag-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-smp-tag-fg: #{$mapping-system-slate-text-primary};
 }
 
 .ds-social-media-post__badge {
   align-items: center;
   background-color: var(--ds-smp-badge-bg);
-  border-radius: $radius-full + 0px;
+  border-radius: 999px;
   color: var(--ds-smp-badge-fg);
   display: inline-flex;
   height: 36px;
@@ -85,20 +90,23 @@
   display: inline-flex;
   height: 64px;
   justify-content: center;
-  opacity: 0.85;
+  opacity: 0.45;
   width: 64px;
 }
 
 .ds-social-media-post__type-tag {
   align-items: center;
+  background-color: var(--ds-smp-tag-bg);
+  border-radius: $radius-small;
   bottom: $space-150;
-  color: var(--ds-smp-card-fg);
+  color: var(--ds-smp-tag-fg);
   display: inline-flex;
-  height: 24px;
+  height: 28px;
   justify-content: center;
   left: $space-150;
   position: absolute;
-  width: 24px;
+  width: 28px;
+  z-index: 2;
 }
 
 .ds-social-media-post__pagination {
@@ -131,7 +139,11 @@
 }
 
 .ds-social-media-post__pagination-button:hover {
-  background-color: $mapping-system-white-200;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.ds-social-media-post--dark .ds-social-media-post__pagination-button:hover {
+  background-color: rgba(0, 0, 0, 0.08);
 }
 
 .ds-social-media-post__pagination-count {

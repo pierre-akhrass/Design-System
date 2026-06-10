@@ -1,29 +1,41 @@
 import { useState, type CSSProperties } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
-import { Carousel } from '../Carousel'
 import { SocialMediaPost } from './SocialMediaPost'
 import type { SocialMediaPostPlatform } from './SocialMediaPost'
 
 const description =
   'A reusable content template designed to create consistent social media assets across multiple platforms and formats. Social Media Post templates support platform-specific layouts and content structures for channels such as Facebook, Instagram, TikTok, YouTube, and X while maintaining brand consistency and visual cohesion.'
 
-const headerWrapperStyle: CSSProperties = {
+const getPageStyle = (theme: 'light' | 'dark' = 'light'): CSSProperties => ({
+  backgroundColor: theme === 'dark' ? '#141f2e' : '#ffffff',
+  boxSizing: 'border-box',
+  color: theme === 'dark' ? '#ffffff' : '#1f1f1f',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '32px',
+  minHeight: '100vh',
+  padding: '40px clamp(24px, 4vw, 56px)',
+  width: '100%',
+})
+
+const headerStyle: CSSProperties = {
   borderBottom: '1px solid currentColor',
-  marginBottom: '32px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '12px',
   opacity: 0.95,
   paddingBottom: '24px',
 }
 
 const breadcrumbStyle: CSSProperties = {
   fontSize: '14px',
-  marginBottom: '16px',
   opacity: 0.85,
 }
 
 const titleStyle: CSSProperties = {
   fontSize: '40px',
   fontWeight: 700,
-  margin: '0 0 16px',
+  margin: 0,
 }
 
 const descriptionStyle: CSSProperties = {
@@ -32,6 +44,13 @@ const descriptionStyle: CSSProperties = {
   margin: 0,
   maxWidth: '420px',
   opacity: 0.85,
+}
+
+const cardsColumnStyle: CSSProperties = {
+  alignItems: 'flex-start',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '24px',
 }
 
 const captionText =
@@ -58,50 +77,6 @@ const PaginatedInstagram = ({ theme }: { theme: 'light' | 'dark' }) => {
   )
 }
 
-const meta: Meta<typeof SocialMediaPost> = {
-  title: 'Components/SocialMediaPost/Playground',
-  component: SocialMediaPost,
-  parameters: { layout: 'fullscreen' },
-  args: { theme: 'light', platform: 'facebook', type: 'image' },
-  argTypes: {
-    theme: { control: 'inline-radio', options: ['light', 'dark'] },
-    platform: {
-      control: 'inline-radio',
-      options: ['facebook', 'instagram', 'tiktok', 'youtube', 'x'],
-    },
-    type: { control: 'inline-radio', options: ['image', 'video', 'text'] },
-  },
-}
-
-export default meta
-
-type Story = StoryObj<typeof SocialMediaPost>
-
-export const Facebook: Story = {
-  args: { platform: 'facebook', type: 'image', caption: captionText },
-}
-
-export const Instagram: Story = {
-  render: (args) => <PaginatedInstagram theme={args.theme ?? 'light'} />,
-}
-
-export const TikTok: Story = {
-  args: { platform: 'tiktok', type: 'video' },
-}
-
-export const YouTube: Story = {
-  args: { platform: 'youtube', type: 'video' },
-}
-
-export const X: Story = {
-  args: {
-    platform: 'x',
-    type: 'text',
-    text: xText,
-    hashtags: '#FashionForward #StyleMatters',
-  },
-}
-
 const platforms: {
   platform: SocialMediaPostPlatform
   type: 'image' | 'video' | 'text'
@@ -123,31 +98,102 @@ const platforms: {
 ]
 
 const ShowcaseTemplate = ({ theme }: { theme: 'light' | 'dark' }) => (
-  <Carousel theme={theme} showNavigation={false}>
-    <div style={{ width: '100%' }}>
-      <div style={headerWrapperStyle}>
+  <div style={getPageStyle(theme)}>
+    <header style={headerStyle}>
+      <div style={breadcrumbStyle}>Component / Social Media Post</div>
+      <h1 style={titleStyle}>
+        Social Media Post{theme === 'dark' ? ': Dark' : ''}
+      </h1>
+      <p style={descriptionStyle}>{description}</p>
+    </header>
+
+    <div style={cardsColumnStyle}>
+      {platforms.map((item) => (
+        <SocialMediaPost
+          key={item.platform}
+          theme={theme}
+          platform={item.platform}
+          type={item.type}
+          caption={item.caption}
+          text={item.text}
+          hashtags={item.hashtags}
+          pagination={item.pagination}
+        />
+      ))}
+    </div>
+  </div>
+)
+
+const meta: Meta<typeof SocialMediaPost> = {
+  title: 'Components/SocialMediaPost/Playground',
+  component: SocialMediaPost,
+  parameters: { layout: 'fullscreen' },
+  args: { theme: 'light', platform: 'facebook', type: 'image' },
+  argTypes: {
+    theme: { control: 'inline-radio', options: ['light', 'dark'] },
+    platform: {
+      control: 'inline-radio',
+      options: ['facebook', 'instagram', 'tiktok', 'youtube', 'x'],
+    },
+    type: { control: 'inline-radio', options: ['image', 'video', 'text'] },
+  },
+  render: (args) => (
+    <div style={getPageStyle(args.theme)}>
+      <header style={headerStyle}>
         <div style={breadcrumbStyle}>Component / Social Media Post</div>
         <h1 style={titleStyle}>
-          Social Media Post{theme === 'dark' ? ': Dark' : ''}
+          Social Media Post{args.theme === 'dark' ? ': Dark' : ''}
         </h1>
         <p style={descriptionStyle}>{description}</p>
+      </header>
+      <div style={cardsColumnStyle}>
+        <SocialMediaPost {...args} />
       </div>
     </div>
+  ),
+}
 
-    {platforms.map((item) => (
-      <SocialMediaPost
-        key={item.platform}
-        theme={theme}
-        platform={item.platform}
-        type={item.type}
-        caption={item.caption}
-        text={item.text}
-        hashtags={item.hashtags}
-        pagination={item.pagination}
-      />
-    ))}
-  </Carousel>
-)
+export default meta
+
+type Story = StoryObj<typeof SocialMediaPost>
+
+export const Facebook: Story = {
+  args: { platform: 'facebook', type: 'image', caption: captionText },
+}
+
+export const Instagram: Story = {
+  render: (args) => (
+    <div style={getPageStyle(args.theme)}>
+      <header style={headerStyle}>
+        <div style={breadcrumbStyle}>Component / Social Media Post</div>
+        <h1 style={titleStyle}>
+          Social Media Post{args.theme === 'dark' ? ': Dark' : ''}
+        </h1>
+        <p style={descriptionStyle}>{description}</p>
+      </header>
+      <div style={cardsColumnStyle}>
+        <PaginatedInstagram theme={args.theme ?? 'light'} />
+      </div>
+    </div>
+  ),
+}
+
+export const TikTok: Story = {
+  args: { platform: 'tiktok', type: 'video' },
+}
+
+export const YouTube: Story = {
+  args: { platform: 'youtube', type: 'video' },
+}
+
+export const X: Story = {
+  args: {
+    platform: 'x',
+    type: 'text',
+    text: xText,
+    hashtags: '#FashionForward #StyleMatters',
+  },
+}
 
 export const ShowcaseLight: Story = {
   name: 'Showcase – Light',

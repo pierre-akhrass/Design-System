@@ -5,23 +5,36 @@ import { Carousel, CarouselSlide } from './Carousel'
 const description =
   'An interactive content component that allows users to browse through a collection of items, media, or information within a limited space. Carousels support sequential navigation through slides, cards, or visual content while helping surface featured content, highlights, or grouped experiences in an engaging and organized manner.'
 
-const headerWrapperStyle: CSSProperties = {
+const getPageStyle = (theme: 'light' | 'dark' = 'light'): CSSProperties => ({
+  backgroundColor: theme === 'dark' ? '#141f2e' : '#ffffff',
+  boxSizing: 'border-box',
+  color: theme === 'dark' ? '#ffffff' : '#1f1f1f',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '32px',
+  minHeight: '100vh',
+  padding: '40px clamp(24px, 4vw, 56px)',
+  width: '100%',
+})
+
+const headerStyle: CSSProperties = {
   borderBottom: '1px solid currentColor',
-  marginBottom: '32px',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '12px',
   opacity: 0.95,
   paddingBottom: '24px',
 }
 
 const breadcrumbStyle: CSSProperties = {
   fontSize: '14px',
-  marginBottom: '16px',
   opacity: 0.85,
 }
 
 const titleStyle: CSSProperties = {
   fontSize: '40px',
   fontWeight: 700,
-  margin: '0 0 16px',
+  margin: 0,
 }
 
 const descriptionStyle: CSSProperties = {
@@ -61,18 +74,16 @@ const meta: Meta<typeof Carousel> = {
     nextLabel: { control: 'text' },
   },
   render: (args) => (
-    <Carousel {...args}>
-      <div style={{ width: '100%' }}>
-        <div style={headerWrapperStyle}>
-          <div style={breadcrumbStyle}>Foundation / Carousel</div>
-          <h1 style={titleStyle}>
-            Carousel{args.theme === 'dark' ? ': Dark' : ''}
-          </h1>
-          <p style={descriptionStyle}>{description}</p>
-        </div>
-      </div>
-      {renderSlides(6)}
-    </Carousel>
+    <div style={getPageStyle(args.theme)}>
+      <header style={headerStyle}>
+        <div style={breadcrumbStyle}>Foundation / Carousel</div>
+        <h1 style={titleStyle}>
+          Carousel{args.theme === 'dark' ? ': Dark' : ''}
+        </h1>
+        <p style={descriptionStyle}>{description}</p>
+      </header>
+      <Carousel {...args}>{renderSlides(6)}</Carousel>
+    </div>
   ),
 }
 
