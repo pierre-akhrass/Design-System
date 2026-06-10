@@ -12,6 +12,7 @@ const allNames: IllustrationName[] = [
 const meta: Meta<typeof Illustration> = {
   title: 'Components/Illustration',
   component: Illustration,
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {

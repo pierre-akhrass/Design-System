@@ -3,6 +3,8 @@ import { VideoPlayer } from './VideoPlayer'
 import type { VideoPlayerProps } from './VideoPlayer'
 import './VideoGallery.scss'
 
+export type VideoGalleryTheme = 'light' | 'dark'
+
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export interface VideoItem {
@@ -52,6 +54,10 @@ export interface VideoGalleryProps
    * @param item  The full VideoItem for the clicked thumbnail.
    */
   onVideoSelect?: (index: number, item: VideoItem) => void
+
+  // ── Theme ────────────────────────────────────────────────────────────────
+  /** Colour theme — 'light' (default) | 'dark'. Also responds to `prefers-color-scheme`. */
+  theme?: VideoGalleryTheme
 }
 
 // ─── Thumbnail ────────────────────────────────────────────────────────────────
@@ -117,6 +123,7 @@ export const VideoGallery = ({
   onSubtitlesToggle,
   onFullscreen,
   onMore,
+  theme,
   className,
   ...props
 }: VideoGalleryProps) => {
@@ -124,7 +131,7 @@ export const VideoGallery = ({
   const bottomItems  = suggestedVideos.slice(3, 6)
 
   return (
-    <div className={['ds-video-gallery', className].filter(Boolean).join(' ')} {...props}>
+    <div className={['ds-video-gallery', theme && `ds-video-gallery--${theme}`, className].filter(Boolean).join(' ')} {...props}>
 
       {/* ── Layout: Main Video + Suggested Videos (sidebar) ───────────── */}
       <div className="ds-video-gallery__layout">

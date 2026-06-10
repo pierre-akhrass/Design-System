@@ -1,51 +1,106 @@
-@use '../../styles/tokens/variables' as *;
+﻿@use '../../styles/tokens/variables' as *;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// VideoGallery — video player with suggested video thumbnails
+// VideoGallery — responsive video player + suggested thumbnails
+//
+// Breakpoints:
+//   ≥1024px  desktop  — main player + 233px sidebar + 3-col bottom row  (Figma)
+//   768–1023px tablet  — full-width player → 3-col sidebar row → 2-col bottom row
+//   <768px   mobile   — stack: player → 2-col sidebar grid → 1-col bottom
 // ─────────────────────────────────────────────────────────────────────────────
 
 .ds-video-gallery {
   display: flex;
   flex-direction: column;
-  gap: $gap-m;
+  gap: $gap-m;   // 24px
+  max-width: 1440px;
   width: 100%;
 }
 
-// ─── Top layout: main + sidebar ───────────────────────────────────────────────
+// ─── Top layout: main player + sidebar ───────────────────────────────────────
 
 .ds-video-gallery__layout {
-  display: grid;
-  gap: $gap-m;
-  grid-template-columns: 1fr 220px;
+  display: flex;
+  gap: $gap-m;   // 24px — desktop: row
 
-  @media (max-width: 900px) {
-    grid-template-columns: 1fr;
+  // tablet + mobile → stack
+  @media (max-width: 1023px) {
+    flex-direction: column;
   }
 }
 
 .ds-video-gallery__main {
+  flex: 1 0 0;
   min-width: 0;
+
+  // Desktop in Figma is fixed to 517 px media height, not ratio-driven.
+  @media (min-width: 1024px) {
+    .ds-video-player__media {
+      aspect-ratio: auto;
+      height: 517px;
+    }
+  }
+
+  // Tablet/mobile fall back to responsive 16:9.
+  @media (max-width: 1023px) {
+    .ds-video-player__media {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+  }
 }
+
+// ─── Sidebar ─────────────────────────────────────────────────────────────────
 
 .ds-video-gallery__sidebar {
   display: flex;
-  flex-direction: column;
   gap: $gap-m;
 
-  @media (max-width: 900px) {
-    display: none;
+  // Desktop: fixed 233px column of stacked thumbnails
+  @media (min-width: 1024px) {
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 233px;
+  }
+
+  // Tablet: horizontal 3-column row below the player
+  @media (min-width: 768px) and (max-width: 1023px) {
+    flex-direction: row;
+    width: 100%;
+
+    > * {
+      flex: 1 0 0;
+    }
+  }
+
+  // Mobile: 2-column grid
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 }
 
 // ─── Bottom row ───────────────────────────────────────────────────────────────
 
 .ds-video-gallery__bottom {
-  display: grid;
+  display: flex;
   gap: $gap-m;
-  grid-template-columns: repeat(3, 1fr);
 
-  @media (max-width: 640px) {
-    grid-template-columns: 1fr;
+  // Desktop + tablet: 3-column row
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+
+  // Tablet: 2 columns
+  @media (min-width: 768px) and (max-width: 1023px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Mobile: single column stack
+  @media (max-width: 767px) {
+    flex-direction: column;
   }
 }
 
@@ -55,8 +110,11 @@
   background: none;
   background-color: $mapping-system-slate-surface-secondary;
   border: 2px solid transparent;
-  border-radius: $radius-medium;
+  border-radius: $radius-medium;   // 8px
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   isolation: isolate;
   overflow: hidden;
   padding: 0;
@@ -64,26 +122,67 @@
   text-align: left;
   transition: border-color 0.15s ease;
 
+  // ── Sidebar thumbnail ──
+  // Desktop: exactly 156 px (Figma), full sidebar width
   &--sidebar {
-    aspect-ratio: 16 / 9;
-    display: block;
-    width: 100%;
+    @media (min-width: 1024px) {
+      height: 156px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    // Tablet: 16:9 aspect-ratio, equal flex columns
+    @media (min-width: 768px) and (max-width: 1023px) {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+
+    // Mobile: 16:9 aspect-ratio
+    @media (max-width: 767px) {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: auto;
+    }
   }
 
+  // ── Bottom thumbnail ──
+  // Desktop: exactly 176 px (Figma), equal flex columns
   &--bottom {
-    aspect-ratio: 16 / 9;
-    display: block;
-    width: 100%;
+    @media (min-width: 1024px) {
+      height: 176px;
+      flex: 1 0 0;
+      min-width: 0;
+    }
+
+    // Tablet: 16:9 aspect-ratio
+    @media (min-width: 768px) and (max-width: 1023px) {
+      aspect-ratio: 16 / 9;
+      height: auto;
+    }
+
+    // Mobile: 16:9 full width
+    @media (max-width: 767px) {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      height: auto;
+    }
   }
 
-  // Active (selected) state
+  // Active state
   &--active {
     border-color: $mapping-brand-teal-blue-background-primary;
 
     .ds-video-gallery__thumb-play-circle {
       background-color: $mapping-brand-teal-blue-background-primary;
-      opacity: 1;
     }
+  }
+
+  &:hover .ds-video-gallery__thumb-play-circle {
+    transform: scale(1.08);
+  }
+
+  &:active .ds-video-gallery__thumb-play-circle {
+    transform: scale(0.94);
   }
 
   &:focus-visible {
@@ -113,7 +212,8 @@
   top: 0;
 }
 
-// ─── Overlay (play circle) ────────────────────────────────────────────────────
+// ─── Play circle ─────────────────────────────────────────────────────────────
+// Always visible — 48px container, 24px icon
 
 .ds-video-gallery__thumb-overlay {
   align-items: center;
@@ -129,21 +229,18 @@
 
 .ds-video-gallery__thumb-play-circle {
   align-items: center;
-  background-color: $mapping-system-white-300;
-  border-radius: $radius-full;
-  color: $mapping-system-white-1000;
+  background-color: $mapping-system-slate-border-tertiary;
+  border-radius: #{$radius-full}px;
+  color: $mapping-system-slate-surface-primary;
   display: flex;
   justify-content: center;
-  opacity: 0;
-  padding: $gap-2xs;
-  transition: background-color 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
+  width: 48px;
+  height: 48px;
+  transition: background-color 0.15s ease, transform 0.1s ease;
 
-  .ds-video-gallery__thumb:hover & {
-    opacity: 1;
-  }
-
-  .ds-video-gallery__thumb:active & {
-    transform: scale(0.94);
+  svg {
+    width: 24px;
+    height: 24px;
   }
 }
 
@@ -166,3 +263,26 @@
   white-space: nowrap;
   z-index: 2;
 }
+
+// ─── Dark theme ───────────────────────────────────────────────────────────────
+
+@mixin video-gallery-dark {
+  .ds-video-gallery__thumb {
+    background-color: $mapping-system-slate-background-secondary;
+  }
+
+  .ds-video-gallery__thumb-placeholder {
+    background-color: $mapping-system-slate-background-secondary;
+  }
+}
+
+.ds-video-gallery--dark {
+  @include video-gallery-dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  .ds-video-gallery {
+    @include video-gallery-dark;
+  }
+}
+
