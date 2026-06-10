@@ -5,25 +5,6 @@ import { NavItem } from '../NavItem'
 import type { DropdownColorMode } from '../Dropdown/Dropdown'
 import type { NavbarColorMode } from './Navbar'
 
-const Logo = ({ colorMode }: { colorMode: NavbarColorMode }) => (
-  <span
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: 8,
-      fontWeight: 800,
-      fontSize: 20,
-      color: colorMode === 'dark' ? '#fff' : '#111',
-    }}
-  >
-    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
-      <path d="M16 2l8 8-8 8-8-8 8-8z" fill="#3ec1ff" />
-      <path d="M16 14l8 8-8 8-8-8 8-8z" fill="#3ec1ff" opacity="0.85" />
-    </svg>
-    Al-Futtaim
-  </span>
-)
-
 const Chevron = () => (
   <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14">
     <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -71,7 +52,8 @@ type LinkEntry =
 type PlaygroundArgs = {
   colorMode: NavbarColorMode
   links: LinkEntry[]
-  showLogo: boolean
+  /** Logo image URL. Leave empty to hide the brand mark. */
+  logoSrc: string
   showActions: boolean
 }
 
@@ -179,7 +161,7 @@ export const Playground: Story = {
   },
   args: {
     colorMode: 'dark',
-    showLogo: true,
+    logoSrc: '/favicon.svg',
     showActions: true,
     links: [
       {
@@ -214,7 +196,10 @@ export const Playground: Story = {
   },
   argTypes: {
     colorMode: { control: 'inline-radio', options: ['light', 'dark'] },
-    showLogo: { control: 'boolean' },
+    logoSrc: {
+      control: 'text',
+      description: 'Logo image URL (passed straight to the Navbar `logo` prop).',
+    },
     showActions: { control: 'boolean' },
     links: {
       control: 'object',
@@ -225,10 +210,10 @@ export const Playground: Story = {
         '{ kind: "item" | "divider" | "button" | "custom", ... }.',
     },
   },
-  render: ({ colorMode, links, showLogo, showActions }) => (
+  render: ({ colorMode, links, logoSrc, showActions }) => (
     <Navbar
       colorMode={colorMode}
-      logo={showLogo ? <Logo colorMode={colorMode} /> : undefined}
+      logo={logoSrc || undefined}
       actions={
         showActions ? (
           <>
