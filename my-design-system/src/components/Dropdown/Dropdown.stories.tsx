@@ -75,14 +75,12 @@ import { NavItem, Button } from '@company/design-system'
 Colors are inherited from the global "Selection colors" CSS custom properties
 defined in \`src/styles/global.scss\`. Override them on \`:root\` or a section
 element to retheme the dropdown and every other consumer.
-
 \`\`\`css
 --sds-color-text-default-default
 --sds-color-background-default-default
 --sds-color-background-default-tertiary
 --sds-color-border-brand-secondary
 \`\`\`
-
 ### Accessibility
 - The container has \`role="menu"\`.
 - The divider has \`role="separator"\`.

@@ -128,14 +128,12 @@ import { Navbar, NavbarMenu, NavItem } from '@company/design-system'
 Colors inherit from the global "Selection colors" CSS variables defined in
 \`src/styles/global.scss\`. Override them on \`:root\` (or a section) to retheme
 the navbar — no component edits required.
-
 \`\`\`css
 --sds-color-text-default-default
 --sds-color-background-default-default
 --sds-color-background-default-tertiary
 --sds-color-border-brand-secondary
 \`\`\`
-
 ### Accessibility
 - Renders inside a \`<nav>\` landmark with a localizable \`aria-label\` (default \`"Primary"\`).
 - The items wrapper has \`role="menubar"\`.

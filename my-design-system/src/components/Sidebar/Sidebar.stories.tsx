@@ -125,14 +125,12 @@ import {
 Colors come from the global "Selection colors" CSS custom properties defined in
 \`src/styles/global.scss\`. Override them on \`:root\` or a section to retheme every
 component that consumes them (Sidebar, NavItem, Dropdown, Navbar, …).
-
 \`\`\`css
 --sds-color-text-default-default
 --sds-color-background-default-default
 --sds-color-background-default-tertiary
 --sds-color-border-brand-secondary
 \`\`\`
-
 ### Accessibility
 - Rendered inside an \`<aside>\` landmark with a localizable \`aria-label\` (default \`"Sidebar"\`).
 - The body is wrapped in a \`<nav>\`.
