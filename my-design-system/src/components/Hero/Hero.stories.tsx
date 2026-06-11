@@ -15,7 +15,6 @@ const baseArgs = {
 const meta: Meta<typeof Hero> = {
   title: 'Components/Hero',
   component: Hero,
-  tags: ['autodocs'],
   parameters: { layout: 'fullscreen' },
   argTypes: {
     variant: { control: 'inline-radio', options: ['centered', 'bottom-left', 'split'] },

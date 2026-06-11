@@ -6,9 +6,10 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { NavItem, type NavItemProps } from './NavItem'
-import { Dropdown, DropdownDivider, type DropdownColorMode } from './Dropdown'
+import { NavItem, type NavItemProps } from '../NavItem'
+import { Dropdown, DropdownDivider, type DropdownColorMode } from '../Dropdown/Dropdown'
 import { Button, type ButtonVariant } from '../Button'
+import { ChevronDownIcon } from '../icons/ChevronDownIcon'
 
 /**
  * A row inside a Navbar dropdown. Mirrors the Dropdown component's
@@ -140,6 +141,21 @@ export const NavbarMenu = ({
   const panelColorMode: DropdownColorMode =
     dropdownColorMode ?? (colorMode as DropdownColorMode)
 
+  // Auto-append the shared chevron-down icon as the trailing indicator on
+  // the trigger (unless the consumer explicitly passes their own iconRight).
+  // Rotates 180° when the panel is open.
+  const triggerIconRight =
+    iconRight ?? (
+      <ChevronDownIcon
+        width={16}
+        height={16}
+        style={{
+          transition: 'transform 0.15s ease',
+          transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
+        }}
+      />
+    )
+
   return (
     <div
       ref={rootRef}
@@ -153,7 +169,7 @@ export const NavbarMenu = ({
         colorMode={colorMode}
         label={label}
         iconLeft={iconLeft}
-        iconRight={iconRight}
+        iconRight={triggerIconRight}
         selected={selected}
         href={triggerProps?.href ?? '#'}
         aria-haspopup="menu"

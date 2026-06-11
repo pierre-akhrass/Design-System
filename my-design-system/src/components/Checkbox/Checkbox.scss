@@ -1,0 +1,92 @@
+// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Checkbox/Checkbox.scss
+.ds-checkbox {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-family: var(--UI-Font-Family, 'Noto Sans', inherit);
+  color: var(--sds-color-text-default-secondary, #292929);
+  user-select: none;
+}
+.ds-checkbox--placement-right {
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* Native input is visually hidden but kept accessible */
+.ds-checkbox__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* The visual box */
+.ds-checkbox__box {
+  display: flex;
+  width: var(--sds-size-icon-small, 20px);
+  height: var(--sds-size-icon-small, 20px);
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 4px;
+  background: var(--sds-color-background-default-default, #ffffff);
+  border: 1.5px solid var(--sds-color-border-default-default, #d2d9e0);
+  color: #ffffff;
+  transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+/* States */
+.ds-checkbox--checked .ds-checkbox__box,
+.ds-checkbox--indeterminate .ds-checkbox__box {
+  background: var(--sds-color-background-brand-default, #1e2c3e);
+  border-color: var(--sds-color-background-brand-default, #1e2c3e);
+  color: #ffffff;
+}
+
+.ds-checkbox--unchecked .ds-checkbox__box {
+  background: var(--sds-color-background-default-default, #ffffff);
+}
+
+/* Focus ring */
+.ds-checkbox__input:focus-visible + .ds-checkbox__box,
+.ds-checkbox__input:focus-visible ~ * .ds-checkbox__box {
+  outline: 2px solid var(--sds-color-border-focus-default, #0384cb);
+  outline-offset: 2px;
+}
+
+/* Hover */
+.ds-checkbox:hover:not(.ds-checkbox--disabled) .ds-checkbox__box {
+  border-color: var(--sds-color-border-default-secondary, #828282);
+}
+
+/* Disabled */
+.ds-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Text block */
+.ds-checkbox__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.ds-checkbox__label {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--sds-color-text-default-secondary, #292929);
+}
+.ds-checkbox__description {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--sds-color-text-default-default, #6b6b6b);
+}

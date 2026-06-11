@@ -4,19 +4,11 @@ import { Overlay } from './Overlay'
 const meta: Meta<typeof Overlay> = {
   title: 'Components/Overlay',
   component: Overlay,
-  tags: ['autodocs'],
   argTypes: {
     mode: { control: 'inline-radio', options: ['light', 'dark'] },
     opacity: { control: 'inline-radio', options: [5, 10, 25, 50, 75, 90, 100] },
   },
   args: { mode: 'light', opacity: 5 },
-  parameters: {
-    docs: {
-      description: {
-        component: 'Surface overlay utility for dimming and focus layering across light and dark modes.',
-      },
-    },
-  },
 }
 export default meta
 

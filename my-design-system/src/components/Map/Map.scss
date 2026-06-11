@@ -370,3 +370,96 @@
     border-color: #e9ecf0;
   }
 }
+
+
+/* ---------- Responsive ----------
+ * Goals:
+ *   Tablet (≤ 1024px) — keep the same absolutely-positioned overlay layout
+ *     but shrink padding, header card, filter bar and popup widths so
+ *     everything still fits on one screen.
+ *   Mobile (≤ 640px)  — drop header + filter bar into the normal flex flow
+ *     (full-width, stacked) so they don't cover the map, stack the popup
+ *     into a bottom-sheet pinned to the viewport, and scale pins down.
+ * ------------------------------------------------------------------------- */
+
+@media (max-width: 1024px) {
+  .ds-map {
+    height: 640px;
+    padding: 24px;
+  }
+
+  .ds-map__header {
+    top: 24px;
+    left: 24px;
+    max-width: 380px;
+    padding: 24px;
+    gap: 12px;
+  }
+  .ds-map__header-title { font-size: 28px; letter-spacing: -1px; }
+  .ds-map__header-desc  { font-size: 14px; }
+
+  .ds-map__filters {
+    left: 24px;
+    width: 380px;
+    max-width: 380px;
+    padding: 40px 24px 20px;
+  }
+
+  .ds-map__popup {
+    width: 380px;
+    height: auto;
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ds-map {
+    /* Switch from a fixed-height card to a flowing column so the absolute
+       overlays can flatten into the natural top/bottom stack. */
+    height: auto;
+    min-height: 540px;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  /* Header drops into the column flow so it sits full-width at the top. */
+  .ds-map__header {
+    position: static;
+    width: 100%;
+    max-width: none;
+    padding: 16px;
+    gap: 8px;
+    box-sizing: border-box;
+  }
+  .ds-map__header-title { font-size: 22px; letter-spacing: -0.5px; }
+  .ds-map__header-desc  { font-size: 14px; -webkit-line-clamp: 2; }
+
+  /* Filter bar also drops into flow at the bottom; stack the selects. */
+  .ds-map__filters {
+    position: static;
+    width: 100%;
+    max-width: none;
+    padding: 32px 16px 16px;
+  }
+  .ds-map__filters-row { flex-direction: column; }
+
+  /* Pin the popup to the viewport's bottom edge so it's always reachable
+     no matter where the active pin sits on the map. */
+  .ds-map__popup {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    top: auto;
+    width: auto;
+    height: auto;
+    min-height: 220px;
+    transform: none !important;
+    z-index: 100;
+  }
+  .ds-map__popup-thumb { min-width: 96px; max-width: 120px; }
+
+  /* Shrink pin glyphs so they don't overwhelm a smaller map surface. */
+  .ds-map__pin svg { width: 36px; height: 36px; }
+  .ds-map__pin--active { transform: translate(-50%, -100%) scale(1.4); }
+}

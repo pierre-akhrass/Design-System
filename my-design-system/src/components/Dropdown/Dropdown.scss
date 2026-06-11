@@ -7,7 +7,9 @@
   padding: $padding-container-xs;
   gap: $space-050;
   border-radius: $radius-medium;
-  background: $mapping-system-slate-surface-tertiary;
+  // Design spec: #FFFFFF · 60%. Resolved by the global "Selection colors"
+  // CSS custom property defined in `src/styles/global.scss`.
+  background: var(--sds-color-background-default-tertiary);
   /* Box Shadow / shadow-md */
   box-shadow:
     0 2px $depth-100 $depth-negative-025 $mapping-system-shadow-medium,
