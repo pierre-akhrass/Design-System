@@ -38,11 +38,14 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
 .ds-mega-menu__title {
   margin: 0;
   width: 100%;
-  font-family: $ui-font-family;
-  font-size: 20px;
-  font-weight: $ui-font-weight-strong;
+  // Heading/H5 — 24/120% / tracking-2, secondary text color.
+  font-family: $heading-font-family;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: $heading-font-weight-bold;
   line-height: 1.2;
-  color: inherit;
+  letter-spacing: $letter-spacing-tracking-2;
+  color: $mapping-system-slate-text-secondary;
 }
 
 /* ---------- Body grid: columns + optional card ---------- */
@@ -93,13 +96,16 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
 
 /* ---------- Uppercase category heading ---------- */
 .ds-mega-menu__category {
+  // Label/small/strong — 12/150% / tracking-1, tertiary text color.
   font-family: $ui-font-family;
   font-size: 12px;
+  font-style: normal;
   font-weight: $ui-font-weight-strong;
   line-height: 1.5;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: $mapping-system-slate-text-tertiary;
+  letter-spacing: $letter-spacing-tracking-1;
+  color: var(--sds-color-text-default-tertiary);
+  #{'leading-trim'}: both;
+  #{'text-edge'}: cap;
   padding: 0 $padding-action-xs $gap-3xs;
 }
 
@@ -125,6 +131,14 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
     height: $space-500; // 40px row, comfy for label/large text.
     padding: $gap-2xs $padding-action-xs;
     border-radius: 0;
+    // Label/large/default — 16/150% / tracking-1, default text color.
+    font-family: $ui-font-family;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: $ui-font-weight-default;
+    line-height: 1.5;
+    letter-spacing: $letter-spacing-tracking-1;
+    color: var(--sds-color-text-default-default);
   }
 }
 

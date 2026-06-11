@@ -70,7 +70,7 @@
 .ds-navbar__items {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: $gap-2xs;
   flex: 1 1 auto;
   min-width: 0;
   flex-wrap: wrap;
@@ -78,7 +78,7 @@
 .ds-navbar__actions {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: $gap-2xs;
   flex-shrink: 0;
 }
 
