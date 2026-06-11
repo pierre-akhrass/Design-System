@@ -3,7 +3,7 @@ import { Accordion } from './Accordion'
 import './Accordion.stories.scss'
 
 const meta: Meta<typeof Accordion> = {
-  title: 'Components/Accordion',
+  title: 'Components/Accordion (pierre-akhrass)',
   component: Accordion,
   tags: ['autodocs'],
   args: {

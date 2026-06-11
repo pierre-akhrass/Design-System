@@ -11,7 +11,7 @@ type PlaygroundArgs = {
 }
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Inputs/Radio',
+  title: 'Inputs/Radio (sereneogilvy)',
   component: Radio,
   tags: ['autodocs'],
   parameters: {

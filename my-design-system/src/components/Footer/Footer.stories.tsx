@@ -103,7 +103,7 @@ const SOCIAL: SocialLink[] = [
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Footer> = {
-  title: 'Components/Footer',
+  title: 'Components/Footer (Maher Al Rifai)',
   component: Footer,
   tags: ['autodocs'],
   parameters: {

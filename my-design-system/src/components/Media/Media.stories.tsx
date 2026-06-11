@@ -36,7 +36,7 @@ const FIGMA_MEDIA_CANVAS_DARK = '#0a111a'
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Media> = {
-  title: 'Components/Media',
+  title: 'Components/Media (Maher Al Rifai)',
   component: Media,
   tags: ['autodocs'],
   parameters: {

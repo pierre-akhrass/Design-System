@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite'
 import { TextBlock } from './TextBlock'
 
 const meta: Meta<typeof TextBlock> = {
-  title: 'Components/Text Block',
+  title: 'Components/TextBlock (pierre-akhrass)',
   component: TextBlock,
   tags: ['autodocs'],
   args: {

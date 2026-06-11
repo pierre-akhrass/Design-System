@@ -3,7 +3,7 @@ import { Banner } from './Banner'
 import './Banner.stories.scss'
 
 const meta: Meta<typeof Banner> = {
-  title: 'Components/Banner',
+  title: 'Components/Banner (pierre-akhrass)',
   component: Banner,
   tags: ['autodocs'],
   args: {

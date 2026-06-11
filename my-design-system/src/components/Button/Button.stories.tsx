@@ -3,7 +3,7 @@ import { Button } from './Button'
 import './Button.stories.scss'
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button',
+  title: 'Components/Button (pierre-akhrass)',
   component: Button,
   tags: ['autodocs'],
   parameters: {

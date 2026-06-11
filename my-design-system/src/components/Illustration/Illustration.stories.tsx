@@ -10,7 +10,7 @@ const allNames: IllustrationName[] = [
 ]
 
 const meta: Meta<typeof Illustration> = {
-  title: 'Components/Illustration',
+  title: 'Components/Illustration (pierre-akhrass)',
   component: Illustration,
   tags: ['autodocs'],
   parameters: {

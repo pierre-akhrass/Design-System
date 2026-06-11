@@ -26,7 +26,7 @@ const IMG = [
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Avatar> = {
-  title: 'Components/Avatar',
+  title: 'Components/Avatar (Maher Al Rifai)',
   component: Avatar,
   tags: ['autodocs'],
   parameters: {

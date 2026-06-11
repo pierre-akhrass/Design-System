@@ -44,7 +44,7 @@ const descriptionStyle: CSSProperties = {
 }
 
 const meta: Meta<typeof List> = {
-  title: 'Components/List',
+  title: 'Components/List (Mohamad oueidat)',
   component: List,
   excludeStories: /^(Playground|Light|Dark|Bordered|DocumentItem|UserItem|NumberedItem|BulletedItem|CardItem|ShowcaseLight|ShowcaseDark)$/,
   parameters: {

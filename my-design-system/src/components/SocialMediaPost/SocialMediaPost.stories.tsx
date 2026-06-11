@@ -59,7 +59,7 @@ const captionText =
   'A fashion trend signifies a specific look or expression that is spread across a population at a specific time and place...'
 
 const meta: Meta<typeof SocialMediaPost> = {
-  title: 'Components/SocialMediaPost',
+  title: 'Components/SocialMediaPost (Mohamad oueidat)',
   component: SocialMediaPost,
   parameters: {
     layout: 'fullscreen',

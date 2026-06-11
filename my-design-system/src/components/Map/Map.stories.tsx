@@ -87,7 +87,7 @@ const pins: MapPin[] = [
 ]
 
 const meta: Meta<typeof Map> = {
-  title: 'Map/Map',
+  title: 'Map/Map (pierre-akhrass, sereneogilvy)',
   component: Map,
   tags: ['autodocs'],
   parameters: {

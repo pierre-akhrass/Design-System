@@ -11,7 +11,7 @@ const TOKEN_BG_DARK  = '#141f2e'
 // ── Meta ──────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Tooltip> = {
-  title: 'Components/Tooltip',
+  title: 'Components/Tooltip (Maher Al Rifai)',
   component: Tooltip,
   tags: ['autodocs'],
   parameters: {

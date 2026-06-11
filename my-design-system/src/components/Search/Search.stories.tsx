@@ -44,7 +44,7 @@ const descriptionStyle: CSSProperties = {
 }
 
 const meta: Meta<typeof Search> = {
-  title: 'Components/Search',
+  title: 'Components/Search (Mohamad oueidat)',
   component: Search,
   parameters: {
     layout: 'fullscreen',

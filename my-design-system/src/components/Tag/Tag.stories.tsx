@@ -19,7 +19,7 @@ const TOKEN_BG_DARK  = '#141f2e'
 // ── Meta ──────────────────────────────────────────────────────────────────────
 
 const meta: Meta<typeof Tag> = {
-  title: 'Components/Tag',
+  title: 'Components/Tag (Maher Al Rifai)',
   component: Tag,
   tags: ['autodocs'],
   parameters: {

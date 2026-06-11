@@ -11,7 +11,7 @@ type PlaygroundArgs = {
 }
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Inputs/Checkbox',
+  title: 'Inputs/Checkbox (sereneogilvy)',
   component: Checkbox,
   tags: ['autodocs'],
   parameters: {

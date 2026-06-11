@@ -12,7 +12,7 @@ type PlaygroundArgs = {
 }
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Inputs/Switch',
+  title: 'Inputs/Switch (sereneogilvy)',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',

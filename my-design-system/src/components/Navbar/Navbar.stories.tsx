@@ -129,7 +129,7 @@ type PlaygroundArgs = {
 }
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Navigation/Navbar',
+  title: 'Navigation/Navbar (pierre-akhrass, sereneogilvy)',
   tags: ['autodocs'],
   parameters: {
     layout: 'fullscreen',

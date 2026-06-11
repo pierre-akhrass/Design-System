@@ -43,7 +43,7 @@ type PlaygroundArgs = {
 }
 
 const meta: Meta<PlaygroundArgs> = {
-  title: 'Navigation/NavItem',
+  title: 'Navigation/NavItem (pierre-akhrass)',
   tags: ['autodocs'],
   parameters: {
     layout: 'centered',

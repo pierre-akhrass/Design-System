@@ -13,7 +13,7 @@ const baseArgs = {
 }
 
 const meta: Meta<typeof Hero> = {
-  title: 'Components/Hero',
+  title: 'Components/Hero (pierre-akhrass)',
   component: Hero,
   parameters: { layout: 'fullscreen' },
   argTypes: {

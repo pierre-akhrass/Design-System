@@ -54,7 +54,7 @@ const renderSlides = (count = 6) =>
   ))
 
 const meta: Meta<typeof Carousel> = {
-  title: 'Components/Carousel',
+  title: 'Components/Carousel (Mohamad oueidat)',
   component: Carousel,
   parameters: {
     layout: 'fullscreen',

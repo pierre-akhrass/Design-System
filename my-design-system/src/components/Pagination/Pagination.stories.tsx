@@ -4,7 +4,7 @@ import { Pagination } from './Pagination'
 import './Pagination.stories.scss'
 
 const meta: Meta<typeof Pagination> = {
-  title: 'Components/Pagination',
+  title: 'Components/Pagination (pierre-akhrass)',
   component: Pagination,
   tags: ['autodocs'],
   tags: ['ai-generated'],

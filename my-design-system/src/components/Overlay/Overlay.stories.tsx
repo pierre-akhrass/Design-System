@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Overlay } from './Overlay'
 
 const meta: Meta<typeof Overlay> = {
-  title: 'Components/Overlay',
+  title: 'Components/Overlay (pierre-akhrass)',
   component: Overlay,
   argTypes: {
     mode: { control: 'inline-radio', options: ['light', 'dark'] },
