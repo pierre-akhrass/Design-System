@@ -1,0 +1,341 @@
+@use '../../styles/tokens/variables' as *;
+
+// -----------------------------------------------------------------------------
+// MegaMenu
+//
+// A wide multi-column navigation panel. Each column groups Tier-1 NavItems
+// under an uppercase category heading; an optional promotional card sits to
+// the right. The whole panel is a single responsive grid that collapses from
+// `columns + card` (desktop) → `columns / card` (tablet) → stacked (mobile).
+// -----------------------------------------------------------------------------
+
+$mega-menu-divider: $mapping-system-slate-border-tertiary;
+
+.ds-mega-menu {
+  // ----- Layout (matches Figma "Layout" inspector exactly) -----
+  display: flex;
+  width: var(--sds-responsive-device-width, 100%);
+  padding: $space-400 $padding-container-m;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $gap-2xs;
+  box-sizing: border-box;
+  font-family: $ui-font-family;
+  color: $mapping-system-slate-text-primary;
+
+  // ----- Style (matches Figma "Style" inspector exactly) -----
+  // Bottom-only radius — the top edge butts up against the navbar trigger.
+  border-radius: 0 0 $radius-medium $radius-medium;
+  background: var(--sds-color-background-default-tertiary);
+
+  /* Box Shadow/shadow-md */
+  box-shadow:
+    0 2px $depth-100 $depth-negative-025 $mapping-system-shadow-medium,
+    0 4px $depth-100 $depth-negative-025 $mapping-system-shadow-medium;
+}
+
+/* ---------- Title ---------- */
+.ds-mega-menu__title {
+  margin: 0;
+  width: 100%;
+  font-family: $ui-font-family;
+  font-size: 20px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.2;
+  color: inherit;
+}
+
+/* ---------- Body grid: columns + optional card ---------- */
+.ds-mega-menu__body {
+  display: grid;
+  width: 100%;
+  // Default: just the columns area.
+  grid-template-columns: minmax(0, 1fr);
+  gap: $gap-l;
+  align-items: start;
+
+  &--has-card {
+    // Desktop: columns fill the available space, card pins to a fixed-ish slot.
+    grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  }
+}
+
+/* ---------- Columns row ---------- */
+// Each column is a fixed 294px slot per Figma; the grid auto-fits as many
+// columns as the container allows and wraps the rest onto the next row.
+.ds-mega-menu__columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 294px);
+  gap: $gap-l;
+  align-items: start;
+  min-width: 0;
+}
+
+/* ---------- Single column ----------
+ * Matches the Figma "Layout" inspector for a single column exactly:
+ *   display: flex;
+ *   width: 294px;
+ *   flex-direction: column;
+ *   align-items: flex-start;
+ *   gap: var(--gap-2xs, 8px);
+ */
+.ds-mega-menu__column {
+  display: flex;
+  width: 294px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $gap-2xs;
+  // Allow the column to shrink below 294px on very narrow viewports so the
+  // grid doesn't overflow horizontally on tablet/mobile.
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* ---------- Uppercase category heading ---------- */
+.ds-mega-menu__category {
+  font-family: $ui-font-family;
+  font-size: 12px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $mapping-system-slate-text-tertiary;
+  padding: 0 $padding-action-xs $gap-3xs;
+}
+
+/* ---------- Links list (with bottom dividers between rows) ---------- */
+.ds-mega-menu__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-mega-menu__link-item {
+  border-bottom: $size-stroke-border-width-1 solid $mega-menu-divider;
+
+  // NavItem renders an <a>; make it span the full width of the column and
+  // left-align (NavItem's Tier-1 default is centered).
+  > .ds-nav-item {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    height: $space-500; // 40px row, comfy for label/large text.
+    padding: $gap-2xs $padding-action-xs;
+    border-radius: 0;
+  }
+}
+
+/* ---------- Card slot ---------- */
+.ds-mega-menu__card-slot {
+  display: flex;
+  min-width: 0;
+}
+
+.ds-mega-menu__card {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-s;
+  width: 100%;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.ds-mega-menu__card--linked {
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  &:hover { opacity: 0.9; }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 $depth-025 $mapping-system-focus-border-secondary;
+    border-radius: $radius-medium;
+  }
+}
+
+.ds-mega-menu__card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: $mapping-system-slate-surface-secondary;
+  border-radius: $radius-medium;
+  overflow: hidden;
+  color: $mapping-system-slate-text-tertiary;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.ds-mega-menu__card-image-placeholder {
+  width: 60%;
+  height: auto;
+  max-height: 70%;
+  color: $mapping-system-slate-text-tertiary;
+}
+
+.ds-mega-menu__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+}
+
+.ds-mega-menu__card-title {
+  margin: 0;
+  font-family: $ui-font-family;
+  font-size: 16px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.3;
+  color: inherit;
+}
+
+.ds-mega-menu__card-subtitle {
+  margin: 0;
+  font-family: $ui-font-family;
+  font-size: 16px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.35;
+  color: inherit;
+}
+
+.ds-mega-menu__card-text {
+  margin: 0;
+  font-family: $ui-font-family;
+  font-size: 14px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  color: $mapping-system-slate-text-secondary;
+}
+
+.ds-mega-menu__card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: $gap-2xs;
+
+  // The Button renders an icon+label; tighten gap and align the chevron.
+  .ds-button {
+    gap: $gap-3xs;
+  }
+}
+
+.ds-mega-menu__chevron {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ---------- Color mode: DARK ---------- */
+.ds-mega-menu--mode-dark {
+  background: $mapping-system-slate-background-secondary;
+  color: $mapping-system-slate-text-on-primary;
+
+  .ds-mega-menu__category {
+    color: $mapping-system-slate-text-on-tertiary;
+    opacity: 0.7;
+  }
+
+  .ds-mega-menu__link-item {
+    border-bottom-color: $mapping-system-slate-border-primary;
+  }
+
+  .ds-mega-menu__card-image {
+    background: $mapping-system-slate-background-secondary-hover;
+    color: $mapping-system-slate-text-on-primary;
+  }
+
+  .ds-mega-menu__card-image-placeholder {
+    color: $mapping-system-slate-text-on-primary;
+    opacity: 0.4;
+  }
+
+  .ds-mega-menu__card-text {
+    color: $mapping-system-slate-text-on-primary;
+    opacity: 0.8;
+  }
+}
+
+/* ---------- Tablet (≤ 1024px) ---------- */
+@media (max-width: 1024px) {
+  .ds-mega-menu {
+    padding: $padding-container-s;
+  }
+
+  .ds-mega-menu__body--has-card {
+    // Card drops below the columns and spans the full width.
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ds-mega-menu__columns {
+    // Force at least 2 visible columns until we hit mobile.
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $gap-m;
+  }
+
+  // Override the desktop 294px fixed width so columns can shrink to fit
+  // the 2-up tablet grid.
+  .ds-mega-menu__column {
+    width: 100%;
+  }
+
+  .ds-mega-menu__card-slot {
+    justify-content: flex-start;
+  }
+
+  .ds-mega-menu__card {
+    flex-direction: row;
+    align-items: center;
+    gap: $gap-m;
+
+    .ds-mega-menu__card-image {
+      width: 160px;
+      flex-shrink: 0;
+      aspect-ratio: 4 / 3;
+    }
+
+    .ds-mega-menu__card-body {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+/* ---------- Mobile (≤ 640px) ---------- */
+@media (max-width: 640px) {
+  .ds-mega-menu {
+    padding: $padding-container-xs;
+    // On mobile the panel is no longer attached to a navbar trigger above,
+    // so round all four corners for a free-standing card look.
+    border-radius: $radius-medium;
+  }
+
+  .ds-mega-menu__columns {
+    grid-template-columns: minmax(0, 1fr);
+    gap: $gap-s;
+  }
+
+  // Single full-width column on mobile (overrides the desktop 294px).
+  .ds-mega-menu__column {
+    width: 100%;
+  }
+
+  .ds-mega-menu__card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: $gap-2xs;
+
+    .ds-mega-menu__card-image {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  .ds-mega-menu__card-actions {
+    justify-content: flex-start;
+  }
+}

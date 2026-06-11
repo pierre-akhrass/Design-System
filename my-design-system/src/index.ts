@@ -52,3 +52,14 @@ export {
   SidebarDivider,
 } from './components/Sidebar'
 export type { SidebarProps, SidebarItemProps, SidebarColorMode } from './components/Sidebar'
+
+export { MegaMenu, MegaMenuColumn, MegaMenuCard } from './components/MegaMenu'
+export type {
+  MegaMenuProps,
+  MegaMenuColumnProps,
+  MegaMenuColorMode,
+  MegaMenuLink,
+  MegaMenuColumnConfig,
+  MegaMenuCardConfig,
+  MegaMenuCardAction,
+} from './components/MegaMenu'
