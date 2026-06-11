@@ -36,6 +36,32 @@
   padding: $gap-s $padding-action-s $gap-m;
 }
 
+/* Image + optional brand text rendered by the polymorphic `logo` prop
+   when it receives a string `src` or a `SidebarLogoConfig` object. */
+.ds-sidebar__logo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-xs;
+  text-decoration: none;
+  color: inherit;
+}
+
+.ds-sidebar__logo-img {
+  display: block;
+  height: 28px;
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.ds-sidebar__logo-text {
+  font-family: $ui-font-family;
+  font-weight: $ui-font-weight-strong;
+  font-size: 18px;
+  line-height: 1.2;
+  color: inherit;
+}
+
 /* ---------- Nav body ---------- */
 .ds-sidebar__nav {
   display: flex;

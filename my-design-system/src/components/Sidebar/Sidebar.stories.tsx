@@ -10,25 +10,6 @@ import {
 } from './Sidebar'
 import type { SidebarActionLink, SidebarColorMode } from './Sidebar'
 
-const Logo = ({ colorMode }: { colorMode: SidebarColorMode }) => (
-  <span
-    style={{
-      display: 'inline-flex',
-      alignItems: 'center',
-      gap: 8,
-      fontWeight: 900,
-      fontSize: 24,
-      color: colorMode === 'dark' ? '#fff' : '#111',
-    }}
-  >
-    <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
-      <path d="M16 2l8 8-8 8-8-8 8-8z" fill="currentColor" />
-      <path d="M16 14l8 8-8 8-8-8 8-8z" fill="currentColor" opacity="0.7" />
-    </svg>
-    Al-Futtaim
-  </span>
-)
-
 const StarIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">
     <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" strokeLinejoin="round" />
@@ -90,7 +71,12 @@ type FooterEntry = {
 
 type PlaygroundArgs = {
   colorMode: SidebarColorMode
-  showLogo: boolean
+  /** Logo image URL. Leave empty to hide the brand mark. */
+  logoSrc: string
+  /** Optional brand text rendered next to the logo image. Leave empty for image-only. */
+  logoText: string
+  /** Optional link target wrapping the logo. */
+  logoHref: string
   /** Dynamic, user-editable list of footer links. Empty array hides the footer. */
   footer: FooterEntry[]
 }
@@ -198,7 +184,22 @@ component that consumes them (Sidebar, NavItem, Dropdown, Navbar, …).
       options: ['light', 'dark'],
       description: 'Light or dark surface.',
     },
-    showLogo: { control: 'boolean', description: 'Show the brand mark at the top.' },
+    logoSrc: {
+      control: 'text',
+      description:
+        'Logo image URL (passed straight to the Sidebar `logo` prop as a `SidebarLogoConfig`). ' +
+        'Leave empty to hide the brand mark.',
+    },
+    logoText: {
+      control: 'text',
+      description:
+        'Optional brand text rendered to the right of the logo image. Leave empty for image-only.',
+    },
+    logoHref: {
+      control: 'text',
+      description:
+        'Optional href — wraps the logo in an `<a>`. Leave empty for a non-linking logo.',
+    },
     footer: {
       control: 'object',
       description:
@@ -217,13 +218,17 @@ export const Playground: Story = {
     docs: {
       description: {
         story:
-          'Interactive playground matching the Figma "Sidebar" specimen. Each footer link defaults to **icon-only** with a dummy `href` you can edit in the Controls panel to wire it to a real route. Each entry has an `href` (the dynamic link), an `icon` key (`flag`, `bell`, `search`, or `star`), and an `ariaLabel`. Add a `label` to any entry if you want a text label rendered next to the icon. Toggle the logo, switch color mode, and expand the chevron groups to reveal nested items.',
+          'Interactive playground matching the Figma "Sidebar" specimen. Each footer link defaults to **icon-only** with a dummy `href` you can edit in the Controls panel to wire it to a real route. Each entry has an `href` (the dynamic link), an `icon` key (`flag`, `bell`, `search`, or `star`), and an `ariaLabel`. Add a `label` to any entry if you want a text label rendered next to the icon. Edit the **logo** controls (`logoSrc`, `logoText`, `logoHref`) to swap the brand mark dynamically — clear `logoSrc` to hide it. Switch color mode and expand the chevron groups to reveal nested items.',
       },
     },
   },
   args: {
     colorMode: 'light',
-    showLogo: true,
+    // ⬇️ Logo is now dynamic — edit the URL / text / href in the Controls
+    //    panel to swap the brand mark at runtime (no JSX required).
+    logoSrc: '/favicon.svg',
+    logoText: 'Al-Futtaim',
+    logoHref: '#home',
     // ⬇️ These three replace the old standalone <FlagIcon /> <BellIcon /> <SearchIcon />.
     //    Each is now a real link the user can edit (label, href, icon) and the
     //    icon is rendered visibly to the left of the label.
@@ -233,7 +238,7 @@ export const Playground: Story = {
       { href: '#search',        icon: 'search', ariaLabel: 'Search' },
     ],
   },
-  render: ({ colorMode, showLogo, footer }) => {
+  render: ({ colorMode, logoSrc, logoText, logoHref, footer }) => {
     // Resolve each editable footer entry into a real SidebarActionLink by
     // swapping the string `icon` key for the matching SVG ReactNode from the
     // ICONS registry. Icons WITHOUT a matching key are silently dropped so a
@@ -254,7 +259,16 @@ export const Playground: Story = {
     return (
       <Sidebar
         colorMode={colorMode}
-        logo={showLogo ? <Logo colorMode={colorMode} /> : undefined}
+        logo={
+          logoSrc
+            ? {
+                src: logoSrc,
+                alt: logoText || 'Logo',
+                text: logoText || undefined,
+                href: logoHref || undefined,
+              }
+            : undefined
+        }
         footer={resolvedFooter}
       >
         <SidebarItem iconLeft={<StarIcon />} label="Tier 1 Label" />

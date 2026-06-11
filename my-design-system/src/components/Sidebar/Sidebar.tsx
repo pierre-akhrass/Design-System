@@ -20,6 +20,28 @@ import './Sidebar.scss'
 export type SidebarColorMode = 'light' | 'dark'
 
 /**
+ * Declarative logo config. Use this (or a plain `src` string) when the logo
+ * image URL is dynamic (e.g. fetched from a CMS, tenant config, etc.).
+ *
+ * Mirrors `NavbarLogoConfig` so the same data shape can drive both
+ * components.
+ */
+export interface SidebarLogoConfig {
+  /** Image source URL (required). */
+  src: string
+  /** Accessible alt text. Defaults to `'Logo'`. */
+  alt?: string
+  /** Optional link target — wraps the image in an `<a>`. */
+  href?: string
+  /** Rendered image height in px. Defaults to `28`. */
+  height?: number | string
+  /** Rendered image width in px. Auto by default. */
+  width?: number | string
+  /** Optional brand text rendered to the right of the image. */
+  text?: ReactNode
+}
+
+/**
  * Declarative action-link config. Use this (or an array of these) on the
  * `footer` prop when the bottom action items are links whose data is
  * dynamic (e.g. authored in a CMS, derived from auth state, etc.).
@@ -48,8 +70,13 @@ export interface SidebarActionLink {
 }
 
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
-  /** Brand mark / logo rendered at the top of the card. */
-  logo?: ReactNode
+  /**
+   * Brand mark rendered at the top of the card. Accepts:
+   *   - a `ReactNode`  (full control, e.g. inline SVG + text)
+   *   - a `string`     (treated as a dynamic image src)
+   *   - a `SidebarLogoConfig` object (`{ src, alt?, href?, height?, width?, text? }`)
+   */
+  logo?: ReactNode | SidebarLogoConfig | string
   /** Body content — typically SidebarItem / SidebarCategory / SidebarDivider. */
   children?: ReactNode
   /**
@@ -63,6 +90,60 @@ export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   ariaLabel?: string
   /** Light or dark surface. */
   colorMode?: SidebarColorMode
+}
+
+/**
+ * Normalize the polymorphic `logo` prop into a `ReactNode`.
+ * Strings and `{src, ...}` configs become an `<img>` (optionally wrapped in
+ * `<a>` and/or followed by a brand-text label).
+ */
+const renderLogo = (logo: SidebarProps['logo']): ReactNode => {
+  if (logo == null || logo === false) return null
+
+  // Plain string -> treat as image src.
+  if (typeof logo === 'string') {
+    return <img src={logo} alt="Logo" className="ds-sidebar__logo-img" />
+  }
+
+  // Config object -> <img> + optional brand text, optionally wrapped in <a>.
+  if (
+    typeof logo === 'object' &&
+    logo !== null &&
+    !isValidElement(logo) &&
+    'src' in (logo as unknown as Record<string, unknown>) &&
+    typeof (logo as SidebarLogoConfig).src === 'string'
+  ) {
+    const {
+      src,
+      alt = 'Logo',
+      href,
+      height = 28,
+      width,
+      text,
+    } = logo as SidebarLogoConfig
+    const inner = (
+      <>
+        <img
+          src={src}
+          alt={alt}
+          height={height}
+          width={width}
+          className="ds-sidebar__logo-img"
+        />
+        {text != null && <span className="ds-sidebar__logo-text">{text}</span>}
+      </>
+    )
+    return href ? (
+      <a href={href} className="ds-sidebar__logo-link" aria-label={alt}>
+        {inner}
+      </a>
+    ) : (
+      inner
+    )
+  }
+
+  // Already a ReactNode.
+  return logo as ReactNode
 }
 
 /**
@@ -144,6 +225,9 @@ export const Sidebar = ({
     .filter(Boolean)
     .join(' ')
 
+  // Normalize the polymorphic logo (string / config object / ReactNode).
+  const logoNode = renderLogo(logo)
+
   // Resolve the polymorphic `footer` prop. Config arrays become a stack of
   // Tier-2 NavItems; ReactNodes pass through untouched.
   const footerNode = isFooterLinkArray(footer)
@@ -155,7 +239,7 @@ export const Sidebar = ({
 
   return (
     <aside className={classes} aria-label={ariaLabel} {...props}>
-      {logo && <div className="ds-sidebar__logo">{logo}</div>}
+      {logoNode && <div className="ds-sidebar__logo">{logoNode}</div>}
       <nav className="ds-sidebar__nav">{children}</nav>
       {hasFooter && <div className="ds-sidebar__footer">{footerNode}</div>}
     </aside>

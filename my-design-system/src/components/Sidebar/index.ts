@@ -11,4 +11,5 @@ export type {
   SidebarItemProps,
   SidebarColorMode,
   SidebarActionLink,
+  SidebarLogoConfig,
 } from './Sidebar'
