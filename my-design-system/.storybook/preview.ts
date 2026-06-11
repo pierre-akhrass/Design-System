@@ -9,13 +9,10 @@ import { mswHandlers } from './msw-handlers'
 initialize({ onUnhandledRequest: 'bypass' })
 
 const preview: Preview = {
-  loaders: [mswLoader],
+  tags: ['autodocs'],
   parameters: {
-    a11y: {
-      test: 'error',
-    },
-    msw: {
-      handlers: mswHandlers,
+    docs: {
+      toc: true,
     },
     controls: {
       expanded: true,
@@ -24,6 +21,9 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    popoverProvider: {
+      ariaLabel: 'Design system component controls',
     },
   },
 }

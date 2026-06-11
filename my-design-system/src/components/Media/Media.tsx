@@ -4,6 +4,7 @@ import './Media.scss'
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 export type MediaRatio = 'square' | 'video' | 'story' | 'vertical' | 'horizontal'
+export type MediaTheme = 'light' | 'dark'
 
 export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
   /** Image URL — when omitted a styled placeholder is rendered */
@@ -14,6 +15,8 @@ export interface MediaProps extends HTMLAttributes<HTMLDivElement> {
   ratio?: MediaRatio
   /** Adds a subtle dark overlay on top of the media (5 % opacity) — matches Figma */
   overlay?: boolean
+  /** Colour theme — 'light' (default) | 'dark'. Also responds to `prefers-color-scheme`. */
+  theme?: MediaTheme
 }
 
 // ─── Placeholder icon ─────────────────────────────────────────────────────────
@@ -41,12 +44,13 @@ export const Media = ({
   alt = '',
   ratio = 'video',
   overlay = true,
+  theme,
   className,
   ...props
 }: MediaProps) => {
   return (
     <div
-      className={['ds-media', `ds-media--${ratio}`, className].filter(Boolean).join(' ')}
+      className={['ds-media', `ds-media--${ratio}`, theme && `ds-media--${theme}`, className].filter(Boolean).join(' ')}
       {...props}
     >
       {src ? (

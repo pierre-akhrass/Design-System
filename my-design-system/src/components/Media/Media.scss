@@ -69,3 +69,27 @@
   top: 0;
   z-index: 1;
 }
+
+// ─── Dark theme mixin ─────────────────────────────────────────────────────────
+
+@mixin media-dark {
+  .ds-media__placeholder {
+    background-color: $mapping-system-slate-background-secondary;
+  }
+
+  .ds-media__placeholder-icon {
+    color: $mapping-system-slate-background-primary;
+  }
+}
+
+// Prop-forced dark (theme="dark" in Storybook / parent-controlled)
+.ds-media--dark {
+  @include media-dark;
+}
+
+// Browser auto-detection
+@media (prefers-color-scheme: dark) {
+  .ds-media {
+    @include media-dark;
+  }
+}

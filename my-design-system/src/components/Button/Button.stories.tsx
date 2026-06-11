@@ -16,6 +16,14 @@ const meta: Meta<typeof Button> = {
   title: 'Components/Button',
   component: Button,
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Primary interactive element. Supports `filled`, `outlined`, and `plain` variants with optional leading/trailing icons or icon-only mode.',
+      },
+    },
+  },
   args: {
     children: 'Button',
     variant: 'filled',
@@ -77,8 +85,57 @@ export const Playground: StoryObj<PlaygroundArgs> = {
 
 const matrixVariants = ['filled', 'outlined', 'plain'] as const
 const matrixStates = ['default', 'focus', 'hover', 'pressed', 'disabled'] as const
+
+const matrixWrapperStyle: CSSProperties = {
+  display: 'grid',
+  gap: '1rem',
+  maxWidth: '960px',
+  width: '100%',
+}
+
+const matrixHeaderRowStyle: CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: '120px repeat(5, minmax(120px, 1fr))',
+  gap: '0.75rem',
+  alignItems: 'center',
+}
+
+const matrixRowStyle: CSSProperties = {
+  display: 'grid',
+  gridTemplateColumns: '120px repeat(5, minmax(120px, 1fr))',
+  gap: '0.75rem',
+  alignItems: 'center',
+}
+
+const matrixLabelStyle: CSSProperties = {
+  fontFamily: "'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace",
+  fontSize: '0.875rem',
+  color: '#2f3a4a',
+}
+
+const stateChipStyle: CSSProperties = {
+  ...matrixLabelStyle,
+  justifySelf: 'start',
+  background: '#2f3f55',
+  borderRadius: '8px',
+  color: '#f5f8fc',
+  padding: '0.25rem 0.625rem',
+}
+
+const sectionTitleStyle: CSSProperties = {
+  ...matrixLabelStyle,
+  fontWeight: 700,
+  letterSpacing: '0.02em',
+  textTransform: 'uppercase',
+}
+
+export const Playground: Story = {
+  name: 'Playground',
+}
+
 export const AllStates: Story = {
   name: 'All States',
+  tags: ['!autodocs'],
   parameters: {
     controls: { disable: true },
   },

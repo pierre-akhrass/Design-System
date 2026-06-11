@@ -95,15 +95,15 @@
 // ─── Controls bar ─────────────────────────────────────────────────────────────
 
 .ds-video-player__controls {
-  // dark gradient that bleeds into the bottom of the video area
-  background: linear-gradient(180deg, transparent 0%, rgba(8, 9, 13, 0.9) 100%);
+  // Figma node 25705:15222 gradient + spacing tokens
+  background: linear-gradient(180.13deg, rgba(8, 9, 13, 0) 0.97%, rgba(8, 9, 13, 0.9) 74.44%);
   bottom: 0;
   color: $mapping-system-white-1000;
   display: flex;
   flex-direction: column;
-  gap: $gap-2xs;
+  gap: $gap-s;
   left: 0;
-  padding: $gap-xxl $padding-container-m $gap-s;
+  padding: $gap-s $space-500 $gap-s;
   position: absolute;
   right: 0;
   z-index: 3;
@@ -120,7 +120,7 @@
 .ds-video-player__title {
   color: $mapping-system-white-1000;
   font-family: $ui-font-family;
-  font-size: #{$ui-size-large}px;
+  font-size: 20px;
   font-weight: $ui-font-weight-strong;
   line-height: 1.2;
   white-space: nowrap;
@@ -132,7 +132,7 @@
 .ds-video-player__time {
   color: $mapping-system-slate-surface-primary;
   font-family: $ui-font-family;
-  font-size: #{$ui-size-medium}px;
+  font-size: #{$ui-size-large}px;
   white-space: nowrap;
 }
 
@@ -184,7 +184,7 @@
   background: transparent;
   border: none;
   border-radius: $radius-medium;
-  color: $mapping-system-white-1000;
+  color: $mapping-system-slate-surface-primary;
   cursor: pointer;
   display: flex;
   height: 48px;
@@ -195,7 +195,7 @@
   width: 48px;
 
   &:hover {
-    background-color: $mapping-system-white-200;
+    background-color: $mapping-system-slate-border-tertiary;
   }
 
   &:focus-visible {
@@ -221,7 +221,7 @@
   }
 
   &--more {
-    height: 40px;
-    width: 40px;
+    height: 48px;
+    width: 48px;
   }
 }

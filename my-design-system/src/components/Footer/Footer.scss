@@ -1,862 +1,677 @@
 @use '../../styles/tokens/variables' as *;
 
-// ─── Base Styles ──────────────────────────────────────────────────────────────
+// ─── Footer ───────────────────────────────────────────────────────────────────
 
 .ds-footer {
-  background: $mapping-system-slate-surface-secondary;
+  background-color: $mapping-system-slate-surface-primary;
+  display: flex;
+  flex-direction: column;
   font-family: $ui-font-family;
   width: 100%;
-  box-sizing: border-box;
+}
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: inherit;
+// ─── Newsletter bar ("Top") ───────────────────────────────────────────────────
+
+.ds-footer__top {
+  align-items: center;
+  background-color: $mapping-system-slate-surface-tertiary;
+  display: flex;
+  flex-direction: row;
+  gap: $gap-xxl;
+  justify-content: space-between;
+  padding: $padding-container-l $padding-container-xl;
+
+  @media (max-width: 900px) {
+    gap: $gap-l;
+    padding: $padding-container-m $padding-container-m;
   }
 
-  // Inner max-width container
-  &__container {
-    max-width: 1440px;
-    margin-inline: auto;
-    padding-inline: $padding-container-xl; // 64px
-
-    @media (max-width: 767px) {
-      padding-inline: $padding-container-xs; // 16px
-    }
-  }
-
-  // Logo wrapper
-  &__logo {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-    text-decoration: none;
-    padding-block: $padding-action-xs;
-
-    img {
-      height: auto;
-      max-height: 46px;
-      width: auto;
-      display: block;
-    }
-
-    @media (max-width: 767px) {
-      display: flex;
-      justify-content: center;
-      padding-block: 0;
-    }
-  }
-
-  // Description paragraph
-  &__description {
-    font-size: #{$ui-size-large}px;
-    font-weight: $ui-font-weight-default;
-    color: $mapping-system-slate-text-tertiary;
-    line-height: 1.5;
-    margin: 0;
-    letter-spacing: $letter-spacing-tracking-1;
-  }
-
-  // Socials icon row
-  &__socials {
-    display: flex;
-    gap: $gap-xs;
-    align-items: center;
-    flex-wrap: wrap;
-
-    @media (max-width: 767px) {
-      justify-content: center;
-    }
-  }
-
-  // Individual social button (48×48px)
-  &__social-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: $dimensions-button-height-md;  // 48px
-    height: $dimensions-button-height-md;
-    border-radius: $radius-medium;
-    background: $mapping-system-slate-surface-secondary;
-    border: $border-border-width-0 solid transparent;
-    cursor: pointer;
-    color: $mapping-system-slate-text-primary;
-    box-shadow: 0 1px $depth-025 $depth-0 $mapping-system-shadow-light;
-    text-decoration: none;
-    flex-shrink: 0;
-    transition: background-color 0.2s ease;
-
-    svg {
-      width: $icon-large;  // 24px
-      height: $icon-large;
-    }
-
-    &:hover {
-      background: $mapping-system-slate-surface-tertiary;
-    }
-
-    &:focus-visible {
-      outline: 2px solid $mapping-system-focus-border-primary;
-      outline-offset: 2px;
-    }
-  }
-
-  // Navigation column
-  &__nav-group {
-    display: flex;
+  @media (max-width: 640px) {
     flex-direction: column;
-    gap: $gap-3xs;
-    flex: 1;
-    min-width: 0;
+    align-items: flex-start;
+    gap: $gap-m;
+    padding: $padding-container-m $padding-container-xs;
+  }
+}
+
+.ds-footer__top-text {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: $gap-3xs;
+}
+
+.ds-footer__top-title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.ds-footer__top-subtitle {
+  color: $mapping-system-slate-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-footer__top-form {
+  align-items: stretch;
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  gap: $gap-2xs;
+  min-width: 0;
+  width: 420px;
+
+  @media (max-width: 1024px) {
+    width: 340px;
   }
 
-  &__nav-group-title {
-    font-size: #{$ui-size-medium}px;
-    font-weight: $ui-font-weight-strong;
-    color: $mapping-system-slate-text-primary;
-    padding: $padding-action-l $padding-action-s $space-200;
-    margin: 0;
-    line-height: 1.5;
-    letter-spacing: $letter-spacing-tracking-1;
-    white-space: nowrap;
+  @media (max-width: 900px) {
+    width: 280px;
   }
 
-  // Nav link (in column or horizontal row)
-  &__nav-item {
-    display: inline-flex;
-    align-items: center;
-    height: 40px;
-    padding-inline: $padding-action-s;
-    border-radius: $radius-medium;
-    font-size: #{$ui-size-large}px;
-    font-weight: $ui-font-weight-default;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+}
+
+.ds-footer__email-input {
+  background-color: $mapping-system-slate-surface-primary;
+  border: 1px solid $mapping-system-neutral-border-tertiary;
+  border-radius: $radius-medium;
+  color: $mapping-system-slate-text-secondary;
+  flex: 1 1 auto;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  height: 56px;
+  min-width: 0;
+  outline: none;
+  padding: 0 $padding-action-s;
+  transition: border-color 0.15s;
+
+  &::placeholder {
     color: $mapping-system-slate-text-tertiary;
-    text-decoration: none;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    font-family: $ui-font-family;
-    line-height: 1.5;
-    letter-spacing: $letter-spacing-tracking-1;
-    white-space: nowrap;
-    transition: color 0.2s ease;
+  }
+
+  &:focus {
+    border-color: $mapping-system-slate-background-secondary;
+  }
+}
+
+.ds-footer__subscribe-btn {
+  background-color: $mapping-system-slate-background-primary;
+  border: none;
+  border-radius: $radius-medium;
+  box-shadow: 0 1px 2px $mapping-system-shadow-light;
+  color: $mapping-system-slate-text-on-primary;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-strong;
+  height: 56px;
+  padding: 0 $padding-action-m;
+  transition: background-color 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $mapping-system-slate-background-primary-hover;
+  }
+}
+
+// ─── Opening Hours ────────────────────────────────────────────────────────────
+
+.ds-footer__hours {
+  background-color: $mapping-system-slate-surface-secondary;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-l;
+  padding: $padding-container-l $padding-container-xl;
+
+  @media (max-width: 900px) {
+    padding: $padding-container-m $padding-container-m;
+  }
+
+  @media (max-width: 640px) {
+    padding: $padding-container-m $padding-container-xs;
+  }
+}
+
+.ds-footer__hours-title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0;
+
+  @media (max-width: 640px) {
+    font-size: 24px;
+  }
+}
+
+.ds-footer__hours-grid {
+  display: grid;
+  gap: $gap-l;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ds-footer__hours-group {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+}
+
+.ds-footer__hours-group-title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-footer__hours-rows {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+}
+
+.ds-footer__hours-row-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+}
+
+.ds-footer__hours-row {
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ds-footer__hours-days {
+  color: $mapping-system-slate-text-tertiary;
+  font-weight: $ui-font-weight-default;
+}
+
+.ds-footer__hours-time {
+  color: $mapping-system-slate-text-primary;
+  font-weight: $ui-font-weight-default;
+}
+
+.ds-footer__hours-divider {
+  border: none;
+  border-top: 1px solid $mapping-system-neutral-border-tertiary;
+  margin: 0;
+}
+
+// ─── Navigation ("Container") ─────────────────────────────────────────────────
+
+.ds-footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+  padding: $padding-container-l $padding-container-xl;
+
+  @media (max-width: 900px) {
+    padding: $padding-container-m $padding-container-m;
+  }
+
+  @media (max-width: 640px) {
+    padding: $padding-container-m $padding-container-xs;
+  }
+}
+
+// Navigation columns ("sections")
+.ds-footer__sections {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ds-footer__column {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+  min-width: 0;
+}
+
+.ds-footer__column-title {
+  color: $mapping-system-slate-text-tertiary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin: 0;
+  padding: $padding-action-l $padding-action-s $gap-2xs;
+  text-transform: uppercase;
+
+  @media (max-width: 640px) {
+    padding: $padding-action-m $padding-action-s $gap-2xs;
+  }
+}
+
+.ds-footer__column-link {
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: $radius-medium;
+  color: $mapping-system-slate-text-secondary;
+  cursor: pointer;
+  display: flex;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  font-weight: $ui-font-weight-default;
+  height: 40px;
+  line-height: 1.5;
+  padding: $padding-action-xs $padding-action-s;
+  text-align: left;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+  width: 100%;
+
+  &:hover {
+    background-color: $mapping-system-slate-surface-secondary;
+    color: $mapping-system-slate-text-primary;
+  }
+}
+
+// ─── Bottom bar ("Bottom") ────────────────────────────────────────────────────
+// Figma: flex-col, gap-24px, items-center, padding-top-24px
+
+.ds-footer__bottom {
+  border-top: 1px solid $mapping-system-neutral-border-tertiary;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+  padding-top: $padding-container-s;
+}
+
+// Legal links ("Privacy + Terms") — centered row, gap-24px
+.ds-footer__legal {
+  align-items: center;
+  display: flex;
+  gap: $gap-m;
+  justify-content: center;
+}
+
+.ds-footer__legal-link {
+  background: none;
+  border: none;
+  color: $mapping-system-slate-text-secondary;
+  cursor: pointer;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  padding: $padding-action-xs 0;
+  text-decoration: none;
+  transition: color 0.15s;
+  white-space: nowrap;
+
+  &:hover {
+    color: $mapping-system-slate-text-primary;
+    text-decoration: underline;
+  }
+}
+
+// Brand row — Figma: 3-column holy-grail
+// [logo flex:1 left] [copyright shrink-0 center] [social flex:1 right]
+.ds-footer__brand {
+  align-items: center;
+  display: flex;
+  gap: $gap-s;
+  width: 100%;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $gap-m;
+  }
+}
+
+.ds-footer__logo {
+  align-items: center;
+  display: flex;
+  flex: 1 0 0;   // fills left third
+  min-width: 0;
+
+  img,
+  svg {
+    display: block;
+    height: 40px;
+    max-width: 180px;
+    width: auto;
+  }
+}
+
+.ds-footer__copyright {
+  color: $mapping-system-slate-text-tertiary;
+  flex-shrink: 0;   // Figma: shrink-0, whitespace-nowrap
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  margin: 0;
+  overflow: hidden;
+  padding: 0 $gap-2xs;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  @media (max-width: 760px) {
+    // Allow wrapping on medium screens before stacking
+    white-space: normal;
+    text-overflow: unset;
+    flex: 1 1 auto;
+  }
+
+  @media (max-width: 640px) {
+    flex: none;
+    text-align: left;
+    padding: 0;
+    white-space: normal;
+  }
+}
+
+// Social icons — Figma: flex:1, flex-col, items-end → pushes icons to right
+.ds-footer__social {
+  align-items: center;
+  display: flex;
+  flex: 1 0 0;          // fills right third, mirrors logo
+  gap: $gap-s;
+  justify-content: flex-end;
+
+  @media (max-width: 640px) {
+    flex: none;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: $gap-2xs;
+  }
+}
+
+.ds-footer__social-btn {
+  align-items: center;
+  background: none;
+  border: 1px solid $mapping-system-neutral-border-secondary;
+  border-radius: #{$radius-full}px;
+  box-shadow: 0 1px 2px $mapping-system-shadow-light;
+  color: $mapping-system-slate-text-secondary;
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 0;
+  height: 48px;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s, background-color 0.15s;
+  width: 48px;
+
+  &:hover {
+    background-color: $mapping-system-slate-surface-secondary;
+    border-color: $mapping-system-slate-text-primary;
+    color: $mapping-system-slate-text-primary;
+  }
+}
+
+.ds-footer__social-icon {
+  display: flex;
+}
+
+// Screen-reader only utility
+.sr-only {
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+// ─── Theme mixins ─────────────────────────────────────────────────────────────
+// Light theme = slate surface palette (Figma: node 25426-12613)
+// Dark theme  = slate background palette (Figma: node 25441-4546)
+// Both static class (.ds-footer--light / --dark) AND media-query covered,
+// matching the exact dual-state pattern used across Button / Illustration.
+
+@mixin ds-footer-theme-light {
+  background-color: $mapping-system-slate-surface-primary;
+
+  .ds-footer__top {
+    background-color: $mapping-system-slate-surface-tertiary;
+  }
+
+  .ds-footer__top-title {
+    color: $mapping-system-slate-text-primary;
+  }
+
+  .ds-footer__top-subtitle {
+    color: $mapping-system-slate-text-secondary;
+  }
+
+  .ds-footer__email-input {
+    background-color: $mapping-system-slate-surface-primary;
+    border-color: $mapping-system-neutral-border-tertiary;
+    color: $mapping-system-slate-text-secondary;
+
+    &::placeholder { color: $mapping-system-slate-text-tertiary; }
+    &:focus        { border-color: $mapping-system-slate-background-secondary; }
+  }
+
+  .ds-footer__subscribe-btn {
+    background-color: $mapping-system-slate-background-primary;
+    color: $mapping-system-slate-text-on-primary;
+
+    &:hover { background-color: $mapping-system-slate-background-primary-hover; }
+  }
+
+  .ds-footer__hours {
+    background-color: $mapping-system-slate-surface-secondary;
+  }
+
+  .ds-footer__hours-title {
+    color: $mapping-system-slate-text-primary;
+  }
+
+  .ds-footer__hours-group-title {
+    color: $mapping-system-slate-text-primary;
+  }
+
+  .ds-footer__hours-days  { color: $mapping-system-slate-text-tertiary; }
+  .ds-footer__hours-time  { color: $mapping-system-slate-text-primary; }
+
+  .ds-footer__hours-divider {
+    border-top-color: $mapping-system-neutral-border-tertiary;
+  }
+
+  .ds-footer__column-title {
+    color: $mapping-system-slate-text-tertiary;
+  }
+
+  .ds-footer__column-link {
+    color: $mapping-system-slate-text-secondary;
 
     &:hover {
+      background-color: $mapping-system-slate-surface-secondary;
       color: $mapping-system-slate-text-primary;
     }
   }
 
-  // Horizontal nav items row (V10, V12, V14)
-  &__nav-items-row {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: $gap-3xs;
-
-    @media (max-width: 767px) {
-      justify-content: center;
-    }
+  .ds-footer__bottom {
+    border-top-color: $mapping-system-neutral-border-tertiary;
   }
 
-  // Copyright text
-  &__copyright {
-    font-size: #{$ui-size-large}px;
-    font-weight: $ui-font-weight-default;
-    color: $mapping-system-slate-text-tertiary;
-    line-height: 1.5;
-    margin: 0;
-    letter-spacing: $letter-spacing-tracking-1;
-
-    a {
-      color: $mapping-system-slate-text-link-default;
-      text-decoration: none;
-
-      &:hover {
-        color: $mapping-system-slate-text-link-hover;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  // Bottom separator bar
-  &__bottom {
-    border-top: $border-border-width-1 solid $mapping-system-slate-border-tertiary;
-  }
-
-  // Newsletter section
-  &__newsletter {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-2xs;
-  }
-
-  &__newsletter-label {
-    font-size: #{$ui-size-large}px;
-    font-weight: $ui-font-weight-default;
+  .ds-footer__legal-link {
     color: $mapping-system-slate-text-secondary;
-    margin: 0;
-    line-height: 1.5;
+
+    &:hover { color: $mapping-system-slate-text-primary; }
   }
 
-  // Large semibold heading inside newsletter section (V4, V9, V15)
-  &__newsletter-heading {
-    font-size: 24px;
-    font-weight: 700;
-    color: $mapping-system-slate-text-primary;
-    margin: 0;
-    line-height: 1.2;
-    letter-spacing: $letter-spacing-tracking-1;
+  .ds-footer__copyright {
+    color: $mapping-system-slate-text-tertiary;
   }
 
-  // Nav item with a platform icon prefix (used in 'Follow us' columns)
-  &__nav-item--with-icon {
-    display: inline-flex;
-    align-items: center;
-    gap: $gap-xs;
-  }
-
-  &__social-nav-icon {
-    display: inline-flex;
-    align-items: center;
-    flex-shrink: 0;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  &__newsletter-form {
-    display: flex;
-    gap: $gap-xs;
-    align-items: stretch;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-    }
-  }
-
-  &__newsletter-input {
-    flex: 1;
-    min-width: 0;
-    height: $dimensions-button-height-lg;  // 56px
-    padding-inline: $padding-action-s;
-    border: $border-border-width-1 solid $mapping-system-slate-border-secondary;
-    border-radius: $radius-medium;
-    font-size: #{$ui-size-large}px;
-    font-family: $ui-font-family;
-    color: $mapping-system-slate-text-primary;
-    background: $mapping-system-white-1000;
-    outline: none;
-
-    &::placeholder {
-      color: $mapping-system-slate-text-tertiary;
-    }
-
-    &:focus {
-      border-color: $mapping-system-slate-background-primary;
-    }
-  }
-
-  &__newsletter-btn {
-    height: $dimensions-button-height-lg;  // 56px
-    padding-inline: $padding-action-m;
-    background: $mapping-system-slate-background-primary;
-    color: $mapping-system-slate-text-on-primary;
-    border: none;
-    border-radius: $radius-medium;
-    font-size: #{$ui-size-large}px;
-    font-family: $ui-font-family;
-    font-weight: $ui-font-weight-strong;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background-color 0.2s ease;
+  .ds-footer__social-btn {
+    border-color: $mapping-system-neutral-border-secondary;
+    color: $mapping-system-slate-text-secondary;
 
     &:hover {
-      background: $mapping-system-slate-background-primary-hover;
+      background-color: $mapping-system-slate-surface-secondary;
+      border-color: $mapping-system-slate-text-primary;
+      color: $mapping-system-slate-text-primary;
     }
+  }
+}
+@mixin ds-footer-theme-dark {
+  // Root & nav section bg — darkest slate
+  background-color: $mapping-system-slate-background-primary;
 
-    @media (max-width: 767px) {
-      width: 100%;
+  .ds-footer__top {
+    // Figma dark: --sds-color-background-default-tertiary → Surface.Tertiary → Slate.700
+    background-color: $color-system-slate-700; // #1e2c3e — distinct band on #141f2e body
+  }
+
+  .ds-footer__top-title {
+    // Figma dark: --sds-color-text-default-secondary → Text.Primary → Gray.100
+    color: $color-system-gray-100; // #ececec
+  }
+
+  .ds-footer__top-subtitle {
+    // Figma dark: --sds-color-text-default-default → Text.Secondary → Gray.300
+    color: $color-system-gray-300; // #bcbcbc — neutral muted, not blue-tinted
+  }
+
+  .ds-footer__email-input {
+    // Dark: input sits on dark bar → dark bg, visible slate border, light text
+    background-color: $color-system-slate-800;  // #141f2e — slightly darker than bar
+    border-color: $color-system-gray-400;       // #9d9d9d — Border.Primary in dark
+    color: $color-system-gray-100;              // #ececec — Text.Primary in dark
+
+    &::placeholder { color: $color-system-gray-400; } // #9d9d9d — muted placeholder
+    &:focus        { border-color: $color-system-slate-300; outline: none; }
+  }
+
+  .ds-footer__subscribe-btn {
+    // Dark: inverted primary button — light bg, dark text
+    background-color: $color-system-slate-200;  // #d2d9e0 — Background.Primary in dark
+    color: $color-system-gray-900;              // #292929 — Text.On Primary in dark
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+
+    &:hover { background-color: $color-system-slate-100; } // #e9ecf0 — Background.Primary Hover in dark
+  }
+
+  .ds-footer__hours {
+    // Opening hours — same dark background level as nav for consistency
+    background-color: $mapping-system-slate-background-primary;
+  }
+
+  .ds-footer__hours-title {
+    color: $mapping-system-slate-text-on-primary;
+  }
+
+  .ds-footer__hours-group-title {
+    color: $mapping-system-slate-text-on-primary;
+  }
+
+  .ds-footer__hours-days  { color: $mapping-system-slate-background-tertiary; }
+  .ds-footer__hours-time  { color: $mapping-system-slate-text-on-primary; }
+
+  .ds-footer__hours-divider {
+    border-top-color: $mapping-system-slate-background-secondary;
+  }
+
+  .ds-footer__column-title {
+    color: $mapping-system-slate-background-tertiary; // #91a2b1 — muted
+  }
+
+  .ds-footer__column-link {
+    color: $mapping-system-slate-text-on-secondary; // #ffffff
+
+    &:hover {
+      background-color: $mapping-system-slate-background-secondary;
+      color: $mapping-system-slate-text-on-primary;
     }
   }
 
-  // Instagram 2×2 grid
-  &__instagram-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: $gap-3xs;
+  .ds-footer__bottom {
+    // Figma dark: subtle separator on dark bg
+    border-top-color: $mapping-system-slate-background-secondary; // #2a3c50
   }
 
-  &__instagram-img {
-    aspect-ratio: 1;
-    background: $mapping-system-slate-surface-tertiary;
-    border-radius: $radius-small;
-    overflow: hidden;
+  .ds-footer__legal-link {
+    // Dark mode: Text Primary resolves to Color.System.Gray.100 = #ececec
+    color: $color-system-gray-100; // #ececec — bright on dark
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    &:hover { color: #ffffff; text-decoration: underline; }
+  }
+
+  .ds-footer__copyright {
+    // Dark mode: Text Tertiary resolves to Color.System.Gray.400 = #9d9d9d
+    color: $color-system-gray-400; // #9d9d9d — muted on dark
+  }
+
+  .ds-footer__logo {
+    // Override the SVG CSS variable so all paths become white on dark bg
+    --fill-0: #{$mapping-system-slate-text-on-primary};
+  }
+
+  .ds-footer__social-btn {
+    // Figma: --sds-color-border-brand-secondary → #6b6b6b
+    border-color: $color-system-gray-600; // #6b6b6b — visible on dark
+    color: $mapping-system-slate-text-on-primary; // white icons
+    background: none;
+
+    &:hover {
+      background-color: $mapping-system-slate-background-secondary;
+      border-color: $color-system-gray-100;
+      color: $mapping-system-slate-text-on-primary;
     }
   }
 }
 
-// ─── V1: Logo left + Socials right (single bar) ───────────────────────────────
-
-.ds-footer--v1 {
-  .ds-footer__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: $space-600;  // 48px → total 160px
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      align-items: center;
-      gap: $space-300;
-      padding-block: $space-400;
-    }
-  }
+// ─── Theme: static class (prop-forced — Storybook + explicit usage) ───────────
+.ds-footer--light {
+  @include ds-footer-theme-light;
 }
 
-// ─── V2: Logo+desc+socials | 4 nav cols | copyright bar ──────────────────────
-
-.ds-footer--v2 {
-  .ds-footer__body {
-    display: flex;
-    gap: $gap-m;
-    padding-block: $padding-container-xl $padding-container-l;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      align-items: center;
-      gap: $space-300;
-      padding-block: $space-600 $space-400;
-    }
-  }
-
-  .ds-footer__col-brand {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-m;
-    flex-shrink: 0;
-    width: 352px;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
-  .ds-footer__nav-columns {
-    display: flex;
-    flex: 1;
-    gap: 0;
-
-    @media (max-width: 767px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-    }
-  }
-
-  .ds-footer__bottom-inner {
-    padding-block: $space-300;
-    text-align: center;
-  }
+.ds-footer--dark {
+  @include ds-footer-theme-dark;
 }
 
-// ─── V3: Copyright left + copyright right (single bar) ───────────────────────
-
-.ds-footer--v3 {
-  .ds-footer__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: $space-400;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      align-items: center;
-      gap: $space-200;
-      padding-block: $space-400;
-      text-align: center;
-    }
-  }
-}
-
-// ─── V4: Logo centered | desc | newsletter | socials | copyright bar ──────────
-
-.ds-footer--v4 {
-  .ds-footer__body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $gap-m;
-    padding-block: $padding-container-xl $padding-container-l;
-    text-align: center;
-    max-width: 600px;
-    margin-inline: auto;
-
-    @media (max-width: 767px) {
-      padding-block: $space-600 $space-400;
-      max-width: 100%;
-    }
-  }
-
-  .ds-footer__newsletter-form {
-    @media (min-width: 768px) {
-      flex-direction: row;
-    }
-  }
-
-  .ds-footer__bottom-inner {
-    padding-block: $space-300;
-    text-align: center;
-  }
-}
-
-// ─── V5: Brand col | 2 nav cols | Instagram grid | bottom: copyright+socials ──
-
-.ds-footer--v5 {
-  // Newsletter form in V5 is always stacked (input full-width, button below)
-  .ds-footer__newsletter-form {
-    flex-direction: column;
-  }
-
-  .ds-footer__newsletter-btn {
-    width: 100%;
-  }
-
-  .ds-footer__body {
-    display: flex;
-    gap: $gap-m;
-    padding-block: $padding-container-xl $padding-container-l;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: $space-400;
-      padding-block: $space-600 $space-400;
-    }
-  }
-
-  .ds-footer__col-brand {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-m;
-    width: 400px;
-    flex-shrink: 0;
-
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-  }
-
-  .ds-footer__nav-columns {
-    display: flex;
-    flex: 1;
-    gap: 0;
-
-    @media (max-width: 767px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-    }
-  }
-
-  .ds-footer__col-instagram {
-    flex-shrink: 0;
-    width: 265px;
-    display: flex;
-    flex-direction: column;
-    gap: $gap-2xs;
-    padding-top: $padding-action-l;
-
-    @media (max-width: 767px) {
-      width: 100%;
-    }
-  }
-
-  .ds-footer__instagram-title {
-    font-size: #{$ui-size-medium}px;
-    font-weight: $ui-font-weight-strong;
-    color: $mapping-system-slate-text-primary;
-    margin: 0 0 $gap-2xs;
-    padding-inline: $padding-action-s;
-    line-height: 1.5;
-  }
-
-  .ds-footer__bottom-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: $space-300;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: $space-200;
-      text-align: center;
-    }
-  }
-}
-
-// ─── V6: Logo+desc (col1) + 4 nav groups (no bottom bar) ─────────────────────
-
-.ds-footer--v6 {
-  .ds-footer__body {
-    display: flex;
-    gap: $gap-m;
-    padding-block: $padding-container-l;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: $space-300;
-      padding-block: $space-600 $space-400;
-    }
-  }
-
-  .ds-footer__col-brand {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-m;
-    width: 370px;
-    flex-shrink: 0;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
-  .ds-footer__nav-columns {
-    display: flex;
-    flex: 1;
-    gap: 0;
-
-    @media (max-width: 767px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%;
-    }
-  }
-}
-
-// ─── V7: Logo left + copyright right (single bar) ────────────────────────────
-
-.ds-footer--v7 {
-  .ds-footer__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: $space-600;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      align-items: center;
-      gap: $space-200;
-      padding-block: $space-400;
-      text-align: center;
-    }
-  }
-}
-
-// ─── V8: 5 nav groups | logo + copyright bottom bar ──────────────────────────
-
-.ds-footer--v8 {
-  .ds-footer__body {
-    display: flex;
-    gap: 0;
-    padding-block: $padding-container-xl $padding-container-l;
-
-    @media (max-width: 767px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-block: $space-600 $space-400;
-    }
-  }
-
-  .ds-footer__bottom-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-block: $space-300;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: $space-200;
-      text-align: center;
-    }
-  }
-}
-
-// ─── V9: Logo+desc (col1) + newsletter form (col right) ──────────────────────
-
-.ds-footer--v9 {
-  .ds-footer__body {
-    display: flex;
-    gap: $gap-m;
-    padding-block: $padding-container-xl;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: $space-400;
-      padding-block: $space-600 $space-400;
-    }
-  }
-
-  .ds-footer__col-brand {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-m;
-    width: 360px;
-    flex-shrink: 0;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      align-items: center;
-      text-align: center;
-    }
-  }
-
-  .ds-footer__col-newsletter {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: $gap-2xs;
-    padding-left: $gap-xxl;
-
-    @media (max-width: 767px) {
-      padding-left: 0;
-    }
-  }
-}
-
-// ─── V10: Logo + nav items (center) + socials (right) + copyright bar ─────────
-
-.ds-footer--v10 {
-  .ds-footer__body {
-    display: flex;
-    align-items: center;
-    gap: $gap-m;
-    padding-block: $space-300;
-    min-height: 176px;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      min-height: auto;
-      padding-block: $space-400;
-      gap: $space-200;
-    }
-  }
-
-  .ds-footer__col-logo {
-    flex-shrink: 0;
-    width: 280px;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      text-align: center;
-    }
-  }
-
-  .ds-footer__col-nav {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-
-  .ds-footer__col-socials {
-    flex-shrink: 0;
-    width: 280px;
-    display: flex;
-    justify-content: flex-end;
-
-    @media (max-width: 767px) {
-      width: 100%;
-      justify-content: center;
-    }
-  }
-
-  .ds-footer__bottom-inner {
-    display: flex;
-    justify-content: center;
-    padding-block: $space-300;
-  }
-}
-
-// ─── V11: Copyright left + Socials right (minimal bar) ───────────────────────
-
-.ds-footer--v11 {
-  .ds-footer__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $gap-m;
-    padding-block: $space-300;
-    min-height: 176px;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      min-height: auto;
-      padding-block: $space-400;
-      gap: $space-200;
-      text-align: center;
-    }
-  }
-}
-
-// ─── V12: Copyright left + nav items + socials right (bar) ───────────────────
-
-.ds-footer--v12 {
-  .ds-footer__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $gap-m;
-    padding-block: $space-300;
-    min-height: 176px;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      min-height: auto;
-      padding-block: $space-400;
-      gap: $space-200;
-      text-align: center;
-    }
-  }
-
-  .ds-footer__right-group {
-    display: flex;
-    align-items: center;
-    gap: $gap-m;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: $space-200;
-    }
-  }
-}
-
-// ─── V13: 4 nav columns | socials + copyright centered ───────────────────────
-
-.ds-footer--v13 {  // Nav groups are center-aligned in V13
-  .ds-footer__nav-group {
-    align-items: center;
-  }
-
-  .ds-footer__nav-group-title {
-    text-align: center;
-  }
-
-  .ds-footer__nav-item {
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-  }
-  .ds-footer__body {
-    display: flex;
-    gap: 0;
-    padding-block: $padding-container-xl $padding-container-l;
-
-    @media (max-width: 767px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      padding-block: $space-600 $space-400;
-    }
-  }
-
-  .ds-footer__bottom-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: $gap-2xs;
-    padding-block: $space-300;
-    text-align: center;
-  }
-}
-
-// ─── V14: Nav items left + logo center + nav items right (bar) ───────────────
-
-.ds-footer--v14 {
-  .ds-footer__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: $gap-m;
-    padding-block: $space-600;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      padding-block: $space-400;
-      gap: $space-200;
-      text-align: center;
-    }
-  }
-}
-
-// ─── V15: 3 cols: logo+desc | newsletter | socials label+icons ───────────────
-
-.ds-footer--v15 {
-  .ds-footer__body {
-    display: flex;
-    gap: $gap-m;
-    padding-block: $padding-container-l;
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: $space-400;
-      padding-block: $space-600 $space-400;
-    }
-  }
-
-  .ds-footer__col-brand {
-    display: flex;
-    flex-direction: column;
-    gap: $gap-m;
-    flex: 1;
-
-    @media (max-width: 767px) {
-      align-items: center;
-      text-align: center;
-    }
-  }
-
-  .ds-footer__col-newsletter {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: $gap-2xs;
-    justify-content: center;
-  }
-
-  .ds-footer__col-socials {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: $gap-2xs;
-    justify-content: center;
-
-    @media (max-width: 767px) {
-      align-items: center;
-    }
-  }
-
-  .ds-footer__socials-label {
-    font-size: 24px;
-    font-weight: 700;
-    color: $mapping-system-slate-text-primary;
-    margin: 0;
-    line-height: 1.2;
-    letter-spacing: $letter-spacing-tracking-1;
+// ─── Theme: system preference (real browser auto-detection) ──────────────────
+@media (prefers-color-scheme: dark) {
+  .ds-footer:not(.ds-footer--light):not(.ds-footer--dark) {
+    @include ds-footer-theme-dark;
   }
 }

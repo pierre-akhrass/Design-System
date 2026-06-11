@@ -7,45 +7,35 @@ import './styles/global.scss'
 export { Button } from './components/Button'
 export type { ButtonProps, ButtonState, ButtonVariant } from './components/Button'
 
-export {
-  FooterV1,
-  FooterV2,
-  FooterV3,
-  FooterV4,
-  FooterV5,
-  FooterV6,
-  FooterV7,
-  FooterV8,
-  FooterV9,
-  FooterV10,
-  FooterV11,
-  FooterV12,
-  FooterV13,
-  FooterV14,
-  FooterV15,
-} from './components/Footer'
+export { Avatar, AvatarGroup, AvatarBlock } from './components/Avatar'
+export type { AvatarProps, AvatarType, AvatarSize, AvatarGroupProps, AvatarGroupSpacing, AvatarBlockProps } from './components/Avatar'
 
+export { Illustration } from './components/Illustration'
+export type { IllustrationProps, IllustrationName, IllustrationSize } from './components/Illustration'
+
+export { Media, VideoPlayer, VideoGallery } from './components/Media'
+export type { MediaProps, MediaRatio, VideoPlayerProps, VideoGalleryProps, VideoItem } from './components/Media'
+
+export { Form, FormField, FormInput, FormSelect, FormTextarea, FormCheckbox, FormTextLink, FormActions } from './components/Form'
 export type {
-  FooterNavItem,
-  FooterNavGroup,
-  FooterSocialPlatform,
-  FooterSocialLink,
-  FooterLogoProps,
-  FooterNewsletterProps,
-  FooterInstagramGrid,
-  FooterV1Props,
-  FooterV2Props,
-  FooterV3Props,
-  FooterV4Props,
-  FooterV5Props,
-  FooterV6Props,
-  FooterV7Props,
-  FooterV8Props,
-  FooterV9Props,
-  FooterV10Props,
-  FooterV11Props,
-  FooterV12Props,
-  FooterV13Props,
-  FooterV14Props,
-  FooterV15Props,
-} from './components/Footer'
+	FormProps,
+	FormTheme,
+	FormControlState,
+	FormFieldProps,
+	FormInputProps,
+	FormTextareaProps,
+	FormSelectOption,
+	FormSelectProps,
+	FormCheckboxProps,
+	FormTextLinkProps,
+	FormActionsProps,
+} from './components/Form'
+
+export { Footer } from './components/Footer'
+export type { FooterProps, FooterNewsletterProps, FooterNavColumn, FooterLink, OpeningHourGroup, OpeningHourRow, SocialLink, SocialPlatform } from './components/Footer'
+
+export { Tag } from './components/Tag'
+export type { TagProps, TagState, TagTheme } from './components/Tag'
+
+export { Tooltip } from './components/Tooltip'
+export type { TooltipProps, TooltipPlacement, TooltipTheme } from './components/Tooltip'

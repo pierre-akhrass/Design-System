@@ -1,0 +1,206 @@
+@use '../../styles/tokens/variables' as *;
+
+// ── Arrow mixin ───────────────────────────────────────────────────────────────
+// Generates the ::before (border layer) and ::after (fill layer) arrow colors
+// for all 4 placement modifiers, given the tooltip bg and border colour.
+
+@mixin ds-tooltip-arrows($bg, $border) {
+  &.ds-tooltip--top {
+    &::before { border-top-color: var(--ds-tooltip-border, #{$border}); }
+    &::after  { border-top-color: var(--ds-tooltip-bg, #{$bg}); }
+  }
+  &.ds-tooltip--bottom {
+    &::before { border-bottom-color: var(--ds-tooltip-border, #{$border}); }
+    &::after  { border-bottom-color: var(--ds-tooltip-bg, #{$bg}); }
+  }
+  &.ds-tooltip--left {
+    &::before { border-left-color: var(--ds-tooltip-border, #{$border}); }
+    &::after  { border-left-color: var(--ds-tooltip-bg, #{$bg}); }
+  }
+  &.ds-tooltip--right {
+    &::before { border-right-color: var(--ds-tooltip-border, #{$border}); }
+    &::after  { border-right-color: var(--ds-tooltip-bg, #{$bg}); }
+  }
+}
+
+// ── Light theme ───────────────────────────────────────────────────────────────
+// Tooltip is dark on a light page
+
+@mixin ds-tooltip-theme-light {
+  background-color: $mapping-system-slate-background-primary; // #141f2e
+  border-color:     $mapping-system-slate-border-secondary;   // #bcbcbc
+  color:            $mapping-system-slate-text-on-primary;    // #ffffff
+  @include ds-tooltip-arrows(
+    $mapping-system-slate-background-primary,
+    $mapping-system-slate-border-secondary
+  );
+}
+
+// ── Dark theme ────────────────────────────────────────────────────────────────
+// Tooltip is light on a dark page (inverted for contrast)
+
+@mixin ds-tooltip-theme-dark {
+  background-color: $mapping-system-slate-surface-tertiary; // #d2d9e0
+  border-color:     $mapping-system-slate-text-secondary;   // #545454
+  color:            $mapping-system-slate-text-primary;     // #292929
+  @include ds-tooltip-arrows(
+    $mapping-system-slate-surface-tertiary,
+    $mapping-system-slate-text-secondary
+  );
+}
+
+// ── Base ──────────────────────────────────────────────────────────────────────
+
+.ds-tooltip {
+  border:        $size-stroke-border-width-1 solid;
+  border-radius: $radius-small; // 4px
+  box-shadow:
+    $depth-0 $depth-025 $depth-050 $mapping-system-shadow-medium,
+    $depth-0 $depth-025 $depth-050 $mapping-system-shadow-light;
+  display:        inline-flex;
+  flex-direction: column;
+  gap:            $gap-3xs;       // 4px
+  padding:        $padding-action-xs; // 8px
+  position:       relative;
+  width:          128px;
+  z-index:        $z-index-tooltip;
+
+  // Arrow pseudo-element base (shape defined per placement below)
+  &::before,
+  &::after {
+    content: '';
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 0;
+  }
+
+  // Default (no explicit theme): light
+  @include ds-tooltip-theme-light;
+}
+
+// ── Placement — arrow shapes ──────────────────────────────────────────────────
+// ::before = border layer (1px larger), ::after = fill layer
+
+.ds-tooltip--top {
+  text-align: center;
+
+  // Arrow at bottom, points down toward target
+  &::before {
+    bottom: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid; // color from theme
+  }
+  &::after {
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid; // color from theme
+  }
+}
+
+.ds-tooltip--bottom {
+  text-align: center;
+
+  // Arrow at top, points up toward target
+  &::before {
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 7px solid;
+  }
+  &::after {
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 6px solid;
+  }
+}
+
+.ds-tooltip--left {
+  text-align: left;
+
+  // Arrow at right, points right toward target
+  &::before {
+    top: 50%;
+    right: -7px;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 7px solid;
+  }
+  &::after {
+    top: 50%;
+    right: -6px;
+    transform: translateY(-50%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid;
+  }
+}
+
+.ds-tooltip--right {
+  text-align: left;
+
+  // Arrow at left, points left toward target
+  &::before {
+    top: 50%;
+    left: -7px;
+    transform: translateY(-50%);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right: 7px solid;
+  }
+  &::after {
+    top: 50%;
+    left: -6px;
+    transform: translateY(-50%);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-right: 6px solid;
+  }
+}
+
+// ── Explicit theme classes ────────────────────────────────────────────────────
+
+.ds-tooltip--light {
+  @include ds-tooltip-theme-light;
+}
+
+.ds-tooltip--dark {
+  @include ds-tooltip-theme-dark;
+}
+
+// ── Auto dark mode ────────────────────────────────────────────────────────────
+
+@media (prefers-color-scheme: dark) {
+  .ds-tooltip:not(.ds-tooltip--light):not(.ds-tooltip--dark) {
+    @include ds-tooltip-theme-dark;
+  }
+}
+
+// ── Content ───────────────────────────────────────────────────────────────────
+
+.ds-tooltip__title {
+  font-family:  $ui-font-family;
+  font-size:    $ui-size-small; // 12px
+  font-weight:  $ui-font-weight-medium; // 500
+  line-height:  1.5;
+}
+
+.ds-tooltip__body {
+  font-family:  $ui-font-family;
+  font-size:    $ui-size-small; // 12px
+  font-weight:  $ui-font-weight-default; // 400
+  line-height:  1.5;
+  opacity:      0.8;
+}

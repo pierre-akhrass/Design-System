@@ -1,82 +1,51 @@
 import type { HTMLAttributes, ReactNode } from 'react'
 import './Avatar.scss'
 
-export type AvatarSize = 'x-small' | 'small' | 'medium' | 'large' | 'x-large'
-export type AvatarVariant = 'image' | 'initial' | 'shape'
+export type AvatarType = 'initial' | 'image' | 'shape'
+export type AvatarSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
 export type AvatarTheme = 'light' | 'dark'
 
 export interface AvatarProps extends HTMLAttributes<HTMLDivElement> {
+  type?: AvatarType
   size?: AvatarSize
-  variant?: AvatarVariant
-  theme?: AvatarTheme
+  /** Single character only (e.g. "A"). Multiple characters will overflow. */
   initials?: string
+  /** Image URL — used when type="image" */
   src?: string
+  /** Alt text for the image — used when type="image" */
   alt?: string
+  /** SVG or icon node — used when type="shape". Should use fill="currentColor". */
   icon?: ReactNode
+  /** Color theme — light uses surface palette, dark uses background palette */
+  theme?: AvatarTheme
 }
 
-const DefaultPersonGlyph = () => (
-  <svg aria-hidden="true" viewBox="0 0 24 24">
-    <path
-      d="M12 4a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 10.5c3.95 0 7.5 2.08 7.5 4.65V20H4.5v-.85c0-2.57 3.55-4.65 7.5-4.65z"
-      fill="currentColor"
-    />
-  </svg>
-)
-
-const DefaultShapeGlyph = () => (
-  <svg aria-hidden="true" viewBox="0 0 24 24">
-    <path
-      d="M12 2.5l2.9 5.88 6.49.94-4.69 4.58 1.11 6.47L12 17.34l-5.81 3.03 1.11-6.47L2.61 9.32l6.49-.94L12 2.5z"
-      fill="currentColor"
-    />
-  </svg>
-)
-
 export const Avatar = ({
+  type = 'initial',
   size = 'medium',
-  variant = 'image',
-  theme = 'light',
-  initials = 'FS',
+  initials = 'A',
   src,
-  alt,
+  alt = '',
   icon,
+  theme,
   className,
   ...props
 }: AvatarProps) => {
-  const classes = [
-    'ds-avatar',
-    `ds-avatar--${size}`,
-    `ds-avatar--${variant}`,
-    `ds-avatar--${theme}`,
-    className,
-  ]
+  const classes = ['ds-avatar', `ds-avatar--${size}`, `ds-avatar--${type}`, theme && `ds-avatar--${theme}`, className]
     .filter(Boolean)
     .join(' ')
 
   return (
     <div className={classes} {...props}>
-      {variant === 'image' && src ? (
-        <img className="ds-avatar__image" src={src} alt={alt ?? 'Avatar image'} />
-      ) : null}
-
-      {variant === 'image' && !src ? (
-        <span className="ds-avatar__glyph" aria-hidden="true">
-          <DefaultPersonGlyph />
-        </span>
-      ) : null}
-
-      {variant === 'initial' ? (
-        <span className="ds-avatar__initials" aria-label={alt ?? initials}>
-          {initials}
-        </span>
-      ) : null}
-
-      {variant === 'shape' ? (
-        <span className="ds-avatar__glyph" aria-hidden="true">
-          {icon ?? <DefaultShapeGlyph />}
-        </span>
-      ) : null}
+      {type === 'initial' && (
+        <span className="ds-avatar__initials">{initials}</span>
+      )}
+      {type === 'image' && (
+        <img className="ds-avatar__image" src={src} alt={alt} />
+      )}
+      {type === 'shape' && (
+        <span className="ds-avatar__shape">{icon}</span>
+      )}
     </div>
   )
 }

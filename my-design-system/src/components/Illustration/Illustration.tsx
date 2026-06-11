@@ -2,6 +2,8 @@ import type { HTMLAttributes } from 'react'
 import './Illustration.scss'
 import { illustrationMap } from './illustrations-data'
 
+export type IllustrationTheme = 'light' | 'dark'
+
 export type IllustrationName =
   | 'mechanical-01'
   | 'mechanical-02'
@@ -35,6 +37,13 @@ export interface IllustrationProps extends HTMLAttributes<HTMLDivElement> {
    */
   size?: IllustrationSize | number
   /**
+   * Color mode — controls the stroke/fill color of the SVG.
+   * light → brand navy (#003e7e) on a light background
+   * dark  → white (#ffffff) for use on dark backgrounds
+   * Overridden by the `color` prop if provided.
+   */
+  theme?: IllustrationTheme
+  /**
    * Any valid CSS color. Applied via `color` — SVG strokes/fills
    * must use `currentColor` for this to take effect.
    * @example "#003e7e"
@@ -53,6 +62,7 @@ const sizeMap: Record<IllustrationSize, number> = {
 export const Illustration = ({
   name,
   size = 'lg',
+  theme = 'light',
   color,
   className,
   style,
@@ -60,7 +70,11 @@ export const Illustration = ({
 }: IllustrationProps) => {
   const px = typeof size === 'number' ? size : sizeMap[size]
   const SvgIcon = illustrationMap[name]
-  const classes = ['ds-illustration', className].filter(Boolean).join(' ')
+  const classes = [
+    'ds-illustration',
+    `ds-illustration--${theme}`,
+    className,
+  ].filter(Boolean).join(' ')
 
   return (
     <div

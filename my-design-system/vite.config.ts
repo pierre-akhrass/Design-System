@@ -1,8 +1,8 @@
-/// <reference types="vitest/config" />
-import { resolve } from 'node:path';
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import dts from 'vite-plugin-dts';
+import { resolve } from 'node:path'
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import dts from 'vite-plugin-dts'
+import svgr from 'vite-plugin-svgr'
 
 // https://vite.dev/config/
 import path from 'node:path';
@@ -13,11 +13,15 @@ const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(file
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
-  plugins: [react(), dts({
-    include: ['src'],
-    exclude: ['**/*.stories.tsx', '**/*.test.tsx', '**/*.spec.tsx'],
-    insertTypesEntry: true
-  })],
+  plugins: [
+    react(),
+    svgr(),
+    dts({
+      include: ['src'],
+      exclude: ['**/*.stories.tsx', '**/*.test.tsx', '**/*.spec.tsx'],
+      insertTypesEntry: true,
+    }),
+  ],
   build: {
     copyPublicDir: false,
     lib: {
