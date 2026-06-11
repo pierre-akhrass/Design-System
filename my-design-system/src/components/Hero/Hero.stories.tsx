@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Hero, type HeroSlide } from './Hero'
-import heroImg from '../../assets/hero.png'
+import mapImg from '../../assets/map.png'
 
 const baseArgs = {
-  image: heroImg,
+  image: mapImg,
   title: 'Title of the slide',
   subtitle:
     'This subtitle is optional. It can be long or short, it can wrap to two, or even three lines if necessary.',

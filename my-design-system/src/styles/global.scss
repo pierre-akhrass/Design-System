@@ -20,6 +20,15 @@
   --sds-color-border-brand-secondary: #{$mapping-brand-vibrant-teal-border-primary};
 }
 
+:root[data-theme='dark'] {
+  --sds-color-text-default-default: #f1f1f1;
+  --sds-color-text-default-secondary: #d8d8d8;
+  --sds-color-text-default-tertiary: #b8b8b8;
+  --sds-color-background-default-default: #161616;
+  --sds-color-background-default-tertiary: rgba(24, 24, 24, 0.84);
+  --sds-color-border-brand-secondary: #3ec9bb;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -30,3 +39,73 @@ body {
   background-color: $schema-surface-primary;
   font-family: $ui-font-family;
 }
+
+:root.theme-dark body,
+html.theme-dark body {
+  color: #f1f1f1 !important;
+  background-color: #101214 !important;
+}
+
+// Dark theme overrides using class selector - explicit selectors
+html.theme-dark .ds-accordion__item,
+.theme-dark .ds-accordion__item {
+  color: #f1f1f1 !important;
+  border-bottom-color: #3ec9bb !important;
+}
+
+html.theme-dark .ds-accordion__header,
+.theme-dark .ds-accordion__header {
+  color: #f1f1f1 !important;
+}
+
+html.theme-dark .ds-accordion__header:hover,
+.theme-dark .ds-accordion__header:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.theme-dark .ds-accordion__content,
+.theme-dark .ds-accordion__content {
+  color: #d8d8d8 !important;
+}
+
+html.theme-dark .ds-accordion__icon svg,
+.theme-dark .ds-accordion__icon svg {
+  stroke: #f1f1f1 !important;
+  color: #f1f1f1 !important;
+}
+
+html.theme-dark .ds-button,
+.theme-dark .ds-button {
+  color: #f1f1f1 !important;
+}
+
+html.theme-dark .ds-button--variant-default,
+.theme-dark .ds-button--variant-default {
+  background-color: #3ec9bb !important;
+  color: #101214 !important;
+}
+
+html.theme-dark h1,
+html.theme-dark h2,
+html.theme-dark h3,
+html.theme-dark h4,
+html.theme-dark h5,
+html.theme-dark h6,
+.theme-dark h1,
+.theme-dark h2,
+.theme-dark h3,
+.theme-dark h4,
+.theme-dark h5,
+.theme-dark h6 {
+  color: #f1f1f1 !important;
+}
+
+html.theme-dark p,
+html.theme-dark span,
+.theme-dark p,
+.theme-dark span {
+  color: #f1f1f1 !important;
+}
+
+
+
