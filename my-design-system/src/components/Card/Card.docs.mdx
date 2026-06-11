@@ -1,0 +1,112 @@
+{/* filepath: /Users/mohammedoueidat/Documents/GitHub/Design-System/my-design-system/src/components/Card/Card.docs.mdx */}
+import { Meta, Title, Subtitle, Stories } from '@storybook/addon-docs/blocks'
+import * as CardStories from './Card.stories'
+
+<Meta of={CardStories} name="Docs" />
+
+<Title>Card</Title>
+<Subtitle>A compound, theme-aware container that composes into every layout in the brief: icon header, portrait media, big stat, rating + person, circle media + link, alert + labels, booking actions, and image-with-overlay.</Subtitle>
+
+## Overview
+
+`Card` is built as a **compound component** — instead of one giant prop list, you pick the parts you need from `Card.*` and arrange them inside a `<Card.Body>`. The same vocabulary supports every screenshot in the spec.
+
+- Light & dark themes via scoped CSS custom properties
+- Vertical (default) and horizontal orientations
+- 4 media shapes — `banner`, `portrait`, `square`, `circle`
+- Pure CSS/SVG mountain placeholder — no real images required
+- Tall, bold, condensed `LOGO` badge anchored to the bottom-left of media
+
+## Anatomy
+
+```tsx
+<Card theme="light" orientation="vertical">
+  <Card.Media shape="banner" logo overlay={...} />
+  <Card.Body>
+    <Card.Header meta="…" onClose={fn} />
+    <Card.Icon />
+    <Card.Title>…</Card.Title>
+    <Card.Subtitle>…</Card.Subtitle>
+    <Card.Text>…</Card.Text>
+    <Card.Stat prefix="+" value="999" suffix="Million" />
+    <Card.Rating value={3.5} />
+    <Card.Person name="…" supporting="…" />
+    <Card.Alert title="…">…</Card.Alert>
+    <Card.Labels>
+      <Card.Label>…</Card.Label>
+    </Card.Labels>
+    <Card.Actions align="between">
+      <Button>…</Button>
+      <Card.Link href="#">…</Card.Link>
+    </Card.Actions>
+  </Card.Body>
+</Card>
+```
+
+## Public API
+
+```ts
+interface CardProps {
+  theme?:        'light' | 'dark'           // default 'light'
+  orientation?:  'vertical' | 'horizontal'  // default 'vertical'
+  interactive?:  boolean                    // hover lift
+}
+
+interface CardMediaProps {
+  shape?:   'banner' | 'portrait' | 'circle' | 'square'
+  inset?:   boolean             // pad inside the card
+  src?:     string              // optional real image
+  logo?:    boolean | string    // bottom-left LOGO box
+  overlay?: ReactNode           // dark-gradient bottom caption
+}
+
+interface CardStatProps   { prefix?: ReactNode; value: ReactNode; suffix?: ReactNode }
+interface CardRatingProps { value: number; max?: number; size?: number }
+interface CardPersonProps { name: ReactNode; supporting?: ReactNode; avatar?: string }
+interface CardAlertProps  { icon?: ReactNode; title?: ReactNode }
+interface CardActionsProps { align?: 'start' | 'end' | 'between' | 'spread' }
+interface CardLinkProps   { hideArrow?: boolean }
+```
+
+## Tokens used
+
+| Concern | Token |
+|---|---|
+| Card surface | `$mapping-system-white-1000` (light) / `$mapping-system-slate-background-primary` (dark) |
+| Card border | `$mapping-system-slate-border-tertiary` |
+| Media surface | `$mapping-system-slate-surface-tertiary` (light) / `$mapping-system-slate-background-secondary-hover` (dark) |
+| Mountain icon | `$mapping-system-slate-surface-quaternary` (light) / `$mapping-system-slate-background-tertiary` (dark) |
+| LOGO box | `$mapping-system-slate-background-primary` (light) / `$mapping-system-white-1000` (dark) |
+| Label chip | `$mapping-system-slate-surface-tertiary` (light) / `$mapping-system-slate-background-secondary` (dark) |
+| Radius | `$radius-large` (card) / `$radius-medium` (media) / `$radius-full` (chips & circle media) |
+| Padding | `$space-300` (body) |
+| Font family | `$heading-font-family` (titles & LOGO) / `$ui-font-family` (body) |
+
+## How the LOGO box is built
+
+Anchored to the bottom-left of the media frame, with a tall, condensed, bold treatment:
+
+```scss
+.ds-card__logo {
+  position: absolute;
+  inset: auto auto 0 0;
+  height: 64px;
+  min-width: 110px;
+  padding: 0 16px;
+  background: var(--ds-card-logo-bg);
+  color: var(--ds-card-logo-fg);
+}
+
+.ds-card__logo-text {
+  font-family: $heading-font-family;
+  font-size: 28px;
+  font-stretch: 75%;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+```
+
+## All stories
+
+<Stories />
