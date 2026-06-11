@@ -277,7 +277,9 @@ export const Playground: Story = {
       imageAlt: 'Promotional image',
       title: 'New release',
       subtitle: 'v2.0 is here',
-      body: 'Faster, lighter and ready for production. See what is new in the latest release.',
+      // ~18 words so the 3-line clamp on .ds-mega-menu__card-text
+      // actually fills three lines inside the 320px card width.
+      body: 'Faster, lighter, and ready for production with refreshed components, improved accessibility, and brand-new theming for every supported viewport.',
       buttonLabel: 'Read more',
       buttonHref: '#changelog',
     },

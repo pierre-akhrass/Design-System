@@ -8,6 +8,8 @@ import {
 } from 'react'
 import { NavItem } from '../NavItem'
 import { Button, type ButtonVariant } from '../Button'
+import megaMenuCardImage from '../../assets/mega-menu-card.png'
+import { CaretRightIcon } from '../icons/CaretRightIcon'
 import './MegaMenu.scss'
 
 // -----------------------------------------------------------------------------
@@ -127,41 +129,7 @@ export interface MegaMenuProps extends Omit<HTMLAttributes<HTMLElement>, 'title'
   ariaLabel?: string
 }
 
-const ChevronRightIcon = () => (
-  <svg
-    aria-hidden="true"
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    className="ds-mega-menu__chevron"
-  >
-    <path
-      d="M9 6l6 6-6 6"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-)
 
-const ImagePlaceholder = () => (
-  <svg
-    aria-hidden="true"
-    viewBox="0 0 100 80"
-    preserveAspectRatio="xMidYMid meet"
-    className="ds-mega-menu__card-image-placeholder"
-  >
-    <rect width="100" height="80" fill="currentColor" opacity="0.12" />
-    <circle cx="68" cy="28" r="6" fill="currentColor" opacity="0.32" />
-    <path
-      d="M10 64 L36 38 L52 54 L68 42 L92 64 Z"
-      fill="currentColor"
-      opacity="0.32"
-    />
-  </svg>
-)
 
 /** Render the Tier-1 link list for a single column. */
 const renderLinks = (
@@ -213,7 +181,7 @@ const renderCard = (card: MegaMenuCardConfig): ReactNode => {
   const inner = (
     <>
       <div className="ds-mega-menu__card-image">
-        {image ? <img src={image} alt={imageAlt} /> : <ImagePlaceholder />}
+        <img src={image ?? megaMenuCardImage} alt={imageAlt} />
       </div>
       {(title || subtitle || body || button) && (
         <div className="ds-mega-menu__card-body">
@@ -226,14 +194,18 @@ const renderCard = (card: MegaMenuCardConfig): ReactNode => {
             <div className="ds-mega-menu__card-actions">
               <Button
                 variant={button.variant ?? 'plain'}
+                icon={button.icon}
+                iconRight={
+                  !button.hideChevron ? (
+                    <CaretRightIcon className="ds-mega-menu__chevron" />
+                  ) : undefined
+                }
                 onClick={() => {
                   button.onClick?.()
                   if (button.href) window.open(button.href, '_self')
                 }}
               >
-                {button.icon}
                 {button.label}
-                {!button.hideChevron && <ChevronRightIcon />}
               </Button>
             </div>
           )}
