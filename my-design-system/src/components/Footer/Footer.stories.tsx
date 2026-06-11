@@ -130,39 +130,16 @@ const demoInstagramGrid = {
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
-const meta: Meta<typeof FooterV10> = {
+const meta: Meta = {
   title: 'Components/Footer',
-  component: FooterV10,
-  tags: ['autodocs'],
   parameters: {
-    docs: {
-      description: {
-        component: 'Comprehensive footer system with multiple layout variants for navigation, brand, social, and legal content.',
-      },
-    },
     layout: 'fullscreen',
-  },
-  args: {
-    logo: demoLogo,
-    navItems: demoNavItems,
-    socials: demoSocials,
-    copyright: demoCopyright,
-  },
-  argTypes: {
-    logo: { control: 'object' },
-    navItems: { control: 'object' },
-    socials: { control: 'object' },
-    copyright: { control: 'text' },
   },
 }
 
 export default meta
 
-type Story = StoryObj<typeof FooterV10>
-
-export const Playground: Story = {
-  name: 'Playground — V10 Controls',
-}
+type Story = StoryObj
 
 // ─── V1: Logo left + Socials right ───────────────────────────────────────────
 
