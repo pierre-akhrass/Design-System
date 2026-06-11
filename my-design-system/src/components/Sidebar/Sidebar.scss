@@ -96,7 +96,8 @@
 }
 
 .ds-sidebar--mode-dark .ds-sidebar__divider {
-  background: rgba(255, 255, 255, 0.12);
+  // Slate-surface border token — replaces the previous hardcoded rgba().
+  background: $mapping-system-slate-border-primary;
 }
 
 /* ---------- Tier 2 standalone items stretch like everything else ---------- */
@@ -119,4 +120,23 @@
 .ds-sidebar--mode-dark .ds-sidebar__footer {
   color: $mapping-system-slate-text-on-primary;
   opacity: 0.85;
+}
+
+/* Icon-only footer link — bare <a> wrapping an SVG. Keeps the original
+   centered-icon-row look while making each icon a real, focusable link. */
+.ds-sidebar__footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+  border-radius: $radius-medium;
+  padding: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  &:hover { opacity: 0.7; }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
 }

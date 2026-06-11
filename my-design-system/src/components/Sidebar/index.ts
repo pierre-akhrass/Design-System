@@ -6,4 +6,9 @@ export {
   SidebarCategory,
   SidebarDivider,
 } from './Sidebar'
-export type { SidebarProps, SidebarItemProps, SidebarColorMode } from './Sidebar'
+export type {
+  SidebarProps,
+  SidebarItemProps,
+  SidebarColorMode,
+  SidebarActionLink,
+} from './Sidebar'

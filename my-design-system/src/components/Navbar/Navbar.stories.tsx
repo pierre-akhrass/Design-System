@@ -1,13 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
+import type { ReactNode } from 'react'
 import { Navbar, NavbarMenu } from './'
 import type { NavbarMenuRow } from './NavbarMenu'
+import type { NavbarActionLink, NavbarColorMode } from './Navbar'
 import { NavItem } from '../NavItem'
 import type { DropdownColorMode } from '../Dropdown/Dropdown'
-import type { NavbarColorMode } from './Navbar'
 
 const Chevron = () => (
   <svg aria-hidden="true" viewBox="0 0 24 24" width="14" height="14">
-    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path
+      d="M6 9l6 6 6-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 )
 
@@ -31,6 +39,48 @@ const SearchIcon = () => (
   </svg>
 )
 
+// Same SVG primitives as the Sidebar story — so the mobile drawer footer
+// (which is a real <Sidebar>) renders an identical icon row to the standalone
+// Sidebar component's playground.
+const FlagIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M4 22V4M4 4h13l-2 4 2 4H4" strokeLinejoin="round" strokeLinecap="round" />
+  </svg>
+)
+
+const BellIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M10 21a2 2 0 0 0 4 0" strokeLinecap="round" />
+  </svg>
+)
+
+const StarIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5">
+    <path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" strokeLinejoin="round" />
+  </svg>
+)
+
+/**
+ * String-keyed icon registry so the `actions` array in the Storybook controls
+ * panel can stay plain JSON (icons can't be serialised as React nodes inside
+ * an args control). Add a new entry here to make a new icon selectable.
+ *
+ * Mirrors the Sidebar story's registry on purpose: the navbar's mobile drawer
+ * renders a real `<Sidebar>` with these icons in its footer, so keeping both
+ * sets aligned makes the navbar drawer visually identical to the standalone
+ * Sidebar showcase.
+ */
+const ICONS = {
+  flag: <FlagIcon />,
+  bell: <BellIcon />,
+  search: <SearchIcon />,
+  star: <StarIcon />,
+  circle: <CircleIcon />,
+  map: <MapIcon />,
+} as const
+type IconName = keyof typeof ICONS
+
 /**
  * A navbar entry is one of:
  *   - { type: 'navItem', label, selected? }
@@ -49,12 +99,33 @@ type LinkEntry =
       rows: NavbarMenuRow[]
     }
 
+/**
+ * Editable shape for each action link in the Storybook controls panel.
+ * `icon` is a string key into the ICONS registry above — the render fn
+ * swaps it for the matching `<svg>` ReactNode.
+ */
+type ActionEntry = {
+  /** Visible label. Leave empty for icon-only (then set `ariaLabel`). */
+  label?: string
+  /** Link target. Defaults to `'#'`. */
+  href?: string
+  /** Icon key from the ICONS registry (`'circle' | 'map' | 'search'`). */
+  icon?: IconName
+  /** Marks the link as the active route. */
+  selected?: boolean
+  /** Open in a new tab. */
+  external?: boolean
+  /** Required for icon-only links. */
+  ariaLabel?: string
+}
+
 type PlaygroundArgs = {
   colorMode: NavbarColorMode
   links: LinkEntry[]
+  /** Dynamic, user-editable list of action links (right side of the navbar). */
+  actions: ActionEntry[]
   /** Logo image URL. Leave empty to hide the brand mark. */
   logoSrc: string
-  showActions: boolean
 }
 
 const meta: Meta<PlaygroundArgs> = {
@@ -68,84 +139,68 @@ const meta: Meta<PlaygroundArgs> = {
 ## Navbar
 
 A responsive primary navigation surface — logo on the left, menu items in the
-middle, action icons on the right. On mobile (≤ 768 px) the items + actions
-collapse behind a **burger menu** and re-render as a stacked, full-width panel
-below the bar.
+middle, action **links** (icon + label) on the right. On mobile (≤ 768 px) the
+items + actions collapse behind a **burger menu** and re-render as a stacked,
+full-width drawer panel.
 
 ### Anatomy
 - **Logo** — left-aligned brand mark (\`logo\` slot).
 - **Items** — center menubar of \`NavItem\` and/or \`NavbarMenu\` (dropdown) entries (\`children\`).
-- **Actions** — right-aligned icons / account / search (\`actions\` slot).
+- **Actions** — right-aligned **links** (\`actions\` slot). Pass a \`NavbarActionLink[]\`
+  array and the navbar renders them automatically as \`NavItem\`s — no JSX required.
+  Each action can carry its own \`iconLeft\` / \`iconRight\` (any \`ReactNode\`).
+  You can also pass a raw \`ReactNode\` if you need full control.
 - **Burger** — auto-rendered toggle button visible only on mobile.
 
-### Responsive behavior
+### Dynamic actions
 
+The \`actions\` prop accepts a config array so consumers can add / remove / reorder
+links at runtime (e.g. from a CMS, auth state, or feature flags) without writing
+any JSX:
+
+\`\`\`tsx
+<Navbar
+  colorMode="dark"
+  logo={<Brand />}
+  actions={[
+    { label: 'Notifications', href: '/inbox',  iconLeft: <BellIcon /> },
+    { label: 'Locations',     href: '/map',    iconLeft: <MapIcon /> },
+    { label: 'Search',        href: '/search', iconLeft: <SearchIcon /> },
+  ]}
+>
+  {/* ...nav items... */}
+</Navbar>
+\`\`\`
+
+Each entry supports: \`label\`, \`href\`, \`iconLeft\`, \`iconRight\`, \`selected\`,
+\`onClick\`, \`external\`, \`ariaLabel\`, \`key\`.
+
+> **Playground note.** In the Storybook controls panel, icons are referenced by
+> a string key (\`'circle' | 'map' | 'search'\`) instead of a React node so the
+> args stay JSON-serialisable. The story render fn swaps each key for the
+> matching SVG. In real code you'd pass the SVG (or icon component) directly
+> as \`iconLeft\`.
+
+### Responsive behavior
 | Viewport         | Layout                                                                                  |
 | ---------------- | --------------------------------------------------------------------------------------- |
 | ≥ 1025 px        | Inline: logo · items · actions, full container padding.                                 |
 | 769 – 1024 px    | Inline with tighter padding and action spacing.                                         |
 | ≤ 768 px         | Burger menu: items + actions hidden; toggle reveals them stacked below the bar.         |
 
-When the burger is open on mobile, \`NavbarMenu\` dropdown panels render
-**inline** (static positioning, full-width) instead of as floating panels, so
-they never overflow the viewport.
-
-### Usage
-
-\`\`\`tsx
-import { Navbar, NavbarMenu, NavItem } from '@company/design-system'
-
-<Navbar
-  colorMode="dark"
-  logo={<Brand />}
-  actions={<><Search /><Account /></>}
->
-  <NavbarMenu
-    label="Products"
-    rows={[
-      { kind: 'item',    label: 'Overview' },
-      { kind: 'item',    label: 'Features' },
-      { kind: 'divider' },
-      { kind: 'button',  label: 'Get a demo', variant: 'filled' },
-    ]}
-  />
-  <NavItem orientation="horizontal" label="Pricing" />
-  <NavItem orientation="horizontal" label="Contact" />
-</Navbar>
-\`\`\`
-
-### Variants
-
-| Prop          | Values            | Purpose                                          |
-| ------------- | ----------------- | ------------------------------------------------ |
-| \`colorMode\`   | \`light\` · \`dark\` | Surface color mode.                              |
-| \`logo\`        | \`ReactNode\`       | Brand mark (left).                               |
-| \`children\`    | \`ReactNode\`       | Menu items (center).                             |
-| \`actions\`     | \`ReactNode\`       | Action icons (right).                            |
-| \`ariaLabel\`   | \`string\`          | Accessible label for the \`<nav>\` landmark.       |
-
-### Theming
-Colors inherit from the global "Selection colors" CSS variables defined in
-\`src/styles/global.scss\`. Override them on \`:root\` (or a section) to retheme
-the navbar — no component edits required.
-\`\`\`css
---sds-color-text-default-default
---sds-color-background-default-default
---sds-color-background-default-tertiary
---sds-color-border-brand-secondary
-\`\`\`
 ### Accessibility
 - Renders inside a \`<nav>\` landmark with a localizable \`aria-label\` (default \`"Primary"\`).
 - The items wrapper has \`role="menubar"\`.
-- The burger button exposes \`aria-expanded\` and \`aria-controls\` pointing at the items panel.
+- The burger button exposes \`aria-expanded\` and \`aria-controls\`.
 - \`NavbarMenu\` triggers expose \`aria-haspopup="menu"\` + \`aria-expanded\`.
+- Action links with no visible label must set \`ariaLabel\`.
         `.trim(),
       },
     },
   },
 }
-export default meta
 
+export default meta
 type Story = StoryObj<PlaygroundArgs>
 
 export const Playground: Story = {
@@ -153,14 +208,13 @@ export const Playground: Story = {
     docs: {
       description: {
         story:
-          'Interactive playground. Edit the **links** array to add NavItem or NavbarMenu entries. Resize the Storybook viewport (or use the toolbar) below ~768 px to see the burger menu.',
+          'Interactive playground. Edit the **links** array to change the center menubar, and the **actions** array to change the right-side links. Each action defaults to **icon-only** with a dummy `href` you can edit in the Controls panel to wire it to a real route. Add a `label` to any entry to render text next to the icon. Resize the Storybook viewport below ~768 px to see the burger menu.',
       },
     },
   },
   args: {
     colorMode: 'dark',
     logoSrc: '/favicon.svg',
-    showActions: true,
     links: [
       {
         type: 'dropdown',
@@ -191,6 +245,18 @@ export const Playground: Story = {
       { type: 'navItem', label: 'Pricing' },
       { type: 'navItem', label: 'Contact' },
     ],
+    // ⬇️  Icon-only action links with dummy `href`s. Edit `href` on any entry
+    //     in the Storybook Controls panel to wire it to a real route. Add a
+    //     `label` if you want a text label next to the icon.
+    //     The icons + dummy links here are intentionally identical to the
+    //     Sidebar story so the navbar bar, the mobile drawer footer (which
+    //     is a real <Sidebar>), and the standalone Sidebar component all
+    //     render the exact same icon row.
+    actions: [
+      { href: '#reports',       icon: 'flag',   ariaLabel: 'Reports' },
+      { href: '#notifications', icon: 'bell',   ariaLabel: 'Notifications' },
+      { href: '#search',        icon: 'search', ariaLabel: 'Search' },
+    ],
   },
   argTypes: {
     colorMode: { control: 'inline-radio', options: ['light', 'dark'] },
@@ -198,7 +264,6 @@ export const Playground: Story = {
       control: 'text',
       description: 'Logo image URL (passed straight to the Navbar `logo` prop).',
     },
-    showActions: { control: 'boolean' },
     links: {
       control: 'object',
       description:
@@ -207,44 +272,63 @@ export const Playground: Story = {
         'Dropdown — chevron shown automatically). Rows mirror Dropdown variants: ' +
         '{ kind: "item" | "divider" | "button" | "custom", ... }.',
     },
+    actions: {
+      control: 'object',
+      description:
+        'Dynamic, user-editable list of action links rendered on the right of the navbar. ' +
+        'Each entry: { label?, href?, icon?: "flag" | "bell" | "search" | "star" | "circle" | "map", selected?, external?, ariaLabel? }. ' +
+        'Add / remove entries to add or remove links. Set `label` to "" + provide `ariaLabel` for icon-only. ' +
+        'Set the whole array to `[]` to hide the actions slot.',
+    },
   },
-  render: ({ colorMode, links, logoSrc, showActions }) => (
-    <Navbar
-      colorMode={colorMode}
-      logo={logoSrc || undefined}
-      actions={
-        showActions ? (
-          <>
-            <CircleIcon />
-            <MapIcon />
-            <SearchIcon />
-          </>
-        ) : undefined
+  render: ({ colorMode, links, actions, logoSrc }) => {
+    // Resolve each editable action entry into a real NavbarActionLink by
+    // swapping the string `icon` key for the matching SVG ReactNode from the
+    // ICONS registry. Icons WITHOUT a matching key are silently dropped so a
+    // typo doesn't crash the preview.
+    const resolvedActions: NavbarActionLink[] = actions.map((a, i) => {
+      const iconNode: ReactNode | undefined = a.icon ? ICONS[a.icon] : undefined
+      return {
+        key: i,
+        label: a.label,
+        href: a.href ?? '#',
+        iconLeft: iconNode,
+        selected: a.selected,
+        external: a.external,
+        ariaLabel: a.ariaLabel ?? (a.label ? undefined : a.icon),
       }
-    >
-      {links.map((entry, i) => {
-        if (entry.type === 'dropdown') {
+    })
+
+    return (
+      <Navbar
+        colorMode={colorMode}
+        logo={logoSrc || undefined}
+        actions={resolvedActions}
+      >
+        {links.map((entry, i) => {
+          if (entry.type === 'dropdown') {
+            return (
+              <NavbarMenu
+                key={`${entry.label}-${i}`}
+                label={entry.label}
+                colorMode={colorMode}
+                dropdownColorMode={entry.dropdownColorMode ?? colorMode}
+                iconRight={<Chevron />}
+                rows={entry.rows}
+              />
+            )
+          }
           return (
-            <NavbarMenu
+            <NavItem
               key={`${entry.label}-${i}`}
-              label={entry.label}
+              orientation="horizontal"
               colorMode={colorMode}
-              dropdownColorMode={entry.dropdownColorMode ?? colorMode}
-              iconRight={<Chevron />}
-              rows={entry.rows}
+              label={entry.label}
+              selected={entry.selected}
             />
           )
-        }
-        return (
-          <NavItem
-            key={`${entry.label}-${i}`}
-            orientation="horizontal"
-            colorMode={colorMode}
-            label={entry.label}
-            selected={entry.selected}
-          />
-        )
-      })}
-    </Navbar>
-  ),
+        })}
+      </Navbar>
+    )
+  },
 }

@@ -17,6 +17,7 @@ import {
   SidebarItem,
   SidebarNestedItem,
   SidebarTier2Item,
+  type SidebarActionLink,
 } from '../Sidebar'
 import { NavbarMenu, type NavbarMenuProps } from './NavbarMenu'
 
@@ -39,6 +40,35 @@ export interface NavbarLogoConfig {
   width?: number | string
 }
 
+/**
+ * Declarative action-link config. Use this (or an array of these) on the
+ * `actions` prop when the right-aligned items are links whose data is
+ * dynamic (e.g. authored in a CMS, derived from auth state, etc.).
+ *
+ * Each entry renders as a horizontal `NavItem` inside the bar, and as a
+ * stacked Tier-2 `NavItem` inside the mobile drawer footer.
+ */
+export interface NavbarActionLink {
+  /** Visible label. Optional for icon-only links (pair with `ariaLabel`). */
+  label?: ReactNode
+  /** Link target. Defaults to `'#'`. */
+  href?: string
+  /** Leading icon. */
+  iconLeft?: ReactNode
+  /** Trailing icon. */
+  iconRight?: ReactNode
+  /** Marks the link as the active route (`aria-current="page"`). */
+  selected?: boolean
+  /** Click handler — receives the underlying anchor event. */
+  onClick?: (e: ReactMouseEvent<HTMLAnchorElement>) => void
+  /** When true, opens in a new tab with safe `rel`. */
+  external?: boolean
+  /** Optional stable React key (useful when reordering dynamically). */
+  key?: string | number
+  /** Accessible label, required for icon-only links. */
+  ariaLabel?: string
+}
+
 export interface NavbarProps extends HTMLAttributes<HTMLElement> {
   /**
    * Brand mark. Accepts:
@@ -49,8 +79,13 @@ export interface NavbarProps extends HTMLAttributes<HTMLElement> {
   logo?: ReactNode | NavbarLogoConfig | string
   /** Center-aligned navigation content (e.g. `NavItem`s, `NavbarMenu`s). */
   children?: ReactNode
-  /** Right-aligned content (icons, account, search, etc.). */
-  actions?: ReactNode
+  /**
+   * Right-aligned content. Accepts either:
+   *   - a `ReactNode` — full control (icons, account, search, etc.).
+   *   - a `NavbarActionLink[]` — declarative, dynamic list of links rendered
+   *     automatically as `NavItem`s in the bar and the mobile drawer.
+   */
+  actions?: ReactNode | NavbarActionLink[]
   /** Accessible label for the `<nav>` landmark. */
   ariaLabel?: string
   /** Light or dark surface. Defaults to `dark`. */
@@ -121,6 +156,76 @@ const renderLogo = (logo: NavbarProps['logo']): ReactNode => {
   // Already a ReactNode.
   return logo as ReactNode
 }
+
+/**
+ * True when `actions` is a config array (each entry is a plain object, not
+ * a React element). Plain arrays of React elements are still treated as a
+ * regular `ReactNode`.
+ */
+const isActionLinkArray = (
+  actions: NavbarProps['actions'],
+): actions is NavbarActionLink[] =>
+  Array.isArray(actions) &&
+  actions.every(
+    (a) => a !== null && typeof a === 'object' && !isValidElement(a),
+  )
+
+/**
+ * Render a list of `NavbarActionLink` configs as link anchors. Used for both
+ * the inline bar (horizontal) and the mobile drawer footer (vertical).
+ *
+ *  - **Icon-only** entries (no `label`) render as a bare `<a>` wrapping the
+ *    icon — mirrors the standalone `<Sidebar>` footer treatment so the
+ *    desktop bar, mobile drawer footer, and standalone Sidebar all show the
+ *    same centered icon row.
+ *  - **Labeled** entries render as full `NavItem` chrome (icon + text).
+ */
+const renderActionLinks = (
+  links: NavbarActionLink[],
+  colorMode: NavbarColorMode,
+  orientation: 'horizontal' | 'vertical',
+): ReactNode =>
+  links.map((link, i) => {
+    const key =
+      link.key ??
+      (typeof link.label === 'string' ? `${link.label}-${i}` : `action-${i}`)
+    const externalProps = link.external
+      ? ({ target: '_blank', rel: 'noopener noreferrer' } as const)
+      : null
+
+    if (!link.label) {
+      return (
+        <a
+          key={key}
+          className="ds-navbar__action-link"
+          href={link.href ?? '#'}
+          aria-label={link.ariaLabel}
+          aria-current={link.selected ? 'page' : undefined}
+          onClick={link.onClick}
+          {...externalProps}
+        >
+          {link.iconLeft ?? link.iconRight}
+        </a>
+      )
+    }
+
+    return (
+      <NavItem
+        key={key}
+        orientation={orientation}
+        hierarchy={orientation === 'vertical' ? 'tier-2' : 'tier-1'}
+        colorMode={colorMode}
+        label={link.label}
+        href={link.href ?? '#'}
+        iconLeft={link.iconLeft}
+        iconRight={link.iconRight}
+        selected={link.selected}
+        onClick={link.onClick}
+        aria-label={link.ariaLabel}
+        {...externalProps}
+      />
+    )
+  })
 
 /**
  * Convert a single navbar child (NavItem / NavbarMenu / arbitrary node) into a
@@ -218,6 +323,31 @@ export const Navbar = ({
   // Normalize the polymorphic logo once; reuse in both the bar + drawer.
   const logoNode = useMemo(() => renderLogo(logo), [logo])
 
+  // Resolve the polymorphic `actions` prop. We compute:
+  //   - `actionsBarNode`      -> ReactNode rendered inside the bar (horizontal NavItems).
+  //   - `actionsDrawerFooter` -> value forwarded straight to `Sidebar.footer`
+  //                              (config array OR ReactNode), so the mobile drawer
+  //                              uses the Sidebar component's *own* footer logic
+  //                              (icon-only entries become the bare-anchor icon row;
+  //                              labeled entries become Tier-2 NavItems).
+  //   - `hasActions`          -> truthy when there's anything to show.
+  // NavbarActionLink and SidebarActionLink are structurally identical, so the
+  // raw config array forwards cleanly to `Sidebar.footer`.
+  const { actionsBarNode, actionsDrawerFooter, hasActions } = useMemo(() => {
+    if (isActionLinkArray(actions)) {
+      return {
+        actionsBarNode: renderActionLinks(actions, colorMode, 'horizontal'),
+        actionsDrawerFooter: actions as SidebarActionLink[],
+        hasActions: actions.length > 0,
+      }
+    }
+    return {
+      actionsBarNode: actions as ReactNode,
+      actionsDrawerFooter: actions as ReactNode,
+      hasActions: Boolean(actions),
+    }
+  }, [actions, colorMode])
+
   // Lock body scroll while the drawer is open.
   useEffect(() => {
     if (!open) return
@@ -247,13 +377,13 @@ export const Navbar = ({
       <Sidebar
         colorMode={colorMode}
         logo={logoNode}
-        footer={actions}
+        footer={hasActions ? actionsDrawerFooter : undefined}
         ariaLabel="Mobile navigation"
       >
         {items}
       </Sidebar>
     )
-  }, [children, actions, logoNode, colorMode])
+  }, [children, actionsDrawerFooter, hasActions, logoNode, colorMode])
 
   const drawerContent = mobileMenu ?? autoDrawer
 
@@ -282,7 +412,9 @@ export const Navbar = ({
         <div className="ds-navbar__items" id={menuId} role="menubar">
           {children}
         </div>
-        {actions && <div className="ds-navbar__actions">{actions}</div>}
+        {hasActions && (
+          <div className="ds-navbar__actions">{actionsBarNode}</div>
+        )}
         <button
           type="button"
           className="ds-navbar__burger"

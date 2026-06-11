@@ -3,6 +3,7 @@ import {
   isValidElement,
   useState,
   type HTMLAttributes,
+  type MouseEvent as ReactMouseEvent,
   type ReactNode,
 } from 'react'
 import { NavItem, type NavItemProps } from '../NavItem'
@@ -18,18 +19,117 @@ import './Sidebar.scss'
 
 export type SidebarColorMode = 'light' | 'dark'
 
+/**
+ * Declarative action-link config. Use this (or an array of these) on the
+ * `footer` prop when the bottom action items are links whose data is
+ * dynamic (e.g. authored in a CMS, derived from auth state, etc.).
+ *
+ * Each entry renders as a Tier-2 `NavItem` inside the sidebar footer.
+ */
+export interface SidebarActionLink {
+  /** Visible label. Optional for icon-only links (pair with `ariaLabel`). */
+  label?: ReactNode
+  /** Link target. Defaults to `'#'`. */
+  href?: string
+  /** Leading icon. */
+  iconLeft?: ReactNode
+  /** Trailing icon. */
+  iconRight?: ReactNode
+  /** Marks the link as the active route (`aria-current="page"`). */
+  selected?: boolean
+  /** Click handler — receives the underlying anchor event. */
+  onClick?: (e: ReactMouseEvent<HTMLAnchorElement>) => void
+  /** When true, opens in a new tab with safe `rel`. */
+  external?: boolean
+  /** Optional stable React key (useful when reordering dynamically). */
+  key?: string | number
+  /** Accessible label, required for icon-only links. */
+  ariaLabel?: string
+}
+
 export interface SidebarProps extends HTMLAttributes<HTMLElement> {
   /** Brand mark / logo rendered at the top of the card. */
   logo?: ReactNode
   /** Body content — typically SidebarItem / SidebarCategory / SidebarDivider. */
   children?: ReactNode
-  /** Footer slot (e.g. action icons). Rendered pinned to the bottom. */
-  footer?: ReactNode
+  /**
+   * Footer slot pinned to the bottom. Accepts either:
+   *   - a `ReactNode` — full control (icons, account chip, etc.).
+   *   - a `SidebarActionLink[]` — declarative, dynamic list of links rendered
+   *     automatically as Tier-2 `NavItem`s.
+   */
+  footer?: ReactNode | SidebarActionLink[]
   /** Accessible label for the `<aside>` landmark. */
   ariaLabel?: string
   /** Light or dark surface. */
   colorMode?: SidebarColorMode
 }
+
+/**
+ * True when `footer` is a config array (each entry is a plain object, not a
+ * React element). Plain arrays of React elements are still treated as a
+ * regular `ReactNode`.
+ */
+const isFooterLinkArray = (
+  footer: SidebarProps['footer'],
+): footer is SidebarActionLink[] =>
+  Array.isArray(footer) &&
+  footer.every(
+    (a) => a !== null && typeof a === 'object' && !isValidElement(a),
+  )
+
+/** Render a list of `SidebarActionLink` configs as footer entries.
+ *
+ *  - **Icon-only** entries (no `label`) render as a bare `<a>` wrapping the
+ *    icon, so the existing `.ds-sidebar__footer` styling (centered horizontal
+ *    row of raw icons) is preserved exactly as before.
+ *  - **Labeled** entries fall back to a Tier-2 `NavItem` (full chrome).
+ */
+const renderFooterLinks = (
+  links: SidebarActionLink[],
+  colorMode: SidebarColorMode,
+): ReactNode =>
+  links.map((link, i) => {
+    const key =
+      link.key ??
+      (typeof link.label === 'string' ? `${link.label}-${i}` : `action-${i}`)
+    const externalProps = link.external
+      ? ({ target: '_blank', rel: 'noopener noreferrer' } as const)
+      : null
+
+    if (!link.label) {
+      return (
+        <a
+          key={key}
+          className="ds-sidebar__footer-link"
+          href={link.href ?? '#'}
+          aria-label={link.ariaLabel}
+          aria-current={link.selected ? 'page' : undefined}
+          onClick={link.onClick}
+          {...externalProps}
+        >
+          {link.iconLeft ?? link.iconRight}
+        </a>
+      )
+    }
+
+    return (
+      <NavItem
+        key={key}
+        orientation="vertical"
+        hierarchy="tier-2"
+        colorMode={colorMode}
+        label={link.label}
+        href={link.href ?? '#'}
+        iconLeft={link.iconLeft}
+        iconRight={link.iconRight}
+        selected={link.selected}
+        onClick={link.onClick}
+        aria-label={link.ariaLabel}
+        {...externalProps}
+      />
+    )
+  })
 
 export const Sidebar = ({
   logo,
@@ -44,11 +144,20 @@ export const Sidebar = ({
     .filter(Boolean)
     .join(' ')
 
+  // Resolve the polymorphic `footer` prop. Config arrays become a stack of
+  // Tier-2 NavItems; ReactNodes pass through untouched.
+  const footerNode = isFooterLinkArray(footer)
+    ? renderFooterLinks(footer, colorMode)
+    : (footer as ReactNode)
+  const hasFooter = isFooterLinkArray(footer)
+    ? footer.length > 0
+    : Boolean(footer)
+
   return (
     <aside className={classes} aria-label={ariaLabel} {...props}>
       {logo && <div className="ds-sidebar__logo">{logo}</div>}
       <nav className="ds-sidebar__nav">{children}</nav>
-      {footer && <div className="ds-sidebar__footer">{footer}</div>}
+      {hasFooter && <div className="ds-sidebar__footer">{footerNode}</div>}
     </aside>
   )
 }
