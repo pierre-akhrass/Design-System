@@ -87,7 +87,7 @@ const pins: MapPin[] = [
 ]
 
 const meta: Meta<typeof Map> = {
-  title: 'Components/Map',
+  title: 'Map/Map',
   component: Map,
   tags: ['autodocs'],
   parameters: {

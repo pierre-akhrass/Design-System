@@ -1,0 +1,442 @@
+// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Map/MapBlock.scss
+@use '../../styles/tokens/variables' as *;
+
+// -----------------------------------------------------------------------------
+// MapBlock
+//
+// Hero-style city / area map surface.
+//
+// DOM layout:
+//   .ds-map-block               // viewport — clips, captures pointer events
+//     .ds-map-block__surface    // transformed layer (translate + scale)
+//       .ds-map-block__label    // labels live in surface so they pan/zoom
+//     .ds-map-block__header     // pinned (outside transform)
+//     .ds-map-block__search     // pinned overlay shown when search is open
+//     .ds-map-block__controls   // pinned floating right rail
+//
+// Responsive:
+//   ≤ 1024px (tablet) : tighter padding, slightly smaller title, controls
+//                       shrink, label sub-text + connectors stay legible.
+//   ≤ 640px  (mobile) : header collapses to a stack at the top, controls move
+//                       to a horizontal rail at the bottom-right, label
+//                       sub-text hidden so the surface stays uncluttered.
+// -----------------------------------------------------------------------------
+
+.ds-map-block {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 360px;
+  padding: $padding-container-l;
+  border-radius: $radius-large;
+  overflow: hidden;          // clip the panned/zoomed surface
+  background-color: $mapping-system-slate-background-secondary;
+  box-sizing: border-box;
+  font-family: $ui-font-family;
+  // Default interaction affordance: grab cursor + disable native gestures
+  // so wheel-zoom + drag-pan don't fight with the page scroll.
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.ds-map-block--dragging {
+  cursor: grabbing;
+}
+
+/* ---------- Transformed surface ---------- */
+// The map background and every label live here. The transform (translate +
+// scale) is applied inline from React so JS owns the single source of truth.
+.ds-map-block__surface {
+  position: absolute;
+  inset: 0;
+  // Background-image properties are inlined from React (so we can pass the
+  // dynamic `mapImage` URL); just make sure the layer doesn't peek out.
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  will-change: transform;
+}
+
+/* ---------- modes ---------- */
+.ds-map-block--mode-dark {
+  color: $mapping-system-slate-text-on-primary;
+  // Subtle bottom-to-top scrim so the header text stays legible over the map.
+  // Sits *above* the panning surface but *below* the header/controls.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 31, 46, 0.55) 0%,
+      rgba(20, 31, 46, 0) 45%
+    );
+    z-index: 1;
+  }
+}
+.ds-map-block--mode-light {
+  color: $mapping-system-slate-text-primary;
+}
+
+/* ---------- Header (top-left) ---------- */
+.ds-map-block__header {
+  position: absolute;
+  top: $padding-container-l;
+  left: $padding-container-l;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+  max-width: 60%;
+  // Header text shouldn't intercept drag-to-pan starts.
+  pointer-events: none;
+}
+
+.ds-map-block__category {
+  // Label/medium/strong — 14/150% / tracking-1, weight 600, default text color.
+  font-family: $ui-font-family;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.5;
+  letter-spacing: $letter-spacing-tracking-1;
+  color: var(--sds-color-text-default-default);
+  #{'leading-trim'}: both;
+  #{'text-edge'}: cap;
+}
+
+.ds-map-block__title {
+  // Heading/H2 — 48/120% / tracking-5 (-2px), bold, secondary text color.
+  margin: 0;
+  font-family: $heading-font-family;
+  font-size: 48px;
+  font-style: normal;
+  font-weight: $heading-font-weight-bold;
+  line-height: 1.2;
+  letter-spacing: $letter-spacing-tracking-5;
+  color: #ECECEC; // explicit per design spec (was --sds-color-text-default-secondary)
+  font-feature-settings: 'case' on;
+}
+
+/* ---------- Location labels ---------- */
+// Each label is an absolutely-positioned <button> inside the surface, so it
+// pans/zooms with the map image. We *counter-scale* the inner pill (via the
+// CSS custom property `--ds-map-zoom`) so the pill text stays the same
+// screen size no matter how far the user has zoomed in. Connector length
+// is also divided by zoom so it visually scales the same way.
+.ds-map-block__label {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  z-index: 3;
+  // Tap-target padding without altering the visible pill.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -8px;
+  }
+}
+
+.ds-map-block__label--hidden {
+  display: none;
+}
+
+.ds-map-block__label-pill {
+  // Main label (e.g. "Zabeel Park"). Sub-hint sits ABOVE; connector below.
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(20, 31, 46, 0.65);
+  color: $mapping-system-slate-text-on-primary;
+  font-family: $ui-font-family;
+  font-size: 12px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.4;
+  white-space: nowrap;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: background-color 0.15s ease, transform 0.15s ease;
+  // Counter-scale so the pill text stays the same screen size regardless
+  // of the surface zoom level.
+  transform: scale(calc(1 / var(--ds-map-zoom, 1)));
+  transform-origin: 50% 100%;
+}
+
+.ds-map-block__label:hover .ds-map-block__label-pill,
+.ds-map-block__label--active .ds-map-block__label-pill {
+  background: rgba(20, 31, 46, 0.85);
+  transform: scale(calc(1 / var(--ds-map-zoom, 1))) translateY(-1px);
+}
+
+.ds-map-block__label-sub {
+  // Now rendered ABOVE the pill (small hint like "11 min drive"). The bottom
+  // edge of the sub touches the top edge of the pill, so we scale from the
+  // bottom (origin 50% 100%) to keep them visually attached at any zoom.
+  margin-bottom: 2px;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.3;
+  color: currentColor;
+  opacity: 0.85;
+  transform: scale(calc(1 / var(--ds-map-zoom, 1)));
+  transform-origin: 50% 100%;
+}
+
+// Thin connector line dropping from the pill toward the marker point.
+.ds-map-block__label-connector {
+  display: block;
+  width: 1px;
+  height: 18px;
+  margin-top: 2px;
+  background: currentColor;
+  opacity: 0.5;
+  transform: scale(calc(1 / var(--ds-map-zoom, 1)));
+  transform-origin: 50% 0;
+}
+
+.ds-map-block__label:focus-visible {
+  outline: none;
+  .ds-map-block__label-pill {
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+/* ---------- Search overlay ---------- */
+.ds-map-block__search {
+  position: absolute;
+  top: $padding-container-s;
+  right: calc(#{$padding-container-s} + 44px + #{$gap-s});
+  left: $padding-container-l;
+  max-width: 360px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: $gap-2xs;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.95);
+  color: $mapping-system-slate-text-primary;
+  border-radius: $radius-medium;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  cursor: text;
+
+  input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    font-size: 14px;
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: $mapping-system-slate-text-secondary;
+  }
+}
+
+.ds-map-block__search-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  border-radius: $radius-small;
+  cursor: pointer;
+  &:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+/* ---------- Floating right-side control rail ---------- */
+.ds-map-block__controls {
+  position: absolute;
+  top: 50%;
+  right: $padding-container-s;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 44px;
+  padding: 6px 0;
+  background: rgba(20, 31, 46, 0.85);
+  color: $mapping-system-slate-text-on-primary;
+  border-radius: $radius-medium;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  z-index: 6;
+  cursor: default;
+}
+
+.ds-map-block__control-group {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ds-map-block__control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  &[aria-pressed='true'] {
+    background: rgba(255, 255, 255, 0.14);
+  }
+}
+
+.ds-map-block__control-divider {
+  height: 1px;
+  margin: 0 10px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- Light-mode control surface ---------- */
+.ds-map-block--mode-light {
+  .ds-map-block__label-pill {
+    background: rgba(255, 255, 255, 0.9);
+    color: $mapping-system-slate-text-primary;
+  }
+  .ds-map-block__controls {
+    background: rgba(255, 255, 255, 0.95);
+    color: $mapping-system-slate-text-primary;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .ds-map-block__control:hover:not(:disabled) {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  .ds-map-block__control[aria-pressed='true'] {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  .ds-map-block__control-divider {
+    background: rgba(0, 0, 0, 0.08);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .ds-map-block {
+    padding: $padding-container-s;
+    min-height: 320px;
+  }
+  .ds-map-block__header {
+    top: $padding-container-s;
+    left: $padding-container-s;
+    max-width: 70%;
+    gap: 4px;
+  }
+  .ds-map-block__title {
+    font-size: 36px;
+    letter-spacing: $letter-spacing-tracking-2;
+  }
+  .ds-map-block__controls {
+    right: $padding-container-xs;
+    width: 40px;
+  }
+  .ds-map-block__control {
+    height: 40px;
+  }
+  .ds-map-block__search {
+    top: $padding-container-xs;
+    left: $padding-container-s;
+    right: calc(#{$padding-container-xs} + 40px + #{$gap-s});
+  }
+}
+
+@media (max-width: 640px) {
+  .ds-map-block {
+    aspect-ratio: auto;
+    min-height: 380px;
+    padding: $padding-container-xs;
+    border-radius: $radius-medium;
+  }
+  .ds-map-block__header {
+    position: static;
+    max-width: 100%;
+    margin-bottom: $gap-s;
+  }
+  .ds-map-block__title {
+    font-size: 28px;
+    letter-spacing: $letter-spacing-tracking-2;
+  }
+  // Hide the sub-line on mobile so the surface stays clean; the pill alone
+  // still communicates which point is which.
+  .ds-map-block__label-sub {
+    display: none;
+  }
+  // Move the control rail to a horizontal stack pinned to the bottom-right
+  // so it doesn't collide with the larger header on small screens.
+  .ds-map-block__controls {
+    top: auto;
+    bottom: $padding-container-xs;
+    right: $padding-container-xs;
+    transform: none;
+    flex-direction: row;
+    width: auto;
+    height: 40px;
+    padding: 0 6px;
+    align-items: center;
+  }
+  .ds-map-block__control-group {
+    flex-direction: row;
+    align-items: center;
+  }
+  .ds-map-block__control {
+    width: 40px;
+    height: 40px;
+  }
+  // Vertical divider between horizontal controls on mobile.
+  .ds-map-block__control-divider {
+    width: 1px;
+    height: 20px;
+    margin: 0 6px;
+  }
+  // Search overlay drops into the natural flow on mobile so it doesn't
+  // overlap the header.
+  .ds-map-block__search {
+    position: static;
+    max-width: none;
+    margin-bottom: $gap-s;
+  }
+}

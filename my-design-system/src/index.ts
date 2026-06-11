@@ -63,3 +63,14 @@ export type {
   MegaMenuCardConfig,
   MegaMenuCardAction,
 } from './components/MegaMenu'
+export { Map, MapBlock } from './components/Map'
+export type {
+  MapProps,
+  MapMode,
+  MapPin,
+  MapFilterOption,
+  MapBlockProps,
+  MapBlockMode,
+  MapBlockLabel,
+  MapBlockControl,
+} from './components/Map'
