@@ -1,0 +1,87 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories } from '@storybook/addon-docs/blocks'
+import * as SocialMediaPostStories from './SocialMediaPost.stories'
+
+<Meta of={SocialMediaPostStories} name="Docs" />
+
+<Title>Social Media Post</Title>
+<Subtitle>A reusable card template for previewing platform-specific social posts in a consistent visual language.</Subtitle>
+
+## Overview
+
+`SocialMediaPost` renders a single content card branded for one of five supported platforms (Facebook, Instagram, TikTok, YouTube, X) and three content types (`image`, `video`, `text`). Both `light` and `dark` themes are first-class citizens.
+
+## How it was built
+
+### 1. Anatomy
+
+```tsx
+<article class="ds-social-media-post ds-social-media-post--{theme} ds-social-media-post--{platform} ds-social-media-post--{type}">
+  <div class="ds-social-media-post__badge"> {/* platform glyph */} </div>
+
+  {/* one of these three blocks based on `type` */}
+  <div class="ds-social-media-post__media ds-social-media-post__media--image">…</div>
+  <div class="ds-social-media-post__media ds-social-media-post__media--video">…</div>
+  <div class="ds-social-media-post__media ds-social-media-post__media--text">…</div>
+</article>
+```
+
+### 2. Public API
+
+```ts
+type SocialMediaPostPlatform = 'facebook' | 'instagram' | 'tiktok' | 'youtube' | 'x'
+type SocialMediaPostType     = 'image' | 'video' | 'text'
+
+interface SocialMediaPostProps extends HTMLAttributes<HTMLElement> {
+  theme?:      'light' | 'dark'
+  platform:    SocialMediaPostPlatform
+  type?:       SocialMediaPostType
+  image?:      string                       // optional cover image
+  imageAlt?:   string
+  caption?:    ReactNode                    // dark caption strip (Facebook-style)
+  text?:       ReactNode                    // X / text-card body
+  hashtags?:   ReactNode                    // X / text-card footer
+  pagination?: { current; total; onPrev; onNext }   // Instagram-style chip
+}
+```
+
+### 3. Platform icons
+
+The five SVGs are inlined as small functional components and use `stroke="currentColor"` outline-only paths. They inherit color from `--ds-smp-badge-fg`, which itself flips between themes — so the same icon source automatically adapts to light/dark backgrounds.
+
+### 4. Tokens used
+
+| Concern | Token |
+|---|---|
+| Card surface | `$mapping-system-slate-surface-tertiary` (light) / `$mapping-system-slate-background-primary` (dark) |
+| Card text | `$mapping-system-slate-text-primary` / `$mapping-system-slate-text-on-primary` |
+| Text-card invert | `$mapping-system-slate-background-primary` ↔ `$mapping-system-slate-surface-tertiary` |
+| Caption strip | `$mapping-system-slate-background-primary` |
+| Pagination chip | `$mapping-system-slate-background-primary` / surface-primary |
+| Radius | `$radius-medium`, `$radius-small`, `$radius-full` |
+
+### 5. Theming via CSS variables
+
+Each card scopes its own CSS custom properties. The dark modifier simply reassigns them, e.g.
+
+```scss
+.ds-social-media-post--dark {
+  --ds-smp-card-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-card-fg: #{$mapping-system-slate-text-on-primary};
+}
+```
+
+### 6. Accessibility
+
+- Renders a semantic `<article>`
+- Platform badge has `aria-label` set to the human-readable platform name
+- Pagination uses real `<button>`s with `aria-label="Previous" / "Next"`
+- Decorative SVGs are `aria-hidden`
+
+## Playground
+
+<Primary />
+<Controls />
+
+## All stories
+
+<Stories />

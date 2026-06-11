@@ -53,8 +53,45 @@ const renderSlides = (count = 6) =>
     <CarouselSlide key={index} aria-label={`Slide ${index + 1}`} />
   ))
 
+interface ShowcaseProps {
+  theme?: 'light' | 'dark'
+  showNavigation?: boolean
+  showFade?: boolean
+  prevLabel?: string
+  nextLabel?: string
+  slideCount?: number
+}
+
+const Showcase = ({
+  theme = 'light',
+  showNavigation,
+  showFade,
+  prevLabel,
+  nextLabel,
+  slideCount = 6,
+}: ShowcaseProps) => (
+  <div style={getPageStyle(theme)}>
+    <header style={headerStyle}>
+      <div style={breadcrumbStyle}>Foundation / Carousel</div>
+      <h1 style={titleStyle}>
+        Carousel{theme === 'dark' ? ': Dark' : ''}
+      </h1>
+      <p style={descriptionStyle}>{description}</p>
+    </header>
+    <Carousel
+      theme={theme}
+      showNavigation={showNavigation}
+      showFade={showFade}
+      prevLabel={prevLabel}
+      nextLabel={nextLabel}
+    >
+      {renderSlides(slideCount)}
+    </Carousel>
+  </div>
+)
+
 const meta: Meta<typeof Carousel> = {
-  title: 'Components/Carousel',
+  title: 'Components/Carousel/Playground',
   component: Carousel,
   parameters: {
     layout: 'fullscreen',
@@ -76,6 +113,45 @@ const meta: Meta<typeof Carousel> = {
     prevLabel: { control: 'text' },
     nextLabel: { control: 'text' },
   },
+  render: (args) => <Showcase {...args} />,
+}
+
+export default meta
+
+type Story = StoryObj<typeof Carousel>
+
+export const Light: Story = {
+  args: { theme: 'light' },
+}
+
+export const Dark: Story = {
+  args: { theme: 'dark' },
+}
+
+export const PlainSlides: Story = {
+  name: 'Plain (no docs header)',
+  render: (args) => (
+    <div style={getPageStyle(args.theme)}>
+      <Carousel {...args}>{renderSlides(8)}</Carousel>
+    </div>
+  ),
+}
+
+export const WithoutNavigation: Story = {
+  args: { showNavigation: false },
+  render: (args) => <Showcase {...args} slideCount={8} />,
+}
+
+export const WithoutFade: Story = {
+  args: { showFade: false },
+  render: (args) => <Showcase {...args} slideCount={8} />,
+}
+
+export const FewSlides: Story = {
+  render: (args) => <Showcase {...args} slideCount={3} />,
+}
+
+export const CustomContent: Story = {
   render: (args) => (
     <div style={getPageStyle(args.theme)}>
       <header style={headerStyle}>
@@ -85,21 +161,13 @@ const meta: Meta<typeof Carousel> = {
         </h1>
         <p style={descriptionStyle}>{description}</p>
       </header>
-      <Carousel {...args}>{renderSlides(6)}</Carousel>
+      <Carousel {...args}>
+        {Array.from({ length: 6 }, (_, index) => (
+          <CarouselSlide key={index} style={{ fontWeight: 600 }}>
+            Slide {index + 1}
+          </CarouselSlide>
+        ))}
+      </Carousel>
     </div>
   ),
-}
-
-export default meta
-
-type Story = StoryObj<typeof Carousel>
-
-export const Default: Story = {
-  args: {
-    theme: 'light',
-    showNavigation: true,
-    showFade: true,
-    prevLabel: 'Prev',
-    nextLabel: 'Next',
-  },
 }

@@ -7,35 +7,41 @@ import './styles/global.scss'
 export { Button } from './components/Button'
 export type { ButtonProps, ButtonState, ButtonVariant } from './components/Button'
 
-export { Avatar, AvatarGroup, AvatarBlock } from './components/Avatar'
-export type { AvatarProps, AvatarType, AvatarSize, AvatarGroupProps, AvatarGroupSpacing, AvatarBlockProps } from './components/Avatar'
-
-export { Illustration } from './components/Illustration'
-export type { IllustrationProps, IllustrationName, IllustrationSize } from './components/Illustration'
-
-export { Media, VideoPlayer, VideoGallery } from './components/Media'
-export type { MediaProps, MediaRatio, VideoPlayerProps, VideoGalleryProps, VideoItem } from './components/Media'
-
-export { Form, FormField, FormInput, FormSelect, FormTextarea, FormCheckbox, FormTextLink, FormActions } from './components/Form'
+export { Carousel, CarouselSlide } from './components/Carousel'
 export type {
-	FormProps,
-	FormTheme,
-	FormControlState,
-	FormFieldProps,
-	FormInputProps,
-	FormTextareaProps,
-	FormSelectOption,
-	FormSelectProps,
-	FormCheckboxProps,
-	FormTextLinkProps,
-	FormActionsProps,
-} from './components/Form'
+  CarouselProps,
+  CarouselSlideProps,
+  CarouselTheme,
+} from './components/Carousel'
 
-export { Footer } from './components/Footer'
-export type { FooterProps, FooterNewsletterProps, FooterNavColumn, FooterLink, OpeningHourGroup, OpeningHourRow, SocialLink, SocialPlatform } from './components/Footer'
+export { SocialMediaPost } from './components/SocialMediaPost'
+export type {
+  SocialMediaPostPagination,
+  SocialMediaPostPlatform,
+  SocialMediaPostProps,
+  SocialMediaPostTheme,
+  SocialMediaPostType,
+} from './components/SocialMediaPost'
 
-export { Tag } from './components/Tag'
-export type { TagProps, TagState, TagTheme } from './components/Tag'
+export { List, ListItem } from './components/List'
+export type {
+  ListItemProps,
+  ListItemVariant,
+  ListProps,
+  ListTheme,
+} from './components/List'
 
-export { Tooltip } from './components/Tooltip'
-export type { TooltipProps, TooltipPlacement, TooltipTheme } from './components/Tooltip'
+export {
+  Search,
+  SearchTabs,
+  SearchTab,
+  SearchResults,
+} from './components/Search'
+export type {
+  SearchProps,
+  SearchSize,
+  SearchTheme,
+  SearchTabsProps,
+  SearchTabProps,
+  SearchResultsProps,
+} from './components/Search'

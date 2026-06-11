@@ -1,26 +1,33 @@
 @use '../../styles/tokens/variables' as *;
 
 .ds-carousel {
-  --ds-carousel-bg: #{$mapping-system-slate-surface-primary};
   --ds-carousel-fg: #{$mapping-system-slate-text-primary};
-  --ds-carousel-slide-bg: #{$mapping-system-slate-surface-secondary};
-  --ds-carousel-fade: #{$mapping-system-slate-surface-primary};
+  --ds-carousel-slide-bg: var(
+    --sds-color-background-default-secondary,
+    #{$mapping-system-slate-surface-secondary}
+  );
+  --ds-carousel-fade: var(
+    --sds-color-background-default-secondary,
+    #{$mapping-system-slate-surface-primary}
+  );
   --ds-carousel-button-hover: #{$mapping-system-black-200};
 
-  background-color: var(--ds-carousel-bg);
-  border-radius: $radius-large;
   color: var(--ds-carousel-fg);
   font-family: $ui-font-family;
-  padding: $padding-container-l;
   position: relative;
   width: 100%;
 }
 
 .ds-carousel--dark {
-  --ds-carousel-bg: #{$mapping-system-slate-background-primary};
   --ds-carousel-fg: #{$mapping-system-slate-text-on-primary};
-  --ds-carousel-slide-bg: #{$mapping-system-slate-background-secondary};
-  --ds-carousel-fade: #{$mapping-system-slate-background-primary};
+  --ds-carousel-slide-bg: var(
+    --sds-color-background-default-secondary,
+    #{$mapping-system-slate-background-secondary-hover}
+  );
+  --ds-carousel-fade: var(
+    --sds-color-background-default-secondary,
+    #{$mapping-system-slate-background-primary}
+  );
   --ds-carousel-button-hover: #{$mapping-system-white-200};
 }
 
@@ -29,13 +36,13 @@
 }
 
 .ds-carousel__track {
+  align-items: center;
   display: flex;
-  gap: $gap-s;
+  gap: 10px;
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-block: $space-100;
 
   &::-webkit-scrollbar {
     display: none;
@@ -47,10 +54,17 @@
 }
 
 .ds-carousel__slide {
+  align-items: center;
   background-color: var(--ds-carousel-slide-bg);
-  border-radius: $radius-medium;
-  height: 200px;
-  width: 200px;
+  display: flex;
+  flex: 0 0 248px;
+  flex-shrink: 0;
+  gap: 10px;
+  height: 248px;
+  justify-content: center;
+  max-height: 248px;
+  min-height: 248px;
+  width: 248px;
 }
 
 .ds-carousel__fade {
@@ -71,7 +85,7 @@
 .ds-carousel__fade--start {
   background: linear-gradient(
     to right,
-    var(--ds-carousel-bg) 0%,
+    var(--ds-carousel-fade) 0%,
     rgba(0, 0, 0, 0) 100%
   );
   left: 0;
@@ -80,7 +94,7 @@
 .ds-carousel__fade--end {
   background: linear-gradient(
     to left,
-    var(--ds-carousel-bg) 0%,
+    var(--ds-carousel-fade) 0%,
     rgba(0, 0, 0, 0) 100%
   );
   right: 0;
@@ -130,4 +144,18 @@
 
 .ds-carousel__button-label {
   line-height: 1;
+}
+
+@media (max-width: 600px) {
+  .ds-carousel__slide {
+    flex: 0 0 240px;
+    height: 240px;
+    max-height: 240px;
+    min-height: 240px;
+    width: 240px;
+  }
+
+  .ds-carousel__button-label {
+    display: none;
+  }
 }

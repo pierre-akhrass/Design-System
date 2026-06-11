@@ -1,0 +1,172 @@
+import { Meta, Title, Subtitle, Primary, Controls, Stories } from '@storybook/addon-docs/blocks'
+import * as SearchStories from './Search.stories'
+
+<Meta of={SearchStories} name="Docs" />
+
+<Title>Search</Title>
+<Subtitle>An expanded search pattern with input, category tabs, count chips, a filter button, and a results list — built from four small composable primitives.</Subtitle>
+
+## Overview
+
+`Search` is the entry surface for discovery flows. It can be used three ways depending on how much context the page needs:
+
+| Use case | Composition |
+|---|---|
+| Inline field | `<Search />` — just the input + clear link |
+| Filtered results | `<Search>` + `<SearchTabs>` + `<SearchResults>` |
+| Custom layout | Mix the primitives freely with any children |
+
+Both `light` and `dark` themes and two sizes (`default`, `compact`) are first-class. The component is intentionally headless about *what* the results are: it pairs naturally with `<ListItem variant="card">`, but you can drop in any element.
+
+## How it was built
+
+### 1. Anatomy
+
+```tsx
+<div class="ds-search ds-search--{theme} ds-search--{size}">
+  <div class="ds-search__bar">
+    <span class="ds-search__icon">{/* magnifier */}</span>
+    <input class="ds-search__input" type="search" />
+    <button class="ds-search__clear">Clear Search</button>
+  </div>
+
+  {/* optional */}
+  <div class="ds-search__tabs">
+    <div class="ds-search__tabs-list" role="tablist">
+      <button class="ds-search__tab [ds-search__tab--active]" role="tab">
+        <span class="ds-search__tab-label">{label}</span>
+        <span class="ds-search__tab-count">{count}</span>
+      </button>
+      …
+    </div>
+    <button class="ds-search__filter" aria-label="Filter">{/* sliders */}</button>
+  </div>
+
+  {/* optional */}
+  <div class="ds-search__results">
+    {/* any children, typically <ListItem variant="card" /> */}
+  </div>
+</div>
+```
+
+### 2. Public API
+
+```ts
+type SearchTheme = 'light' | 'dark'
+type SearchSize  = 'default' | 'compact'
+
+interface SearchProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+  theme?:          SearchTheme   // default 'light'
+  size?:           SearchSize    // default 'default'
+  placeholder?:    string        // default 'Search for something'
+  value?:          string        // controlled
+  defaultValue?:   string        // uncontrolled
+  showClear?:      boolean       // default true
+  clearLabel?:     string        // default 'Clear Search'
+  onValueChange?:  (value: string) => void
+  onClear?:        () => void
+  inputProps?:     InputHTMLAttributes<HTMLInputElement>
+  children?:       ReactNode     // SearchTabs, SearchResults, …
+}
+
+interface SearchTabsProps extends HTMLAttributes<HTMLDivElement> {
+  activeIndex?:   number          // default 0
+  onTabChange?:   (index: number) => void
+  filterIcon?:    ReactNode       // override sliders icon
+  onFilterClick?: () => void
+  showFilter?:    boolean         // default true
+}
+
+interface SearchTabProps extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
+  label:    ReactNode
+  count?:   number | string       // shown as a pill chip
+  active?:  boolean               // managed by SearchTabs
+  onClick?: () => void
+}
+
+interface SearchResultsProps extends HTMLAttributes<HTMLDivElement> {
+  children?: ReactNode
+}
+```
+
+`SearchTabs` clones each `<SearchTab>` child to inject `active` and `onClick`, so consumers only have to track a single `activeIndex` value.
+
+### 3. Composition examples
+
+```tsx
+{/* Plain field */}
+<Search theme="light" />
+
+{/* Field + clear */}
+<Search
+  value={query}
+  onValueChange={setQuery}
+  onClear={() => setQuery('')}
+/>
+
+{/* Field + tabs + results */}
+<Search>
+  <SearchTabs activeIndex={tab} onTabChange={setTab}>
+    <SearchTab label="All"      count={42} />
+    <SearchTab label="Articles" count={18} />
+    <SearchTab label="Videos"   count={6}  />
+  </SearchTabs>
+
+  <SearchResults>
+    {hits.map((hit) => (
+      <ListItem
+        key={hit.id}
+        variant="card"
+        label={hit.title}
+        description={hit.summary}
+      />
+    ))}
+  </SearchResults>
+</Search>
+```
+
+### 4. Tokens used
+
+| Concern | Token |
+|---|---|
+| Foreground | `$mapping-system-slate-text-primary` / `-on-primary` |
+| Muted text | `$mapping-system-slate-text-secondary` (light) / `rgba(255,255,255,0.55)` (dark) |
+| Placeholder | `rgba(0,0,0,0.45)` (light) / `rgba(255,255,255,0.45)` (dark) |
+| Bar / tabs divider | `$mapping-system-slate-border-tertiary` / `-background-secondary` |
+| Active tab underline | `$mapping-system-slate-text-primary` / `-on-primary` |
+| Count chip surface | `$mapping-system-slate-surface-tertiary` / `-background-secondary` |
+| Radius | `$radius-small`, `$radius-full` (chip) |
+
+### 5. Theming via CSS variables
+
+The whole component scopes a small set of custom properties on `.ds-search`. The dark modifier reassigns them — every nested part (input, tabs, chips, filter) picks up the change automatically:
+
+```scss
+.ds-search--dark {
+  --ds-search-fg:              #{$mapping-system-slate-text-on-primary};
+  --ds-search-fg-muted:        rgba(255, 255, 255, 0.55);
+  --ds-search-placeholder:     rgba(255, 255, 255, 0.45);
+  --ds-search-border:          #{$mapping-system-slate-background-secondary};
+  --ds-search-tab-active-bar:  #{$mapping-system-slate-text-on-primary};
+  --ds-search-chip-bg:         #{$mapping-system-slate-background-secondary};
+}
+```
+
+The `--compact` size modifier shrinks padding, font sizes, and chip dimensions in one place so the same markup re-renders denser without any prop drilling.
+
+### 6. Accessibility
+
+- Real `<input type="search">` so password managers, screen readers, and clear-on-Esc all behave correctly
+- Tabs row is `role="tablist"` with each tab as `role="tab"` and `aria-selected` reflecting the active index
+- Filter button is icon-only with `aria-label="Filter"`
+- Decorative SVGs (magnifier, sliders) are `aria-hidden`
+- The Clear Search action is a real `<button>` so it's keyboard-reachable and announced
+
+## Playground
+
+<Primary />
+<Controls />
+
+## All stories
+
+<Stories />
