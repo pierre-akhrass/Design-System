@@ -82,6 +82,11 @@
   > .ds-nav-item--tier-1 {
     width: 100%;
     justify-content: flex-start;
+    // Push the trailing chevron (or any other iconRight) to the far right
+    // edge of the row so it sits flush with the container.
+    > .ds-nav-item__icon--right {
+      margin-left: auto;
+    }
   }
 }
 
