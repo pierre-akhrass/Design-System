@@ -16,6 +16,21 @@ export type { IllustrationProps, IllustrationName, IllustrationSize } from './co
 export { Media, VideoPlayer, VideoGallery } from './components/Media'
 export type { MediaProps, MediaRatio, VideoPlayerProps, VideoGalleryProps, VideoItem } from './components/Media'
 
+export { Form, FormField, FormInput, FormSelect, FormTextarea, FormCheckbox, FormTextLink, FormActions } from './components/Form'
+export type {
+	FormProps,
+	FormTheme,
+	FormControlState,
+	FormFieldProps,
+	FormInputProps,
+	FormTextareaProps,
+	FormSelectOption,
+	FormSelectProps,
+	FormCheckboxProps,
+	FormTextLinkProps,
+	FormActionsProps,
+} from './components/Form'
+
 export { Footer } from './components/Footer'
 export type { FooterProps, FooterNewsletterProps, FooterNavColumn, FooterLink, OpeningHourGroup, OpeningHourRow, SocialLink, SocialPlatform } from './components/Footer'
 
