@@ -39,3 +39,17 @@ export type { TagProps, TagState, TagTheme } from './components/Tag'
 
 export { Tooltip } from './components/Tooltip'
 export type { TooltipProps, TooltipPlacement, TooltipTheme } from './components/Tooltip'
+
+export { Table, TableCell, TableHeaderCell, TablePagination, TableRow, TableToolbar } from './components/Table'
+export type {
+	TableCellProps,
+	TableCellType,
+	TableColumn,
+	TableHeaderCellProps,
+	TablePaginationProps,
+	TableProps,
+	TableRowProps,
+	TableSortDirection,
+	TableTheme,
+	TableToolbarProps,
+} from './components/Table'
