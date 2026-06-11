@@ -7,6 +7,11 @@ import {
   type ReactElement,
   type ReactNode,
 } from 'react'
+/**
+ * Search Component
+ * @developer Mohamad oueidat
+ */
+
 import './Search.scss'
 
 export type SearchTheme = 'light' | 'dark'

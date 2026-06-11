@@ -1,4 +1,9 @@
 import type { CSSProperties, HTMLAttributes } from 'react'
+/**
+ * Tooltip Component
+ * @developer Maher Al Rifai
+ */
+
 import './Tooltip.scss'
 
 export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right'

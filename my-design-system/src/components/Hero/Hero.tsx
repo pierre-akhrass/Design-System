@@ -8,6 +8,11 @@ import {
   type ReactNode,
 } from 'react'
 import { Button } from '../Button/Button'
+/**
+ * Hero Component
+ * @developer pierre-akhrass
+ */
+
 import './Hero.scss'
 
 export type HeroVariant = 'centered' | 'bottom-left' | 'split'

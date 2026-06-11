@@ -1,3 +1,8 @@
+/**
+ * Footer Component
+ * @developer Maher Al Rifai
+ */
+
 import { useRef } from 'react'
 import type { HTMLAttributes, ReactNode } from 'react'
 import './Footer.scss'

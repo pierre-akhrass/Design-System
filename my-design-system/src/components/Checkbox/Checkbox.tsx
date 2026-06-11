@@ -5,6 +5,11 @@ import {
   type InputHTMLAttributes,
   type ReactNode,
 } from 'react'
+/**
+ * Checkbox Component
+ * @developer sereneogilvy
+ */
+
 import './Checkbox.scss'
 
 export type CheckboxState = 'checked' | 'unchecked' | 'indeterminate'

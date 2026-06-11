@@ -10,6 +10,11 @@ import { NavItem } from '../NavItem'
 import { Button, type ButtonVariant } from '../Button'
 import megaMenuCardImage from '../../assets/mega-menu-card.png'
 import { CaretRightIcon } from '../icons/CaretRightIcon'
+/**
+ * MegaMenu Component
+ * @developer sereneogilvy
+ */
+
 import './MegaMenu.scss'
 
 // -----------------------------------------------------------------------------

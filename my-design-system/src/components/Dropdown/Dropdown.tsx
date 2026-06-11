@@ -1,4 +1,9 @@
 import type { HTMLAttributes, ReactNode } from 'react'
+/**
+ * Dropdown Component
+ * @developer pierre-akhrass
+ */
+
 import './Dropdown.scss'
 
 export type DropdownColorMode = 'light' | 'dark'

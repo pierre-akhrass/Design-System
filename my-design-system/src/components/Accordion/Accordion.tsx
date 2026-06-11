@@ -1,5 +1,10 @@
 import { useMemo, useState } from 'react'
 import type { HTMLAttributes, ReactNode } from 'react'
+/**
+ * Accordion Component
+ * @developer pierre-akhrass
+ */
+
 import './Accordion.scss'
 
 export type AccordionTheme = 'light' | 'dark'

@@ -5,6 +5,11 @@ import {
   type InputHTMLAttributes,
   type ReactNode,
 } from 'react'
+/**
+ * Switch Component
+ * @developer sereneogilvy
+ */
+
 import './Switch.scss'
 
 export type SwitchState = 'checked' | 'unchecked'

@@ -1,3 +1,8 @@
+/**
+ * Avatar Component
+ * @developer Maher Al Rifai
+ */
+
 import type { HTMLAttributes, ReactNode } from 'react'
 import './Avatar.scss'
 

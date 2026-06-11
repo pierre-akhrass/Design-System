@@ -1,4 +1,9 @@
 import type { HTMLAttributes, ReactNode } from 'react'
+/**
+ * List Component
+ * @developer Mohamad oueidat
+ */
+
 import './List.scss'
 
 export type ListTheme = 'light' | 'dark'

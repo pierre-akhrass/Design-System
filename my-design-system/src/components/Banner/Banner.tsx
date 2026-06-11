@@ -1,4 +1,9 @@
 import type { HTMLAttributes } from 'react'
+/**
+ * Banner Component
+ * @developer pierre-akhrass
+ */
+
 import './Banner.scss'
 
 export type BannerTheme = 'light' | 'dark'

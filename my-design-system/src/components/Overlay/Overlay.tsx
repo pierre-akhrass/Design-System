@@ -1,5 +1,10 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Overlay/Overlay.tsx
 import type { HTMLAttributes, ReactNode } from 'react'
+/**
+ * Overlay Component
+ * @developer pierre-akhrass
+ */
+
 import './Overlay.scss'
 
 export type OverlayMode = 'light' | 'dark'

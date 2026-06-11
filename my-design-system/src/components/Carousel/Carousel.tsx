@@ -6,6 +6,11 @@ import {
   type HTMLAttributes,
   type ReactNode,
 } from 'react'
+/**
+ * Carousel Component
+ * @developer Mohamad oueidat
+ */
+
 import './Carousel.scss'
 
 export type CarouselTheme = 'light' | 'dark'

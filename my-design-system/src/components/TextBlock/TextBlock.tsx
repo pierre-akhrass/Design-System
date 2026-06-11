@@ -1,4 +1,9 @@
 import type { HTMLAttributes } from 'react'
+/**
+ * TextBlock Component
+ * @developer pierre-akhrass
+ */
+
 import './TextBlock.scss'
 
 export type TextBlockTheme = 'light' | 'dark'

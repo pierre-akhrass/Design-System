@@ -7,6 +7,11 @@ import {
   type ReactNode,
 } from 'react'
 import { NavItem, type NavItemProps } from '../NavItem'
+/**
+ * Sidebar Component
+ * @developer sereneogilvy
+ */
+
 import './Sidebar.scss'
 
 // -----------------------------------------------------------------------------

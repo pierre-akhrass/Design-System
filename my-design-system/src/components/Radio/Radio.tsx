@@ -5,6 +5,11 @@ import {
   type InputHTMLAttributes,
   type ReactNode,
 } from 'react'
+/**
+ * Radio Component
+ * @developer sereneogilvy
+ */
+
 import './Radio.scss'
 
 export type RadioState = 'checked' | 'unchecked'

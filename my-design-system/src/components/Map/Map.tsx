@@ -7,6 +7,11 @@ import {
   type ReactNode,
 } from 'react'
 import { Button } from '../Button/Button'
+/**
+ * Map Component
+ * @developer pierre-akhrass (original), sereneogilvy (updates)
+ */
+
 import './Map.scss'
 
 export type MapMode = 'light' | 'dark'

@@ -1,4 +1,9 @@
 import type { ComponentType, HTMLAttributes, ReactNode } from 'react'
+/**
+ * SocialMediaPost Component
+ * @developer Mohamad oueidat
+ */
+
 import './SocialMediaPost.scss'
 
 export type SocialMediaPostTheme = 'light' | 'dark'

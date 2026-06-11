@@ -1,4 +1,9 @@
 import type { AnchorHTMLAttributes, ReactNode } from 'react'
+/**
+ * NavItem Component
+ * @developer pierre-akhrass
+ */
+
 import './NavItem.scss'
 
 export type NavItemState = 'default' | 'hover' | 'active'

@@ -10,6 +10,11 @@ import {
   type MouseEvent as ReactMouseEvent,
   type ReactNode,
 } from 'react'
+/**
+ * Navbar Component
+ * @developer pierre-akhrass (original), sereneogilvy (updates)
+ */
+
 import './Navbar.scss'
 import { NavItem, type NavItemProps } from '../NavItem'
 import {

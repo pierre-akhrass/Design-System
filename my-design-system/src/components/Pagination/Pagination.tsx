@@ -1,5 +1,10 @@
 import { useMemo, useState } from 'react'
 import type { HTMLAttributes } from 'react'
+/**
+ * Pagination Component
+ * @developer pierre-akhrass
+ */
+
 import './Pagination.scss'
 
 export type PaginationTheme = 'light' | 'dark'

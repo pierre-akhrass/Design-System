@@ -1,4 +1,9 @@
 import type { AnchorHTMLAttributes, HTMLAttributes, ReactNode } from 'react'
+/**
+ * Breadcrumbs Component
+ * @developer pierre-akhrass
+ */
+
 import './Breadcrumbs.scss'
 
 export type BreadcrumbItemVariant = 'ancestor' | 'collapsed' | 'current'

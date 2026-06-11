@@ -1,4 +1,9 @@
 import type { CSSProperties, HTMLAttributes, ReactNode } from 'react'
+/**
+ * Tag Component
+ * @developer Maher Al Rifai
+ */
+
 import './Tag.scss'
 
 export type TagState = 'default' | 'hover'
