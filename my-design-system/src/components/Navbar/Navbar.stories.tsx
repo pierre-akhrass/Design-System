@@ -139,17 +139,22 @@ const meta: Meta<PlaygroundArgs> = {
 ## Navbar
 
 A responsive primary navigation surface — logo on the left, menu items in the
-middle, action **links** (icon + label) on the right. On mobile (≤ 768 px) the
-items + actions collapse behind a **burger menu** and re-render as a stacked,
-full-width drawer panel.
+middle, action **links** on the right. On mobile (≤ 768 px) the items + actions
+collapse behind a **burger menu** and re-render inside a real \`<Sidebar>\` slide-in
+drawer (same component, same data — no duplication).
 
 ### Anatomy
-- **Logo** — left-aligned brand mark (\`logo\` slot).
-- **Items** — center menubar of \`NavItem\` and/or \`NavbarMenu\` (dropdown) entries (\`children\`).
-- **Actions** — right-aligned **links** (\`actions\` slot). Pass a \`NavbarActionLink[]\`
-  array and the navbar renders them automatically as \`NavItem\`s — no JSX required.
-  Each action can carry its own \`iconLeft\` / \`iconRight\` (any \`ReactNode\`).
-  You can also pass a raw \`ReactNode\` if you need full control.
+- **Logo** (\`logo\`) — left-aligned brand mark. Polymorphic:
+  - \`ReactNode\` (full control, e.g. inline SVG + text)
+  - \`string\` (treated as a dynamic image \`src\`)
+  - \`NavbarLogoConfig\` object — \`{ src, alt?, href?, height?, width? }\`
+- **Items** (\`children\`) — center menubar of \`NavItem\` and/or \`NavbarMenu\` (dropdown) entries.
+- **Actions** (\`actions\`) — right-aligned **links**. Polymorphic:
+  - \`ReactNode\` — full control (icons, account chip, etc.).
+  - \`NavbarActionLink[]\` — declarative, dynamic list rendered automatically.
+    - **Icon-only** entries (no \`label\`) render as a bare \`<a>\` wrapping
+      the icon — same centered-icon-row look as the standalone Sidebar's footer.
+    - **Labeled** entries render as full \`NavItem\` chrome (icon + text).
 - **Burger** — auto-rendered toggle button visible only on mobile.
 
 ### Dynamic actions
@@ -161,11 +166,14 @@ any JSX:
 \`\`\`tsx
 <Navbar
   colorMode="dark"
-  logo={<Brand />}
+  logo={{ src: '/brand.svg', alt: 'Acme', href: '/' }}
   actions={[
-    { label: 'Notifications', href: '/inbox',  iconLeft: <BellIcon /> },
-    { label: 'Locations',     href: '/map',    iconLeft: <MapIcon /> },
-    { label: 'Search',        href: '/search', iconLeft: <SearchIcon /> },
+    // Icon-only (bare <a>) — matches the Sidebar footer look.
+    { href: '/inbox',  iconLeft: <BellIcon />,   ariaLabel: 'Notifications' },
+    { href: '/map',    iconLeft: <MapIcon />,    ariaLabel: 'Locations' },
+    { href: '/search', iconLeft: <SearchIcon />, ariaLabel: 'Search' },
+    // Add a \`label\` to render as a labeled NavItem instead.
+    // { label: 'Sign in', href: '/login' },
   ]}
 >
   {/* ...nav items... */}
@@ -176,11 +184,26 @@ Each entry supports: \`label\`, \`href\`, \`iconLeft\`, \`iconRight\`, \`selecte
 \`onClick\`, \`external\`, \`ariaLabel\`, \`key\`.
 
 > **Playground note.** In the Storybook controls panel, icons are referenced by
-> a string key (\`'circle' | 'map' | 'search'\`) instead of a React node so the
-> args stay JSON-serialisable. The story render fn swaps each key for the
-> matching SVG. In real code you'd pass the SVG (or icon component) directly
-> as \`iconLeft\`.
+> a string key (\`'flag' | 'bell' | 'search' | 'star' | 'circle' | 'map'\`)
+> instead of a React node so the args stay JSON-serialisable. The story render
+> fn swaps each key for the matching SVG. In real code you'd pass the SVG
+> (or icon component) directly as \`iconLeft\`.
 
+### Mobile drawer
+On viewports ≤ 768 px the burger toggle reveals a slide-in drawer that is a
+real \`<Sidebar>\` component, auto-derived from the navbar's own \`children\`
+and \`actions\` — so there's only one source of truth for the navigation data.
+The same \`NavbarActionLink[]\` is forwarded straight through to
+\`Sidebar.footer\` (the two interfaces are structurally identical), which
+means icon-only actions get the Sidebar's bare-anchor icon row in the drawer
+too. Pass a custom \`mobileMenu\` node to override.
+### Theming
+All colors come from the slate token set defined in
+\`src/styles/tokens/_variables.scss\` (e.g.
+\`$mapping-system-slate-background-secondary\`,
+\`$mapping-system-slate-text-on-primary\`,
+\`$mapping-system-focus-border-secondary\`). No hardcoded color values — swap
+the token layer to retheme the component (and the Navbar's mobile drawer).
 ### Responsive behavior
 | Viewport         | Layout                                                                                  |
 | ---------------- | --------------------------------------------------------------------------------------- |
@@ -193,6 +216,7 @@ Each entry supports: \`label\`, \`href\`, \`iconLeft\`, \`iconRight\`, \`selecte
 - The items wrapper has \`role="menubar"\`.
 - The burger button exposes \`aria-expanded\` and \`aria-controls\`.
 - \`NavbarMenu\` triggers expose \`aria-haspopup="menu"\` + \`aria-expanded\`.
+- The mobile drawer is a \`role="dialog"\` with \`aria-modal="true"\`.
 - Action links with no visible label must set \`ariaLabel\`.
         `.trim(),
       },

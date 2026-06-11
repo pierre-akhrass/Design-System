@@ -12,7 +12,9 @@
   // ---------------------------------------------------------------------------
   --sds-color-text-default-default: #{$mapping-system-slate-text-primary};
   --sds-color-background-default-default: #{$mapping-system-slate-surface-secondary};
-  --sds-color-background-default-tertiary: #{$mapping-system-slate-surface-tertiary};
+  // Design spec: #FFFFFF · 60%. Used as the Dropdown panel background
+  // (and any other "tertiary" surface that needs a translucent white).
+  --sds-color-background-default-tertiary: rgba(255, 255, 255, 0.6);
   --sds-color-border-brand-secondary: #{$mapping-brand-vibrant-teal-border-primary};
 }
 

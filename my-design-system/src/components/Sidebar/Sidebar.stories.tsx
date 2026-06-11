@@ -92,36 +92,59 @@ const meta: Meta<PlaygroundArgs> = {
 ## Sidebar
 A card-style vertical primary-navigation surface for app shells, dashboards, and admin
 layouts. Composes the existing \`NavItem\` with **expandable Tier 1 groups**, **category
-headings**, **dividers**, **standalone Tier 2 items**, and a pinned **footer** slot.
+headings**, **dividers**, **standalone Tier 2 items**, a pinned **footer** slot, and a
+polymorphic **logo** slot — both the logo and the footer can be driven by plain data so
+they're fully dynamic without writing JSX.
+
+> The Navbar's mobile burger drawer reuses this exact component — same chrome,
+> same icon row, same data shape. See *Navigation/Navbar* for details.
 
 ### Anatomy
-- **Logo** — brand mark at the top of the card.
+- **Logo** (\`logo\`) — brand mark at the top of the card. **Polymorphic**:
+  - \`ReactNode\` (full control, e.g. inline SVG + text)
+  - \`string\` (treated as a dynamic image \`src\`)
+  - \`SidebarLogoConfig\` object — \`{ src, alt?, href?, height?, width?, text? }\`
 - **SidebarItem** — Tier 1 entry; renders a chevron and toggles its nested children when any are provided.
 - **SidebarNestedItem** — child of a \`SidebarItem\` (Tier 1 + Nested NavItem).
 - **SidebarCategory** — small uppercase heading (e.g. *"CATEGORY TITLE"*).
 - **SidebarDivider** — thin horizontal separator.
 - **SidebarTier2Item** — standalone Tier 2 row (used near the footer).
-- **Footer** — pinned bottom slot. Accepts a \`ReactNode\` (full control) **or**
-  a \`SidebarActionLink[]\` (declarative, dynamic links rendered as Tier-2 NavItems).
+- **Footer** (\`footer\`) — pinned bottom slot. **Polymorphic**:
+  - \`ReactNode\` — full control (icons, account chip, etc.).
+  - \`SidebarActionLink[]\` — declarative, dynamic list of links.
+    - **Icon-only** entries (no \`label\`) render as a bare \`<a>\` wrapping
+      the icon — preserves the original centered icon row look.
+    - **Labeled** entries render as full Tier-2 \`NavItem\` chrome (icon + text).
 
-### Dynamic footer
-
-Pass a config array so consumers can add / remove / reorder bottom links at
-runtime (e.g. from a CMS, auth state, or feature flags) without writing JSX:
-
+### Dynamic logo
+Pass a string \`src\` or a \`SidebarLogoConfig\` so the logo can be swapped at
+runtime (CMS, tenant config, A/B test, etc.) without writing JSX:
 \`\`\`tsx
 <Sidebar
-  logo={<Brand />}
+  logo={{ src: '/brand.svg', alt: 'Acme', text: 'Acme', href: '/' }}
+  // ...
+/>
+\`\`\`
+Pass a \`ReactNode\` instead when you need full control (inline SVG, custom layout).
+
+### Dynamic footer
+Pass a config array so consumers can add / remove / reorder bottom links at
+runtime without writing JSX. Mix icon-only and labeled entries freely:
+\`\`\`tsx
+<Sidebar
+  logo={{ src: '/brand.svg', alt: 'Acme' }}
   footer={[
-    { label: 'Notifications', href: '/inbox',  iconLeft: <BellIcon /> },
-    { label: 'Reports',       href: '/flag',   iconLeft: <FlagIcon /> },
-    { label: 'Search',        href: '/search', iconLeft: <SearchIcon /> },
+    // Icon-only (bare <a>) — original centered icon row look.
+    { href: '/flag',   iconLeft: <FlagIcon />,   ariaLabel: 'Reports' },
+    { href: '/inbox',  iconLeft: <BellIcon />,   ariaLabel: 'Notifications' },
+    { href: '/search', iconLeft: <SearchIcon />, ariaLabel: 'Search' },
+    // Add a \`label\` to render as a labeled Tier-2 NavItem instead.
+    // { label: 'Sign out', href: '/logout', iconLeft: <ExitIcon /> },
   ]}
 >
   {/* ...sidebar items... */}
 </Sidebar>
 \`\`\`
-
 Each entry supports: \`label\`, \`href\`, \`iconLeft\`, \`iconRight\`, \`selected\`,
 \`onClick\`, \`external\`, \`ariaLabel\`, \`key\`.
 
@@ -155,16 +178,15 @@ import {
 \`\`\`
 
 ### Theming
-Colors come from the global "Selection colors" CSS custom properties defined in
-\`src/styles/global.scss\`. Override them on \`:root\` or a section to retheme every
-component that consumes them (Sidebar, NavItem, Dropdown, Navbar, …).
-
-\`\`\`css
---sds-color-text-default-default
---sds-color-background-default-default
---sds-color-background-default-tertiary
---sds-color-border-brand-secondary
-\`\`\`
+All colors come from the slate token set defined in
+\`src/styles/tokens/_variables.scss\` (e.g.
+\`$mapping-system-slate-surface-primary\`,
+\`$mapping-system-slate-background-secondary\`,
+\`$mapping-system-slate-text-on-primary\`,
+\`$mapping-system-slate-border-primary\`,
+\`$mapping-system-focus-border-secondary\`). **No hardcoded color values** —
+swap the token layer to retheme the component (and, by extension, the
+Navbar's mobile drawer which renders this same Sidebar).
 
 ### Accessibility
 - Rendered inside an \`<aside>\` landmark with a localizable \`aria-label\` (default \`"Sidebar"\`).
@@ -173,7 +195,8 @@ component that consumes them (Sidebar, NavItem, Dropdown, Navbar, …).
 - Dividers carry \`role="separator"\`.
 - Child rows are real \`<a>\` elements (via \`NavItem\`), so keyboard and screen-reader
   navigation work out of the box.
-- Footer links with no visible label must set \`ariaLabel\`.
+- Bare-anchor footer icons expose \`aria-label\` (required when no visible label).
+- Logo image accepts \`alt\` text; when \`href\` is provided the wrapper \`<a>\` also receives \`aria-label\`.
         `.trim(),
       },
     },
