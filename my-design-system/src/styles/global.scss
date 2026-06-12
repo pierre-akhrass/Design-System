@@ -18,6 +18,18 @@
   // (and any other "tertiary" surface that needs a translucent white).
   --sds-color-background-default-tertiary: rgba(255, 255, 255, 0.6);
   --sds-color-border-brand-secondary: #{$mapping-brand-vibrant-teal-border-primary};
+
+  // ---------------------------------------------------------------------------
+  // Token bridge for components that consume CSS custom properties directly
+  // (e.g. MapBlock pill). Style-Dictionary only emits SCSS vars, so we re-
+  // export the few tokens used at runtime here.
+  // ---------------------------------------------------------------------------
+  --sds-color-background-default-secondary: #{$mapping-system-slate-background-secondary};
+  --sds-size-space-150: 6px;
+  --sds-size-space-200: 8px;
+  --sds-size-radius-200: #{$radius-medium};
+  --padding-container-xs: #{$padding-container-xs};
+  --gap-s: #{$gap-s};
 }
 
 * {
