@@ -85,6 +85,10 @@ export default meta
 type Story = StoryObj<PlaygroundArgs>
 
 export const Playground: Story = {
+  args: {
+    mapImage: "/src/assets/map-block.png"
+  },
+
   parameters: {
     docs: {
       description: {
@@ -93,9 +97,10 @@ export const Playground: Story = {
       },
     },
   },
+
   render: (args) => (
     <div style={{ padding: 24, background: '#0a111a' }}>
       <MapBlock {...args} />
     </div>
-  ),
+  )
 }

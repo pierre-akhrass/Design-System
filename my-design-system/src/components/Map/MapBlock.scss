@@ -104,7 +104,9 @@
   font-weight: $ui-font-weight-strong;
   line-height: 1.5;
   letter-spacing: $letter-spacing-tracking-1;
-  color: var(--sds-color-text-default-default);
+  // Color: #BCBCBC (mapped to $color-system-gray-300 in the token set) for
+  // a soft eyebrow that reads on the dark map surface.
+  color: $color-system-gray-300;
   #{'leading-trim'}: both;
   #{'text-edge'}: cap;
 }
