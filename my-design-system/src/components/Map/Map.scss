@@ -9,7 +9,10 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  border-radius: 12px;
+  border-radius: 0;
+  // Clip the background image AND the absolutely-positioned children
+  // (header card, filter bar, popup) so the rounded corners are visible.
+  overflow: hidden;
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -400,15 +403,32 @@
 
   .ds-map__filters {
     left: 24px;
-    width: 380px;
-    max-width: 380px;
-    padding: 40px 24px 20px;
+    width: 320px;
+    max-width: 320px;
+    padding: 32px 20px 16px;
+    gap: 6px;
+  }
+  // Tighter inputs on tablet so the filter card stays compact.
+  .ds-map__search,
+  .ds-map__select select {
+    min-height: 40px;
+    font-size: 14px;
   }
 
   .ds-map__popup {
-    width: 380px;
+    width: 340px;
     height: auto;
-    min-height: 240px;
+    min-height: 220px;
+    padding: 16px;
+    gap: 12px;
+  }
+  .ds-map__popup-title { font-size: 16px; }
+  .ds-map__popup-desc  { font-size: 13px; }
+  .ds-map__popup-cta {
+    width: auto;
+    min-width: 120px;
+    height: 40px;
+    padding: 8px 16px;
   }
 }
 
@@ -417,9 +437,9 @@
     /* Switch from a fixed-height card to a flowing column so the absolute
        overlays can flatten into the natural top/bottom stack. */
     height: auto;
-    min-height: 540px;
-    padding: 16px;
-    gap: 16px;
+    min-height: 480px;
+    padding: 12px;
+    gap: 12px;
   }
 
   /* Header drops into the column flow so it sits full-width at the top. */
@@ -427,39 +447,92 @@
     position: static;
     width: 100%;
     max-width: none;
-    padding: 16px;
-    gap: 8px;
+    padding: 12px;
+    gap: 6px;
     box-sizing: border-box;
   }
-  .ds-map__header-title { font-size: 22px; letter-spacing: -0.5px; }
-  .ds-map__header-desc  { font-size: 14px; -webkit-line-clamp: 2; }
+  .ds-map__header-title { font-size: 20px; letter-spacing: -0.5px; }
+  .ds-map__header-desc  { font-size: 13px; -webkit-line-clamp: 2; }
 
-  /* Filter bar also drops into flow at the bottom; stack the selects. */
+  /* Filter bar: drops into flow; stack the selects and shrink everything
+     (smaller paddings, shorter inputs, smaller drag-handle). */
   .ds-map__filters {
     position: static;
     width: 100%;
     max-width: none;
-    padding: 32px 16px 16px;
+    padding: 20px 12px 12px;
+    gap: 6px;
   }
-  .ds-map__filters-row { flex-direction: column; }
+  // Mobile-only smaller drag-handle indicator.
+  .ds-map__filters::before {
+    top: 10px;
+    width: 32px;
+    height: 4px;
+  }
+  .ds-map__filters-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+  // Compact inputs so the filter block doesn't dominate the surface.
+  .ds-map__search,
+  .ds-map__select select {
+    min-height: 36px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    font-size: 13px;
+  }
+  .ds-map__search { padding-left: 12px; padding-right: 12px; }
+  .ds-map__select select { padding-left: 12px; padding-right: 32px; }
+  .ds-map__select svg { right: 10px; width: 12px; height: 12px; }
 
-  /* Pin the popup to the viewport's bottom edge so it's always reachable
-     no matter where the active pin sits on the map. */
+  /* Pin the popup to the viewport's bottom edge; compact bottom-sheet layout.
+     React applies inline `left`/`top` from the pin's % coords + a `transform`,
+     so we need `!important` here to force the bottom-sheet position to win. */
   .ds-map__popup {
-    position: fixed;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    top: auto;
-    width: auto;
+    position: fixed !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    top: auto !important;
+    // Hard cap so the card can never visually exceed the mobile viewport
+    // (covers landscape phones too).
+    width: auto !important;
+    max-width: calc(100vw - 24px);
     height: auto;
-    min-height: 220px;
+    min-height: 0;
+    padding: 12px;
+    gap: 10px;
     transform: none !important;
+    box-sizing: border-box;
     z-index: 100;
   }
-  .ds-map__popup-thumb { min-width: 96px; max-width: 120px; }
+  .ds-map__popup-thumb {
+    min-width: 80px;
+    max-width: 96px;
+    height: 96px;
+    align-self: stretch;
+    flex: 0 0 80px;
+  }
+  .ds-map__popup-body { gap: 6px; }
+  .ds-map__popup-title { font-size: 14px; }
+  .ds-map__popup-desc  {
+    font-size: 12px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  .ds-map__popup-cta {
+    width: auto;
+    min-width: 100px;
+    height: 36px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  .ds-map__popup-close { top: 6px; right: 6px; width: 20px; height: 20px; }
 
   /* Shrink pin glyphs so they don't overwhelm a smaller map surface. */
-  .ds-map__pin svg { width: 36px; height: 36px; }
-  .ds-map__pin--active { transform: translate(-50%, -100%) scale(1.4); }
+  .ds-map__pin svg { width: 32px; height: 32px; }
+  .ds-map__pin--active { transform: translate(-50%, -100%) scale(1.3); }
 }
