@@ -80,3 +80,20 @@ export type {
   CardStatProps,
   CardTheme,
 } from './components/Card'
+
+export {
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  DialogBody,
+  DialogText,
+  DialogActions,
+} from './components/Dialog'
+export type {
+  DialogActionsProps,
+  DialogHeaderProps,
+  DialogPlacement,
+  DialogProps,
+  DialogSize,
+  DialogTheme,
+} from './components/Dialog'

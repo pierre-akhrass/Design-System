@@ -1,0 +1,80 @@
+{/* filepath: /Users/mohammedoueidat/Documents/GitHub/Design-System/my-design-system/src/components/Dialog/Dialog.docs.mdx */}
+import { Meta, Title, Subtitle, Stories } from '@storybook/addon-docs/blocks'
+import * as DialogStories from './Dialog.stories'
+
+<Meta of={DialogStories} name="Docs" />
+
+<Title>Dialog</Title>
+<Subtitle>A focused interaction window that appears above the interface to present important information, request user input, or confirm actions.</Subtitle>
+
+## Overview
+
+`Dialog` is built on top of the native HTML `<dialog>` element so it gets focus trapping, ESC-to-close and a built-in scrim for free. The compound API mirrors the other components — pick the parts you need and arrange them inside the panel.
+
+- Light & dark themes via scoped CSS custom properties
+- Two placements — `center` (modal in the middle of the viewport) and `bottom-sheet` (anchored to the viewport bottom for mobile)
+- Three width presets — `small` (400px), `medium` (560px), `large` (720px)
+- Stacked or split actions in the footer
+- Auto-collapses to a bottom-sheet on viewports < 600px
+
+## Anatomy
+
+```tsx
+<Dialog open={open} theme="light" placement="center" size="medium" onClose={handleClose}>
+  <Dialog.Header title="…" onClose={handleClose} />
+  <Dialog.Body>
+    <Dialog.Text>…</Dialog.Text>
+  </Dialog.Body>
+  <Dialog.Actions align="end">
+    <Button variant="plain">Cancel</Button>
+    <Button>Confirm</Button>
+  </Dialog.Actions>
+</Dialog>
+```
+
+## Public API
+
+```ts
+interface DialogProps {
+  open:                 boolean                              // controlled
+  theme?:               'light' | 'dark'                     // default 'light'
+  placement?:           'center' | 'bottom-sheet'            // default 'center'
+  size?:                'small' | 'medium' | 'large'         // default 'medium'
+  onClose?:             () => void
+  dismissOnScrimClick?: boolean                              // default true
+  dismissOnEscape?:     boolean                              // default true
+}
+
+interface DialogHeaderProps  { title?: ReactNode; onClose?: () => void; showClose?: boolean }
+interface DialogActionsProps { align?: 'start' | 'end' | 'between' | 'stacked' }
+```
+
+## Tokens used
+
+| Concern | Token |
+|---|---|
+| Panel surface | `$mapping-system-white-1000` (light) / `$mapping-system-slate-background-primary` (dark) |
+| Panel border | `$mapping-system-slate-border-tertiary` |
+| Title color | `$mapping-system-slate-text-primary` (light) / `$mapping-system-slate-text-on-primary` (dark) |
+| Body text | `$mapping-system-slate-text-secondary` (light) / `rgba(255,255,255,0.78)` (dark) |
+| Scrim | `rgba(20, 31, 46, 0.55)` (light) / `rgba(4, 7, 13, 0.7)` (dark) |
+| Radius | `$radius-large` (panel) / `$radius-small` (close button) |
+| Padding | `$space-400` (panel) |
+| Font family | `$heading-font-family` (title) / `$ui-font-family` (body) |
+
+## Behaviour
+
+- **Focus trap & ESC** — `<dialog>` is opened with `showModal()`, which traps focus inside the panel and listens for `Escape`.
+- **Scrim click** — clicking the backdrop calls `onClose`. Disable with `dismissOnScrimClick={false}`.
+- **Stacked actions** — pass `align="stacked"` to `Dialog.Actions` to render full-width buttons in a vertical column (used in the mobile bottom-sheet variants).
+- **Mobile** — on viewports below 600px every dialog auto-collapses to a bottom sheet with stacked CTAs.
+
+## Accessibility
+
+- The dialog uses the native `<dialog>` element with `role="document"` on the inner panel
+- Provide a meaningful `title` on `<Dialog.Header>` so screen readers announce it
+- The close button is rendered with `aria-label="Close"` and tab-trapped automatically
+
+## All stories
+
+<Stories />
