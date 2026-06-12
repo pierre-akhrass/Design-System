@@ -289,6 +289,10 @@
   z-index: 4;
   display: flex;
   align-items: center;
+  // Center the tag chips on desktop. The mobile breakpoint (≤ 640px)
+  // overrides this back to flex-start so the strip scrolls naturally
+  // from the leading edge on small screens.
+  justify-content: center;
   gap: $gap-2xs;
   padding: 6px $padding-container-s;
   background: rgba(255, 255, 255, 0.85);
@@ -300,26 +304,38 @@
   scrollbar-width: thin;
 }
 
+// Tag chip — styled per design tokens:
+//   - bg     : sds-color-background-default-tertiary
+//   - radius : dimensions-tag-corner-radius (full pill)
+//   - text   : Label/small/strong (Noto Sans 12 / 600 / 150 %)
+//   - color  : sds-color-text-default-secondary
+// Icon can sit on the left or right via VirtualBlockLabel.iconPosition.
 .ds-virtual-block__label-chip {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px 10px;
-  background: #FFFFFF;
-  border: 1px solid #E5E7EB;
-  border-radius: 999px;
-  color: $mapping-system-slate-text-primary;
-  font: inherit;
-  font-size: 11px;
-  font-weight: $ui-font-weight-strong;
+  gap: var(--gap-2xs, 8px);
+  padding: 4px 12px;
+  background: var(--sds-color-background-default-tertiary, #F2F4F7);
+  border: 0;
+  border-radius: var(--dimensions-tag-corner-radius, 9999px);
+
+  // Label/small/strong text style.
+  color: var(--sds-color-text-default-secondary, #{$mapping-system-slate-text-secondary});
+  font-family: var(--UI-Font-Family, 'Noto Sans');
+  font-size: var(--UI-Size-small, 12px);
+  font-style: normal;
+  font-weight: var(--UI-Font-Weight-strong, 600);
+  line-height: 150%;
+  letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+
   cursor: pointer;
   white-space: nowrap;
-  transition: background-color 0.15s ease, border-color 0.15s ease,
-    color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
 
-  svg { color: $mapping-system-slate-text-primary; }
+  svg { color: currentColor; flex-shrink: 0; }
 
-  &:hover { background: #F2F4F7; }
+  // No background change on hover — keep the tertiary token color.
+  &:hover { background: var(--sds-color-background-default-tertiary, #F2F4F7); }
 
   &:focus-visible {
     outline: none;
@@ -328,9 +344,7 @@
 
   &.is-active {
     background: #0A111A;
-    border-color: #0A111A;
     color: $mapping-system-slate-text-on-primary;
-    svg { color: $mapping-system-slate-text-on-primary; }
   }
 }
 
@@ -535,7 +549,8 @@
     border-left: 1px solid #E5E7EB;
   }
 
-  &:hover { background: #E9ECF0; }
+  // No background change on hover — keep the tertiary token color.
+  &:hover { background: var(--sds-color-background-default-tertiary, #F2F4F7); }
 
   &:focus-visible {
     outline: none;
@@ -639,7 +654,8 @@
   cursor: pointer;
   transition: background-color 0.15s ease;
 
-  &:hover { background: #E9ECF0; }
+  // No background change on hover — keep the tertiary token color.
+  &:hover { background: var(--sds-color-background-default-tertiary, #F2F4F7); }
   &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
@@ -729,7 +745,7 @@
   }
   .ds-virtual-block__filters-btn { padding: 6px 10px; font-size: 13px; }
 
-  .ds-virtual-block__labels-strip { padding: 6px 12px; }
+  .ds-virtual-block__labels-strip { padding: 6px 12px; justify-content: flex-start; }
   .ds-virtual-block__label-chip { font-size: 10px; padding: 3px 8px; }
 
 

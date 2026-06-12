@@ -43,8 +43,11 @@ export interface VirtualBlockLevel {
 export interface VirtualBlockLabel {
   id: string
   label: ReactNode
-  /** Custom leading icon. Defaults to a filled star. */
+  /** Custom icon. Defaults to a filled star (only shown when no icon is
+   *  passed AND `iconPosition` resolves to 'left'). */
   icon?: ReactNode
+  /** Which side of the label the icon sits on. Defaults to 'left'. */
+  iconPosition?: 'left' | 'right'
   /** Show a stronger background to indicate the chip is active. */
   active?: boolean
   onClick?: (label: VirtualBlockLabel) => void
@@ -568,23 +571,30 @@ export const VirtualBlock = ({
           role="group"
           aria-label="Filter stores by tag"
         >
-          {labels.map((l) => (
-            <button
-              key={l.id}
-              type="button"
-              className={[
-                'ds-virtual-block__label-chip',
-                l.active ? 'is-active' : null,
-              ]
-                .filter(Boolean)
-                .join(' ')}
-              aria-pressed={l.active ?? false}
-              onClick={() => l.onClick?.(l)}
-            >
-              {l.icon ?? <StarIcon />}
-              <span>{l.label}</span>
-            </button>
-          ))}
+          {labels.map((l) => {
+            const pos = l.iconPosition ?? 'left'
+            // Default star only renders on the left; if the consumer asks
+            // for a right-side icon, they must supply one themselves.
+            const iconNode = l.icon ?? (pos === 'left' ? <StarIcon /> : null)
+            return (
+              <button
+                key={l.id}
+                type="button"
+                className={[
+                  'ds-virtual-block__label-chip',
+                  l.active ? 'is-active' : null,
+                ]
+                  .filter(Boolean)
+                  .join(' ')}
+                aria-pressed={l.active ?? false}
+                onClick={() => l.onClick?.(l)}
+              >
+                {pos === 'left' && iconNode}
+                <span>{l.label}</span>
+                {pos === 'right' && iconNode}
+              </button>
+            )
+          })}
         </div>
       )}
 
