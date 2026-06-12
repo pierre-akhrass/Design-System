@@ -1,0 +1,772 @@
+@use '../../styles/tokens/variables' as *;
+
+// -----------------------------------------------------------------------------
+// VirtualBlock
+//
+// Indoor / virtual mall map. See VirtualBlock.tsx for DOM anatomy.
+//
+// Colors (sampled from the design):
+//   - Toolbar / cards          : #FFFFFF
+//   - Soft input + chip bg     : #F2F4F7  (close to the slate "surface" tone)
+//   - Hairline borders         : #E5E7EB
+//   - Muted helper text        : #6B7280
+//   - Primary text             : $mapping-system-slate-text-primary  (#292929)
+//   - Dark logo block + zoom   : #0A111A  (same rail color as MapBlock)
+//   - White-on-dark            : $mapping-system-slate-text-on-primary (#fff)
+// -----------------------------------------------------------------------------
+
+.ds-virtual-block {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 9;
+  min-height: 480px;
+  border-radius: $radius-large;
+  overflow: hidden;
+  background-color: #DDE9EE; // fallback color behind the map image
+  box-sizing: border-box;
+  font-family: $ui-font-family;
+  color: $mapping-system-slate-text-primary;
+}
+
+/* ---------- Toolbar (top) ---------- */
+.ds-virtual-block__toolbar {
+  position: relative;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: $gap-s;
+  padding: $gap-2xs $padding-container-s;
+  background: #FFFFFF;
+  border-bottom: 1px solid #E5E7EB;
+  flex-shrink: 0;
+}
+
+.ds-virtual-block__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-2xs;
+  font-weight: $heading-font-weight-bold;
+  font-size: 18px;
+  color: $mapping-system-slate-text-primary;
+  white-space: nowrap;
+}
+
+// Level selector — restyled native <select>.
+.ds-virtual-block__level {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-2xs;
+  padding: 8px 32px 8px 12px;
+  background: #F2F4F7;
+  border: 1px solid #E5E7EB;
+  border-radius: $radius-medium;
+  font-size: 14px;
+  color: $mapping-system-slate-text-primary;
+  cursor: pointer;
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding-right: 4px;
+    outline: 0;
+  }
+
+  > svg {
+    position: absolute;
+    right: 10px;
+    pointer-events: none;
+    color: $mapping-system-slate-text-secondary;
+  }
+}
+
+.ds-virtual-block__search-wrap {
+  position: relative;
+  flex: 1 1 auto;
+  max-width: 360px;
+  min-width: 0;
+}
+
+.ds-virtual-block__search {
+  display: flex;
+  align-items: center;
+  gap: $gap-2xs;
+  padding: 8px 12px;
+  background: #F2F4F7;
+  border: 1px solid #E5E7EB;
+  border-radius: $radius-medium;
+  cursor: text;
+
+  input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: $mapping-system-slate-text-primary;
+    font: inherit;
+    font-size: 14px;
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: $mapping-system-slate-text-secondary;
+  }
+}
+
+// Search results dropdown — anchored to the search input.
+.ds-virtual-block__search-results {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: $radius-medium;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  padding: $gap-2xs 0;
+  z-index: 20;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.ds-virtual-block__search-results-header {
+  padding: 4px 12px 8px;
+  font-size: 12px;
+  font-weight: $ui-font-weight-strong;
+  color: $mapping-system-slate-text-secondary;
+}
+
+.ds-virtual-block__search-result {
+  display: flex;
+  align-items: center;
+  gap: $gap-2xs;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: #F2F4F7;
+    outline: none;
+  }
+}
+
+.ds-virtual-block__search-checkbox {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid #C7CCD3;
+  border-radius: 3px;
+  background: #FFFFFF;
+
+  &.is-checked {
+    background: $mapping-system-focus-background-primary;
+    border-color: $mapping-system-focus-background-primary;
+  }
+}
+
+.ds-virtual-block__search-result-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ds-virtual-block__search-result-title {
+  font-size: 13px;
+  font-weight: $ui-font-weight-strong;
+  color: $mapping-system-slate-text-primary;
+}
+
+.ds-virtual-block__search-result-sub {
+  font-size: 11px;
+  color: $mapping-system-slate-text-secondary;
+}
+
+.ds-virtual-block__search-empty {
+  padding: 8px 12px;
+  font-size: 12px;
+  color: $mapping-system-slate-text-secondary;
+}
+
+.ds-virtual-block__filters-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-2xs;
+  padding: 8px 12px;
+  background: #F2F4F7;
+  border: 1px solid #E5E7EB;
+  border-radius: $radius-medium;
+  color: $mapping-system-slate-text-primary;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover {
+    background: #E9ECF0;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+// Wrapper so the panel can be absolutely positioned against the button.
+.ds-virtual-block__filters-wrap {
+  position: relative;
+}
+
+// Multi-select filter panel — anchored to the filters button (right edge).
+.ds-virtual-block__filters-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 240px;
+  max-height: 320px;
+  overflow-y: auto;
+  padding: $gap-2xs 0;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: $radius-medium;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  z-index: 20;
+}
+
+.ds-virtual-block__filters-panel-header {
+  padding: 4px 12px 8px;
+  font-size: 12px;
+  font-weight: $ui-font-weight-strong;
+  color: $mapping-system-slate-text-secondary;
+}
+
+.ds-virtual-block__filter-option {
+  display: flex;
+  align-items: center;
+  gap: $gap-2xs;
+  width: 100%;
+  padding: 6px 12px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  color: $mapping-system-slate-text-primary;
+  transition: background-color 0.1s ease;
+
+  &:hover,
+  &:focus-visible {
+    background: #F2F4F7;
+    outline: none;
+  }
+}
+
+.ds-virtual-block__filter-option-label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Label chips strip (tag filter above the map) ---------- */
+.ds-virtual-block__labels-strip {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: $gap-2xs;
+  padding: 6px $padding-container-s;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+  flex-shrink: 0;
+  scrollbar-width: thin;
+}
+
+.ds-virtual-block__label-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: #FFFFFF;
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  color: $mapping-system-slate-text-primary;
+  font: inherit;
+  font-size: 11px;
+  font-weight: $ui-font-weight-strong;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    color 0.15s ease;
+
+  svg { color: $mapping-system-slate-text-primary; }
+
+  &:hover { background: #F2F4F7; }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+
+  &.is-active {
+    background: #0A111A;
+    border-color: #0A111A;
+    color: $mapping-system-slate-text-on-primary;
+    svg { color: $mapping-system-slate-text-on-primary; }
+  }
+}
+
+/* Empty-state hint shown when no search/tag filter is active. */
+.ds-virtual-block__map-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid #E5E7EB;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: $ui-font-weight-strong;
+  color: $mapping-system-slate-text-secondary;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  pointer-events: none;
+  z-index: 2;
+  white-space: nowrap;
+  max-width: calc(100% - 32px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Map surface ---------- */
+.ds-virtual-block__map {
+  position: relative;
+  flex: 1 1 auto;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 0; // allow flex shrink so the map fills remaining space
+}
+
+/* ---------- Scattered store cards (one per store with x/y) ----------
+   All cards render at first load on top of the map background. Each card
+   has a dark logo block on the left and a body on the right with title +
+   subtitle, an arrow "open" button, a divider, then Location | Directions
+   actions split by a vertical separator. Clicking anywhere on the card
+   (or the arrow) promotes it to `.is-active` and fires `onStoreClick`;
+   Location / Directions buttons are independent (they stop propagation). */
+.ds-virtual-block__scatter-card {
+  position: absolute;
+  // Center the card on its (x, y) coordinate so admins can think in
+  // "this is where the storefront is" terms.
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: stretch;
+  width: 240px;
+  background: #FFFFFF;
+  color: $mapping-system-slate-text-primary;
+  border: 1px solid #E5E7EB;
+  border-radius: $radius-medium;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
+  z-index: 3;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.18),
+      0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+
+  // Active card = darker border + lifted shadow so it pops above neighbours.
+  &.is-active {
+    border-color: #0A111A;
+    box-shadow: 0 14px 32px rgba(10, 17, 26, 0.32);
+    z-index: 5;
+  }
+}
+
+.ds-virtual-block__scatter-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 72px;
+  background: #0A111A;
+  color: $mapping-system-slate-text-on-primary;
+  font-family: $heading-font-family;
+  font-weight: $heading-font-weight-bold;
+  font-size: 18px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  overflow: hidden;
+  padding: $gap-2xs;
+  box-sizing: border-box;
+}
+
+// Admin-supplied logo images cover the entire dark block while preserving
+// aspect ratio (e.g. brand wordmarks crop cleanly).
+.ds-virtual-block__scatter-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.ds-virtual-block__scatter-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+// Title + subtitle on the left, arrow button on the right.
+.ds-virtual-block__scatter-head {
+  display: flex;
+  align-items: flex-start;
+  gap: $gap-2xs;
+  padding: 10px 8px 10px 12px;
+  // Underline acts as the horizontal divider above the actions row.
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.ds-virtual-block__scatter-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.ds-virtual-block__scatter-title {
+  font-size: 13px;
+  font-weight: $heading-font-weight-bold;
+  color: $mapping-system-slate-text-primary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-virtual-block__scatter-sub {
+  font-size: 11px;
+  color: $mapping-system-slate-text-secondary;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Top-right arrow button — bordered square per the screenshot.
+.ds-virtual-block__scatter-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: #FFFFFF;
+  color: $mapping-system-slate-text-primary;
+  border: 1px solid #E5E7EB;
+  border-radius: $radius-small;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    background: #F2F4F7;
+    transform: translateX(2px);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+// Actions row beneath the head — two buttons split by a vertical divider.
+.ds-virtual-block__scatter-actions {
+  display: flex;
+  align-items: stretch;
+  background: #F7F8FA;
+}
+
+.ds-virtual-block__scatter-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex: 1 1 0;
+  padding: 8px 10px;
+  background: transparent;
+  border: 0;
+  color: $mapping-system-slate-text-primary;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  // Vertical separator between Location and Directions.
+  & + .ds-virtual-block__scatter-action {
+    border-left: 1px solid #E5E7EB;
+  }
+
+  &:hover { background: #E9ECF0; }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+
+  svg { color: $mapping-system-slate-text-secondary; }
+}
+
+/* ---------- Active store card (bottom-left) ---------- */
+.ds-virtual-block__store-card {
+  position: absolute;
+  left: $padding-container-s;
+  bottom: $padding-container-s;
+  display: flex;
+  align-items: stretch;
+  min-width: 320px;
+  max-width: 380px;
+  background: #FFFFFF;
+  border-radius: $radius-medium;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  z-index: 6;
+}
+
+.ds-virtual-block__store-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 92px;
+  background: #0A111A;
+  color: $mapping-system-slate-text-on-primary;
+  font-weight: $heading-font-weight-bold;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
+
+.ds-virtual-block__store-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: $gap-xs;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ds-virtual-block__store-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: $mapping-system-slate-text-secondary;
+  border-radius: $radius-small;
+  cursor: pointer;
+
+  &:hover { background: #F2F4F7; }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+.ds-virtual-block__store-title {
+  font-size: 14px;
+  font-weight: $heading-font-weight-bold;
+  color: $mapping-system-slate-text-primary;
+  padding-right: 18px; // leave room for close button
+}
+
+.ds-virtual-block__store-sub {
+  font-size: 12px;
+  color: $mapping-system-slate-text-secondary;
+}
+
+.ds-virtual-block__store-actions {
+  display: flex;
+  gap: $gap-2xs;
+  margin-top: 6px;
+}
+
+.ds-virtual-block__store-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #F2F4F7;
+  border: 0;
+  border-radius: $radius-small;
+  color: $mapping-system-slate-text-primary;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover { background: #E9ECF0; }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+/* ---------- Zoom rail (bottom-right) ---------- */
+// Mirrors the MapBlock controls spec: #0A111A column, fluid padding + gap,
+// 32px icons that scale down on smaller screens.
+.ds-virtual-block__zoom {
+  position: absolute;
+  bottom: clamp(12px, 2vw, 20px);
+  right: clamp(12px, 2vw, 20px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(8px, 1.5vw, 16px);
+  padding: clamp(8px, 1.5vw, 16px);
+  background: #0A111A;
+  max-height: 224px;
+  color: $mapping-system-slate-text-on-primary;
+  z-index: 6;
+}
+
+.ds-virtual-block__zoom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  border-radius: $radius-small;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+
+  svg {
+    width: clamp(20px, 3vw, 32px);
+    height: clamp(20px, 3vw, 32px);
+  }
+
+  &:hover { transform: scale(1.06); }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+
+.ds-virtual-block__zoom-divider {
+  align-self: stretch;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .ds-virtual-block {
+    min-height: 420px;
+  }
+  .ds-virtual-block__toolbar {
+    padding: 8px $padding-container-xs;
+    gap: $gap-xs;
+  }
+  .ds-virtual-block__brand { font-size: 16px; }
+  .ds-virtual-block__store-card { min-width: 280px; max-width: 320px; }
+}
+
+@media (max-width: 640px) {
+  .ds-virtual-block {
+    aspect-ratio: auto;
+    min-height: 520px;
+    border-radius: $radius-medium;
+  }
+  // Toolbar wraps: brand+level on row 1, search+filters spread to row 2.
+  .ds-virtual-block__toolbar {
+    flex-wrap: wrap;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .ds-virtual-block__brand { font-size: 14px; }
+  .ds-virtual-block__level { padding: 6px 28px 6px 10px; font-size: 13px; }
+  .ds-virtual-block__search-wrap {
+    order: 5;
+    flex-basis: 100%;
+    max-width: none;
+  }
+  .ds-virtual-block__filters-btn { padding: 6px 10px; font-size: 13px; }
+
+  .ds-virtual-block__labels-strip { padding: 6px 12px; }
+  .ds-virtual-block__label-chip { font-size: 10px; padding: 3px 8px; }
+
+
+  // Store card pins to bottom edges with viewport-safe width.
+  .ds-virtual-block__store-card {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    min-width: 0;
+    max-width: calc(100vw - 24px);
+  }
+  .ds-virtual-block__store-logo { width: 72px; font-size: 12px; }
+  .ds-virtual-block__store-body { padding: 10px; }
+  .ds-virtual-block__store-title { font-size: 13px; }
+  .ds-virtual-block__store-sub { font-size: 11px; }
+
+  // Scatter cards shrink so they don't crowd a narrow map.
+  .ds-virtual-block__scatter-card { width: 200px; }
+  .ds-virtual-block__scatter-logo { width: 60px; font-size: 14px; }
+  .ds-virtual-block__scatter-head { padding: 8px 6px 8px 10px; }
+  .ds-virtual-block__scatter-title { font-size: 12px; }
+  .ds-virtual-block__scatter-sub { font-size: 10px; }
+  .ds-virtual-block__scatter-arrow { width: 24px; height: 24px; }
+  .ds-virtual-block__scatter-action { font-size: 10px; padding: 6px 8px; }
+
+  // Zoom rail flips horizontal so it doesn't push against the store card.
+  .ds-virtual-block__zoom {
+    flex-direction: row;
+    align-items: center;
+    bottom: 12px;
+    right: 12px;
+    padding: 6px;
+    gap: 6px;
+  }
+  .ds-virtual-block__zoom-divider {
+    align-self: stretch;
+    width: 1px;
+    height: auto;
+  }
+}

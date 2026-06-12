@@ -63,7 +63,7 @@ export type {
   MegaMenuCardConfig,
   MegaMenuCardAction,
 } from './components/MegaMenu'
-export { Map, MapBlock } from './components/Map'
+export { Map, MapBlock, VirtualBlock } from './components/Map'
 export type {
   MapProps,
   MapMode,
@@ -73,4 +73,9 @@ export type {
   MapBlockMode,
   MapBlockLabel,
   MapBlockControl,
+  VirtualBlockProps,
+  VirtualBlockLevel,
+  VirtualBlockLabel,
+  VirtualBlockSearchResult,
+  VirtualBlockStore,
 } from './components/Map'
