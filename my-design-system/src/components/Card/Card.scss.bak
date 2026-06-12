@@ -19,7 +19,7 @@
   --ds-card-logo-bg: #{$mapping-system-slate-background-primary};
   --ds-card-logo-fg: #{$mapping-system-slate-text-on-primary};
 
-  --ds-card-alert-bg: #{$mapping-system-slate-surface-primary};
+  --ds-card-alert-bg: transparent;
   --ds-card-alert-border: #{$mapping-system-slate-border-tertiary};
 
   --ds-card-label-bg: #{$mapping-system-slate-surface-tertiary};
@@ -56,10 +56,10 @@
   --ds-card-media-bg: #{$mapping-system-slate-background-secondary-hover};
   --ds-card-media-icon: #{$mapping-system-slate-background-tertiary};
 
-  --ds-card-logo-bg: #{$mapping-system-slate-background-primary};
-  --ds-card-logo-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-card-logo-bg: #{$mapping-system-white-1000};
+  --ds-card-logo-fg: #{$mapping-system-slate-background-primary};
 
-  --ds-card-alert-bg: rgba(255, 255, 255, 0.06);
+  --ds-card-alert-bg: rgba(255, 255, 255, 0.04);
   --ds-card-alert-border: #{$mapping-system-slate-background-secondary};
 
   --ds-card-label-bg: #{$mapping-system-slate-background-secondary};
@@ -159,7 +159,7 @@
 .ds-card__title {
   color: var(--ds-card-fg);
   font-family: $heading-font-family;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: $heading-font-weight-bold;
   line-height: 1.25;
   margin: 0;
@@ -168,7 +168,7 @@
 .ds-card__subtitle {
   color: var(--ds-card-fg);
   font-family: $heading-font-family;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: $heading-font-weight-bold;
   line-height: 1.3;
   margin: 0;
@@ -208,9 +208,9 @@
 }
 .ds-card__media--circle .ds-card__media-frame {
   aspect-ratio: 1 / 1;
-  border-radius: 50%; // true circle (token $radius-full is unitless)
-  margin: 0;
-  width: 180px;
+  border-radius: $radius-full;
+  margin: 0 auto;
+  max-width: 180px;
 }
 
 /* Inset – padded inside the card edges */
@@ -270,8 +270,6 @@
 .ds-card__logo {
   align-items: center;
   background-color: var(--ds-card-logo-bg);
-  border-bottom-left-radius: $radius-medium;
-  border-top-right-radius: $radius-medium;
   bottom: 0;
   color: var(--ds-card-logo-fg);
   display: inline-flex;
@@ -381,7 +379,7 @@
 .ds-card__avatar {
   align-items: center;
   background: var(--ds-card-media-bg);
-  border-radius: 50%;
+  border-radius: $radius-full;
   color: var(--ds-card-fg);
   display: inline-flex;
   flex-shrink: 0;
@@ -428,18 +426,12 @@
 }
 .ds-card__alert-icon {
   align-items: center;
-  background: transparent;
-  border-radius: 50%;
   color: var(--ds-card-fg);
   display: inline-flex;
   flex-shrink: 0;
-  height: 44px;
+  height: 24px;
   justify-content: center;
-  width: 44px;
-}
-.ds-card__alert-icon > svg {
-  height: 22px;
-  width: 22px;
+  width: 24px;
 }
 .ds-card__alert-text {
   display: flex;
@@ -465,19 +457,19 @@
 .ds-card__labels {
   display: flex;
   flex-wrap: wrap;
-  gap: $space-150;
+  gap: $space-100;
 }
 .ds-card__label {
   align-items: center;
   background-color: var(--ds-card-label-bg);
-  border-radius: 9999px; // true pill (token $radius-full is unitless)
+  border-radius: $radius-full;
   color: var(--ds-card-label-fg);
   display: inline-flex;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: $ui-font-weight-strong;
-  height: 32px;
+  height: 28px;
   line-height: 1;
-  padding: 0 $space-200;
+  padding: 0 $space-150;
 }
 
 /* =========================================================================
@@ -554,52 +546,4 @@
   .ds-card__logo-text {
     font-size: 22px;
   }
-}
-
-/* =========================================================================
- *  Dark-mode overrides for nested Button (plain/outlined) and Link
- *  -------------------------------------------------------------------
- *  Plain/outlined buttons default to dark text, which becomes unreadable
- *  on a dark card. Force the readable color when nested inside a dark Card.
- * ========================================================================= */
-.ds-card--dark .ds-button--plain,
-.ds-card--dark .ds-button--outlined {
-  color: var(--ds-card-fg);
-}
-
-.ds-card--dark .ds-button--outlined {
-  border-color: rgba(255, 255, 255, 0.24);
-}
-
-.ds-card--dark .ds-button--plain:hover:not(:disabled):not(:active),
-.ds-card--dark .ds-button--plain.ds-button--hover,
-.ds-card--dark .ds-button--outlined:hover:not(:disabled):not(:active),
-.ds-card--dark .ds-button--outlined.ds-button--hover {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.4);
-}
-
-.ds-card--dark .ds-button--plain:active:not(:disabled),
-.ds-card--dark .ds-button--plain.ds-button--pressed,
-.ds-card--dark .ds-button--outlined:active:not(:disabled),
-.ds-card--dark .ds-button--outlined.ds-button--pressed {
-  background-color: rgba(255, 255, 255, 0.16);
-}
-
-/* Filled button on a dark card needs an inverted look */
-.ds-card--dark .ds-button--filled {
-  background-color: var(--ds-card-bg-inverse, #ffffff);
-  border-color: var(--ds-card-bg-inverse, #ffffff);
-  color: var(--ds-card-bg, #141f2e);
-}
-
-.ds-card--dark .ds-button--filled:hover:not(:disabled):not(:active),
-.ds-card--dark .ds-button--filled.ds-button--hover {
-  background-color: rgba(255, 255, 255, 0.92);
-  border-color: rgba(255, 255, 255, 0.92);
-}
-
-/* Link arrow + label remain readable on dark surfaces */
-.ds-card--dark .ds-card__link {
-  color: var(--ds-card-fg);
 }
