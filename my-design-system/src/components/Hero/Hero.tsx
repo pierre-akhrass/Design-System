@@ -8,6 +8,8 @@ import {
   type ReactNode,
 } from 'react'
 import { Button } from '../Button/Button'
+import { NavItem } from '../NavItem/NavItem'
+import { Overlay } from '../Overlay/Overlay'
 import './Hero.scss'
 
 export type HeroVariant = 'centered' | 'bottom-left' | 'split'
@@ -125,24 +127,27 @@ const Pagination = ({ current, total, onChange }: PaginationProps) => {
   return (
     <div className="ds-hero__pagination" role="tablist" aria-label="Hero slides">
       {items.map((i) => (
-        <button
-          key={i}
-          type="button"
-          role="tab"
-          aria-selected={i === current}
-          aria-label={`Go to slide ${i}`}
-          className={`ds-hero__page${i === current ? ' ds-hero__page--active' : ''}`}
-          onClick={() => onChange(i)}
-        >
-          {String(i).padStart(2, '0')}
-        </button>
+        <span key={i} style={{ display: 'contents' }}>
+          <button
+            type="button"
+            role="tab"
+            aria-selected={i === current}
+            aria-label={`Go to slide ${i}`}
+            className={`ds-hero__page${i === current ? ' ds-hero__page--active' : ''}`}
+            onClick={() => onChange(i)}
+          >
+            {String(i).padStart(2, '0')}
+          </button>
+          {i === current && (
+            <div className="ds-hero__progress" aria-hidden="true">
+              <div
+                className="ds-hero__progress-fill"
+                style={{ width: '100%' }}
+              />
+            </div>
+          )}
+        </span>
       ))}
-      <div className="ds-hero__progress" aria-hidden="true">
-        <div
-          className="ds-hero__progress-fill"
-          style={{ width: `${(current / total) * 100}%` }}
-        />
-      </div>
     </div>
   )
 }
@@ -151,12 +156,14 @@ const Pagination = ({ current, total, onChange }: PaginationProps) => {
 const CenteredVariant = ({
   slide,
   pagination,
+  mode,
 }: {
   slide: HeroSlide
   pagination: PaginationProps
+  mode: HeroMode
 }) => (
   <>
-    <div className="ds-hero__overlay" />
+    <Overlay mode={mode} opacity={5} className="ds-hero__overlay" />
     <div className="ds-hero__centered">
       <div className="ds-hero__centered-text">
         <h2 className="ds-hero__title">{slide.title}</h2>
@@ -188,28 +195,27 @@ const CenteredVariant = ({
 const BottomLeftVariant = ({
   slide,
   pagination,
+  mode,
 }: {
   slide: HeroSlide
   pagination: PaginationProps
+  mode: HeroMode
 }) => (
   <>
-    <div className="ds-hero__overlay" />
+    <Overlay mode={mode} opacity={5} className="ds-hero__overlay" />
     <div className="ds-hero__bl">
       <h2 className="ds-hero__title">{slide.title}</h2>
       {slide.subtitle && <p className="ds-hero__subtitle">{slide.subtitle}</p>}
       <div className="ds-hero__actions">
         {renderAction(slide.primaryAction, 'filled')}
         {slide.secondaryAction && (
-          <Button
-            variant="plain"
-            onClick={() => {
-              slide.secondaryAction?.onClick?.()
-              if (slide.secondaryAction?.href) window.open(slide.secondaryAction.href, '_self')
-            }}
-          >
-            {slide.secondaryAction.label}
-            <ArrowRightIcon />
-          </Button>
+          <NavItem
+            label={slide.secondaryAction.label}
+            href={slide.secondaryAction.href ?? '#'}
+            iconRight={<ArrowRightIcon />}
+            colorMode={mode === 'dark' ? 'light' : 'dark'}
+            className="ds-hero__nav-link"
+          />
         )}
       </div>
     </div>
@@ -362,15 +368,17 @@ export const Hero = ({
 
   return (
     <div className={classes} style={containerStyle} {...divProps}>
-      {variant === 'centered' && (
-        <CenteredVariant slide={slide} pagination={pagination} />
-      )}
-      {variant === 'bottom-left' && (
-        <BottomLeftVariant slide={slide} pagination={pagination} />
-      )}
-      {variant === 'split' && (
-        <SplitVariant slide={slide} pagination={pagination} />
-      )}
+      <div className="ds-hero__slide-content" key={activeIdx}>
+        {variant === 'centered' && (
+          <CenteredVariant slide={slide} pagination={pagination} mode={mode} />
+        )}
+        {variant === 'bottom-left' && (
+          <BottomLeftVariant slide={slide} pagination={pagination} mode={mode} />
+        )}
+        {variant === 'split' && (
+          <SplitVariant slide={slide} pagination={pagination} />
+        )}
+      </div>
     </div>
   )
 }
