@@ -36,7 +36,7 @@ export interface MapFilterOption {
   value: string
 }
 
-export interface MapProps extends HTMLAttributes<HTMLDivElement> {
+export interface MapProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   mode?: MapMode
   /** Background map image url */
   mapImage?: string

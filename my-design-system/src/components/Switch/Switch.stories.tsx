@@ -124,7 +124,6 @@ export const Playground: Story = {
         </div>
       )
     }
-    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [state, setState] = useState<SwitchState>(args.state)
     return (
       <div style={{ width: 320 }}>

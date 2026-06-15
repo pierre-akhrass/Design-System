@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Footer } from './Footer'
-import type { FooterNavColumn, OpeningHourGroup, SocialLink, FooterTheme } from './Footer'
+import type { FooterNavColumn, OpeningHourGroup, SocialLink } from './Footer'
 import LogoAlFuttaim from '../../assets/logo-al-futtaim.svg?react'
 
 // ─── Design token BG colours (mirrors _variables.scss) ────────────────────────

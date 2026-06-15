@@ -6,8 +6,7 @@ import './Pagination.stories.scss'
 const meta: Meta<typeof Pagination> = {
   title: 'Components/Pagination (pierre-akhrass)',
   component: Pagination,
-  tags: ['autodocs'],
-  tags: ['ai-generated'],
+  tags: ['autodocs', 'ai-generated'],
   args: {
     theme: 'light',
     controlMode: 'icon-only',

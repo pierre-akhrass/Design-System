@@ -1,4 +1,5 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Map/MapBlock.tsx
+/* eslint-disable react-hooks/refs */
 import {
   useCallback,
   useEffect,
@@ -71,7 +72,7 @@ export interface MapBlockControl {
   dividerBelow?: boolean
 }
 
-export interface MapBlockProps extends HTMLAttributes<HTMLDivElement> {
+export interface MapBlockProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'> {
   mode?: MapBlockMode
   mapImage?: string
   category?: ReactNode
@@ -183,7 +184,9 @@ export const MapBlock = ({
   const viewportRef = useRef<HTMLDivElement | null>(null)
   const [view, setView] = useState({ zoom: 1, tx: 0, ty: 0 })
   const viewRef = useRef(view)
-  viewRef.current = view
+  useEffect(() => {
+    viewRef.current = view
+  }, [view])
 
   // Fire `onViewChange` whenever the view actually changes (post-commit).
   useEffect(() => {
@@ -331,12 +334,13 @@ export const MapBlock = ({
   // ----- Resolve right-side controls ----------------------------------------
   // Default rail uses our internal zoom/search handlers. Pass `controls`
   // explicitly to override.
-  const resolvedControls: MapBlockControl[] =
+  const resolvedControls = useMemo<MapBlockControl[]>(() => (
     controls ?? [
       { id: 'zoom-in',  ariaLabel: 'Zoom in',  icon: <ZoomInIcon />,  onClick: zoomIn,        dividerBelow: true },
       { id: 'search',   ariaLabel: 'Search',   icon: <SearchIcon />,  onClick: toggleSearch,  dividerBelow: true },
       { id: 'zoom-out', ariaLabel: 'Zoom out', icon: <ZoomOutIcon />, onClick: zoomOut },
     ]
+  ), [controls, toggleSearch, zoomIn, zoomOut])
 
   // ----- Render -------------------------------------------------------------
   const classes = [

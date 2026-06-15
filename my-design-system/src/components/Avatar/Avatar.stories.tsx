@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Avatar } from './Avatar'
+import type { AvatarProps } from './Avatar'
 import type { AvatarTheme } from './Avatar'
 import { AvatarGroup } from './AvatarGroup'
 import { AvatarBlock } from './AvatarBlock'
@@ -25,7 +26,15 @@ const IMG = [
 
 // ─── Meta ─────────────────────────────────────────────────────────────────────
 
-const meta: Meta<typeof Avatar> = {
+type AvatarStoryArgs = AvatarProps & {
+  spacing?: 'overlap' | 'spaced'
+  showOverflow?: boolean
+  overflowCount?: number
+  title?: string
+  description?: string
+}
+
+const meta: Meta<AvatarStoryArgs> = {
   title: 'Components/Avatar (Maher Al Rifai)',
   component: Avatar,
   tags: ['autodocs'],
@@ -132,7 +141,7 @@ Pass \`theme="dark"\` to any of the three components for the dark-mode palette. 
 }
 
 export default meta
-type Story = StoryObj<typeof Avatar>
+type Story = StoryObj<AvatarStoryArgs>
 
 const sizes = ['xsmall', 'small', 'medium', 'large', 'xlarge'] as const
 const types = ['initial', 'image', 'shape'] as const
@@ -148,11 +157,18 @@ export const Playground: Story = {
     overflowCount: 5,
     title: 'Jane Doe',
     description: 'Product Designer',
-  } as any,
+  },
   render: (args) => {
     const isDark = args.theme === 'dark'
     const bg = isDark ? TOKEN_BG_DARK : TOKEN_BG_LIGHT
-    const a = args as any
+    const {
+      spacing,
+      showOverflow,
+      overflowCount,
+      title,
+      description,
+      ...avatarProps
+    } = args
 
     // Avatar: fill the right slot per type
     const avatarExtra =
@@ -163,13 +179,13 @@ export const Playground: Story = {
         : {}
 
     // AvatarGroup props
-    const spacing   = a.spacing       ?? 'overlap'
-    const showOvf   = a.showOverflow  ?? true
-    const ovfCount  = a.overflowCount ?? 5
+    const resolvedSpacing = spacing ?? 'overlap'
+    const showOvf = showOverflow ?? true
+    const ovfCount = overflowCount ?? 5
 
     // AvatarBlock props
-    const blockTitle = a.title       ?? 'Jane Doe'
-    const blockDesc  = a.description
+    const blockTitle = title ?? 'Jane Doe'
+    const blockDesc = description
 
     const sectionLabel: CSSProperties = {
       color: isDark ? '#bcbcbc' : '#6b6b6b',
@@ -196,13 +212,13 @@ export const Playground: Story = {
         {/* Avatar */}
         <div>
           <span style={sectionLabel}>Avatar</span>
-          <Avatar {...args} {...avatarExtra} />
+          <Avatar {...avatarProps} {...avatarExtra} />
         </div>
 
         {/* Avatar Group */}
         <div>
           <span style={sectionLabel}>Avatar Group</span>
-          <AvatarGroup spacing={spacing} showOverflow={showOvf} overflowCount={ovfCount} theme={args.theme}>
+          <AvatarGroup spacing={resolvedSpacing} showOverflow={showOvf} overflowCount={ovfCount} theme={args.theme}>
             <Avatar type="image" size="xsmall" src={IMG[0]} alt="User 1" theme={args.theme} />
             <Avatar type="image" size="xsmall" src={IMG[1]} alt="User 2" theme={args.theme} />
             <Avatar type="image" size="xsmall" src={IMG[2]} alt="User 3" theme={args.theme} />

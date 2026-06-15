@@ -203,9 +203,9 @@ export const ActiveThumbnail: Story = {
 
 export const Interactive: Story = {
   args: {
-    mainVideo: {},
-    suggestedVideos: {},
-    isPlaying: false
+    mainVideo: MAIN_VIDEO,
+    suggestedVideos: SAMPLE_VIDEOS,
+    isPlaying: false,
   },
 
   name: 'Interactive — click to switch video',

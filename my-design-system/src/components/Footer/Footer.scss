@@ -675,3 +675,9 @@
     @include ds-footer-theme-dark;
   }
 }
+
+// ─── Theme: global toggle (Storybook toolbar / app-level data-theme) ─────────
+:root[data-theme='dark'] .ds-footer:not(.ds-footer--light):not(.ds-footer--dark),
+.theme-dark .ds-footer:not(.ds-footer--light):not(.ds-footer--dark) {
+  @include ds-footer-theme-dark;
+}

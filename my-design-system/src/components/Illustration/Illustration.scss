@@ -50,3 +50,9 @@
     @include ds-illustration-theme-dark;
   }
 }
+
+// ─── Theme: global toggle (Storybook toolbar / app-level data-theme) ─────────
+:root[data-theme='dark'] .ds-illustration:not(.ds-illustration--light):not(.ds-illustration--dark),
+.theme-dark .ds-illustration:not(.ds-illustration--light):not(.ds-illustration--dark) {
+  @include ds-illustration-theme-dark;
+}

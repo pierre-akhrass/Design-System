@@ -188,6 +188,13 @@
   }
 }
 
+// ── Global toggle (Storybook toolbar / app-level data-theme) ──────────────────
+
+:root[data-theme='dark'] .ds-tooltip:not(.ds-tooltip--light):not(.ds-tooltip--dark),
+.theme-dark .ds-tooltip:not(.ds-tooltip--light):not(.ds-tooltip--dark) {
+  @include ds-tooltip-theme-dark;
+}
+
 // ── Content ───────────────────────────────────────────────────────────────────
 
 .ds-tooltip__title {

@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useState, type FormEvent, type ReactElement } from 'react'
 import type { FooterLogoProps, FooterNavGroup, FooterNavItem, FooterNewsletterProps, FooterSocialLink } from './Footer.types'
 import facebookSrc from '../../assets/facebook.svg'
 import twitterSrc from '../../assets/twitter.svg'
@@ -14,7 +14,7 @@ const InstagramIcon = () => <img src={instagramSrc} alt="" width={24} height={24
 const LinkedInIcon = () => <img src={linkedinSrc} alt="" width={24} height={24} aria-hidden="true" />
 const YouTubeIcon = () => <img src={youtubeSrc} alt="" width={24} height={24} aria-hidden="true" />
 
-const socialIconMap: Record<string, () => JSX.Element> = {
+const socialIconMap: Record<string, () => ReactElement> = {
   facebook: FacebookIcon,
   twitter: TwitterXIcon,
   instagram: InstagramIcon,

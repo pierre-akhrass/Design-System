@@ -1,9 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { Hero, type HeroSlide } from './Hero'
-import mapImg from '../../assets/map.png'
+import heroImg from '../../assets/map.png'
+import './Hero.stories.scss'
 
 const baseArgs = {
-  image: mapImg,
+  image: heroImg,
   title: 'Title of the slide',
   subtitle:
     'This subtitle is optional. It can be long or short, it can wrap to two, or even three lines if necessary.',
@@ -26,8 +27,8 @@ export default meta
 
 type Story = StoryObj<typeof Hero>
 
-const wrap = (bg = '#f5f7fa') => (storyArgs: any) => (
-  <div style={{ padding: 24, background: bg }}>
+const wrap = (theme: 'light' | 'dark' = 'light') => (storyArgs: any) => (
+  <div className={`hero-story hero-story--${theme}`}>
     <Hero {...storyArgs} />
   </div>
 )
@@ -44,7 +45,7 @@ export const CenteredDark: Story = {
       secondary: { label: 'Button' },
     },
   },
-  render: wrap('#e9ecf0'),
+  render: wrap('light'),
 }
 
 export const CenteredLight: Story = {
@@ -52,7 +53,7 @@ export const CenteredLight: Story = {
     ...CenteredDark.args,
     mode: 'light',
   },
-  render: wrap('#1e2c3e'),
+  render: wrap('dark'),
 }
 
 /* ---------------- Bottom Left ---------------- */
@@ -62,7 +63,7 @@ export const BottomLeftDark: Story = {
     mode: 'dark',
     secondaryAction: { label: 'This is a link' },
   },
-  render: wrap('#e9ecf0'),
+  render: wrap('light'),
 }
 
 export const BottomLeftLight: Story = {
@@ -70,7 +71,7 @@ export const BottomLeftLight: Story = {
     ...BottomLeftDark.args,
     mode: 'light',
   },
-  render: wrap('#1e2c3e'),
+  render: wrap('dark'),
 }
 
 /* ---------------- Split ---------------- */
@@ -85,7 +86,7 @@ export const SplitDark: Story = {
       linkHref: '#',
     },
   },
-  render: wrap('#e9ecf0'),
+  render: wrap('light'),
 }
 
 export const SplitLight: Story = {
@@ -93,7 +94,7 @@ export const SplitLight: Story = {
     ...SplitDark.args,
     mode: 'light',
   },
-  render: wrap('#1e2c3e'),
+  render: wrap('dark'),
 }
 
 /* ---------------- Multi-slide working slider ---------------- */
@@ -134,7 +135,7 @@ export const SliderBottomLeft: Story = {
     mode: 'dark',
     slides: demoSlides,
   },
-  render: wrap('#e9ecf0'),
+  render: wrap('light'),
 }
 
 export const SliderCentered: Story = {
@@ -151,7 +152,7 @@ export const SliderCentered: Story = {
       },
     })),
   },
-  render: wrap('#e9ecf0'),
+  render: wrap('light'),
 }
 
 export const SliderAutoPlay: Story = {
@@ -161,5 +162,5 @@ export const SliderAutoPlay: Story = {
     slides: demoSlides,
     autoPlay: 3000,
   },
-  render: wrap('#e9ecf0'),
+  render: wrap('light'),
 }

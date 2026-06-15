@@ -13,6 +13,7 @@ import type {
 } from 'react'
 import { useId, useState } from 'react'
 import { Button } from '../Button'
+import type { ButtonState } from '../Button'
 import './Form.scss'
 
 export type FormTheme = 'light' | 'dark'
@@ -105,6 +106,11 @@ function resolveControlFlags(state: FormControlState, disabled?: boolean) {
     stateClass: `ds-form-control--${state}`,
     ariaInvalid: state === 'error' || undefined,
   }
+}
+
+function toButtonState(state: FormControlState): ButtonState {
+  if (state === 'error') return 'default'
+  return state
 }
 
 function ChevronDownIcon() {
@@ -472,11 +478,11 @@ export const FormActions = ({
   return (
     <div className={classes} {...props}>
       {secondaryLabel && (
-        <Button className="ds-form-actions__button ds-form-actions__button--secondary" state={secondaryState} variant="plain">
+        <Button className="ds-form-actions__button ds-form-actions__button--secondary" state={toButtonState(secondaryState)} variant="plain">
           {secondaryLabel}
         </Button>
       )}
-      <Button className="ds-form-actions__button ds-form-actions__button--primary" state={primaryState} variant="filled">
+      <Button className="ds-form-actions__button ds-form-actions__button--primary" state={toButtonState(primaryState)} variant="filled">
         {primaryLabel}
       </Button>
     </div>

@@ -89,7 +89,13 @@
 
 // Browser auto-detection
 @media (prefers-color-scheme: dark) {
-  .ds-media {
+  .ds-media:not(.ds-media--light) {
     @include media-dark;
   }
+}
+
+// Global toggle (Storybook toolbar / app-level data-theme)
+:root[data-theme='dark'] .ds-media:not(.ds-media--light),
+.theme-dark .ds-media:not(.ds-media--light) {
+  @include media-dark;
 }

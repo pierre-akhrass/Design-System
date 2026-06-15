@@ -34,40 +34,38 @@ if (typeof document !== 'undefined') {
 
 const ThemeDecorator: Preview['decorators'][number] = (Story, context) => {
   const theme = context.globals.theme ?? 'light'
-  
-  // Apply theme synchronously to main document
+
+  // Apply theme synchronously to the document so global.scss + component
+  // stylesheets that key off [data-theme] / .theme-* react immediately.
   if (typeof document !== 'undefined') {
     document.documentElement.setAttribute('data-theme', theme)
     document.documentElement.className = `theme-${theme}`
-    
-    // Apply inline styles for immediate effect
+
     if (theme === 'dark') {
       document.body.style.backgroundColor = '#101214'
       document.body.style.color = '#f1f1f1'
-      
-      // Apply dark theme to common elements
-      const elements = document.querySelectorAll('[class*="ds-accordion"], [class*="ds-button"], p, h1, h2, h3, h4, h5, h6, span, div')
-      elements.forEach(el => {
-        const computedStyle = window.getComputedStyle(el)
-        if (computedStyle.color === 'rgb(41, 41, 41)' || computedStyle.color === 'rgb(84, 84, 84)') {
-          (el as HTMLElement).style.color = '#f1f1f1'
-        }
-        if ((el as HTMLElement).classList.contains('ds-accordion__item') || 
-            (el as HTMLElement).classList.contains('ds-accordion__header')) {
-          (el as HTMLElement).style.color = '#f1f1f1'
-        }
-      })
     } else {
       document.body.style.backgroundColor = ''
       document.body.style.color = ''
     }
   }
-  
+
+  // Drive each component's own `theme` prop from the global toolbar toggle.
+  // Components that expose a `theme` arg (Tag, Banner, Footer, Avatar, Media,
+  // Tooltip, Illustration, …) otherwise pin themselves to their default arg
+  // (usually `light`), which made the toolbar appear to do nothing. Stories can
+  // still opt out by setting `parameters.themeOverride = false`.
+  const allowThemeOverride = context.parameters?.themeOverride !== false
+  if (allowThemeOverride && context.args && 'theme' in context.args) {
+    context.args.theme = theme
+  }
+
   return Story()
 }
 
 const preview: Preview = {
   tags: ['autodocs'],
+  loaders: [mswLoader],
   globalTypes: {
     theme: {
       name: 'Theme',
@@ -85,6 +83,9 @@ const preview: Preview = {
   },
   decorators: [ThemeDecorator],
   parameters: {
+    msw: {
+      handlers: mswHandlers,
+    },
     docs: {
       toc: true,
     },

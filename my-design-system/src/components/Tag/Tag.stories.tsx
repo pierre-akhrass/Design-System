@@ -2,6 +2,7 @@ import type { CSSProperties } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Tag } from './Tag'
 import type { TagTheme } from './Tag'
+import type { TagProps } from './Tag'
 
 // ── Star icon (matches Figma) ─────────────────────────────────────────────────
 
@@ -18,7 +19,12 @@ const TOKEN_BG_DARK  = '#141f2e'
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
 
-const meta: Meta<typeof Tag> = {
+type TagStoryArgs = TagProps & {
+  showIconStart?: boolean
+  showIconEnd?: boolean
+}
+
+const meta: Meta<TagStoryArgs> = {
   title: 'Components/Tag (Maher Al Rifai)',
   component: Tag,
   tags: ['autodocs'],
@@ -76,7 +82,7 @@ const meta: Meta<typeof Tag> = {
 }
 
 export default meta
-type Story = StoryObj<typeof Tag>
+type Story = StoryObj<TagStoryArgs>
 
 const structures = [
   { key: 'label',      iconStart: undefined,     iconEnd: undefined,     label: 'Label' },
@@ -92,10 +98,10 @@ const states = ['default', 'hover'] as const
 export const Playground: Story = {
   name: 'Playground',
   tags: ['!autodocs'],
-  args: { showIconStart: false, showIconEnd: false } as any,
+  args: { showIconStart: false, showIconEnd: false },
   render: (args) => {
+    const { showIconStart, showIconEnd, ...tagProps } = args
     const isDark = args.theme === 'dark'
-    const a = args as any
     return (
       <div style={{
         background: isDark ? TOKEN_BG_DARK : undefined,
@@ -105,9 +111,9 @@ export const Playground: Story = {
         transition: 'background 0.2s ease',
       }}>
         <Tag
-          {...args}
-          iconStart={a.showIconStart ? <StarIcon /> : undefined}
-          iconEnd={a.showIconEnd   ? <StarIcon /> : undefined}
+          {...tagProps}
+          iconStart={showIconStart ? <StarIcon /> : undefined}
+          iconEnd={showIconEnd ? <StarIcon /> : undefined}
         />
       </div>
     )

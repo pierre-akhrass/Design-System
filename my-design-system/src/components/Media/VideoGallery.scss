@@ -281,8 +281,14 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .ds-video-gallery {
+  .ds-video-gallery:not(.ds-video-gallery--light) {
     @include video-gallery-dark;
   }
+}
+
+// Global toggle (Storybook toolbar / app-level data-theme)
+:root[data-theme='dark'] .ds-video-gallery:not(.ds-video-gallery--light),
+.theme-dark .ds-video-gallery:not(.ds-video-gallery--light) {
+  @include video-gallery-dark;
 }
 

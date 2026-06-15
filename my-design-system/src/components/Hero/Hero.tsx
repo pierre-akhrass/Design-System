@@ -332,7 +332,10 @@ export const Hero = ({
   )
 
   const goToRef = useRef(goTo)
-  goToRef.current = goTo
+  useEffect(() => {
+    goToRef.current = goTo
+  }, [goTo])
+
   useEffect(() => {
     if (!autoPlay || total <= 1) return
     const id = window.setInterval(() => {

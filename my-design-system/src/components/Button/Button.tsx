@@ -42,7 +42,7 @@ export const Button = ({
     .join(' ')
 
   return (
-    <button className={classes} disabled={isDisabled} type={type} {...props}>
+    <button className={classes} disabled={isDisabled} type={type} aria-label={computedAriaLabel} {...props}>
       {icon && (
         <span className="ds-button__icon ds-button__icon--left">{icon}</span>
       )}

@@ -6,14 +6,6 @@ const meta: Meta<typeof Button> = {
   title: 'Components/Button (pierre-akhrass)',
   component: Button,
   tags: ['autodocs'],
-  parameters: {
-    docs: {
-      description: {
-        component:
-          'Primary interactive element. Supports `filled`, `outlined`, and `plain` variants with optional leading/trailing icons or icon-only mode.',
-      },
-    },
-  },
   args: {
     children: 'Button',
     variant: 'filled',

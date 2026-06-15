@@ -12,7 +12,7 @@ import {
   type FormTheme,
 } from './Form'
 
-const meta: Meta<typeof Form> = {
+const meta: Meta<DemoProps> = {
   title: 'Components/Form (Maher Al Rifai)',
   component: Form,
   tags: ['autodocs'],
@@ -29,7 +29,7 @@ const meta: Meta<typeof Form> = {
 
 export default meta
 
-type Story = StoryObj<typeof Form>
+type Story = StoryObj<DemoProps>
 
 type DemoProps = {
   theme: FormTheme

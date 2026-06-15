@@ -93,8 +93,8 @@ const PlayIcon = ({ size = 24 }: { size?: number }) => (
   </svg>
 )
 
-const PauseIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+const PauseIcon = ({ size = 24 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
     <rect x="5" y="4" width="4" height="16" rx="1" fill="currentColor" />
     <rect x="15" y="4" width="4" height="16" rx="1" fill="currentColor" />
   </svg>

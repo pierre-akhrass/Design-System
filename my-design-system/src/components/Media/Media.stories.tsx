@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import type { Meta, StoryObj } from '@storybook/react-vite'
 import { Media } from './Media'
 import { VideoGallery } from './VideoGallery'
@@ -139,6 +139,21 @@ The **Media** component is a responsive image/video container with configurable 
 export default meta
 type Story = StoryObj<typeof Media>
 
+type VideoGalleryPlaygroundArgs = {
+  ratio?: MediaRatio
+  src?: string
+  alt?: string
+  overlay?: boolean
+  theme?: MediaTheme
+  vg_theme: 'light' | 'dark'
+  vg_showControls: boolean
+  vg_isPlaying: boolean
+  vg_isMuted: boolean
+  vg_showSubtitles: boolean
+  vg_mainVideo: VideoItem
+  vg_suggestedVideos: VideoItem[]
+}
+
 // ─── Playground — Media image container ──────────────────────────────────────
 
 export const Playground: Story = {
@@ -164,7 +179,7 @@ export const Playground: Story = {
 
 // ─── Video Gallery — interactive VideoGallery + VideoPlayer ───────────────────
 
-export const VideoGalleryPlayground: Story = {
+export const VideoGalleryPlayground: StoryObj<VideoGalleryPlaygroundArgs> = {
   name: 'Video Gallery',
   parameters: {
     layout: 'padded',
@@ -241,16 +256,12 @@ export function MyVideoPage() {
   },
   // Story-level args — these appear in the Controls panel
   args: {
-    ...({
-      vg_theme:        'light',
-      vg_showControls: true,
-      vg_isPlaying:    false,
-      vg_isMuted:      false,
-      vg_showSubtitles: false,
-      vg_mainVideo:    MAIN_VIDEO,
-      vg_suggestedVideos: SAMPLE_VIDEOS,
-    } as any),
-
+    vg_theme: 'light',
+    vg_showControls: true,
+    vg_isPlaying: false,
+    vg_isMuted: false,
+    vg_showSubtitles: false,
+    vg_mainVideo: MAIN_VIDEO,
     vg_suggestedVideos: [{
       "id": "ep-1",
       "title": "Episode 1 — Introduction",
@@ -292,52 +303,50 @@ export function MyVideoPage() {
     overlay: { table: { disable: true } },
     theme:   { table: { disable: true } },
     // ── VideoGallery controls ───────────────────────────────────────────
-    ...({
-      vg_theme: {
-        name: 'theme',
-        control: { type: 'inline-radio' },
-        options: ['light', 'dark'],
-        description: 'Colour theme — also responds to `prefers-color-scheme`',
-        table: { category: 'Theme' },
-      },
-      vg_showControls: {
-        name: 'showControls',
-        control: 'boolean',
-        description: 'Show or hide the player controls overlay bar',
-        table: { category: 'Visibility' },
-      },
-      vg_isPlaying: {
-        name: 'isPlaying',
-        control: 'boolean',
-        description: 'Seeds the initial play/pause state. Player buttons also toggle it live.',
-        table: { category: 'Playback' },
-      },
-      vg_isMuted: {
-        name: 'isMuted',
-        control: 'boolean',
-        description: 'Seeds the initial mute state. Volume button also toggles it live.',
-        table: { category: 'Volume' },
-      },
-      vg_showSubtitles: {
-        name: 'showSubtitles',
-        control: 'boolean',
-        description: 'Seeds the initial subtitle state. CC button also toggles it live.',
-        table: { category: 'Subtitles' },
-      },
-      vg_mainVideo: {
-        name: 'mainVideo',
-        control: 'object',
-        description: 'Featured video data — `title`, `src`, `poster`, `duration`, `currentTime`',
-        table: { category: 'Videos' },
-      },
-      vg_suggestedVideos: {
-        name: 'suggestedVideos',
-        control: 'object',
-        description: 'Up to 6 suggested videos. Items 0–2 → 233 px sidebar. Items 3–5 → bottom row.',
-        table: { category: 'Videos' },
-      },
-    } as any),
-  } as any,
+    vg_theme: {
+      name: 'theme',
+      control: { type: 'inline-radio' },
+      options: ['light', 'dark'],
+      description: 'Colour theme — also responds to `prefers-color-scheme`',
+      table: { category: 'Theme' },
+    },
+    vg_showControls: {
+      name: 'showControls',
+      control: 'boolean',
+      description: 'Show or hide the player controls overlay bar',
+      table: { category: 'Visibility' },
+    },
+    vg_isPlaying: {
+      name: 'isPlaying',
+      control: 'boolean',
+      description: 'Seeds the initial play/pause state. Player buttons also toggle it live.',
+      table: { category: 'Playback' },
+    },
+    vg_isMuted: {
+      name: 'isMuted',
+      control: 'boolean',
+      description: 'Seeds the initial mute state. Volume button also toggles it live.',
+      table: { category: 'Volume' },
+    },
+    vg_showSubtitles: {
+      name: 'showSubtitles',
+      control: 'boolean',
+      description: 'Seeds the initial subtitle state. CC button also toggles it live.',
+      table: { category: 'Subtitles' },
+    },
+    vg_mainVideo: {
+      name: 'mainVideo',
+      control: 'object',
+      description: 'Featured video data — `title`, `src`, `poster`, `duration`, `currentTime`',
+      table: { category: 'Videos' },
+    },
+    vg_suggestedVideos: {
+      name: 'suggestedVideos',
+      control: 'object',
+      description: 'Up to 6 suggested videos. Items 0–2 → 233 px sidebar. Items 3–5 → bottom row.',
+      table: { category: 'Videos' },
+    },
+  },
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 1440 }}>
@@ -346,14 +355,13 @@ export function MyVideoPage() {
     ),
   ],
   render: (args) => {
-    const a = args as any
-    const theme        = (a.vg_theme        ?? 'light') as 'light' | 'dark'
-    const showControls = (a.vg_showControls ?? true)    as boolean
-    const seedPlaying  = (a.vg_isPlaying    ?? false)   as boolean
-    const seedMuted    = (a.vg_isMuted      ?? false)   as boolean
-    const seedSubs     = (a.vg_showSubtitles ?? false)  as boolean
-    const mainVideoArg = (a.vg_mainVideo    ?? MAIN_VIDEO) as VideoItem
-    const suggestedArg = (a.vg_suggestedVideos ?? SAMPLE_VIDEOS) as VideoItem[]
+    const theme = args.vg_theme ?? 'light'
+    const showControls = args.vg_showControls ?? true
+    const seedPlaying = args.vg_isPlaying ?? false
+    const seedMuted = args.vg_isMuted ?? false
+    const seedSubs = args.vg_showSubtitles ?? false
+    const mainVideoArg = args.vg_mainVideo ?? MAIN_VIDEO
+    const suggestedArg = args.vg_suggestedVideos ?? SAMPLE_VIDEOS
 
     const isDark = theme === 'dark'
 
@@ -372,7 +380,7 @@ export function MyVideoPage() {
       setMainVideo(mainVideoArg)
       setCurrentTime(mainVideoArg.currentTime ?? 0)
       setActiveIndex(undefined)
-    }, [JSON.stringify(mainVideoArg)])
+    }, [mainVideoArg])
 
     const handleVideoSelect = (index: number, item: VideoItem) => {
       setMainVideo(item)
@@ -490,7 +498,7 @@ export const AllMedia: Story = {
 
 // ─── Doc stories (Docs tab only) ──────────────────────────────────────────────
 
-const DocLabel = ({ children }: { children: string }) => (
+const DocLabel = ({ children }: { children: ReactNode }) => (
   <p style={{ fontFamily: 'monospace', fontSize: 11, fontWeight: 700, margin: '0 0 6px', color: '#1e2c3e' }}>{children}</p>
 )
 const DocSub = ({ children }: { children: string }) => (

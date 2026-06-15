@@ -222,6 +222,11 @@
   }
 }
 
+:root[data-theme='dark'] .ds-avatar-group:not(.ds-avatar-group--light):not(.ds-avatar-group--dark),
+.theme-dark .ds-avatar-group:not(.ds-avatar-group--light):not(.ds-avatar-group--dark) {
+  @include ds-avatar-group-theme-dark;
+}
+
 // AvatarBlock text
 @mixin ds-avatar-block-theme-light {
   .ds-avatar-block__title       { color: $mapping-system-slate-text-primary; }   // #292929
@@ -242,6 +247,11 @@
   }
 }
 
+:root[data-theme='dark'] .ds-avatar-block:not(.ds-avatar-block--light):not(.ds-avatar-block--dark),
+.theme-dark .ds-avatar-block:not(.ds-avatar-block--light):not(.ds-avatar-block--dark) {
+  @include ds-avatar-block-theme-dark;
+}
+
 // Image avatar: dark bg instead of light blue tint
 .ds-avatar--dark.ds-avatar--image {
   background-color: $mapping-system-slate-background-secondary; // #2a3c50
@@ -251,4 +261,9 @@
   .ds-avatar--image:not(.ds-avatar--light):not(.ds-avatar--dark) {
     background-color: $mapping-system-slate-background-secondary;
   }
+}
+
+:root[data-theme='dark'] .ds-avatar--image:not(.ds-avatar--light):not(.ds-avatar--dark),
+.theme-dark .ds-avatar--image:not(.ds-avatar--light):not(.ds-avatar--dark) {
+  background-color: $mapping-system-slate-background-secondary;
 }

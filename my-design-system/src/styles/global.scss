@@ -20,7 +20,8 @@
   --sds-color-border-brand-secondary: #{$mapping-brand-vibrant-teal-border-primary};
 }
 
-:root[data-theme='dark'] {
+:root[data-theme='dark'],
+html.theme-dark {
   --sds-color-text-default-default: #f1f1f1;
   --sds-color-text-default-secondary: #d8d8d8;
   --sds-color-text-default-tertiary: #b8b8b8;
@@ -40,72 +41,166 @@ body {
   font-family: $ui-font-family;
 }
 
-:root.theme-dark body,
-html.theme-dark body {
-  color: #f1f1f1 !important;
-  background-color: #101214 !important;
+// ---------------------------------------------------------------------------
+// DARK THEME
+// ---------------------------------------------------------------------------
+// Components compile the System/Slate token hex values directly (e.g.
+// `$mapping-system-slate-text-primary` -> #292929). To make the Light/Dark
+// toggle re-theme every component without editing each component's SCSS, we
+// remap the *resolved* hex values to their dark equivalents here, scoped to
+// the dark theme container. The `data-theme='dark'` attribute and the
+// `.theme-dark` class are both supported.
+//
+// Slate token -> dark value reference:
+//   text-primary      #292929 -> #f1f1f1
+//   text-secondary    #545454 -> #c9c9c9
+//   text-tertiary     #6b6b6b -> #a0a0a0
+//   surface-primary   #f5f7fa -> #1a1d21
+//   surface-secondary #e9ecf0 -> #22262b
+//   surface-tertiary  #d2d9e0 -> #2e333a
+//   surface-quaternary#b5c1cb -> #3a4049
+//   border-primary    #6b6b6b -> #5a5f66
+//   border-secondary  #bcbcbc -> #44494f
+//   border-tertiary   #d7d7d7 -> #33373d
+// ---------------------------------------------------------------------------
+
+// Applies the contained rules under every supported dark-theme container.
+// Usage:
+//   @include dark { .ds-foo { ... } }
+// The selector(s) you write inside are prefixed by each dark theme root.
+@mixin dark {
+  :root[data-theme='dark'],
+  html.theme-dark,
+  .theme-dark {
+    @content;
+  }
 }
 
-// Dark theme overrides using class selector - explicit selectors
-html.theme-dark .ds-accordion__item,
-.theme-dark .ds-accordion__item {
-  color: #f1f1f1 !important;
-  border-bottom-color: #3ec9bb !important;
+// Page surface
+:root[data-theme='dark'] body,
+html.theme-dark body,
+.theme-dark {
+  color: #f1f1f1;
+  background-color: #101214;
 }
 
-html.theme-dark .ds-accordion__header,
-.theme-dark .ds-accordion__header {
-  color: #f1f1f1 !important;
+// ---------------------------------------------------------------------------
+// Dark surface palette (re-points the light System/Slate surfaces used by
+// components so each component darkens as a whole — surface AND text together).
+// We never set text color without also owning the surface it sits on, so we
+// can't produce light-on-light (or dark-on-dark) low-contrast text.
+//   surface-primary   #f5f7fa -> #1a1d21
+//   surface-secondary #e9ecf0 -> #20242a
+//   surface-tertiary  #d2d9e0 -> #272c33
+//   text-primary      #292929 -> #f1f1f1
+//   text-secondary    #545454 -> #c9c9c9
+// ---------------------------------------------------------------------------
+
+// --- Accordion -------------------------------------------------------------
+@include dark {
+  .ds-accordion__item {
+    border-bottom-color: #3a3f46;
+  }
+  .ds-accordion__item--open {
+    border-bottom-color: #3ec9bb;
+  }
+  .ds-accordion__header,
+  .ds-accordion__title {
+    color: #f1f1f1;
+  }
+  .ds-accordion__header:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+  .ds-accordion__content,
+  .ds-accordion__body {
+    color: #c9c9c9;
+  }
+  .ds-accordion__icon svg {
+    stroke: #f1f1f1;
+    color: #f1f1f1;
+  }
 }
 
-html.theme-dark .ds-accordion__header:hover,
-.theme-dark .ds-accordion__header:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+// --- TextBlock -------------------------------------------------------------
+@include dark {
+  .ds-text-block__eyebrow,
+  .ds-text-block__title {
+    color: #f1f1f1;
+  }
+  .ds-text-block__body {
+    color: #c9c9c9;
+  }
 }
 
-html.theme-dark .ds-accordion__content,
-.theme-dark .ds-accordion__content {
-  color: #d8d8d8 !important;
+// --- Breadcrumbs -----------------------------------------------------------
+@include dark {
+  .ds-breadcrumbs__link,
+  .ds-breadcrumbs__current {
+    color: #e4e4e4;
+  }
+  .ds-breadcrumbs__separator {
+    color: #a0a0a0;
+  }
 }
 
-html.theme-dark .ds-accordion__icon svg,
-.theme-dark .ds-accordion__icon svg {
-  stroke: #f1f1f1 !important;
-  color: #f1f1f1 !important;
+// --- Tag --------------------------------------------------------------------
+// The Tag ships a complete `ds-tag-theme-dark` mixin and applies it under
+// `[data-theme='dark']` / `.theme-dark` from its own stylesheet.
+
+// --- Footer ----------------------------------------------------------------
+// The Footer ships a complete `ds-footer-theme-dark` mixin and now applies it
+// under `[data-theme='dark']` / `.theme-dark` from its own stylesheet, so no
+// overrides are needed here.
+
+// --- Buttons ---------------------------------------------------------------
+// Only adjust neutral / subtle (outline-style) buttons that rely on the light
+// page for contrast. Filled/brand buttons already carry their own colors.
+@include dark {
+  .ds-button--variant-neutral,
+  .ds-button--variant-subtle {
+    color: #f1f1f1;
+    border-color: #5a5f66;
+  }
 }
 
-html.theme-dark .ds-button,
-.theme-dark .ds-button {
-  color: #f1f1f1 !important;
+// --- Pagination ------------------------------------------------------------
+@include dark {
+  .ds-pagination__page {
+    color: #c9c9c9;
+  }
+  .ds-pagination__page--active {
+    color: #f1f1f1;
+  }
 }
 
-html.theme-dark .ds-button--variant-default,
-.theme-dark .ds-button--variant-default {
-  background-color: #3ec9bb !important;
-  color: #101214 !important;
+// --- Banner ----------------------------------------------------------------
+// The Banner ships complete `ds-banner-theme-light`/`ds-banner-theme-dark`
+// mixins and applies the dark theme under `[data-theme='dark']` / `.theme-dark`
+// from its own stylesheet, so no overrides are needed here.
+
+// --- Sidebar (default, non-dark-mode) --------------------------------------
+@include dark {
+  .ds-sidebar:not(.ds-sidebar--mode-dark) {
+    background-color: #1a1d21;
+
+    .ds-sidebar__category,
+    .ds-sidebar__label {
+      color: #c9c9c9;
+    }
+  }
 }
 
-html.theme-dark h1,
-html.theme-dark h2,
-html.theme-dark h3,
-html.theme-dark h4,
-html.theme-dark h5,
-html.theme-dark h6,
-.theme-dark h1,
-.theme-dark h2,
-.theme-dark h3,
-.theme-dark h4,
-.theme-dark h5,
-.theme-dark h6 {
-  color: #f1f1f1 !important;
+// --- Tooltip (light chip) --------------------------------------------------
+// The light tooltip carries its own light surface + dark text, which already
+// reads fine; just firm up the border against the dark page.
+@include dark {
+  .ds-tooltip--light {
+    border-color: #44494f;
+  }
 }
 
-html.theme-dark p,
-html.theme-dark span,
-.theme-dark p,
-.theme-dark span {
-  color: #f1f1f1 !important;
-}
+
+
 
 
 

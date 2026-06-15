@@ -1,0 +1,263 @@
+// filepath: /Users/mohammedoueidat/Documents/GitHub/Design-System/my-design-system/src/components/Dialog/Dialog.scss
+@use '../../styles/tokens/variables' as *;
+
+/* =========================================================================
+ *  Native <dialog> reset
+ *  By default the browser styles a <dialog> with a thick black border and
+ *  centers it via margin:auto. We strip that and use our own layout.
+ * ========================================================================= */
+.ds-dialog {
+  // ----- Light theme tokens -----
+  --ds-dialog-bg: #{$mapping-system-white-1000};
+  --ds-dialog-fg: #{$mapping-system-slate-text-primary};
+  --ds-dialog-fg-muted: #{$mapping-system-slate-text-secondary};
+  --ds-dialog-border: #{$mapping-system-slate-border-tertiary};
+  --ds-dialog-shadow: rgba(20, 31, 46, 0.18);
+  --ds-dialog-scrim: rgba(20, 31, 46, 0.55);
+
+  background: transparent;
+  border: none;
+  color: var(--ds-dialog-fg);
+  font-family: $ui-font-family;
+  height: 100%;
+  inset: 0;
+  margin: 0;
+  max-height: none;
+  max-width: none;
+  outline: none;
+  padding: 0;
+  width: 100%;
+}
+
+.ds-dialog::backdrop {
+  background: var(--ds-dialog-scrim);
+  // Subtle blur so the screenshots' soft "frosted" feel is preserved
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+/* ----- Dark theme ----- */
+.ds-dialog--dark {
+  --ds-dialog-bg: #{$mapping-system-slate-background-primary};
+  --ds-dialog-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-dialog-fg-muted: rgba(255, 255, 255, 0.78);
+  --ds-dialog-border: #{$mapping-system-slate-background-secondary};
+  --ds-dialog-shadow: rgba(0, 0, 0, 0.5);
+  --ds-dialog-scrim: rgba(4, 7, 13, 0.7);
+}
+
+/* =========================================================================
+ *  Layout (the dialog itself is a full-viewport container that positions
+ *  the inner panel)
+ * ========================================================================= */
+.ds-dialog {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.ds-dialog[open] {
+  display: flex;
+}
+
+.ds-dialog:not([open]) {
+  display: none;
+}
+
+.ds-dialog--bottom-sheet {
+  align-items: flex-end;
+}
+
+/* =========================================================================
+ *  Panel
+ * ========================================================================= */
+.ds-dialog__panel {
+  background: var(--ds-dialog-bg);
+  border-radius: $radius-large;
+  box-shadow:
+    0 12px 24px -8px var(--ds-dialog-shadow),
+    0 24px 48px -12px var(--ds-dialog-shadow);
+  box-sizing: border-box;
+  color: var(--ds-dialog-fg);
+  display: flex;
+  flex-direction: column;
+  gap: $space-200;
+  margin: $space-300;
+  max-height: calc(100vh - #{$space-300} * 2);
+  overflow: hidden;
+  padding: $space-400;
+  width: calc(100% - #{$space-300} * 2);
+  animation: ds-dialog-pop 180ms ease-out;
+}
+
+@keyframes ds-dialog-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Sizes */
+.ds-dialog--small  .ds-dialog__panel { max-width: 400px; }
+.ds-dialog--medium .ds-dialog__panel { max-width: 560px; }
+.ds-dialog--large  .ds-dialog__panel { max-width: 720px; }
+
+/* Bottom-sheet variant – flush left/right, only top corners rounded */
+.ds-dialog--bottom-sheet .ds-dialog__panel {
+  animation: ds-dialog-slide-up 220ms ease-out;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin: 0;
+  max-height: 90vh;
+  max-width: 100%;
+  width: 100%;
+}
+
+@keyframes ds-dialog-slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================================
+ *  Header (title + close)
+ * ========================================================================= */
+.ds-dialog__header {
+  align-items: center;
+  display: flex;
+  gap: $space-200;
+  justify-content: space-between;
+}
+
+.ds-dialog__title {
+  color: var(--ds-dialog-fg);
+  font-family: $heading-font-family;
+  font-size: 22px;
+  font-weight: $heading-font-weight-bold;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.ds-dialog__close {
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: $radius-small;
+  color: var(--ds-dialog-fg);
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 32px;
+  justify-content: center;
+  margin-inline-start: auto;
+  padding: 0;
+  width: 32px;
+}
+.ds-dialog__close:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+.ds-dialog--dark .ds-dialog__close:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.ds-dialog__close:focus-visible {
+  outline: 2px solid $mapping-system-focus-border-primary;
+  outline-offset: 2px;
+}
+
+/* =========================================================================
+ *  Body / Text
+ * ========================================================================= */
+.ds-dialog__body {
+  display: flex;
+  flex-direction: column;
+  gap: $space-150;
+  overflow-y: auto;
+}
+
+.ds-dialog__text {
+  color: var(--ds-dialog-fg-muted);
+  font-size: 16px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* =========================================================================
+ *  Actions (footer)
+ * ========================================================================= */
+.ds-dialog__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-200;
+  margin-top: $space-100;
+}
+.ds-dialog__actions--start    { justify-content: flex-start; }
+.ds-dialog__actions--end      { justify-content: flex-end; }
+.ds-dialog__actions--between  { justify-content: space-between; }
+
+.ds-dialog__actions--stacked {
+  align-items: stretch;
+  flex-direction: column;
+  gap: $space-100;
+}
+.ds-dialog__actions--stacked > * {
+  width: 100%;
+}
+
+/* Stretch buttons inside stacked actions to full width */
+.ds-dialog__actions--stacked .ds-button {
+  justify-content: center;
+  width: 100%;
+}
+
+/* =========================================================================
+ *  Dark-mode overrides for nested Buttons (keep them readable)
+ * ========================================================================= */
+.ds-dialog--dark .ds-button--plain,
+.ds-dialog--dark .ds-button--outlined {
+  color: var(--ds-dialog-fg);
+}
+.ds-dialog--dark .ds-button--outlined {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+.ds-dialog--dark .ds-button--plain:hover:not(:disabled):not(:active),
+.ds-dialog--dark .ds-button--outlined:hover:not(:disabled):not(:active) {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.ds-dialog--dark .ds-button--filled {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: var(--ds-dialog-bg);
+}
+.ds-dialog--dark .ds-button--filled:hover:not(:disabled):not(:active) {
+  background-color: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.92);
+}
+
+/* =========================================================================
+ *  Responsive – on phones, all dialogs become bottom-sheets with stacked CTAs
+ * ========================================================================= */
+@media (max-width: 600px) {
+  .ds-dialog--center {
+    align-items: flex-end;
+  }
+  .ds-dialog--center .ds-dialog__panel {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+    animation: ds-dialog-slide-up 220ms ease-out;
+  }
+  .ds-dialog__title {
+    font-size: 20px;
+  }
+}

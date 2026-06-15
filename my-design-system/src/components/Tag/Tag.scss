@@ -65,6 +65,13 @@
   }
 }
 
+// ── Global toggle (Storybook toolbar / app-level data-theme) ──────────────────
+
+:root[data-theme='dark'] .ds-tag:not(.ds-tag--light):not(.ds-tag--dark),
+.theme-dark .ds-tag:not(.ds-tag--light):not(.ds-tag--dark) {
+  @include ds-tag-theme-dark;
+}
+
 // ── Sub-elements ─────────────────────────────────────────────────────────────
 
 .ds-tag__icon {

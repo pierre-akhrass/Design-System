@@ -208,7 +208,7 @@
   }
 }
 
-.ds-banner--light {
+@mixin ds-banner-theme-light {
   background: $mapping-system-slate-surface-primary;
   border-color: $mapping-system-slate-border-tertiary;
 
@@ -243,7 +243,7 @@
   }
 }
 
-.ds-banner--dark {
+@mixin ds-banner-theme-dark {
   background: $mapping-system-slate-background-primary;
   border-color: $mapping-system-slate-background-secondary;
 
@@ -272,6 +272,21 @@
   .ds-banner__media {
     background: $mapping-system-slate-background-primary;
   }
+}
+
+.ds-banner--light {
+  @include ds-banner-theme-light;
+}
+
+.ds-banner--dark {
+  @include ds-banner-theme-dark;
+}
+
+// Global toggle (Storybook toolbar / app-level data-theme): apply the dark
+// theme to banners that don't explicitly force a light/dark variant.
+:root[data-theme='dark'] .ds-banner:not(.ds-banner--light):not(.ds-banner--dark),
+.theme-dark .ds-banner:not(.ds-banner--light):not(.ds-banner--dark) {
+  @include ds-banner-theme-dark;
 }
 
 @media (max-width: 1200px) {
