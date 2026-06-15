@@ -7,8 +7,8 @@
   --ds-smp-badge-bg: transparent;
   --ds-smp-badge-fg: #{$mapping-system-slate-text-primary};
   --ds-smp-placeholder: #{$mapping-system-slate-surface-quaternary};
-  --ds-smp-text-card-bg: #{$mapping-system-slate-background-primary};
-  --ds-smp-text-card-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-text-card-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-smp-text-card-fg: #{$mapping-system-slate-text-primary};
   --ds-smp-pagination-bg: #{$mapping-system-slate-background-primary};
   --ds-smp-pagination-fg: #{$mapping-system-slate-text-on-primary};
   --ds-smp-caption-bg: #{$mapping-system-slate-background-primary};
@@ -31,12 +31,12 @@
   --ds-smp-badge-bg: transparent;
   --ds-smp-badge-fg: #{$mapping-system-slate-text-on-primary};
   --ds-smp-placeholder: #{$mapping-system-slate-background-primary-hover};
-  --ds-smp-text-card-bg: #{$mapping-system-slate-surface-tertiary};
-  --ds-smp-text-card-fg: #{$mapping-system-slate-text-primary};
+  --ds-smp-text-card-bg: #{$mapping-system-slate-background-primary};
+  --ds-smp-text-card-fg: #{$mapping-system-slate-text-on-primary};
   --ds-smp-pagination-bg: #{$mapping-system-slate-surface-tertiary};
   --ds-smp-pagination-fg: #{$mapping-system-slate-text-primary};
-  --ds-smp-caption-bg: #{$mapping-system-slate-background-primary-hover};
-  --ds-smp-caption-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-smp-caption-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-smp-caption-fg: #{$mapping-system-slate-text-primary};
   --ds-smp-tag-bg: #{$mapping-system-slate-surface-tertiary};
   --ds-smp-tag-fg: #{$mapping-system-slate-text-primary};
 }
@@ -170,7 +170,8 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 280px;
-  padding: $padding-action-s;
+  // Extra top padding so the absolutely-positioned badge does not overlap the text
+  padding: 56px $padding-action-s $padding-action-s;
 }
 
 .ds-social-media-post__text {
@@ -183,4 +184,42 @@
   font-size: 10px;
   margin: 0;
   opacity: 0.7;
+}
+
+/* =========================================================================
+ *  X platform overrides
+ *  Light mode: dark navy card + white text + white badge
+ *  Dark mode:  light gray card + dark text + dark badge (matches screenshot)
+ * ========================================================================= */
+
+/* Light mode – dark navy background + white text */
+.ds-social-media-post--x:not(.ds-social-media-post--dark) .ds-social-media-post__media--text {
+  background-color: #{$mapping-system-slate-background-primary};
+  color: #{$mapping-system-slate-text-on-primary};
+}
+
+.ds-social-media-post--x:not(.ds-social-media-post--dark) .ds-social-media-post__text,
+.ds-social-media-post--x:not(.ds-social-media-post--dark) .ds-social-media-post__hashtags {
+  color: #{$mapping-system-slate-text-on-primary};
+}
+
+/* Light mode – badge must be white over the dark navy card */
+.ds-social-media-post--x:not(.ds-social-media-post--dark).ds-social-media-post--text .ds-social-media-post__badge {
+  color: #{$mapping-system-slate-text-on-primary};
+}
+
+/* Dark mode – light gray background + dark text */
+.ds-social-media-post--x.ds-social-media-post--dark .ds-social-media-post__media--text {
+  background-color: #{$mapping-system-slate-surface-tertiary};
+  color: #{$mapping-system-slate-text-primary};
+}
+
+.ds-social-media-post--x.ds-social-media-post--dark .ds-social-media-post__text,
+.ds-social-media-post--x.ds-social-media-post--dark .ds-social-media-post__hashtags {
+  color: #{$mapping-system-slate-text-primary};
+}
+
+/* Dark mode – badge uses dark text over the light gray card */
+.ds-social-media-post--x.ds-social-media-post--dark.ds-social-media-post--text .ds-social-media-post__badge {
+  color: #{$mapping-system-slate-text-primary};
 }
