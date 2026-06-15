@@ -45,7 +45,7 @@ const meta: Meta<typeof Hero> = {
   component: Hero,
   parameters: { layout: 'fullscreen' },
   argTypes: {
-    variant: { control: 'inline-radio', options: ['centered', 'section-hero', 'split'] },
+    variant: { control: 'inline-radio', options: ['section-hero', 'split'] },
     mode: { control: 'inline-radio', options: ['light', 'dark'] },
   },
   args: {
@@ -72,7 +72,7 @@ type Story = StoryObj<typeof Hero>
 export const Playground: Story = {
   args: {
     slides: [{
-      "image": "/src/assets/hero.png?t=1781514169062",
+      "image": "/src/assets/mega-menu-card.png",
       "title": "Slide One â€” Discover Dubai",
       "subtitle": "Vibrant waterfront destinations and luxury retail across the UAE.",
 
@@ -133,6 +133,7 @@ export const Playground: Story = {
       }
     }],
 
-    mode: "dark"
+    mode: "light",
+    variant: "split"
   }
 }

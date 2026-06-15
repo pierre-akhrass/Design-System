@@ -12,7 +12,7 @@ import { NavItem } from '../NavItem/NavItem'
 import { Overlay } from '../Overlay/Overlay'
 import './Hero.scss'
 
-export type HeroVariant = 'centered' | 'section-hero' | 'split'
+export type HeroVariant = 'section-hero' | 'split'
 export type HeroMode = 'light' | 'dark'
 
 export interface HeroAction {
@@ -142,7 +142,7 @@ const Pagination = ({ current, total, onChange }: PaginationProps) => {
             <div className="ds-hero__progress" aria-hidden="true">
               <div
                 className="ds-hero__progress-fill"
-                style={{ width: '100%' }}
+                style={{ width: `${(current / total) * 100}%` }}
               />
             </div>
           )}
@@ -153,45 +153,6 @@ const Pagination = ({ current, total, onChange }: PaginationProps) => {
 }
 
 /* ---------------- variants ---------------- */
-const CenteredVariant = ({
-  slide,
-  pagination,
-  mode,
-}: {
-  slide: HeroSlide
-  pagination: PaginationProps
-  mode: HeroMode
-}) => (
-  <>
-    <Overlay mode={mode} opacity={5} className="ds-hero__overlay" />
-    <div className="ds-hero__centered">
-      <div className="ds-hero__centered-text">
-        <h2 className="ds-hero__title">{slide.title}</h2>
-        {slide.subtitle && <p className="ds-hero__subtitle">{slide.subtitle}</p>}
-      </div>
-      {slide.brand && (
-        <div className="ds-hero__brand">
-          {slide.brand.logo && <div className="ds-hero__brand-logo">{slide.brand.logo}</div>}
-          <div className="ds-hero__brand-body">
-            {slide.brand.text && <div className="ds-hero__brand-text">{slide.brand.text}</div>}
-            <div className="ds-hero__brand-actions">
-              {renderAction(slide.brand.primary, 'filled')}
-              {renderAction(slide.brand.secondary, 'plain', <StarIcon />)}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-    <div className="ds-hero__footer">
-      <div className="ds-hero__actions">
-        {renderAction(slide.primaryAction, 'filled')}
-        {renderAction(slide.secondaryAction, 'plain', <StarIcon />)}
-      </div>
-      <Pagination {...pagination} />
-    </div>
-  </>
-)
-
 const BottomLeftVariant = ({
   slide,
   pagination,
@@ -254,23 +215,23 @@ const SplitVariant = ({
       <div className="ds-hero__split-content">
         <h2 className="ds-hero__title">{slide.title}</h2>
         {slide.subtitle && <p className="ds-hero__subtitle">{slide.subtitle}</p>}
+      </div>
+      <div className="ds-hero__split-footer">
         <div className="ds-hero__actions">
           {renderAction(slide.primaryAction, 'filled')}
           {slide.secondaryAction && (
-            <Button
-              variant="plain"
-              onClick={() => {
-                slide.secondaryAction?.onClick?.()
-                if (slide.secondaryAction?.href) window.open(slide.secondaryAction.href, '_self')
-              }}
-            >
-              {slide.secondaryAction.label}
-              <ArrowRightIcon />
-            </Button>
+            <NavItem
+              label={slide.secondaryAction.label}
+              href={slide.secondaryAction.href ?? '#'}
+              iconRight={<ArrowRightIcon />}
+              colorMode="light"
+              className="ds-hero__nav-link"
+            />
           )}
         </div>
+        <div className="ds-hero__split-divider" />
+        <Pagination {...pagination} />
       </div>
-      <Pagination {...pagination} />
     </div>
   </>
 )
@@ -369,9 +330,6 @@ export const Hero = ({
   return (
     <div className={classes} style={containerStyle} {...divProps}>
       <div className="ds-hero__slide-content" key={activeIdx}>
-        {variant === 'centered' && (
-          <CenteredVariant slide={slide} pagination={pagination} mode={mode} />
-        )}
         {variant === 'section-hero' && (
           <BottomLeftVariant slide={slide} pagination={pagination} mode={mode} />
         )}

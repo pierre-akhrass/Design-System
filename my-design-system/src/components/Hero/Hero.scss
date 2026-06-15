@@ -69,81 +69,6 @@
 }
 
 /* -------------------------------------- */
-/* Variant: centered                       */
-/* -------------------------------------- */
-.ds-hero--centered {
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 48px;
-}
-.ds-hero__centered {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex: 1 1 auto;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.ds-hero__centered-text {
-  flex: 1 1 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  align-items: center;
-}
-.ds-hero__brand {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  background: rgba(40, 50, 65, 0.92);
-  border-radius: 8px;
-  overflow: hidden;
-  min-width: 320px;
-  max-width: 360px;
-  color: #ffffff;
-}
-.ds-hero__brand-logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 80px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.06);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-}
-.ds-hero__brand-body {
-  flex: 1 1 auto;
-  padding: 12px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-.ds-hero__brand-text {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: 0.9;
-}
-.ds-hero__brand-actions {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.ds-hero__footer {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-/* -------------------------------------- */
 /* Variant: section-hero                   */
 /* -------------------------------------- */
 .ds-hero--section-hero {
@@ -208,7 +133,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 48px;
-  background: #1e2c3e;
+  background: var(--sds-color-background-default-secondary, #1e2c3e);
   color: #ffffff;
 }
 .ds-hero__split-content {
@@ -216,6 +141,25 @@
   flex-direction: column;
   gap: 16px;
   max-width: 480px;
+}
+.ds-hero__split-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.ds-hero__split-divider {
+  display: none;
+}
+.ds-hero--split .ds-hero__pagination {
+  display: flex;
+  height: 80px;
+  padding: var(--sds-size-space-400);
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  align-self: stretch;
+  border-top: 1px solid #6B6B6B;
 }
 
 /* -------------------------------------- */
@@ -255,16 +199,12 @@
   font-weight: 700;
 }
 .ds-hero--section-hero .ds-hero__progress {
-  width: 64px;
-  height: 2px;
-  background: #d1d9e0;
+  width: 107px;
+  height: 1px;
+  background: #B9D0ED;
 }
 .ds-hero--section-hero .ds-hero__progress-fill {
-  background: #1e2c3e;
-}
-.ds-hero--split .ds-hero__pagination {
-  align-self: flex-start;
-  margin-top: 24px;
+  background: #4F8CD1;
 }
 .ds-hero__page {
   appearance: none;
@@ -285,16 +225,16 @@
 }
 .ds-hero__page--active { opacity: 1; }
 .ds-hero__progress {
-  width: 80px;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.3);
+  width: 107px;
+  height: 1px;
+  background: #B9D0ED;
   border-radius: 999px;
   overflow: hidden;
 }
 .ds-hero__progress-fill {
   height: 100%;
-  background: #ffffff;
-  transition: width 200ms ease;
+  background: #4F8CD1;
+  transition: width 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* -------------------------------------- */
@@ -323,17 +263,17 @@
   }
 
   &.ds-hero--split .ds-hero__split-panel {
-    background: #f5f7fa;
-    color: #1e2c3e;
+    background: #1e2c3e;
+    color: #ffffff;
   }
   &.ds-hero--split .ds-hero__status {
-    background: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.92);
     color: #1e2c3e;
   }
 
   .ds-hero__pagination { color: #1e2c3e; }
-  .ds-hero__progress { background: rgba(0, 0, 0, 0.15); }
-  .ds-hero__progress-fill { background: #1e2c3e; }
+  .ds-hero__progress { background: #B9D0ED; }
+  .ds-hero__progress-fill { background: #4F8CD1; }
 }
 
 /* -------------------------------------- */
@@ -364,10 +304,10 @@
   font-weight: 700;
 }
 .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__progress {
-  background: rgba(255, 255, 255, 0.3);
+  background: #B9D0ED;
 }
 .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__progress-fill {
-  background: #ffffff;
+  background: #4F8CD1;
 }
 
 /* -------------------------------------- */
