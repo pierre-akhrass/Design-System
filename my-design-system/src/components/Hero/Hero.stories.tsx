@@ -131,6 +131,8 @@ export const Playground: Story = {
       "secondaryAction": {
         "label": "This is a link"
       }
-    }]
+    }],
+
+    mode: "dark"
   }
 }
