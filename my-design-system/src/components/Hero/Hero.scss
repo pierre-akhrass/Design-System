@@ -36,7 +36,7 @@
 /* shared typography */
 .ds-hero__title {
   margin: 0;
-  font-family: var(--sds-typography-heading-font-family, inherit);
+  font-family: $font-family-en-display;
   font-weight: 700;
   font-size: clamp(28px, 4vw, 48px);
   line-height: 1.15;
@@ -44,7 +44,7 @@
 }
 .ds-hero__subtitle {
   margin: 0;
-  font-family: var(--sds-typography-body-font-family, inherit);
+  font-family: $font-family-en-primary;
   font-size: 16px;
   line-height: 1.5;
   opacity: 0.92;
@@ -61,11 +61,11 @@
 
 /* nav link colors */
 .ds-hero--mode-light .ds-hero__nav-link {
-  color: var(--Schema-Text-On-Primary, #FFF);
+  color: $color-system-white-white;
   background: none !important;
 }
 .ds-hero--mode-dark .ds-hero__nav-link {
-  color: var(--Schema-Text-On-Primary, #292929);
+  color: $mapping-system-slate-text-primary;
   background: none !important;
 }
 
@@ -171,7 +171,7 @@
 .ds-hero--split .ds-hero__pagination {
   display: flex;
   height: 80px;
-  padding: var(--sds-size-space-400);
+  padding: 16px;
   justify-content: center;
   align-items: center;
   gap: 24px;
@@ -229,17 +229,17 @@
   background: none;
   border: 0;
   padding: 0;
-  color: var(--sds-color-text-default-tertiary);
+  color: $mapping-system-slate-text-tertiary;
   cursor: pointer;
   opacity: 0.6;
   leading-trim: both;
   text-edge: cap;
-  font-family: var(--UI-Font-Family, "Noto Sans");
-  font-size: var(--UI-Size-large, 16px);
+  font-family: $font-family-en-primary;
+  font-size: 16px;
   font-style: normal;
-  font-weight: var(--UI-Font-Weight-default, 400);
+  font-weight: 400;
   line-height: 150%;
-  letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+  letter-spacing: 0;
 }
 .ds-hero__page--active { opacity: 1; }
 .ds-hero__progress {
@@ -261,15 +261,15 @@
 .ds-hero--mode-light {
   color: $mapping-system-slate-background-secondary-hover;
 
-  .ds-hero__title { color: var(--Schema-Text-On-Primary, #FFF); }
-  .ds-hero__subtitle { opacity: 1; color: var(--Schema-Text-On-Primary, #FFF); }
+  .ds-hero__title { color: $color-system-white-white; }
+  .ds-hero__subtitle { opacity: 1; color: $color-system-white-white; }
 
   .ds-hero__overlay {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.7) 100%);
     width: 100%;
     height: 100%;
   }
-  .ds-hero__subtitle { opacity: 1; color: var(--Schema-Text-On-Primary, #FFF); }
+  .ds-hero__subtitle { opacity: 1; color: $color-system-white-white; }
 
   .ds-hero__brand {
     background: $color-system-white-opacity-90;
@@ -301,8 +301,8 @@
 .ds-hero--mode-dark {
   color: $color-system-white-white;
 
-  .ds-hero__title { color: var(--Schema-Text-On-Primary, #292929); }
-  .ds-hero__subtitle { color: var(--Schema-Text-On-Primary, #292929); }
+  .ds-hero__title { color: $mapping-system-slate-text-primary; }
+  .ds-hero__subtitle { color: $mapping-system-slate-text-primary; }
 
   &.ds-hero--section-hero .ds-hero__actions .ds-button {
     background: $mapping-system-slate-surface-tertiary;
@@ -373,8 +373,8 @@
   }
 
   .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__pagination {
-    background: var(--sds-color-background-default-secondary, #1e2c3e);
-    color: #ffffff;
+    background: $mapping-system-slate-background-secondary;
+    color: $color-system-white-white;
   }
 
   .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__actions .ds-button {
