@@ -49,6 +49,11 @@
   line-height: 1.5;
   opacity: 0.92;
   max-width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 /* shared actions */
@@ -290,7 +295,10 @@
     color: $mapping-system-slate-text-primary;
   }
 
-  .ds-hero__pagination { color: $mapping-system-slate-background-secondary-hover; }
+  .ds-hero__pagination {
+    color: $mapping-system-slate-text-on-secondary;
+    background: $mapping-system-slate-background-secondary-hover;
+  }
   .ds-hero__progress { background: $mapping-brand-teal-blue-border-tertiary; }
   .ds-hero__progress-fill { background: $mapping-brand-teal-blue-border-secondary; }
 }
@@ -369,7 +377,7 @@
     padding: 20px 24px;
     gap: 16px;
     border-radius: 0;
-    background: #ffffff;
+    background: $color-system-white-white;
   }
 
   .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__pagination {
@@ -378,8 +386,8 @@
   }
 
   .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__actions .ds-button {
-    background: #D2D9E0;
-    color: #292929;
+    background: $mapping-system-slate-surface-tertiary;
+    color: $mapping-system-slate-text-primary;
   }
 
   .ds-hero__title {
@@ -389,5 +397,46 @@
   .ds-hero__subtitle {
     font-size: 15px;
     max-width: 100%;
+  }
+
+  /* Split variant mobile */
+  .ds-hero--split {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .ds-hero__split-image {
+    min-height: 280px;
+    justify-content: stretch;
+  }
+
+  .ds-hero__status {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+
+  .ds-hero__split-panel {
+    padding: 32px 24px;
+  }
+
+  .ds-hero__split-content {
+    max-width: 100%;
+  }
+
+  .ds-hero--split .ds-hero__pagination {
+    height: auto;
+    padding: 16px;
+    justify-content: center;
+  }
+
+  .ds-hero--mode-light.ds-hero--split .ds-hero__pagination {
+    background: $color-system-white-white;
+    color: $mapping-system-slate-background-secondary-hover;
+  }
+
+  .ds-hero--mode-dark.ds-hero--split .ds-hero__pagination {
+    background: $color-system-white-white;
+    color: $mapping-system-slate-background-secondary-hover;
   }
 }
