@@ -142,7 +142,7 @@ const Pagination = ({ current, total, onChange }: PaginationProps) => {
             <div className="ds-hero__progress" aria-hidden="true">
               <div
                 className="ds-hero__progress-fill"
-                style={{ width: '100%' }}
+                style={{ width: `${(current / total) * 100}%` }}
               />
             </div>
           )}

@@ -258,12 +258,23 @@
   font-weight: 700;
 }
 .ds-hero--bottom-left .ds-hero__progress {
-  width: 64px;
-  height: 2px;
-  background: #d1d9e0;
+  width: 82px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
 }
 .ds-hero--bottom-left .ds-hero__progress-fill {
-  background: #1e2c3e;
+  background: var(--sds-color-border-brand-secondary);
+}
+.ds-hero--mode-dark.ds-hero--bottom-left .ds-hero__pagination {
+  background: var(--sds-color-background-default-secondary);
+  color: #ffffff;
+}
+.ds-hero--mode-dark.ds-hero--bottom-left .ds-hero__page {
+  color: rgba(255, 255, 255, 0.6);
+}
+.ds-hero--mode-dark.ds-hero--bottom-left .ds-hero__page--active {
+  color: #ffffff;
+  font-weight: 700;
 }
 .ds-hero--split .ds-hero__pagination {
   align-self: flex-start;
@@ -402,8 +413,13 @@
     padding: 20px 24px;
     gap: 16px;
     border-radius: 0;
-    background: #1e2c3e;
+    background: var(--sds-color-background-default-secondary);
     color: #ffffff;
+  }
+
+  .ds-hero--mode-light.ds-hero--bottom-left .ds-hero__pagination {
+    background: #ffffff;
+    color: #8a9bae;
   }
 
   .ds-hero--bottom-left .ds-hero__page {
@@ -415,12 +431,29 @@
     font-weight: 700;
   }
 
+  .ds-hero--mode-light.ds-hero--bottom-left .ds-hero__page {
+    color: #8a9bae;
+  }
+
+  .ds-hero--mode-light.ds-hero--bottom-left .ds-hero__page--active {
+    color: #1e2c3e;
+    font-weight: 700;
+  }
+
   .ds-hero--bottom-left .ds-hero__progress {
     background: rgba(255, 255, 255, 0.3);
   }
 
   .ds-hero--bottom-left .ds-hero__progress-fill {
     background: #4db8ff;
+  }
+
+  .ds-hero--mode-light.ds-hero--bottom-left .ds-hero__progress {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  .ds-hero--mode-light.ds-hero--bottom-left .ds-hero__progress-fill {
+    background: var(--sds-color-border-brand-secondary);
   }
 
   .ds-hero--split {

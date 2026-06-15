@@ -2,6 +2,44 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Hero } from './Hero'
 import heroImg from '../../assets/hero.png'
 
+const slides = [
+  {
+    image: heroImg,
+    title: 'Slide One — Discover Dubai',
+    subtitle: 'Vibrant waterfront destinations and luxury retail across the UAE.',
+    primaryAction: { label: 'Button' },
+    secondaryAction: { label: 'This is a link' },
+  },
+  {
+    image: heroImg,
+    title: 'Slide Two — Festival Plaza',
+    subtitle: 'Community-focused shopping and entertainment in Jebel Ali.',
+    primaryAction: { label: 'Button' },
+    secondaryAction: { label: 'This is a link' },
+  },
+  {
+    image: heroImg,
+    title: 'Slide Three — Al Badia Living',
+    subtitle: 'Mixed-use residential community in Dubai Festival City.',
+    primaryAction: { label: 'Button' },
+    secondaryAction: { label: 'This is a link' },
+  },
+  {
+    image: heroImg,
+    title: 'Slide Four — Regional Reach',
+    subtitle: 'Landmark projects across Saudi Arabia, Qatar and beyond.',
+    primaryAction: { label: 'Button' },
+    secondaryAction: { label: 'This is a link' },
+  },
+  {
+    image: heroImg,
+    title: 'Slide Five — Future Vision',
+    subtitle: 'Innovative developments shaping the future of urban living.',
+    primaryAction: { label: 'Button' },
+    secondaryAction: { label: 'This is a link' },
+  },
+]
+
 const meta: Meta<typeof Hero> = {
   title: 'Components/Hero',
   component: Hero,
@@ -11,15 +49,9 @@ const meta: Meta<typeof Hero> = {
     mode: { control: 'inline-radio', options: ['light', 'dark'] },
   },
   args: {
-    image: heroImg,
-    title: 'Title of the slide',
-    subtitle:
-      'This subtitle is optional. It can be long or short, it can wrap to two, or even three lines if necessary.',
-    primaryAction: { label: 'Button' },
-    secondaryAction: { label: 'Button' },
-    totalSlides: 5,
-    variant: 'centered',
-    mode: 'dark',
+    variant: 'bottom-left',
+    mode: 'light',
+    slides,
     brand: {
       logo: 'LOGO',
       text: 'This text talks more about the brand, or context',
@@ -39,21 +71,66 @@ type Story = StoryObj<typeof Hero>
 
 export const Playground: Story = {
   args: {
-    variant: "bottom-left",
-    mode: "light",
-    image: "/src/assets/hero.png",
+    slides: [{
+      "image": "/src/assets/hero.png?t=1781514169062",
+      "title": "Slide One — Discover Dubai",
+      "subtitle": "Vibrant waterfront destinations and luxury retail across the UAE.",
 
-    brand: {
-      "logo": "LOGO",
-      "text": "This text talks more about the brand, or context",
-
-      "primary": {
+      "primaryAction": {
         "label": "Button"
       },
 
-      "secondary": {
-        "label": "this is a link"
+      "secondaryAction": {
+        "label": "This is a link"
       }
-    }
+    }, {
+      "image": "/src/assets/hero.png?t=1781514169062",
+      "title": "Slide Two — Festival Plaza",
+      "subtitle": "Community-focused shopping and entertainment in Jebel Ali.",
+
+      "primaryAction": {
+        "label": "Button"
+      },
+
+      "secondaryAction": {
+        "label": "This is a link"
+      }
+    }, {
+      "image": "/src/assets/mega-menu-card.png",
+      "title": "Slide Three — Al Badia Living",
+      "subtitle": "Mixed-use residential community in Dubai Festival City.",
+
+      "primaryAction": {
+        "label": "Button"
+      },
+
+      "secondaryAction": {
+        "label": "This is a link"
+      }
+    }, {
+      "image": "/src/assets/hero.png?t=1781514169062",
+      "title": "Slide Four — Regional Reach",
+      "subtitle": "Landmark projects across Saudi Arabia, Qatar and beyond.",
+
+      "primaryAction": {
+        "label": "Button"
+      },
+
+      "secondaryAction": {
+        "label": "This is a link"
+      }
+    }, {
+      "image": "/src/assets/hero.png?t=1781514169062",
+      "title": "Slide Five — Future Vision",
+      "subtitle": "Innovative developments shaping the future of urban living.",
+
+      "primaryAction": {
+        "label": "Button"
+      },
+
+      "secondaryAction": {
+        "label": "This is a link"
+      }
+    }]
   }
 }
