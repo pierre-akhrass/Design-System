@@ -5,35 +5,35 @@ import heroImg from '../../assets/hero.png'
 const slides = [
   {
     image: heroImg,
-    title: 'Slide One — Discover Dubai',
+    title: 'Slide One â€” Discover Dubai',
     subtitle: 'Vibrant waterfront destinations and luxury retail across the UAE.',
     primaryAction: { label: 'Button' },
     secondaryAction: { label: 'This is a link' },
   },
   {
     image: heroImg,
-    title: 'Slide Two — Festival Plaza',
+    title: 'Slide Two â€” Festival Plaza',
     subtitle: 'Community-focused shopping and entertainment in Jebel Ali.',
     primaryAction: { label: 'Button' },
     secondaryAction: { label: 'This is a link' },
   },
   {
     image: heroImg,
-    title: 'Slide Three — Al Badia Living',
+    title: 'Slide Three â€” Al Badia Living',
     subtitle: 'Mixed-use residential community in Dubai Festival City.',
     primaryAction: { label: 'Button' },
     secondaryAction: { label: 'This is a link' },
   },
   {
     image: heroImg,
-    title: 'Slide Four — Regional Reach',
+    title: 'Slide Four â€” Regional Reach',
     subtitle: 'Landmark projects across Saudi Arabia, Qatar and beyond.',
     primaryAction: { label: 'Button' },
     secondaryAction: { label: 'This is a link' },
   },
   {
     image: heroImg,
-    title: 'Slide Five — Future Vision',
+    title: 'Slide Five â€” Future Vision',
     subtitle: 'Innovative developments shaping the future of urban living.',
     primaryAction: { label: 'Button' },
     secondaryAction: { label: 'This is a link' },
@@ -45,11 +45,11 @@ const meta: Meta<typeof Hero> = {
   component: Hero,
   parameters: { layout: 'fullscreen' },
   argTypes: {
-    variant: { control: 'inline-radio', options: ['centered', 'bottom-left', 'split'] },
+    variant: { control: 'inline-radio', options: ['centered', 'section-hero', 'split'] },
     mode: { control: 'inline-radio', options: ['light', 'dark'] },
   },
   args: {
-    variant: 'bottom-left',
+    variant: 'section-hero',
     mode: 'light',
     slides,
     brand: {
@@ -73,7 +73,7 @@ export const Playground: Story = {
   args: {
     slides: [{
       "image": "/src/assets/hero.png?t=1781514169062",
-      "title": "Slide One — Discover Dubai",
+      "title": "Slide One â€” Discover Dubai",
       "subtitle": "Vibrant waterfront destinations and luxury retail across the UAE.",
 
       "primaryAction": {
@@ -85,7 +85,7 @@ export const Playground: Story = {
       }
     }, {
       "image": "/src/assets/hero.png?t=1781514169062",
-      "title": "Slide Two — Festival Plaza",
+      "title": "Slide Two â€” Festival Plaza",
       "subtitle": "Community-focused shopping and entertainment in Jebel Ali.",
 
       "primaryAction": {
@@ -97,7 +97,7 @@ export const Playground: Story = {
       }
     }, {
       "image": "/src/assets/mega-menu-card.png",
-      "title": "Slide Three — Al Badia Living",
+      "title": "Slide Three â€” Al Badia Living",
       "subtitle": "Mixed-use residential community in Dubai Festival City.",
 
       "primaryAction": {
@@ -109,7 +109,7 @@ export const Playground: Story = {
       }
     }, {
       "image": "/src/assets/hero.png?t=1781514169062",
-      "title": "Slide Four — Regional Reach",
+      "title": "Slide Four â€” Regional Reach",
       "subtitle": "Landmark projects across Saudi Arabia, Qatar and beyond.",
 
       "primaryAction": {
@@ -121,7 +121,7 @@ export const Playground: Story = {
       }
     }, {
       "image": "/src/assets/hero.png?t=1781514169062",
-      "title": "Slide Five — Future Vision",
+      "title": "Slide Five â€” Future Vision",
       "subtitle": "Innovative developments shaping the future of urban living.",
 
       "primaryAction": {

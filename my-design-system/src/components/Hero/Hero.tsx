@@ -12,7 +12,7 @@ import { NavItem } from '../NavItem/NavItem'
 import { Overlay } from '../Overlay/Overlay'
 import './Hero.scss'
 
-export type HeroVariant = 'centered' | 'bottom-left' | 'split'
+export type HeroVariant = 'centered' | 'section-hero' | 'split'
 export type HeroMode = 'light' | 'dark'
 
 export interface HeroAction {
@@ -142,7 +142,7 @@ const Pagination = ({ current, total, onChange }: PaginationProps) => {
             <div className="ds-hero__progress" aria-hidden="true">
               <div
                 className="ds-hero__progress-fill"
-                style={{ width: `${(current / total) * 100}%` }}
+                style={{ width: '100%' }}
               />
             </div>
           )}
@@ -372,7 +372,7 @@ export const Hero = ({
         {variant === 'centered' && (
           <CenteredVariant slide={slide} pagination={pagination} mode={mode} />
         )}
-        {variant === 'bottom-left' && (
+        {variant === 'section-hero' && (
           <BottomLeftVariant slide={slide} pagination={pagination} mode={mode} />
         )}
         {variant === 'split' && (
