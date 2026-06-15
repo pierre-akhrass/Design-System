@@ -1,4 +1,5 @@
-// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Hero/Hero.scss
+@use '../../styles/tokens/variables' as *;
+
 .ds-hero {
   position: relative;
   display: flex;
@@ -10,7 +11,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  color: #ffffff;
+  color: $color-system-white-white;
   font-family: inherit;
   box-sizing: border-box;
 }
@@ -110,7 +111,7 @@
   gap: 12px;
   padding: 12px 16px;
   background: rgba(0, 0, 0, 0.55);
-  color: #ffffff;
+  color: $color-system-white-white;
   font-size: 13px;
 }
 .ds-hero__status-item {
@@ -133,8 +134,8 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 48px;
-  background: var(--sds-color-background-default-secondary, #1e2c3e);
-  color: #ffffff;
+  background: $mapping-system-slate-background-secondary;
+  color: $color-system-white-white;
 }
 .ds-hero__split-content {
   display: flex;
@@ -159,7 +160,7 @@
   gap: 24px;
   flex-shrink: 0;
   align-self: stretch;
-  border-top: 1px solid #6B6B6B;
+  border-top: 1px solid $color-system-gray-600;
 }
 
 /* -------------------------------------- */
@@ -171,7 +172,7 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: #ffffff;
+  color: $color-system-white-white;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -184,27 +185,27 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  background: #ffffff;
+  background: $color-system-white-white;
   border-radius: 0;
-  color: #8a9bae;
+  color: $color-system-slate-400;
   font-size: 14px;
   font-weight: 500;
 }
 .ds-hero--section-hero .ds-hero__page {
-  color: #8a9bae;
+  color: $color-system-slate-400;
   opacity: 1;
 }
 .ds-hero--section-hero .ds-hero__page--active {
-  color: #1e2c3e;
+  color: $mapping-system-slate-background-secondary-hover;
   font-weight: 700;
 }
 .ds-hero--section-hero .ds-hero__progress {
   width: 107px;
   height: 1px;
-  background: #B9D0ED;
+  background: $mapping-brand-teal-blue-border-tertiary;
 }
 .ds-hero--section-hero .ds-hero__progress-fill {
-  background: #4F8CD1;
+  background: $mapping-brand-teal-blue-border-secondary;
 }
 .ds-hero__page {
   appearance: none;
@@ -227,13 +228,13 @@
 .ds-hero__progress {
   width: 107px;
   height: 1px;
-  background: #B9D0ED;
+  background: $mapping-brand-teal-blue-border-tertiary;
   border-radius: 999px;
   overflow: hidden;
 }
 .ds-hero__progress-fill {
   height: 100%;
-  background: #4F8CD1;
+  background: $mapping-brand-teal-blue-border-secondary;
   transition: width 500ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -241,7 +242,7 @@
 /* Light mode                              */
 /* -------------------------------------- */
 .ds-hero--mode-light {
-  color: #1e2c3e;
+  color: $mapping-system-slate-background-secondary-hover;
 
   .ds-hero__title { color: var(--Schema-Text-On-Primary, #FFF); }
   .ds-hero__subtitle { opacity: 1; color: var(--Schema-Text-On-Primary, #FFF); }
@@ -254,60 +255,70 @@
   .ds-hero__subtitle { opacity: 1; color: var(--Schema-Text-On-Primary, #FFF); }
 
   .ds-hero__brand {
-    background: rgba(255, 255, 255, 0.92);
-    color: #1e2c3e;
+    background: $color-system-white-opacity-90;
+    color: $mapping-system-slate-background-secondary-hover;
   }
   .ds-hero__brand-logo {
-    background: #1e2c3e;
-    color: #ffffff;
+    background: $mapping-system-slate-background-secondary-hover;
+    color: $color-system-white-white;
   }
 
   &.ds-hero--split .ds-hero__split-panel {
-    background: #1e2c3e;
-    color: #ffffff;
+    background: $mapping-system-slate-background-secondary-hover;
+    color: $color-system-white-white;
   }
   &.ds-hero--split .ds-hero__status {
-    background: rgba(255, 255, 255, 0.92);
-    color: #1e2c3e;
+    background: $color-system-white-opacity-90;
+    color: $mapping-system-slate-background-secondary-hover;
   }
 
-  .ds-hero__pagination { color: #1e2c3e; }
-  .ds-hero__progress { background: #B9D0ED; }
-  .ds-hero__progress-fill { background: #4F8CD1; }
+  .ds-hero__pagination { color: $mapping-system-slate-background-secondary-hover; }
+  .ds-hero__progress { background: $mapping-brand-teal-blue-border-tertiary; }
+  .ds-hero__progress-fill { background: $mapping-brand-teal-blue-border-secondary; }
 }
 
 /* -------------------------------------- */
 /* Dark mode (default) â€” explicit overrides */
 /* -------------------------------------- */
 .ds-hero--mode-dark {
-  color: #ffffff;
+  color: $color-system-white-white;
 
   .ds-hero__title { color: var(--Schema-Text-On-Primary, #292929); }
   .ds-hero__subtitle { color: var(--Schema-Text-On-Primary, #292929); }
 
   &.ds-hero--section-hero .ds-hero__actions .ds-button {
-    background: #D2D9E0;
-    color: #292929;
+    background: $mapping-system-slate-surface-tertiary;
+    color: $mapping-system-slate-text-primary;
+  }
+
+  &.ds-hero--split .ds-hero__split-panel {
+    background: $mapping-system-slate-surface-tertiary;
+  }
+
+  &.ds-hero--split .ds-hero__actions .ds-button {
+    background: $mapping-system-slate-background-tertiary;
+    color: $mapping-system-slate-text-primary;
+    border: none;
   }
 }
 
 /* Dark mode + section-hero pagination */
 .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__pagination {
-  background: var(--sds-color-background-default-secondary, #1e2c3e);
-  color: #ffffff;
+  background: $mapping-system-slate-background-secondary;
+  color: $color-system-white-white;
 }
 .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__page {
-  color: rgba(255, 255, 255, 0.6);
+  color: $color-system-white-opacity-60;
 }
 .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__page--active {
-  color: #ffffff;
+  color: $color-system-white-white;
   font-weight: 700;
 }
 .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__progress {
-  background: #B9D0ED;
+  background: $mapping-brand-teal-blue-border-tertiary;
 }
 .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__progress-fill {
-  background: #4F8CD1;
+  background: $mapping-brand-teal-blue-border-secondary;
 }
 
 /* -------------------------------------- */
