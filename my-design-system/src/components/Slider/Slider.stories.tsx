@@ -16,10 +16,11 @@ const meta: Meta<typeof Slider> = {
 | \`$mapping-system-slate-surface-tertiary\` | #D2D9E0 | Track background |
 | \`$mapping-system-slate-background-tertiary\` | #91A2B1 | Track fill (active range) |
 | \`$mapping-system-slate-background-primary\` | #141F2E | Knob background |
-| \`$mapping-brand-teal-blue-border-secondary\` | #4F8CD1 | Knob border |
+| \`$mapping-system-slate-border-primary\` | #6B6B6B | Knob border |
 | \`$mapping-system-slate-text-secondary\` | #545454 | Label text |
 | \`$mapping-system-slate-text-primary\` | #292929 | Description text |
 | \`$mapping-system-slate-text-tertiary\` | #6B6B6B | Value badge text |
+| \`$color-system-white-white\` | #FFFFFF (60%) | Value badge background |
 | \`$color-system-gray-300\` | #BCBCBC | Disabled knob border |
 | \`$font-family-en-primary\` | Noto Sans | Font family |`,
       },
