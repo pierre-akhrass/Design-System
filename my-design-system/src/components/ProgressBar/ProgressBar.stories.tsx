@@ -8,18 +8,27 @@ const meta: Meta<typeof ProgressBar> = {
     layout: 'padded',
     docs: {
       description: {
-        component: `A multi-step progress bar with mini-step tracking within each major step.
+        component: `A multi-step progress bar with mini-step tracking within each major step. Supports light and dark modes with responsive mobile layout.
 
-**Design Tokens Used:**
+**Light Mode Tokens:**
 | Token | Value | Usage |
 |-------|-------|-------|
-| \`$mapping-system-slate-background-secondary\` | #2A3C50 | Completed bar fill & circle bg |
-| \`$mapping-system-slate-background-tertiary\` | #91A2B1 | Active bar fill |
-| \`$mapping-system-slate-surface-tertiary\` | #D2D9E0 | Track background |
+| \`$mapping-system-slate-background-primary\` | #141F2E | Bar fill, circle bg & mobile dots |
+| \`$mapping-system-slate-surface-tertiary\` | #D2D9E0 | Track background & mobile upcoming dots |
 | \`$mapping-system-slate-surface-secondary\` | #E9ECF0 | Upcoming track background |
+| \`$mapping-system-slate-surface-primary\` | #F5F7FA | Upcoming number circle bg |
 | \`$mapping-system-slate-text-on-primary\` | #FFFFFF | Circle number text |
 | \`$mapping-system-slate-text-tertiary\` | #6B6B6B | Upcoming step number |
 | \`$mapping-system-slate-text-secondary\` | #545454 | Step label text |
+
+**Dark Mode Tokens:**
+| Token | Value | Usage |
+|-------|-------|-------|
+| \`$mapping-system-slate-background-primary\` | #141F2E | Container background, circle text |
+| \`$mapping-system-slate-surface-primary\` | #F5F7FA | Bar fill, circle bg, label text & mobile dots |
+| \`$mapping-system-slate-background-secondary\` | #2A3C50 | Track bg & upcoming number circle bg |
+| \`$mapping-system-slate-background-tertiary\` | #91A2B1 | Upcoming track & mobile upcoming dots |
+| \`$mapping-system-slate-text-tertiary\` | #6B6B6B | Upcoming step number |
 | \`$font-family-en-primary\` | Noto Sans | Font family |`,
       },
     },
