@@ -1,0 +1,12 @@
+{
+  "name": "design-system-root",
+  "private": true,
+  "scripts": {
+    "storybook": "npm --prefix my-design-system run storybook",
+    "build-storybook": "npm --prefix my-design-system run build-storybook",
+    "build": "npm --prefix my-design-system run build",
+    "lint": "npm --prefix my-design-system run lint",
+    "dev": "npm --prefix my-design-system run dev",
+    "preview": "npm --prefix my-design-system run preview"
+  }
+}
