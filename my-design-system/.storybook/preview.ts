@@ -5,6 +5,7 @@ import '@fontsource/noto-sans/700.css'
 import '../src/styles/global.scss'
 
 const preview: Preview = {
+  tags: ['autodocs'],
   parameters: {
     controls: {
       matchers: {

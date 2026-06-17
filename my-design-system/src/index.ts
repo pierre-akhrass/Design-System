@@ -79,3 +79,5 @@ export type {
   VirtualBlockSearchResult,
   VirtualBlockStore,
 } from './components/Map'
+export { Search } from './components/Search'
+export type { SearchProps, SearchSize, SearchValueType } from './components/Search'
