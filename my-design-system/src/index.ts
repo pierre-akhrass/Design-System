@@ -81,3 +81,5 @@ export type {
 } from './components/Map'
 export { Search } from './components/Search'
 export type { SearchProps, SearchSize, SearchValueType } from './components/Search'
+export { Slider } from './components/Slider'
+export type { SliderProps, SliderState } from './components/Slider'

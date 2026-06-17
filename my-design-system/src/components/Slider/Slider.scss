@@ -1,0 +1,145 @@
+@use '../../styles/tokens/variables' as *;
+
+// Container
+.ds-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// Label
+.ds-slider__label {
+  font-family: $font-family-en-primary;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0;
+  color: $mapping-system-slate-text-secondary;
+}
+
+// Description
+.ds-slider__description {
+  font-family: $font-family-en-primary;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: 0;
+  color: $mapping-system-slate-text-primary;
+}
+
+// Track wrapper
+.ds-slider__track-wrapper {
+  position: relative;
+  padding: 16px 0 0;
+  flex: 1;
+  width: 100%;
+}
+
+// Track
+.ds-slider__track {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  background: $mapping-system-slate-surface-tertiary;
+  cursor: pointer;
+}
+
+// Active fill between knobs
+.ds-slider__track-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-radius: 3px;
+  background: $mapping-system-slate-background-tertiary;
+}
+
+// Knob
+.ds-slider__knob {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  border: 1px solid $mapping-system-slate-border-primary;
+  background: $mapping-system-slate-background-primary;
+  transform: translate(-50%, -50%);
+  cursor: grab;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+
+  &:hover {
+    box-shadow: 0 0 0 4px rgba($mapping-brand-teal-blue-border-secondary, 0.2);
+  }
+
+  &--active {
+    cursor: grabbing;
+    box-shadow: 0 0 0 6px rgba($mapping-brand-teal-blue-border-secondary, 0.3);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba($mapping-brand-teal-blue-border-secondary, 0.3);
+  }
+}
+
+// Value badges
+.ds-slider__values {
+  position: relative;
+  height: 36px;
+}
+
+.ds-slider__value-badge {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.ds-slider__value-badge svg {
+  display: block;
+  margin-bottom: -1px;
+}
+
+.ds-slider__value-text {
+  font-family: $font-family-en-primary;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  color: $mapping-system-slate-text-tertiary;
+  border-radius: 8px;
+  background: rgba($color-system-white-white, 0.6);
+  padding: 4px 8px;
+  box-shadow: 0 1px 2px 0 rgba(35, 47, 55, 0.05);
+}
+
+// States
+.ds-slider--hover {
+  .ds-slider__knob {
+    box-shadow: 0 0 0 4px rgba($mapping-brand-teal-blue-border-secondary, 0.2);
+  }
+}
+
+.ds-slider--active {
+  .ds-slider__knob {
+    box-shadow: 0 0 0 6px rgba($mapping-brand-teal-blue-border-secondary, 0.3);
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.ds-slider--disabled {
+  opacity: 0.5;
+  pointer-events: none;
+
+  .ds-slider__track {
+    cursor: default;
+  }
+
+  .ds-slider__knob {
+    cursor: default;
+    border-color: $color-system-gray-300;
+  }
+}
