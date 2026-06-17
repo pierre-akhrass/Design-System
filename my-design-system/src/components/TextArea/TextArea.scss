@@ -1,0 +1,60 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-textarea {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+  max-width: 425px;
+  min-height: 120px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid $color-system-gray-300;
+  background: $color-system-white-white;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+
+  &--placeholder {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  &--focused {
+    border-color: $mapping-brand-teal-blue-border-secondary;
+    box-shadow: 0 0 0 2px rgba($mapping-brand-teal-blue-border-secondary, 0.2);
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+// Label
+.ds-textarea__label {
+  font-family: $font-family-en-primary;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 150%;
+  color: $mapping-system-slate-text-tertiary;
+}
+
+// Input
+.ds-textarea__input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  resize: vertical;
+  font-family: $font-family-en-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 150%;
+  color: $mapping-system-slate-text-secondary;
+
+  &::placeholder {
+    color: $mapping-system-slate-text-primary;
+  }
+
+  &::selection {
+    background: $mapping-system-slate-background-tertiary;
+  }
+}
