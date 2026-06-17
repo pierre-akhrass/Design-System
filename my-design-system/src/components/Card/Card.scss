@@ -56,8 +56,8 @@
   --ds-card-media-bg: #{$mapping-system-slate-background-secondary-hover};
   --ds-card-media-icon: #{$mapping-system-slate-background-tertiary};
 
-  --ds-card-logo-bg: #{$mapping-system-slate-background-primary};
-  --ds-card-logo-fg: #{$mapping-system-slate-text-on-primary};
+  --ds-card-logo-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-card-logo-fg: #{$mapping-system-slate-text-primary};
 
   --ds-card-alert-bg: rgba(255, 255, 255, 0.06);
   --ds-card-alert-border: #{$mapping-system-slate-background-secondary};
@@ -181,6 +181,14 @@
   margin: 0;
 }
 
+/* Extra breathing room between the body copy and a following labels/alert
+ * block - used by the detail, booking & featured cards (screenshots 7, 8, 9).
+ * The body gap is 12px; this adds 24px on top for ~36px total. */
+.ds-card__text + .ds-card__labels,
+.ds-card__text + .ds-card__alert {
+  margin-top: $space-300;
+}
+
 /* =========================================================================
  *  Media
  * ========================================================================= */
@@ -190,7 +198,7 @@
 }
 
 .ds-card__media-frame {
-  background-color: var(--ds-card-media-bg);
+  background-color: var(--ds-card-media-bg, #{$mapping-system-slate-surface-tertiary});
   border-radius: $radius-medium;
   overflow: hidden;
   position: relative;
@@ -237,7 +245,7 @@
 .ds-card__placeholder {
   align-items: center;
   bottom: 0;
-  color: var(--ds-card-media-icon);
+  color: var(--ds-card-media-icon, #{$mapping-system-slate-surface-quaternary});
   display: flex;
   justify-content: center;
   left: 0;
@@ -269,11 +277,11 @@
  * ========================================================================= */
 .ds-card__logo {
   align-items: center;
-  background-color: var(--ds-card-logo-bg);
+  background-color: var(--ds-card-logo-bg, #{$mapping-system-slate-background-primary});
   border-bottom-left-radius: $radius-medium;
   border-top-right-radius: $radius-medium;
   bottom: 0;
-  color: var(--ds-card-logo-fg);
+  color: var(--ds-card-logo-fg, #{$mapping-system-slate-text-on-primary});
   display: inline-flex;
   height: 64px;
   justify-content: center;
