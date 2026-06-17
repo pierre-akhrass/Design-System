@@ -1,0 +1,151 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-progress-bar {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+// Each step
+.ds-progress-bar__step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// Track
+.ds-progress-bar__track {
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  background: $mapping-system-slate-surface-tertiary;
+  overflow: hidden;
+}
+
+// Fill
+.ds-progress-bar__fill {
+  height: 100%;
+  border-radius: 20px;
+  background: $mapping-system-slate-background-primary;
+  transition: width 300ms ease;
+}
+
+// Completed step
+.ds-progress-bar__step--completed {
+  .ds-progress-bar__fill {
+    width: 100%;
+  }
+}
+
+// Active step
+.ds-progress-bar__step--active {
+  .ds-progress-bar__fill {
+    background: $mapping-system-slate-background-primary;
+  }
+}
+
+// Upcoming step
+.ds-progress-bar__step--upcoming {
+  .ds-progress-bar__track {
+    background: $mapping-system-slate-surface-secondary;
+  }
+}
+
+// Info row (number + label)
+.ds-progress-bar__info {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+// Circle number (completed & active)
+.ds-progress-bar__circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: $mapping-system-slate-background-primary;
+  color: $mapping-system-slate-text-on-primary;
+  font-family: $font-family-en-primary;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+// Plain number (upcoming)
+.ds-progress-bar__plain-number {
+  font-family: $font-family-en-primary;
+  font-size: 14px;
+  font-weight: 400;
+  color: $mapping-system-slate-text-tertiary;
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+}
+
+// Label
+.ds-progress-bar__label {
+  font-family: $font-family-en-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: $mapping-system-slate-text-secondary;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .ds-progress-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ds-progress-bar__step {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .ds-progress-bar__track {
+    width: 60px;
+    flex-shrink: 0;
+  }
+}
+
+// Dark mode
+.ds-progress-bar--dark {
+  padding: 24px;
+  border-radius: 12px;
+  background: $mapping-system-slate-background-primary;
+
+  .ds-progress-bar__track {
+    background: $mapping-system-slate-background-secondary;
+  }
+
+  .ds-progress-bar__fill {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  .ds-progress-bar__step--active .ds-progress-bar__fill {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  .ds-progress-bar__step--upcoming .ds-progress-bar__track {
+    background: $mapping-system-slate-background-tertiary;
+  }
+
+  .ds-progress-bar__circle {
+    background: $mapping-system-slate-surface-primary;
+    color: $mapping-system-slate-background-primary;
+  }
+
+  .ds-progress-bar__plain-number {
+    color: $mapping-system-slate-text-tertiary;
+  }
+
+  .ds-progress-bar__label {
+    color: $mapping-system-slate-surface-primary;
+  }
+}
