@@ -62,10 +62,14 @@ export const Testimonials = ({
   ...rest
 }: TestimonialsProps) => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const total = testimonials.length
   const current = testimonials[activeIndex]
   if (!current) return null
 
   const padIndex = (i: number) => String(i + 1).padStart(2, '0')
+
+  const goPrev = () => setActiveIndex(activeIndex <= 0 ? total - 1 : activeIndex - 1)
+  const goNext = () => setActiveIndex(activeIndex >= total - 1 ? 0 : activeIndex + 1)
 
   return (
     <section className={`ds-testimonials${className ? ` ${className}` : ''}`} {...rest}>
@@ -111,11 +115,62 @@ export const Testimonials = ({
         {/* Content */}
         <div className="ds-testimonials__content">
           <QuoteIcon />
-          <blockquote className="ds-testimonials__quote">{current.quote}</blockquote>
+          <blockquote className="ds-testimonials__quote">&ldquo;{current.quote}&rdquo;</blockquote>
+
+          {/* Mobile navigation + avatar */}
+          <div className="ds-testimonials__mobile-nav">
+            <button
+              type="button"
+              className="ds-testimonials__nav-btn ds-testimonials__nav-btn--prev"
+              onClick={goPrev}
+              aria-label="Previous testimonial"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <span>Prev</span>
+            </button>
+
+            <div className="ds-testimonials__mobile-avatar">
+              {current.image ? (
+                <img src={current.image} alt={current.imageAlt ?? current.name} />
+              ) : (
+                <ImagePlaceholder />
+              )}
+            </div>
+
+            <button
+              type="button"
+              className="ds-testimonials__nav-btn ds-testimonials__nav-btn--next"
+              onClick={goNext}
+              aria-label="Next testimonial"
+            >
+              <span>Next</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+          </div>
+
           <div className="ds-testimonials__author">
             <span className="ds-testimonials__author-name">{current.name}</span>
             <span className="ds-testimonials__author-role">{current.role}</span>
           </div>
+
+          {/* Dot indicators (mobile) */}
+          {testimonials.length > 1 && (
+            <div className="ds-testimonials__dots">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={`ds-testimonials__dot${i === activeIndex ? ' ds-testimonials__dot--active' : ''}`}
+                  onClick={() => setActiveIndex(i)}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>
