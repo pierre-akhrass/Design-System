@@ -16,7 +16,9 @@
   --sds-color-background-default-default: #{$mapping-system-slate-surface-secondary};
   --sds-color-background-default-tertiary: rgba(255, 255, 255, 0.6);
   --sds-color-background-default-tertiary-system: #{$mapping-system-slate-surface-tertiary};
-  --sds-color-border-brand-secondary: #{$mapping-brand-vibrant-teal-border-primary};
+  --sds-color-background-default-secondary-system-primary: #141F2E;
+  --sds-color-border-brand-secondary: #6B6B6B;
+  --sds-color-border-brand-default: #BCBCBC;
 
   // ---------------------------------------------------------------------------
   // Token bridge for components that consume CSS custom properties directly
@@ -27,6 +29,7 @@
   --sds-size-space-150: 6px;
   --sds-size-space-200: 8px;
   --sds-size-radius-200: #{$radius-medium};
+  --radius-md: 8px;
   --padding-container-xs: #{$padding-container-xs};
   --gap-s: #{$gap-s};
 

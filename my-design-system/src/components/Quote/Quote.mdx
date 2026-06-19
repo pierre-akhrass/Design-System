@@ -1,0 +1,222 @@
+import { Meta, Story, Canvas, Controls, ArgTypes } from '@storybook/blocks'
+import * as QuoteStories from './Quote.stories'
+
+<Meta of={QuoteStories} />
+
+# Quote
+
+A carousel-based quote/testimonial component that displays customer quotes with navigation, author information, and dot indicators. Supports two layout variants: **default** (centered, full-width) and **inline** (card-based).
+
+---
+
+## Overview
+
+The Quote component is designed for displaying customer testimonials or quotes in a carousel format. It supports:
+
+- Multiple quotes with carousel navigation
+- Prev/Next navigation buttons with author avatar
+- Dot indicators for direct navigation
+- Two layout variants: `default` and `inline`
+- Responsive design (mobile-optimized)
+
+---
+
+## Variants
+
+### Default
+
+Centered layout with:
+- Quote icon (52×38px, `#545454`)
+- Italic quote text in curly quotes (`"..."`)
+- Prev/Next navigation with centered avatar (120×120px)
+- Author name and role below avatar
+- Dot indicators at the bottom
+
+### Inline
+
+Card-based layout with:
+- Background card (`--sds-color-background-default-tertiary-system` / `#D2D9E0`)
+- Left-aligned content
+- Quote icon at the top
+- Italic quote text (no curly quotes)
+- Author row: small avatar (64×64px) + name/role
+- Dot indicators below the card
+
+<Canvas of={QuoteStories.Playground} />
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `quotes` | `QuoteItem[]` | — | **Required.** Array of quote objects to display. |
+| `showNavigation` | `boolean` | `true` | Show/hide prev/next navigation and avatar (default variant only). |
+| `showAuthor` | `boolean` | `true` | Show/hide author name and role (default variant only). |
+| `variant` | `'default' \| 'inline'` | `'default'` | Layout variant. |
+| `className` | `string` | — | Additional CSS class names. |
+
+### QuoteItem
+
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `quote` | `string` | Yes | The quote text to display. |
+| `name` | `string` | Yes | Author's name. |
+| `role` | `string` | Yes | Author's role or title. |
+| `image` | `string` | No | URL to the author's avatar image. Falls back to a placeholder icon. |
+
+<Controls of={QuoteStories.Docs} />
+
+---
+
+## Design Tokens
+
+### Typography
+
+| Element | Token / Value |
+|---------|--------------|
+| Quote text font | `--sds-typography-heading-font-family` (`'Noto Sans'`) |
+| Quote text size | `--sds-typography-heading-size-large` (`32px`) |
+| Quote text weight | `--sds-typography-heading-font-weight` (`300`) |
+| Quote text style | `italic` |
+| Quote line-height | `120%` |
+| Nav button font | `--UI-Font-Family` (`'Noto Sans'`) |
+| Nav button size | `--UI-Size-medium` (`14px`) |
+| Nav button weight | `--UI-Font-Weight-strong` (`600`) |
+| Author name | `14px`, weight `700` |
+| Author role | `12px`, weight `400` |
+
+### Colors (CSS Custom Properties)
+
+```css
+--sds-color-text-default-secondary: #292929;          /* Quote text, nav buttons */
+--sds-color-background-default-secondary: /*slate*/;  /* Avatar background, placeholder */
+--sds-color-background-default-tertiary-system: #D2D9E0; /* Inline card background */
+--sds-color-icon-neutral-secondary: /*slate*/;        /* Placeholder icon color */
+--radius-full: 9999px;                                /* Avatar border-radius */
+--sds-typography-heading-font-family: 'Noto Sans';    /* Quote text font */
+--sds-typography-heading-size-large: 32px;            /* Quote text size */
+--sds-typography-heading-font-weight: 300;            /* Quote text weight */
+--UI-Font-Family: 'Noto Sans';                        /* Nav button font */
+--UI-Size-medium: 14px;                               /* Nav button size */
+--UI-Font-Weight-strong: 600;                         /* Nav button weight */
+```
+
+| Element | Token | Value |
+|---------|-------|-------|
+| Quote text color | `--sds-color-text-default-secondary` | `#292929` |
+| Nav button color | `--sds-color-text-default-secondary` | `#292929` |
+| Avatar background | `--sds-color-background-default-secondary` | Slate surface |
+| Inline card background | `--sds-color-background-default-tertiary-system` | `#D2D9E0` |
+| Placeholder icon | `--sds-color-icon-neutral-secondary` | Slate icon |
+| Active dot | `#141F2E` | — |
+| Inactive dot | `#292929` (opacity 0.3) | — |
+| Quote icon fill | `#545454` | — |
+
+### Spacing
+
+| Element | Value |
+|---------|-------|
+| Container padding | `48px 24px` |
+| Container gap | `24px` |
+| Nav gap (between buttons) | `32px` |
+| Nav button inner gap | `6px` |
+| Dots gap | `8px` |
+| Inline card padding | `48px` |
+| Inline card gap | `24px` |
+| Author inline gap | `16px` |
+
+### Sizing
+
+| Element | Value |
+|---------|-------|
+| Quote icon | `52×38px` |
+| Avatar (default) | `120×120px` |
+| Avatar (inline) | `64×64px` |
+| Dot indicator | `12×12px` |
+| Quote max-width | `1024px` |
+| Inline card max-width | `600px` |
+
+### Border Radius
+
+| Element | Token | Value |
+|---------|-------|-------|
+| Avatar | `--radius-full` | `9999px` |
+| Inline card | — | `0px` |
+
+---
+
+## Responsive Behavior
+
+### Mobile (≤ 768px)
+
+- **Default variant:** Quote text reduces to `24px`; author name/role is hidden (avatar still visible in nav)
+- **Inline variant:** Card padding reduces to `32px 24px`
+
+---
+
+## Accessibility
+
+- Navigation buttons have `aria-label` attributes (`"Previous quote"`, `"Next quote"`)
+- Dot indicators have `aria-label` (`"Go to quote {n}"`)
+- Decorative SVGs use `aria-hidden="true"`
+- Image placeholders use `aria-hidden="true"`
+- Semantic `<blockquote>` element for quote text
+
+---
+
+## Usage
+
+```tsx
+import { Quote } from '@/components/Quote'
+
+const quotes = [
+  {
+    image: '/avatars/user1.jpg',
+    quote: 'An amazing experience that exceeded all expectations.',
+    name: 'Jane Doe',
+    role: 'Customer',
+  },
+  {
+    image: '/avatars/user2.jpg',
+    quote: 'Outstanding service and quality throughout.',
+    name: 'John Smith',
+    role: 'Partner',
+  },
+]
+
+// Default variant
+<Quote quotes={quotes} />
+
+// Inline variant (card style)
+<Quote quotes={quotes} variant="inline" />
+
+// Without navigation
+<Quote quotes={quotes} showNavigation={false} />
+
+// Without author info
+<Quote quotes={quotes} showAuthor={false} />
+```
+
+---
+
+## CSS Class Reference
+
+| Class | Description |
+|-------|-------------|
+| `.ds-quote` | Root container |
+| `.ds-quote--default` | Default variant modifier |
+| `.ds-quote--inline` | Inline variant modifier |
+| `.ds-quote__text` | Blockquote text |
+| `.ds-quote__nav` | Navigation wrapper (prev/next + avatar) |
+| `.ds-quote__nav-btn` | Prev/Next button |
+| `.ds-quote__avatar` | Avatar container |
+| `.ds-quote__avatar-placeholder` | Fallback when no image |
+| `.ds-quote__author` | Author name/role stack |
+| `.ds-quote__author-name` | Author name text |
+| `.ds-quote__author-role` | Author role text |
+| `.ds-quote__dots` | Dot indicators wrapper |
+| `.ds-quote__dot` | Individual dot button |
+| `.ds-quote__dot--active` | Active dot state |
+| `.ds-quote__card` | Inline variant card container |
+| `.ds-quote__author-inline` | Inline variant author row |

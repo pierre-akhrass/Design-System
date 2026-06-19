@@ -28,7 +28,35 @@ const sampleTestimonials = [
 const meta: Meta<typeof Testimonials> = {
   title: 'Components/Testimonials',
   component: Testimonials,
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: [
+          'A desktop testimonials section with vertical numbered pagination and large image.',
+          '',
+          '## Color Tokens Used',
+          '',
+          '| Token | Value | Usage |',
+          '|-------|-------|-------|',
+          '| `$color-system-slate-50` | `#f8fafb` | Section background |',
+          '| `$mapping-system-slate-text-primary` | `#292929` | Heading, author name, active pagination |',
+          '| `$mapping-system-slate-text-secondary` | `#545454` | Label, quote text |',
+          '| `$mapping-system-slate-text-tertiary` | — | Inactive pagination, author role |',
+          '| `$mapping-system-slate-border-tertiary` | — | Pagination line (inactive) |',
+          '| `$mapping-system-slate-icon-secondary` | — | Quote icon |',
+          '| `$mapping-system-slate-icon-tertiary` | — | Image placeholder icon |',
+          '| `$color-system-slate-100` | — | Image container background |',
+          '| `$heading-font-family` | `Noto Sans` | Heading, quote text font |',
+          '| `$heading-size-h3` | `36px` | Heading size |',
+          '| `$heading-font-weight-bold` | `700` | Heading weight |',
+          '| `$heading-font-weight-light` | `300` | Quote text weight |',
+          '| `$font-family-en-primary` | `Noto Sans` | Label, pagination, author |',
+          '| `$radius-large` | `16px` | Image border-radius |',
+        ].join('\n'),
+      },
+    },
+  },
   args: {
     label: 'Testimonials',
     heading: 'A word from our community',

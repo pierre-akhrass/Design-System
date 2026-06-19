@@ -28,7 +28,32 @@ const sampleQuotes = [
 const meta: Meta<typeof Quote> = {
   title: 'Components/Quote',
   component: Quote,
-  parameters: { layout: 'fullscreen' },
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      description: {
+        component: [
+          'A carousel-based quote/testimonial component with two variants: default and inline.',
+          '',
+          '## Color Tokens Used',
+          '',
+          '| Token | Value | Usage |',
+          '|-------|-------|-------|',
+          '| `--sds-color-text-default-secondary` | `#292929` | Quote text, nav buttons |',
+          '| `--sds-color-background-default-secondary` | Slate surface | Avatar background |',
+          '| `--sds-color-background-default-tertiary-system` | `#D2D9E0` | Inline card background |',
+          '| `--sds-color-icon-neutral-secondary` | Slate icon | Placeholder icon |',
+          '| `--radius-full` | `9999px` | Avatar border-radius |',
+          '| `--sds-typography-heading-font-family` | `Noto Sans` | Quote text font |',
+          '| `--sds-typography-heading-size-large` | `32px` | Quote text size |',
+          '| `--sds-typography-heading-font-weight` | `300` | Quote text weight |',
+          '| `--UI-Font-Family` | `Noto Sans` | Nav button font |',
+          '| `--UI-Size-medium` | `14px` | Nav button size |',
+          '| `--UI-Font-Weight-strong` | `600` | Nav button weight |',
+        ].join('\n'),
+      },
+    },
+  },
   args: {
     quotes: sampleQuotes,
     showNavigation: true,
@@ -69,12 +94,6 @@ export const Playground: Story = {
 
     variant: "inline"
   }
-}
-
-export const Inline: Story = {
-  args: {
-    variant: 'inline',
-  },
 }
 
 export const Docs: Story = {

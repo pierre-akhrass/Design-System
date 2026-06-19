@@ -1,0 +1,149 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks'
+import * as FeedbackStories from './Feedback.stories'
+
+<Meta of={FeedbackStories} />
+
+# Feedback
+
+A notification component for displaying inline alerts and toast messages. Supports two variants: **alert** (light) and **toast** (dark).
+
+---
+
+## Overview
+
+The Feedback component is used to communicate status messages, warnings, or informational notices to users. It supports:
+
+- Two visual variants: `alert` and `toast`
+- Dismissible with close button
+- Info icon indicator
+- Title and description content
+
+---
+
+## Variants
+
+### Alert
+
+Light background with subtle border:
+- White background (`--sds-color-background-default-default`)
+- Border: `--sds-color-border-brand-default` (`#BCBCBC`)
+- Dark text for title and description
+
+### Toast
+
+Dark background for prominent notifications:
+- Background: `--sds-color-background-default-secondary-system-primary` (`#141F2E`)
+- Border: `--sds-color-border-brand-secondary` (`#6B6B6B`)
+- White text (`--Schema-Text-On-Primary`)
+- Box shadow for elevation
+
+<Canvas of={FeedbackStories.Playground} />
+
+---
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'alert' \| 'toast'` | `'alert'` | Display variant. |
+| `title` | `string` | — | **Required.** Title text. |
+| `description` | `string` | — | **Required.** Description text. |
+| `dismissible` | `boolean` | `true` | Show/hide close button. |
+| `onDismiss` | `() => void` | — | Callback when dismissed. |
+| `className` | `string` | — | Additional CSS class names. |
+
+<Controls of={FeedbackStories.Docs} />
+
+---
+
+## Design Tokens
+
+### Colors (CSS Custom Properties)
+
+```css
+/* Alert variant */
+--sds-color-background-default-default: /*slate surface*/; /* Alert background */
+--sds-color-border-brand-default: #BCBCBC;                 /* Alert border */
+--sds-color-text-default-secondary: #292929;               /* Alert title color */
+--sds-color-text-default-default: #545454;                 /* Alert description color */
+
+/* Toast variant */
+--sds-color-background-default-secondary-system-primary: #141F2E; /* Toast background */
+--sds-color-border-brand-secondary: #6B6B6B;                      /* Toast border */
+--Schema-Text-On-Primary: #FFF;                                   /* Toast text color */
+--Mapping-System-Shadow-Medium: rgba(35, 47, 55, 0.10);           /* Toast box shadow */
+
+/* Shared */
+--radius-md: 8px;                                          /* Border radius */
+--sds-typography-heading-font-family: 'Noto Sans';         /* Base font */
+--UI-Font-Family: 'Noto Sans';                             /* Title font */
+--UI-Size-large: 16px;                                     /* Title size */
+--UI-Font-Weight-medium: 500;                              /* Title weight */
+--sds-typography-body-font-family: 'Noto Sans';            /* Description font */
+--sds-typography-body-size-medium: 14px;                   /* Description size */
+--sds-typography-body-font-weight-regular: 400;            /* Description weight */
+--Typography-Letter-spacing-tracking-1: 0;                 /* Letter spacing */
+```
+
+| Element | Token | Value |
+|---------|-------|-------|
+| Alert background | `--sds-color-background-default-default` | Slate surface |
+| Alert border | `--sds-color-border-brand-default` | `#BCBCBC` |
+| Toast background | `--sds-color-background-default-secondary-system-primary` | `#141F2E` |
+| Toast border | `--sds-color-border-brand-secondary` | `#6B6B6B` |
+| Title color (alert) | `--sds-color-text-default-secondary` | `#292929` |
+| Description color (alert) | `--sds-color-text-default-default` | `#545454` |
+| Text color (toast) | `--Schema-Text-On-Primary` | `#FFFFFF` |
+| Border radius | `--radius-md` | `8px` |
+| Shadow | `--Mapping-System-Shadow-Medium` | `rgba(35, 47, 55, 0.10)` |
+
+---
+
+## Accessibility
+
+- Container uses `role="alert"` for screen reader announcement
+- Close button has `aria-label="Dismiss"`
+- Decorative icons use `aria-hidden="true"`
+
+---
+
+## Usage
+
+```tsx
+import { Feedback } from '@/components/Feedback'
+
+// Alert variant (default)
+<Feedback
+  title="This is the title"
+  description="A problem was encountered while processing your request."
+/>
+
+// Toast variant
+<Feedback
+  variant="toast"
+  title="This is the title"
+  description="A problem was encountered while processing your request."
+/>
+
+// Non-dismissible
+<Feedback
+  title="Info"
+  description="This cannot be closed."
+  dismissible={false}
+/>
+```
+
+---
+
+## CSS Class Reference
+
+| Class | Description |
+|-------|-------------|
+| `.ds-feedback` | Root container |
+| `.ds-feedback--alert` | Alert variant modifier |
+| `.ds-feedback--toast` | Toast variant modifier |
+| `.ds-feedback__icon` | Info icon wrapper |
+| `.ds-feedback__content` | Title + description wrapper |
+| `.ds-feedback__title` | Title text |
+| `.ds-feedback__description` | Description text |
+| `.ds-feedback__close` | Dismiss button |
