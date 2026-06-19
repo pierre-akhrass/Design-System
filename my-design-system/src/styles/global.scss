@@ -11,7 +11,7 @@
   // every component that consumes them — no component CSS edits required.
   // ---------------------------------------------------------------------------
   --sds-color-text-default-default: #{$mapping-system-slate-text-secondary}; // #545454
-  --sds-color-text-default-secondary: #{$mapping-system-slate-text-secondary};
+  --sds-color-text-default-secondary: #292929;
   --sds-color-text-default-tertiary: #{$mapping-system-slate-text-tertiary};
   --sds-color-background-default-default: #{$mapping-system-slate-surface-secondary};
   // Design spec: #FFFFFF · 60%. Used as the Dropdown panel background
@@ -30,6 +30,14 @@
   --sds-size-radius-200: #{$radius-medium};
   --padding-container-xs: #{$padding-container-xs};
   --gap-s: #{$gap-s};
+
+  // Typography tokens (heading)
+  --sds-typography-heading-font-family: #{$heading-font-family};
+  --sds-typography-heading-size-large: 32px;
+  --sds-typography-heading-font-weight: #{$heading-font-weight-light};
+
+  // Icon color
+  --sds-color-icon-neutral-secondary: #{$mapping-system-slate-icon-secondary};
 }
 
 * {
