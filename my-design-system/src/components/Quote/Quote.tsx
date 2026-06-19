@@ -12,6 +12,8 @@ export interface QuoteItem {
   role: string
 }
 
+export type QuoteVariant = 'default' | 'inline'
+
 export interface QuoteProps extends HTMLAttributes<HTMLDivElement> {
   /** Array of quote items */
   quotes: QuoteItem[]
@@ -19,6 +21,8 @@ export interface QuoteProps extends HTMLAttributes<HTMLDivElement> {
   showNavigation?: boolean
   /** Show or hide author name and role */
   showAuthor?: boolean
+  /** Layout variant */
+  variant?: QuoteVariant
 }
 
 const QuoteIcon = () => (
@@ -43,6 +47,7 @@ export const Quote = ({
   quotes,
   showNavigation = true,
   showAuthor = true,
+  variant = 'default',
   className,
   ...rest
 }: QuoteProps) => {
@@ -54,82 +59,141 @@ export const Quote = ({
   const goPrev = () => setActiveIndex(activeIndex <= 0 ? total - 1 : activeIndex - 1)
   const goNext = () => setActiveIndex(activeIndex >= total - 1 ? 0 : activeIndex + 1)
 
+  const classes = [
+    'ds-quote',
+    `ds-quote--${variant}`,
+    className,
+  ].filter(Boolean).join(' ')
+
   return (
-    <div className={`ds-quote${className ? ` ${className}` : ''}`} {...rest}>
-      <QuoteIcon />
-
-      <blockquote className="ds-quote__text">
-        &ldquo;{current.quote}&rdquo;
-      </blockquote>
-
-      {/* Navigation with avatar */}
-      {showNavigation && total > 1 && (
-        <div className="ds-quote__nav">
-          <button
-            type="button"
-            className="ds-quote__nav-btn"
-            onClick={goPrev}
-            aria-label="Previous quote"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            <span>Prev</span>
-          </button>
-
-          <div className="ds-quote__avatar">
-            {current.image ? (
-              <img src={current.image} alt={current.name} />
-            ) : (
-              <ImagePlaceholder />
-            )}
+    <div className={classes} {...rest}>
+      {variant === 'inline' ? (
+        /* Inline variant: card with left-aligned content */
+        <>
+          <div className="ds-quote__card">
+            <QuoteIcon />
+            <blockquote className="ds-quote__text">
+              {current.quote}
+            </blockquote>
+            <div className="ds-quote__author-inline">
+              <div className="ds-quote__avatar">
+                {current.image ? (
+                  <img src={current.image} alt={current.name} />
+                ) : (
+                  <ImagePlaceholder />
+                )}
+              </div>
+              <div className="ds-quote__author">
+                <span className="ds-quote__author-name">{current.name}</span>
+                <span className="ds-quote__author-role">{current.role}</span>
+              </div>
+            </div>
           </div>
 
-          <button
-            type="button"
-            className="ds-quote__nav-btn"
-            onClick={goNext}
-            aria-label="Next quote"
-          >
-            <span>Next</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </button>
-        </div>
-      )}
+          {/* Dot indicators */}
+          {total > 1 && (
+            <div className="ds-quote__dots">
+              {quotes.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={`ds-quote__dot${i === activeIndex ? ' ds-quote__dot--active' : ''}`}
+                  onClick={() => setActiveIndex(i)}
+                  aria-label={`Go to quote ${i + 1}`}
+                >
+                  {i === activeIndex ? (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <circle cx="6" cy="6" r="6" fill="#141F2E" />
+                    </svg>
+                  ) : (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <circle opacity="0.3" cx="6" cy="6" r="6" fill="#292929" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </>
+      ) : (
+        /* Default variant */
+        <>
+          <QuoteIcon />
 
-      {/* Author */}
-      {showAuthor && (
-        <div className="ds-quote__author">
-          <span className="ds-quote__author-name">{current.name}</span>
-          <span className="ds-quote__author-role">{current.role}</span>
-        </div>
-      )}
+          <blockquote className="ds-quote__text">
+            &ldquo;{current.quote}&rdquo;
+          </blockquote>
 
-      {/* Dot indicators */}
-      {total > 1 && (
-        <div className="ds-quote__dots">
-          {quotes.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              className={`ds-quote__dot${i === activeIndex ? ' ds-quote__dot--active' : ''}`}
-              onClick={() => setActiveIndex(i)}
-              aria-label={`Go to quote ${i + 1}`}
-            >
-              {i === activeIndex ? (
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <circle cx="6" cy="6" r="6" fill="#141F2E" />
+          {/* Navigation with avatar */}
+          {showNavigation && total > 1 && (
+            <div className="ds-quote__nav">
+              <button
+                type="button"
+                className="ds-quote__nav-btn"
+                onClick={goPrev}
+                aria-label="Previous quote"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M15 6L9 12L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              ) : (
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <circle opacity="0.3" cx="6" cy="6" r="6" fill="#292929" />
+                <span>Prev</span>
+              </button>
+
+              <div className="ds-quote__avatar">
+                {current.image ? (
+                  <img src={current.image} alt={current.name} />
+                ) : (
+                  <ImagePlaceholder />
+                )}
+              </div>
+
+              <button
+                type="button"
+                className="ds-quote__nav-btn"
+                onClick={goNext}
+                aria-label="Next quote"
+              >
+                <span>Next</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M9 6L15 12L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              )}
-            </button>
-          ))}
-        </div>
+              </button>
+            </div>
+          )}
+
+          {/* Author */}
+          {showAuthor && (
+            <div className="ds-quote__author">
+              <span className="ds-quote__author-name">{current.name}</span>
+              <span className="ds-quote__author-role">{current.role}</span>
+            </div>
+          )}
+
+          {/* Dot indicators */}
+          {total > 1 && (
+            <div className="ds-quote__dots">
+              {quotes.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  className={`ds-quote__dot${i === activeIndex ? ' ds-quote__dot--active' : ''}`}
+                  onClick={() => setActiveIndex(i)}
+                  aria-label={`Go to quote ${i + 1}`}
+                >
+                  {i === activeIndex ? (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <circle cx="6" cy="6" r="6" fill="#141F2E" />
+                    </svg>
+                  ) : (
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                      <circle opacity="0.3" cx="6" cy="6" r="6" fill="#292929" />
+                    </svg>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )

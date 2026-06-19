@@ -1,2 +1,2 @@
 export { Quote } from './Quote'
-export type { QuoteProps, QuoteItem } from './Quote'
+export type { QuoteProps, QuoteItem, QuoteVariant } from './Quote'

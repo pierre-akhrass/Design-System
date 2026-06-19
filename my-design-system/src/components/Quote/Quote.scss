@@ -129,13 +129,55 @@
   justify-content: center;
 }
 
+/* ---- Inline variant ---- */
+.ds-quote--inline {
+  align-items: center;
+}
+
+.ds-quote__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 48px;
+  border-radius: 0px;
+  background: var(--sds-color-background-default-tertiary-system);
+  width: 100%;
+  max-width: 600px;
+}
+
+.ds-quote--inline .ds-quote__text {
+  text-align: left;
+  font-style: italic;
+}
+
+.ds-quote__author-inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.ds-quote__author-inline .ds-quote__avatar {
+  width: 64px;
+  height: 64px;
+}
+
+.ds-quote__author-inline .ds-quote__author {
+  align-items: flex-start;
+}
+
 /* ---- Responsive: Mobile ---- */
 @media (max-width: 768px) {
-  .ds-quote__text {
+  .ds-quote--default .ds-quote__text {
     font-size: 24px;
   }
 
-  .ds-quote__author {
+  .ds-quote--default .ds-quote__author {
     display: none;
+  }
+
+  .ds-quote__card {
+    padding: 32px 24px;
   }
 }
