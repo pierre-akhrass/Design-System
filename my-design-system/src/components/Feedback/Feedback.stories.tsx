@@ -57,7 +57,3 @@ export const Playground: Story = {
     variant: "toast"
   }
 }
-
-export const Docs: Story = {
-  tags: ['autodocs'],
-}

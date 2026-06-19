@@ -31,7 +31,13 @@
   --sds-size-radius-200: #{$radius-medium};
   --radius-md: 8px;
   --padding-container-xs: #{$padding-container-xs};
+  --padding-action-s: #{$padding-action-s};
   --gap-s: #{$gap-s};
+  --border-width-2: 2px;
+  --radius-none: 0px;
+  --UI-Size-xlarge: 20px;
+  --UI-Font-Weight-default: 400;
+  --UI-Font-Weight-strong: 600;
 
   // Typography tokens (heading)
   --sds-typography-heading-font-family: #{$heading-font-family};

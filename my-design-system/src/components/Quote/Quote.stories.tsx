@@ -95,7 +95,3 @@ export const Playground: Story = {
     variant: "inline"
   }
 }
-
-export const Docs: Story = {
-  tags: ['autodocs'],
-}

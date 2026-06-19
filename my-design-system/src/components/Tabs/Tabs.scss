@@ -1,0 +1,135 @@
+.ds-tabs {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* ---- Tab button ---- */
+.ds-tabs__tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--UI-Font-Family, 'Noto Sans');
+  font-size: var(--UI-Size-medium, 14px);
+  font-weight: 400;
+  line-height: 150%;
+  color: var(--sds-color-text-default-default);
+  position: relative;
+  transition: color 0.2s, background 0.2s;
+
+  &:hover {
+    color: var(--sds-color-text-default-secondary);
+    font-weight: 600;
+  }
+}
+
+.ds-tabs__tab--active {
+  color: var(--sds-color-text-default-secondary);
+  font-weight: 600;
+}
+
+/* ---- Indicator dot ---- */
+.ds-tabs__indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sds-color-background-default-secondary-system-primary, #141F2E);
+  flex-shrink: 0;
+}
+
+/* ---- Line tabs style ---- */
+// .ds-tabs--line {
+//   border-bottom: 1px solid var(--sds-color-border-brand-default, #BCBCBC);
+// }
+
+.ds-tabs--line .ds-tabs__tab {
+  display: inline-flex;
+  height: 48px;
+
+  justify-content: center;
+  align-items: center;
+  gap: var(--sds-size-space-200);
+  border-radius: 0;
+  color: var(--sds-color-text-default-tertiary);
+  font-family: var(--UI-Font-Family, "Noto Sans");
+  font-size: var(--UI-Size-xlarge, 20px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+  border-radius: 0 0 0 0;
+}
+
+.ds-tabs--line .ds-tabs__tab:hover {
+  display: inline-flex;
+  height: var(--sds-size-space-800);
+  padding: 0 var(--padding-action-s, 16px);
+  justify-content: center;
+  align-items: center;
+  gap: var(--sds-size-space-200);
+  border-radius: 0 0 0 0;
+  position: relative;
+  border-radius: var(--radius-none) var(--radius-none) 0 0;
+  border-bottom: var(--border-width-2) solid var(--sds-color-border-brand-secondary);
+color: var(--sds-color-text-default-default);
+leading-trim: both;
+text-edge: cap;
+
+/* Label/xlarge/default */
+
+font-size: var(--UI-Size-xlarge, 20px);
+font-style: normal;
+font-weight: var(--UI-Font-Weight-default, 400);
+line-height: 150%; /* 30px */
+letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+}
+
+.ds-tabs--line .ds-tabs__tab--active {
+  display: inline-flex;
+height: var(--sds-size-space-800);
+padding: 0 var(--padding-action-s, 16px);
+justify-content: center;
+align-items: center;
+gap: var(--sds-size-space-200);
+
+
+  position: relative;
+  color: var(--sds-color-text-default-secondary);
+  leading-trim: both;
+  text-edge: cap;
+  
+  font-size: var(--UI-Size-xlarge, 20px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+
+    border-radius: var(--radius-none) var(--radius-none) 0 0;
+border-bottom: var(--border-width-2) solid var(--sds-color-border-brand-secondary);
+}
+
+/* ---- Pill tabs style ---- */
+.ds-tabs--pill {
+  gap: 4px;
+  background: var(--sds-color-background-default-tertiary-system, #D2D9E0);
+  border-radius: var(--radius-md, 8px);
+  padding: 4px;
+}
+
+.ds-tabs--pill .ds-tabs__tab {
+  border-radius: 6px;
+  padding: 8px 16px;
+}
+
+.ds-tabs--pill .ds-tabs__tab--active {
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.ds-tabs--pill .ds-tabs__tab:hover:not(.ds-tabs__tab--active) {
+  background: rgba(255, 255, 255, 0.5);
+}
