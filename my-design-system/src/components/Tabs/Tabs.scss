@@ -193,3 +193,38 @@ box-shadow: 0 1px var(--depth-025, 2px) var(--sds-size-depth-0) var(--Mapping-Sy
     white-space: nowrap;
   }
 }
+
+/* ---- Dark mode ---- */
+.ds-tabs--mode-dark {
+  --sds-color-text-default-secondary: #ececec;
+}
+
+.ds-tabs--mode-dark.ds-tabs--line .ds-tabs__tab {
+  color: var(--sds-color-text-default-tertiary);
+  leading-trim: both;
+  text-edge: cap;
+  
+  font-size: var(--UI-Size-xlarge, 20px);
+  font-style: normal;
+  font-weight: var(--UI-Font-Weight-default, 400);
+  line-height: 150%;
+  letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+}
+
+.ds-tabs--mode-dark.ds-tabs--line .ds-tabs__tab--active {
+  color: var(--sds-color-text-default-secondary, #ececec);
+
+  leading-trim: both;
+  text-edge: cap;
+  font-size: var(--UI-Size-xlarge, 20px);
+  font-style: normal;
+  font-weight: var(--UI-Font-Weight-strong, 600);
+  line-height: 150%;
+  letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+  border-radius: var(--radius-none) var(--radius-none) 0 0;
+  border-bottom: var(--border-width-2) solid var(--sds-color-border-brand-secondary);
+}
+
+.ds-tabs--mode-dark.ds-tabs--pill .ds-tabs__tab--active {
+  color: var(--sds-color-text-default-secondary, #ececec);
+}

@@ -25,9 +25,9 @@ const meta: Meta<typeof Tabs> = {
           '### Color Tokens',
           '| Token | Value | Usage |',
           '|-------|-------|-------|',
-          '| `--sds-color-text-default-default` | `#545454` | Default tab text |',
+          '| `--sds-color-text-default-default` | `#545454` | Hover tab text (line) |',
           '| `--sds-color-text-default-secondary` | `#292929` | Active tab text |',
-          '| `--sds-color-text-default-tertiary` | — | Line tab default text |',
+          '| `--sds-color-text-default-tertiary` | — | Default tab text (line & pill) |',
           '| `--sds-color-border-brand-secondary` | `#6B6B6B` | Active/hover bottom border |',
           '| `--sds-color-background-default-tertiary-system` | `#D2D9E0` | Pill container background |',
           '| `--sds-color-background-default-tertiary` | — | Pill active background |',
@@ -49,7 +49,7 @@ const meta: Meta<typeof Tabs> = {
           '| Token | Value | Usage |',
           '|-------|-------|-------|',
           '| `--UI-Font-Family` | `Noto Sans` | Tab font family |',
-          '| `--UI-Size-xlarge` | `20px` | Line tab font size (desktop) |',
+          '| `--UI-Size-xlarge` | `20px` | Tab font size (desktop, line & pill) |',
           '| `--UI-Size-medium` | `14px` | Tab font size (mobile) |',
           '| `--UI-Font-Weight-default` | `400` | Default tab weight |',
           '| `--UI-Font-Weight-strong` | `600` | Active tab weight |',
@@ -83,8 +83,9 @@ type Story = StoryObj<typeof Tabs>
 export const Playground: Story = {
   args: {
     tabs: sampleTabs,
-    tabStyle: "pill",
+    tabStyle: "line",
     activeIndex: 0,
+    mode: "dark"
   },
 }
 

@@ -15,6 +15,8 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
   tabs: TabItem[]
   /** Visual style variant */
   tabStyle?: TabStyle
+  /** Color mode */
+  mode?: 'light' | 'dark'
   /** Active tab index (controlled) */
   activeIndex?: number
   /** Callback when tab changes */
@@ -24,6 +26,7 @@ export interface TabsProps extends HTMLAttributes<HTMLDivElement> {
 export const Tabs = ({
   tabs,
   tabStyle = 'line',
+  mode = 'light',
   activeIndex: controlledIndex,
   onTabChange,
   className,
@@ -40,6 +43,7 @@ export const Tabs = ({
   const classes = [
     'ds-tabs',
     `ds-tabs--${tabStyle}`,
+    mode === 'dark' ? 'ds-tabs--mode-dark' : '',
     className,
   ].filter(Boolean).join(' ')
 
