@@ -197,6 +197,7 @@ box-shadow: 0 1px var(--depth-025, 2px) var(--sds-size-depth-0) var(--Mapping-Sy
 /* ---- Dark mode ---- */
 .ds-tabs--mode-dark {
   --sds-color-text-default-secondary: #ececec;
+  --sds-color-border-brand-secondary: #9D9D9D;
 }
 
 .ds-tabs--mode-dark.ds-tabs--line .ds-tabs__tab {
@@ -225,6 +226,13 @@ box-shadow: 0 1px var(--depth-025, 2px) var(--sds-size-depth-0) var(--Mapping-Sy
   border-bottom: var(--border-width-2) solid var(--sds-color-border-brand-secondary);
 }
 
+.ds-tabs--mode-dark.ds-tabs--pill .ds-tabs__tab {
+  color: var(--sds-color-text-default-default);
+}
+
 .ds-tabs--mode-dark.ds-tabs--pill .ds-tabs__tab--active {
   color: var(--sds-color-text-default-secondary, #ececec);
+  border-radius: var(--radius-sm);
+  background: var(--sds-color-background-default-tertiary);
+  box-shadow: 0 1px var(--depth-025, 2px) var(--sds-size-depth-0) var(--Mapping-System-Shadow-Light, rgba(35, 47, 55, 0.05));
 }

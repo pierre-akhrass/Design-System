@@ -83,7 +83,7 @@ type Story = StoryObj<typeof Tabs>
 export const Playground: Story = {
   args: {
     tabs: sampleTabs,
-    tabStyle: "line",
+    tabStyle: "pill",
     activeIndex: 0,
     mode: "dark"
   },
