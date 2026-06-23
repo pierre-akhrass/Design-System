@@ -1,19 +1,20 @@
 {
-  "name": "@company/design-system",
+  "name": "ogilvy-design-system",
   "private": false,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "style": "./dist/design-system.css",
+  "style": "./dist/ogilvy-design-system.css",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles.css": "./dist/design-system.css"
+    "./dist/ogilvy-design-system.css": "./dist/ogilvy-design-system.css",
+    "./styles.css": "./dist/ogilvy-design-system.css"
   },
   "files": [
     "dist",
