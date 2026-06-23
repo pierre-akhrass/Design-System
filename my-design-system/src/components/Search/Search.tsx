@@ -35,6 +35,9 @@ export const Search = ({
   className,
   ...inputProps
 }: SearchProps) => {
+  const hasControlledValue = value !== undefined
+  const hasOnChange = typeof inputProps.onChange === 'function'
+
   const classes = [
     'ds-search',
     `ds-search--${size}`,
@@ -69,6 +72,7 @@ export const Search = ({
         type="text"
         className="ds-search__input"
         value={value}
+        readOnly={hasControlledValue && !hasOnChange ? true : inputProps.readOnly}
         placeholder={valueType === 'placeholder' ? value || 'Value' : undefined}
         {...inputProps}
       />
