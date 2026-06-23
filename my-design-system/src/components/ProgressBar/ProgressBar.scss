@@ -1,0 +1,211 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-progress-bar {
+  width: 100%;
+}
+
+// Desktop view
+.ds-progress-bar__desktop {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+}
+
+// Each step
+.ds-progress-bar__step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// Track
+.ds-progress-bar__track {
+  width: 100%;
+  height: 8px;
+  border-radius: 20px;
+  background: $mapping-system-slate-surface-tertiary;
+  overflow: hidden;
+}
+
+// Fill
+.ds-progress-bar__fill {
+  height: 100%;
+  border-radius: 20px;
+  background: $mapping-system-slate-background-primary;
+  transition: width 300ms ease;
+}
+
+// Completed step
+.ds-progress-bar__step--completed {
+  .ds-progress-bar__fill {
+    width: 100%;
+  }
+}
+
+// Active step
+.ds-progress-bar__step--active {
+  .ds-progress-bar__fill {
+    background: $mapping-system-slate-background-primary;
+  }
+}
+
+// Upcoming step
+.ds-progress-bar__step--upcoming {
+  .ds-progress-bar__track {
+    background: $mapping-system-slate-surface-secondary;
+  }
+}
+
+// Info row (number + label)
+.ds-progress-bar__info {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+// Circle number (completed & active)
+.ds-progress-bar__circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: $mapping-system-slate-background-primary;
+  color: $mapping-system-slate-text-on-primary;
+  font-family: $font-family-en-primary;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+// Plain number (upcoming)
+.ds-progress-bar__plain-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: $mapping-system-slate-surface-primary;
+  font-family: $font-family-en-primary;
+  font-size: 11px;
+  font-weight: 400;
+  color: $mapping-system-slate-text-tertiary;
+  flex-shrink: 0;
+}
+
+// Label
+.ds-progress-bar__label {
+  font-family: $font-family-en-primary;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: $mapping-system-slate-text-secondary;
+}
+
+// Mobile view - hidden by default
+.ds-progress-bar__mobile {
+  display: none;
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .ds-progress-bar__desktop {
+    display: none;
+  }
+
+  .ds-progress-bar__mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ds-progress-bar__mobile-track-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ds-progress-bar__mobile-bar {
+    flex: 1;
+  }
+
+  .ds-progress-bar__mobile-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &--completed {
+      background: $mapping-system-slate-background-primary;
+    }
+
+    &--active {
+      background: $mapping-system-slate-background-primary;
+    }
+
+    &--upcoming {
+      background: $mapping-system-slate-surface-tertiary;
+    }
+  }
+}
+
+// Dark mode
+.ds-progress-bar--dark {
+  padding: 24px;
+  border-radius: 12px;
+  background: $mapping-system-slate-background-primary;
+
+  .ds-progress-bar__track {
+    background: $mapping-system-slate-background-secondary;
+  }
+
+  .ds-progress-bar__fill {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  .ds-progress-bar__step--active .ds-progress-bar__fill {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  .ds-progress-bar__step--upcoming .ds-progress-bar__track {
+    background: $mapping-system-slate-background-tertiary;
+  }
+
+  .ds-progress-bar__circle {
+    background: $mapping-system-slate-surface-primary;
+    color: $mapping-system-slate-background-primary;
+  }
+
+  .ds-progress-bar__plain-number {
+    background: $mapping-system-slate-background-secondary;
+    color: $mapping-system-slate-text-tertiary;
+  }
+
+  .ds-progress-bar__label {
+    color: $mapping-system-slate-surface-primary;
+  }
+
+  // Mobile dark overrides
+  .ds-progress-bar__mobile-dot--completed {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  .ds-progress-bar__mobile-dot--active {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  .ds-progress-bar__mobile-dot--upcoming {
+    background: $mapping-system-slate-background-tertiary;
+  }
+
+  .ds-progress-bar__mobile-bar {
+    background: $mapping-system-slate-background-secondary;
+  }
+
+  .ds-progress-bar__mobile-bar .ds-progress-bar__fill {
+    background: $mapping-system-slate-surface-primary;
+  }
+}

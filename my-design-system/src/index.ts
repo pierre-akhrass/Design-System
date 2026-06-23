@@ -73,7 +73,13 @@ export type {
   MapBlockMode,
   MapBlockLabel,
   MapBlockControl,
+  VirtualBlockProps,
+  VirtualBlockLevel,
+  VirtualBlockLabel,
+  VirtualBlockSearchResult,
+  VirtualBlockStore,
 } from './components/Map'
+export { VirtualBlock } from './components/Map'
 export { Accordion } from './components/Accordion'
 export type { AccordionItemData, AccordionProps, AccordionTheme } from './components/Accordion'
 export { Avatar, AvatarGroup, AvatarBlock } from './components/Avatar'
@@ -208,14 +214,11 @@ export type {
   PaginationTheme,
   PaginationValue,
 } from './components/Pagination'
-export { Search, SearchTabs, SearchTab, SearchResults } from './components/Search'
+export { Search } from './components/Search'
 export type {
   SearchProps,
   SearchSize,
-  SearchTheme,
-  SearchTabsProps,
-  SearchTabProps,
-  SearchResultsProps,
+  SearchValueType,
 } from './components/Search'
 export { SocialMediaPost } from './components/SocialMediaPost'
 export type {
@@ -225,6 +228,23 @@ export type {
   SocialMediaPostTheme,
   SocialMediaPostType,
 } from './components/SocialMediaPost'
+export { Feedback } from './components/Feedback'
+export type { FeedbackProps, FeedbackVariant } from './components/Feedback'
+export { ProgressBar } from './components/ProgressBar'
+export type {
+  ProgressBarProps,
+  ProgressStep,
+  StepStatus,
+  ProgressBarMode,
+} from './components/ProgressBar'
+export { Quote } from './components/Quote'
+export type { QuoteProps, QuoteItem, QuoteVariant } from './components/Quote'
+export { Slider } from './components/Slider'
+export type { SliderProps, SliderState } from './components/Slider'
+export { Tabs } from './components/Tabs'
+export type { TabsProps, TabItem, TabStyle } from './components/Tabs'
+export { Testimonials } from './components/Testimonials'
+export type { TestimonialsProps, TestimonialItem } from './components/Testimonials'
 export {
   Table,
   TableCell,
@@ -245,6 +265,8 @@ export type {
   TableTheme,
   TableToolbarProps,
 } from './components/Table'
+export { TextArea } from './components/TextArea'
+export type { TextAreaProps, TextAreaState } from './components/TextArea'
 export { Tag } from './components/Tag'
 export type { TagProps, TagState, TagTheme } from './components/Tag'
 export { TextBlock } from './components/TextBlock'

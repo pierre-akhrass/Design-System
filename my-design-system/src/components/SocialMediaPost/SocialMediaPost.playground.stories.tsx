@@ -62,24 +62,6 @@ const captionText =
 const xText =
   "Style isn't just what you wear—it's how you wear it. Confidence is the best accessory."
 
-const PaginatedInstagram = ({ theme }: { theme: 'light' | 'dark' }) => {
-  const [page, setPage] = useState(2)
-  const total = 6
-  return (
-    <SocialMediaPost
-      theme={theme}
-      platform="instagram"
-      type="image"
-      pagination={{
-        current: page,
-        total,
-        onPrev: () => setPage((p) => Math.max(1, p - 1)),
-        onNext: () => setPage((p) => Math.min(total, p + 1)),
-      }}
-    />
-  )
-}
-
 const platforms: {
   platform: SocialMediaPostPlatform
   type: 'image' | 'video' | 'text'
@@ -165,20 +147,37 @@ export const Facebook: Story = {
 }
 
 export const Instagram: Story = {
-  render: (args) => (
-    <div style={getPageStyle(args.theme)}>
-      <header style={headerStyle}>
-        <div style={breadcrumbStyle}>Component / Social Media Post</div>
-        <h1 style={titleStyle}>
-          Social Media Post{args.theme === 'dark' ? ': Dark' : ''}
-        </h1>
-        <p style={descriptionStyle}>{description}</p>
-      </header>
-      <div style={cardsColumnStyle}>
-        <PaginatedInstagram theme={args.theme ?? 'light'} />
+  args: { platform: 'instagram', type: 'image' },
+  render: (args) => {
+    const [page, setPage] = useState(2)
+    const total = 6
+    return (
+      <div style={getPageStyle(args.theme)}>
+        <header style={headerStyle}>
+          <div style={breadcrumbStyle}>Component / Social Media Post</div>
+          <h1 style={titleStyle}>
+            Social Media Post{args.theme === 'dark' ? ': Dark' : ''}
+          </h1>
+          <p style={descriptionStyle}>{description}</p>
+        </header>
+        <div style={cardsColumnStyle}>
+          <SocialMediaPost
+            {...args}
+            pagination={
+              args.platform === 'instagram'
+                ? {
+                    current: page,
+                    total,
+                    onPrev: () => setPage((p) => Math.max(1, p - 1)),
+                    onNext: () => setPage((p) => Math.min(total, p + 1)),
+                  }
+                : undefined
+            }
+          />
+        </div>
       </div>
-    </div>
-  ),
+    )
+  },
 }
 
 export const TikTok: Story = {

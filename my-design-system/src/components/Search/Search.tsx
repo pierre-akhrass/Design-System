@@ -1,234 +1,87 @@
-import {
-  Children,
-  cloneElement,
-  isValidElement,
-  type HTMLAttributes,
-  type InputHTMLAttributes,
-  type ReactElement,
-  type ReactNode,
-} from 'react'
-/**
- * Search Component
- * @developer Mohamad oueidat
- */
-
+import { type InputHTMLAttributes, type ReactNode } from 'react'
 import './Search.scss'
 
-export type SearchTheme = 'light' | 'dark'
-export type SearchSize = 'default' | 'compact'
+export type SearchSize = 'medium' | 'small'
+export type SearchValueType = 'default' | 'placeholder'
 
-export interface SearchProps
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  theme?: SearchTheme
+export interface SearchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   size?: SearchSize
-  placeholder?: string
+  valueType?: SearchValueType
   value?: string
-  defaultValue?: string
-  showClear?: boolean
-  clearLabel?: string
-  onValueChange?: (value: string) => void
+  iconRight?: boolean | ReactNode
+  iconLeft?: boolean | ReactNode
   onClear?: () => void
-  inputProps?: InputHTMLAttributes<HTMLInputElement>
-  children?: ReactNode
 }
 
-const SearchIcon = ({ size = 18 }: { size?: number }) => (
-  <svg
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    aria-hidden="true"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="11" cy="11" r="7" />
-    <path d="M20 20l-3.5-3.5" />
+const SearchIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M14.3536 13.6464L11.2252 10.5181C12.0261 9.54714 12.5 8.32958 12.5 7C12.5 3.96243 10.0376 1.5 7 1.5C3.96243 1.5 1.5 3.96243 1.5 7C1.5 10.0376 3.96243 12.5 7 12.5C8.32958 12.5 9.54714 12.0261 10.5181 11.2252L13.6464 14.3536C13.7441 14.4512 13.8721 14.5 14 14.5C14.1279 14.5 14.2559 14.4512 14.3536 14.3536C14.5488 14.1583 14.5488 13.8417 14.3536 13.6464ZM2.5 7C2.5 4.51472 4.51472 2.5 7 2.5C9.48528 2.5 11.5 4.51472 11.5 7C11.5 9.48528 9.48528 11.5 7 11.5C4.51472 11.5 2.5 9.48528 2.5 7Z" fill="currentColor"/>
   </svg>
 )
 
-const FilterIcon = ({ size = 16 }: { size?: number }) => (
-  <svg
-    viewBox="0 0 24 24"
-    width={size}
-    height={size}
-    aria-hidden="true"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.8"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M4 7h12" />
-    <circle cx="18" cy="7" r="2" />
-    <path d="M8 17h12" />
-    <circle cx="6" cy="17" r="2" />
+const CloseIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M12.3536 3.64645C12.1583 3.45118 11.8417 3.45118 11.6464 3.64645L8 7.29289L4.35355 3.64645C4.15829 3.45118 3.84171 3.45118 3.64645 3.64645C3.45118 3.84171 3.45118 4.15829 3.64645 4.35355L7.29289 8L3.64645 11.6464C3.45118 11.8417 3.45118 12.1583 3.64645 12.3536C3.84171 12.5488 4.15829 12.5488 4.35355 12.3536L8 8.70711L11.6464 12.3536C11.8417 12.5488 12.1583 12.5488 12.3536 12.3536C12.5488 12.1583 12.5488 11.8417 12.3536 11.6464L8.70711 8L12.3536 4.35355C12.5488 4.15829 12.5488 3.84171 12.3536 3.64645Z" fill="currentColor"/>
   </svg>
 )
 
 export const Search = ({
-  theme = 'light',
-  size = 'default',
-  placeholder = 'Search for something',
+  size = 'medium',
+  valueType = 'placeholder',
   value,
-  defaultValue,
-  showClear = true,
-  clearLabel = 'Clear Search',
-  onValueChange,
+  iconRight = true,
+  iconLeft = true,
   onClear,
-  inputProps,
   className,
-  children,
-  ...rest
+  ...inputProps
 }: SearchProps) => {
   const classes = [
     'ds-search',
-    `ds-search--${theme}`,
     `ds-search--${size}`,
+    `ds-search--${valueType}`,
     className,
   ]
     .filter(Boolean)
     .join(' ')
 
-  const handleClear = () => {
-    onClear?.()
-    onValueChange?.('')
+  const renderLeftIcon = () => {
+    if (!iconLeft) return null
+    if (iconLeft === true) return <SearchIcon />
+    return iconLeft
+  }
+
+  const renderRightIcon = () => {
+    if (!iconRight) return null
+    if (iconRight === true) {
+      return valueType === 'default' ? <CloseIcon /> : <SearchIcon />
+    }
+    return iconRight
   }
 
   return (
-    <div className={classes} {...rest}>
-      <div className="ds-search__bar">
-        <span className="ds-search__icon" aria-hidden="true">
-          <SearchIcon size={size === 'compact' ? 16 : 18} />
+    <div className={classes}>
+      {iconLeft && (
+        <span className="ds-search__icon ds-search__icon--left">
+          {renderLeftIcon()}
         </span>
-        <input
-          type="search"
-          className="ds-search__input"
-          placeholder={placeholder}
-          value={value}
-          defaultValue={defaultValue}
-          onChange={(event) => onValueChange?.(event.target.value)}
-          {...inputProps}
-        />
-        {showClear && (
-          <button
-            type="button"
-            className="ds-search__clear"
-            onClick={handleClear}
-          >
-            {clearLabel}
-          </button>
-        )}
-      </div>
-      {children}
-    </div>
-  )
-}
-
-export interface SearchTabsProps extends HTMLAttributes<HTMLDivElement> {
-  activeIndex?: number
-  onTabChange?: (index: number) => void
-  filterIcon?: ReactNode
-  onFilterClick?: () => void
-  showFilter?: boolean
-  children?: ReactNode
-}
-
-export const SearchTabs = ({
-  activeIndex = 0,
-  onTabChange,
-  filterIcon,
-  onFilterClick,
-  showFilter = true,
-  className,
-  children,
-  ...rest
-}: SearchTabsProps) => {
-  const classes = ['ds-search__tabs', className].filter(Boolean).join(' ')
-
-  const tabs = Children.toArray(children).filter(isValidElement) as ReactElement<SearchTabProps>[]
-
-  return (
-    <div className={classes} {...rest}>
-      <div className="ds-search__tabs-list" role="tablist">
-        {tabs.map((child, index) =>
-          cloneElement(child, {
-            key: child.key ?? index,
-            active: index === activeIndex,
-            onClick: () => onTabChange?.(index),
-          })
-        )}
-      </div>
-      {showFilter && (
+      )}
+      <input
+        type="text"
+        className="ds-search__input"
+        value={value}
+        placeholder={valueType === 'placeholder' ? value || 'Value' : undefined}
+        {...inputProps}
+      />
+      {iconRight && (
         <button
           type="button"
-          className="ds-search__filter"
-          onClick={onFilterClick}
-          aria-label="Filter"
+          className="ds-search__icon ds-search__icon--right"
+          onClick={onClear}
+          aria-label={valueType === 'default' ? 'Clear' : 'Search'}
         >
-          {filterIcon ?? <FilterIcon />}
+          {renderRightIcon()}
         </button>
       )}
-    </div>
-  )
-}
-
-export interface SearchTabProps
-  extends Omit<HTMLAttributes<HTMLButtonElement>, 'onClick'> {
-  label: ReactNode
-  count?: number | string
-  active?: boolean
-  onClick?: () => void
-}
-
-export const SearchTab = ({
-  label,
-  count,
-  active = false,
-  onClick,
-  className,
-  ...rest
-}: SearchTabProps) => {
-  const classes = [
-    'ds-search__tab',
-    active ? 'ds-search__tab--active' : null,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ')
-
-  return (
-    <button
-      type="button"
-      role="tab"
-      aria-selected={active}
-      className={classes}
-      onClick={onClick}
-      {...rest}
-    >
-      <span className="ds-search__tab-label">{label}</span>
-      {count !== undefined && (
-        <span className="ds-search__tab-count">{count}</span>
-      )}
-    </button>
-  )
-}
-
-export interface SearchResultsProps extends HTMLAttributes<HTMLDivElement> {
-  children?: ReactNode
-}
-
-export const SearchResults = ({
-  className,
-  children,
-  ...rest
-}: SearchResultsProps) => {
-  const classes = ['ds-search__results', className].filter(Boolean).join(' ')
-  return (
-    <div className={classes} {...rest}>
-      {children}
     </div>
   )
 }

@@ -8,3 +8,11 @@ export type {
   MapBlockLabel,
   MapBlockControl,
 } from './MapBlock'
+export { VirtualBlock } from './VirtualBlock'
+export type {
+  VirtualBlockProps,
+  VirtualBlockLevel,
+  VirtualBlockLabel,
+  VirtualBlockSearchResult,
+  VirtualBlockStore,
+} from './VirtualBlock'
