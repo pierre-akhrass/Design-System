@@ -1,0 +1,96 @@
+.ds-feedback {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 480px;
+  font-family: var(--sds-typography-heading-font-family, 'Noto Sans');
+}
+
+/* ---- Alert variant ---- */
+.ds-feedback--alert {
+  border-radius: var(--radius-md);
+border: 1px solid var(--sds-color-border-brand-default);
+background: var(--sds-color-background-default-default);
+
+}
+
+/* ---- Toast variant ---- */
+.ds-feedback--toast {
+border-radius: var(--radius-md);
+border: 1px solid var(--sds-color-border-brand-secondary);
+background: var(--sds-color-background-default-secondary-system-primary);
+color: var(--Schema-Text-On-Primary, #FFF);
+
+/* Box Shadow/shadow-lg */
+box-shadow: 0 4px var(--sds-size-depth-100) var(--sds-size-depth-negative-100) var(--Mapping-System-Shadow-Medium, rgba(35, 47, 55, 0.10)), 0 10px 15px -3px var(--Mapping-System-Shadow-Medium, rgba(35, 47, 55, 0.10));
+
+  .ds-feedback__title,
+  .ds-feedback__description {
+    color: var(--Schema-Text-On-Primary, #FFF);
+  }
+}
+
+/* ---- Icon ---- */
+.ds-feedback__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* ---- Content ---- */
+.ds-feedback__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ds-feedback__title {
+  color: var(--sds-color-text-default-secondary);
+/* Label/large/medium */
+font-family: var(--UI-Font-Family, "Noto Sans");
+font-size: var(--UI-Size-large, 16px);
+font-style: normal;
+font-weight: var(--UI-Font-Weight-medium, 500);
+line-height: 150%; /* 24px */
+letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+}
+
+.ds-feedback__description {
+color: var(--sds-color-text-default-default);
+
+/* Body/Paragraph/Default */
+font-family: var(--sds-typography-body-font-family);
+font-size: var(--sds-typography-body-size-medium);
+font-style: normal;
+font-weight: var(--sds-typography-body-font-weight-regular);
+line-height: 150%; /* 24px */
+letter-spacing: var(--Typography-Letter-spacing-tracking-1, 0);
+}
+
+/* ---- Close button ---- */
+.ds-feedback__close {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
