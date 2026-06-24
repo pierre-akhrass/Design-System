@@ -1,0 +1,466 @@
+@use '../../../styles/tokens/variables' as *;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// AvatarShowcase — self-contained section, safe to move to its own route
+// ─────────────────────────────────────────────────────────────────────────────
+
+.av-showcase {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-xxl;
+}
+
+// ─── Section header ───────────────────────────────────────────────────────────
+
+.av-showcase__header {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-xs;
+}
+
+.av-showcase__badge {
+  align-self: flex-start;
+  background-color: $mapping-brand-teal-blue-surface-primary;
+  border: 1px solid $mapping-brand-teal-blue-surface-secondary;
+  border-radius: #{$radius-full}px;
+  color: $mapping-brand-teal-blue-background-primary;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: 0.07em;
+  padding: 3px 12px;
+  text-transform: uppercase;
+}
+
+.av-showcase__title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: 28px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0;
+}
+
+.av-showcase__description {
+  color: $mapping-system-slate-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  line-height: 1.7;
+  margin: 0;
+  max-width: 680px;
+}
+
+// ─── Shared block wrapper ─────────────────────────────────────────────────────
+
+.av-showcase__block {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+}
+
+.av-showcase__block-header {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+}
+
+.av-showcase__block-title {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+
+.av-showcase__block-subtitle {
+  color: $mapping-system-slate-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 600px;
+
+  strong {
+    color: $mapping-system-slate-text-primary;
+    font-weight: $ui-font-weight-medium;
+  }
+}
+
+// ─── Shared code snippet ──────────────────────────────────────────────────────
+
+.av-showcase__type-code {
+  background-color: $mapping-system-neutral-surface-tertiary;
+  border-radius: $radius-small;
+  color: $mapping-system-slate-text-primary;
+  font-size: 12px;
+  font-family: 'Roboto Mono', 'Cascadia Code', 'Fira Code', ui-monospace, monospace;
+  padding: 3px 8px;
+  align-self: flex-start;
+}
+
+// ─── Types grid ───────────────────────────────────────────────────────────────
+
+.av-showcase__type-grid {
+  display: grid;
+  gap: $gap-s;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 780px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.av-showcase__type-card {
+  background-color: #ffffff;
+  border: 1px solid $mapping-system-neutral-surface-tertiary;
+  border-radius: $radius-large;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.15s ease;
+
+  &:hover {
+    box-shadow:
+      0 4px 12px $mapping-system-shadow-medium,
+      0 1px 3px $mapping-system-shadow-light;
+  }
+}
+
+.av-showcase__type-canvas {
+  align-items: center;
+  background: linear-gradient(135deg, #f5f8fc 0%, #eef4fc 100%);
+  display: flex;
+  justify-content: center;
+  min-height: 100px;
+  padding: $gap-l;
+}
+
+.av-showcase__type-body {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-2xs;
+  padding: $gap-m;
+}
+
+.av-showcase__type-row {
+  align-items: center;
+  display: flex;
+  gap: $gap-2xs;
+}
+
+.av-showcase__type-label {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  font-weight: $ui-font-weight-strong;
+}
+
+.av-showcase__type-tag {
+  background-color: $mapping-system-neutral-surface-tertiary;
+  border-radius: #{$radius-full}px;
+  color: $mapping-system-neutral-text-secondary;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  font-weight: $ui-font-weight-medium;
+  padding: 2px 8px;
+}
+
+.av-showcase__type-desc {
+  color: $mapping-system-slate-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ─── Sizes ────────────────────────────────────────────────────────────────────
+
+.av-showcase__sizes-canvas {
+  background-color: #ffffff;
+  border: 1px solid $mapping-system-neutral-surface-tertiary;
+  border-radius: $radius-large;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.av-showcase__sizes-divider {
+  background-color: $mapping-system-neutral-surface-tertiary;
+  height: 1px;
+  margin: 0 $gap-l;
+}
+
+.av-showcase__sizes-row {
+  align-items: flex-end;
+  display: flex;
+  gap: $gap-m;
+  padding: $gap-l;
+
+  @media (max-width: 560px) {
+    flex-wrap: wrap;
+  }
+}
+
+.av-showcase__size-col {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: $gap-3xs;
+  min-width: 0;
+}
+
+.av-showcase__size-preview {
+  align-items: flex-end;
+  display: flex;
+  height: 64px; // match xlarge so alignment snaps to bottom
+  justify-content: center;
+}
+
+.av-showcase__size-name {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-medium;
+  text-align: center;
+}
+
+.av-showcase__size-px {
+  background-color: $mapping-system-neutral-surface-tertiary;
+  border-radius: $radius-small;
+  color: $mapping-system-neutral-text-secondary;
+  font-family: 'Roboto Mono', 'Cascadia Code', ui-monospace, monospace;
+  font-size: 11px;
+  padding: 2px 6px;
+  text-align: center;
+}
+
+.av-showcase__size-usage {
+  color: $mapping-system-slate-text-tertiary;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+// ─── Grouping ─────────────────────────────────────────────────────────────────
+
+.av-showcase__group-grid {
+  display: grid;
+  gap: $gap-s;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.av-showcase__group-card {
+  background-color: #ffffff;
+  border: 1px solid $mapping-system-neutral-surface-tertiary;
+  border-radius: $radius-large;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow: hidden;
+}
+
+.av-showcase__group-info {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+  padding: $gap-m $gap-m $gap-s;
+}
+
+.av-showcase__group-label {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  font-weight: $ui-font-weight-strong;
+}
+
+.av-showcase__group-desc {
+  color: $mapping-system-slate-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.av-showcase__group-canvas {
+  align-items: center;
+  background: linear-gradient(135deg, #f5f8fc 0%, #eef4fc 100%);
+  border-top: 1px solid $mapping-system-neutral-surface-tertiary;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+  justify-content: center;
+  min-height: 96px;
+  padding: $gap-l;
+}
+
+// ─── Avatar Block ─────────────────────────────────────────────────────────────
+
+.av-showcase__block-canvas {
+  background-color: #ffffff;
+  border: 1px solid $mapping-system-neutral-surface-tertiary;
+  border-radius: $radius-large;
+  overflow: hidden;
+}
+
+.av-showcase__block-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (max-width: 580px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.av-showcase__block-example {
+  border-bottom: 1px solid $mapping-system-neutral-surface-tertiary;
+  border-right: 1px solid $mapping-system-neutral-surface-tertiary;
+  display: flex;
+  flex-direction: column;
+  gap: $gap-m;
+  padding: $gap-m;
+
+  // Remove double borders at edges
+  &:nth-child(2n) {
+    border-right: none;
+  }
+
+  &:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  @media (max-width: 580px) {
+    border-right: none;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.av-showcase__block-example-label {
+  color: $mapping-system-slate-text-tertiary;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  font-weight: $ui-font-weight-medium;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+// ─── Usage note ───────────────────────────────────────────────────────────────
+
+.av-showcase__usage {
+  align-items: flex-start;
+  background-color: $mapping-brand-teal-blue-surface-primary;
+  border: 1px solid $mapping-brand-teal-blue-surface-secondary;
+  border-radius: $radius-medium;
+  display: flex;
+  gap: $gap-xs;
+  padding: $gap-s $gap-m;
+}
+
+.av-showcase__usage-icon {
+  color: $mapping-brand-teal-blue-background-secondary;
+  flex-shrink: 0;
+  font-size: #{$ui-size-medium}px;
+  line-height: 1.7;
+}
+
+.av-showcase__usage-content {
+  color: $mapping-system-slate-text-primary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  line-height: 1.7;
+
+  strong {
+    font-weight: $ui-font-weight-strong;
+  }
+
+  code {
+    background-color: $mapping-brand-teal-blue-surface-secondary;
+    border-radius: $radius-small;
+    font-family: 'Roboto Mono', 'Cascadia Code', ui-monospace, monospace;
+    font-size: 11px;
+    padding: 1px 5px;
+  }
+}
+
+// ─── Storybook CTA ────────────────────────────────────────────────────────────
+
+.av-showcase__cta {
+  align-items: center;
+  background-color: $mapping-brand-teal-blue-background-primary;
+  border-radius: $radius-large;
+  display: flex;
+  gap: $gap-m;
+  justify-content: space-between;
+  padding: $gap-l;
+
+  @media (max-width: 560px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.av-showcase__cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+  min-width: 0;
+}
+
+.av-showcase__cta-heading {
+  align-items: center;
+  color: $mapping-brand-teal-blue-text-on-primary;
+  display: flex;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-strong;
+  gap: $gap-3xs;
+  white-space: nowrap;
+}
+
+.av-showcase__cta-body {
+  color: $mapping-brand-teal-blue-background-tertiary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  line-height: 1.6;
+}
+
+.av-showcase__cta-link {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: $radius-medium;
+  color: $mapping-brand-teal-blue-background-primary;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-strong;
+  gap: $gap-3xs;
+  padding: $padding-action-xs $padding-action-s;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $mapping-brand-teal-blue-surface-primary;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+  }
+}

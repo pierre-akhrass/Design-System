@@ -1,0 +1,690 @@
+@use '../../styles/tokens/variables' as *;
+
+// ─── Light theme CSS custom properties ───────────────────────────────────────
+.ds-table {
+  // Container
+  --ds-table-surface: #{$mapping-system-slate-surface-primary};
+  --ds-table-border: #{$mapping-system-slate-border-tertiary};
+  --ds-table-radius: #{$radius-large};
+
+  // Header row
+  --ds-table-header-bg: #{$mapping-system-slate-surface-quaternary};
+  --ds-table-header-text: #{$mapping-system-slate-text-primary};
+  --ds-table-header-border: #{$mapping-system-slate-border-tertiary};
+  --ds-table-header-height: 48px;
+
+  // Data rows
+  --ds-table-row-height: 64px;
+  --ds-table-row-bg: transparent;
+  --ds-table-row-bg-alternate: #{$mapping-system-slate-surface-secondary};
+  --ds-table-row-bg-hover: #{$mapping-system-slate-surface-tertiary};
+  --ds-table-row-bg-selected: #{$mapping-brand-vibrant-teal-surface-tertiary};
+  --ds-table-row-border: #{$mapping-system-slate-border-tertiary};
+  --ds-table-row-text: #{$mapping-system-slate-text-secondary};
+  --ds-table-row-text-selected: #{$mapping-brand-vibrant-teal-text-secondary};
+
+  // Toolbar
+  --ds-table-toolbar-bg: transparent;
+  --ds-table-title-text: #{$mapping-system-slate-text-primary};
+
+  // Search
+  --ds-table-search-bg: transparent;
+  --ds-table-search-border: #{$mapping-system-slate-border-secondary};
+  --ds-table-search-text: #{$mapping-system-slate-text-secondary};
+  --ds-table-search-placeholder: #{$mapping-system-slate-text-tertiary};
+  --ds-table-search-icon: #{$mapping-system-slate-icon-tertiary};
+
+  // Checkbox
+  --ds-table-checkbox-bg: #{$mapping-system-slate-surface-primary};
+  --ds-table-checkbox-border: #{$mapping-system-slate-border-secondary};
+  --ds-table-checkbox-checked-bg: #{$mapping-system-slate-background-primary};
+  --ds-table-checkbox-checked-text: #{$mapping-system-slate-text-on-primary};
+
+  // Sort icon
+  --ds-table-sort-icon: #{$mapping-system-slate-icon-tertiary};
+  --ds-table-sort-icon-active: #{$mapping-system-slate-icon-primary};
+
+  // Pagination
+  --ds-table-pagination-bg: transparent;
+  --ds-table-pagination-border: #{$mapping-system-slate-border-tertiary};
+  --ds-table-pagination-text: #{$mapping-system-slate-text-tertiary};
+  --ds-table-pagination-btn-text: #{$mapping-system-slate-text-secondary};
+  --ds-table-pagination-btn-bg: transparent;
+  --ds-table-pagination-btn-bg-hover: #{$mapping-system-slate-surface-secondary};
+  --ds-table-pagination-active-bg: #{$mapping-system-slate-background-primary};
+  --ds-table-pagination-active-text: #{$mapping-system-slate-text-on-primary};
+}
+
+// ─── Dark theme CSS custom properties ────────────────────────────────────────
+.ds-table--dark {
+  // Container
+  --ds-table-surface: #{$mapping-system-slate-background-primary-hover};
+  --ds-table-border: #{$mapping-system-slate-border-primary};
+
+  // Header row
+  --ds-table-header-bg: #{$mapping-system-slate-background-secondary};
+  --ds-table-header-text: #{$mapping-system-white-1000};
+  --ds-table-header-border: #{$mapping-system-slate-background-secondary-hover};
+
+  // Data rows
+  --ds-table-row-bg: transparent;
+  --ds-table-row-bg-alternate: #{$mapping-system-slate-background-secondary-hover};
+  --ds-table-row-bg-hover: #{$mapping-system-slate-background-secondary};
+  --ds-table-row-bg-selected: #{$mapping-brand-vibrant-teal-backgroud-secondary};
+  --ds-table-row-border: #{$mapping-system-slate-background-secondary-hover};
+  --ds-table-row-text: #{$mapping-system-white-600};
+  --ds-table-row-text-selected: #{$mapping-brand-vibrant-teal-text-on-secondary};
+
+  // Toolbar
+  --ds-table-title-text: #{$mapping-system-white-800};
+
+  // Search
+  --ds-table-search-border: #{$mapping-system-slate-border-primary};
+  --ds-table-search-text: #{$mapping-system-white-600};
+  --ds-table-search-placeholder: #{$mapping-system-white-400};
+  --ds-table-search-icon: #{$mapping-system-white-400};
+
+  // Checkbox
+  --ds-table-checkbox-bg: #{$mapping-system-slate-background-secondary};
+  --ds-table-checkbox-border: #{$mapping-system-slate-border-primary};
+  --ds-table-checkbox-checked-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-table-checkbox-checked-text: #{$mapping-system-slate-text-primary};
+
+  // Sort icon
+  --ds-table-sort-icon: #{$mapping-system-white-400};
+  --ds-table-sort-icon-active: #{$mapping-system-white-800};
+
+  // Pagination
+  --ds-table-pagination-border: #{$mapping-system-slate-background-secondary-hover};
+  --ds-table-pagination-text: #{$mapping-system-white-400};
+  --ds-table-pagination-btn-text: #{$mapping-system-white-600};
+  --ds-table-pagination-btn-bg: transparent;
+  --ds-table-pagination-btn-bg-hover: #{$mapping-system-slate-background-secondary};
+  --ds-table-pagination-active-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-table-pagination-active-text: #{$mapping-system-slate-text-primary};
+}
+
+// ─── Table wrapper ────────────────────────────────────────────────────────────
+.ds-table {
+  background: var(--ds-table-surface);
+  border: 1px solid var(--ds-table-border);
+  border-radius: var(--ds-table-radius);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.ds-table--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+// ─── Toolbar ──────────────────────────────────────────────────────────────────
+.ds-table__toolbar {
+  align-items: center;
+  background: var(--ds-table-toolbar-bg);
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  gap: $space-200;
+  min-height: 80px;
+  padding: 0 $space-300;
+  width: 100%;
+}
+
+.ds-table__title {
+  color: var(--ds-table-title-text);
+  flex: 1 1 auto;
+  font-family: $ui-font-family;
+  font-size: 24px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin: 0;
+  min-width: 0;
+}
+
+.ds-table__toolbar-actions {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  gap: $space-200;
+}
+
+.ds-table__toolbar-extra {
+  align-items: center;
+  display: flex;
+  gap: $space-100;
+}
+
+// ─── Search ───────────────────────────────────────────────────────────────────
+.ds-table__search {
+  align-items: center;
+  background: var(--ds-table-search-bg);
+  border: 1px solid var(--ds-table-search-border);
+  border-radius: $radius-large;
+  box-sizing: border-box;
+  cursor: text;
+  display: flex;
+  gap: $space-200;
+  height: 40px;
+  padding: 0 $space-200;
+  position: relative;
+  width: 239px;
+}
+
+.ds-table__search-input {
+  background: transparent;
+  border: 0;
+  color: var(--ds-table-search-text);
+  flex: 1 1 auto;
+  font-family: $ui-font-family;
+  font-size: 14px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  min-width: 0;
+  outline: none;
+  padding: 0;
+
+  &::placeholder {
+    color: var(--ds-table-search-placeholder);
+  }
+
+  // Remove default search clear button
+  &::-webkit-search-cancel-button {
+    appearance: none;
+  }
+}
+
+.ds-table__search-icon {
+  color: var(--ds-table-search-icon);
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+// ─── Scroll container ────────────────────────────────────────────────────────
+.ds-table__scroll-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+// ─── Table element ───────────────────────────────────────────────────────────
+.ds-table__table {
+  border-collapse: collapse;
+  min-width: 100%;
+  table-layout: auto;
+  width: 100%;
+}
+
+// ─── Head / Body ─────────────────────────────────────────────────────────────
+.ds-table__head {
+  position: relative;
+}
+
+.ds-table__body {
+  position: relative;
+}
+
+// ─── Rows ─────────────────────────────────────────────────────────────────────
+.ds-table__row {
+  background: var(--ds-table-row-bg);
+  border-bottom: 1px solid var(--ds-table-row-border);
+  height: var(--ds-table-row-height);
+  position: relative;
+  transition: background-color 0.15s ease;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.ds-table__row--header {
+  background: var(--ds-table-header-bg);
+  border-bottom: 1px solid var(--ds-table-header-border);
+  height: var(--ds-table-header-height);
+}
+
+.ds-table__row--alternate {
+  background: var(--ds-table-row-bg-alternate);
+}
+
+.ds-table__row--hover,
+.ds-table__row:hover:not(.ds-table__row--header):not(.ds-table__row--empty) {
+  background: var(--ds-table-row-bg-hover);
+}
+
+.ds-table__row--selected {
+  background: var(--ds-table-row-bg-selected);
+
+  .ds-table__cell-text,
+  .ds-table__cell-value {
+    color: var(--ds-table-row-text-selected);
+  }
+}
+
+.ds-table__row--empty {
+  height: 80px;
+}
+
+// ─── Cells ────────────────────────────────────────────────────────────────────
+.ds-table__cell {
+  box-sizing: border-box;
+  padding: $space-100 $space-200;
+  vertical-align: middle;
+}
+
+// Header cell
+.ds-table__cell--header {
+  padding: 0;
+}
+
+.ds-table__header-btn {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  box-sizing: border-box;
+  color: var(--ds-table-header-text);
+  cursor: default;
+  display: flex;
+  font-family: $ui-font-family;
+  font-size: 14px;
+  font-weight: $ui-font-weight-default;
+  gap: $space-100;
+  height: var(--ds-table-header-height);
+  line-height: 1.5;
+  padding: $space-100 $space-200;
+  text-align: left;
+  width: 100%;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-table-row-bg-selected);
+    outline-offset: -2px;
+  }
+}
+
+.ds-table__cell--sortable .ds-table__header-btn {
+  cursor: pointer;
+}
+
+// Body text cell
+.ds-table__cell-text {
+  color: var(--ds-table-row-text);
+  display: block;
+  font-family: $ui-font-family;
+  font-size: 16px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-table__cell-mobile-label {
+  display: none;
+}
+
+.ds-table__row--header .ds-table__cell-text {
+  color: var(--ds-table-header-text);
+  font-size: 14px;
+}
+
+// Number cell
+.ds-table__cell--number {
+  text-align: right;
+
+  .ds-table__header-btn {
+    justify-content: flex-end;
+  }
+}
+
+.ds-table__cell-number {
+  align-items: center;
+  color: var(--ds-table-row-text);
+  display: inline-flex;
+  font-family: $ui-font-family;
+  font-size: 16px;
+  font-weight: $ui-font-weight-default;
+  gap: $space-100;
+  line-height: 1.5;
+}
+
+.ds-table__cell-prefix {
+  color: var(--ds-table-sort-icon);
+  font-size: 14px;
+}
+
+.ds-table__cell-value {
+  color: var(--ds-table-row-text);
+}
+
+// Select (checkbox) cell
+.ds-table__cell--select {
+  padding: $space-100;
+  width: 56px;
+}
+
+// Component cell
+.ds-table__cell--component {
+  .ds-table__cell-text {
+    align-items: center;
+    display: flex;
+    gap: $space-100;
+  }
+}
+
+// Alignment
+.ds-table__cell--align-center {
+  text-align: center;
+
+  .ds-table__header-btn {
+    justify-content: center;
+  }
+}
+
+.ds-table__cell--align-right {
+  text-align: right;
+
+  .ds-table__header-btn {
+    justify-content: flex-end;
+  }
+}
+
+// Empty cell
+.ds-table__cell--empty {
+  color: var(--ds-table-pagination-text);
+  font-family: $ui-font-family;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: $space-300;
+  text-align: center;
+}
+
+// ─── Sort icon ────────────────────────────────────────────────────────────────
+.ds-table__sort-icon {
+  color: var(--ds-table-sort-icon);
+  display: block;
+  flex-shrink: 0;
+  height: 16px;
+  width: 16px;
+}
+
+[aria-sort] .ds-table__sort-icon {
+  color: var(--ds-table-sort-icon-active);
+}
+
+// ─── Checkbox ────────────────────────────────────────────────────────────────
+.ds-table-checkbox {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.ds-table-checkbox__native {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.ds-table-checkbox__native:focus-visible + .ds-table-checkbox__box {
+  box-shadow: 0 0 0 2px var(--ds-table-row-bg-selected);
+}
+
+.ds-table-checkbox__box {
+  align-items: center;
+  background: var(--ds-table-checkbox-bg);
+  border: 2px solid var(--ds-table-checkbox-border);
+  border-radius: $radius-medium;
+  box-sizing: border-box;
+  color: var(--ds-table-checkbox-checked-text);
+  display: inline-flex;
+  height: 24px;
+  justify-content: center;
+  width: 24px;
+}
+
+.ds-table-checkbox--checked .ds-table-checkbox__box {
+  background: var(--ds-table-checkbox-checked-bg);
+  border-color: var(--ds-table-checkbox-checked-bg);
+}
+
+.ds-table-checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ds-table-checkbox__dash {
+  background: currentColor;
+  display: block;
+  height: 2px;
+  width: 10px;
+}
+
+.ds-table__check-icon {
+  display: block;
+  height: 14px;
+  width: 14px;
+}
+
+// ─── Pagination ───────────────────────────────────────────────────────────────
+.ds-table__pagination {
+  align-items: center;
+  border-top: 1px solid var(--ds-table-pagination-border);
+  box-sizing: border-box;
+  display: flex;
+  flex-shrink: 0;
+  gap: $space-200;
+  justify-content: space-between;
+  padding: $space-200 $space-300;
+  width: 100%;
+}
+
+.ds-table__pagination-info {
+  color: var(--ds-table-pagination-text);
+  font-family: $ui-font-family;
+  font-size: 14px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.ds-table__pagination-controls {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+}
+
+.ds-table__pagination-btn {
+  align-items: center;
+  background: var(--ds-table-pagination-btn-bg);
+  border: 0;
+  border-radius: $radius-medium;
+  box-sizing: border-box;
+  color: var(--ds-table-pagination-btn-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: $ui-font-family;
+  font-size: 16px;
+  font-weight: $ui-font-weight-strong;
+  height: 40px;
+  justify-content: center;
+  line-height: 1;
+  min-width: 40px;
+  padding: $space-100;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover:not(:disabled):not(.ds-table__pagination-btn--active) {
+    background: var(--ds-table-pagination-btn-bg-hover);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ds-table-row-bg-selected);
+    outline-offset: 1px;
+  }
+}
+
+.ds-table__pagination-btn--active {
+  background: var(--ds-table-pagination-active-bg);
+  color: var(--ds-table-pagination-active-text);
+  cursor: default;
+}
+
+.ds-table__pagination-ellipsis {
+  align-items: center;
+  color: var(--ds-table-pagination-text);
+  display: inline-flex;
+  font-family: $ui-font-family;
+  font-size: 16px;
+  font-weight: $ui-font-weight-strong;
+  height: 40px;
+  justify-content: center;
+  min-width: 40px;
+}
+
+.ds-table__icon {
+  display: block;
+  flex-shrink: 0;
+  height: 16px;
+  width: 16px;
+}
+
+// ─── Responsive ──────────────────────────────────────────────────────────────
+@media (max-width: 640px) {
+  .ds-table__toolbar {
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: $space-100;
+    min-height: auto;
+    padding: $space-200;
+  }
+
+  .ds-table__toolbar-actions {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .ds-table__search {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .ds-table__pagination {
+    flex-direction: column;
+    gap: $space-100;
+  }
+
+  .ds-table__pagination-info {
+    order: 2;
+  }
+
+  .ds-table__pagination-controls {
+    order: 1;
+  }
+
+  .ds-table--responsive-stack {
+    .ds-table__scroll-container {
+      overflow-x: visible;
+    }
+
+    .ds-table__head {
+      clip: rect(0 0 0 0);
+      clip-path: inset(50%);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      position: absolute;
+      white-space: nowrap;
+      width: 1px;
+    }
+
+    .ds-table__table,
+    .ds-table__body,
+    .ds-table__row,
+    .ds-table__cell {
+      display: block;
+      width: 100%;
+    }
+
+    .ds-table__body {
+      padding: $space-100;
+    }
+
+    .ds-table__row {
+      background: var(--ds-table-surface);
+      border: 1px solid var(--ds-table-row-border);
+      border-radius: $radius-medium;
+      height: auto;
+      margin-bottom: $space-100;
+      overflow: hidden;
+    }
+
+    .ds-table__cell {
+      align-items: center;
+      display: flex;
+      gap: $space-100;
+      justify-content: space-between;
+      min-height: 40px;
+      padding: $space-100 $space-200;
+    }
+
+    .ds-table__cell-mobile-label {
+      color: var(--ds-table-header-text);
+      display: inline-block;
+      flex: 0 0 42%;
+      font-family: $ui-font-family;
+      font-size: 12px;
+      font-weight: $ui-font-weight-strong;
+      line-height: 1.4;
+      text-transform: uppercase;
+    }
+
+    .ds-table__cell-text,
+    .ds-table__cell-number {
+      flex: 1 1 auto;
+      max-width: 58%;
+      text-align: right;
+      white-space: normal;
+    }
+
+    .ds-table__cell--component .ds-table__cell-text {
+      justify-content: flex-end;
+    }
+
+    .ds-table__cell--select {
+      padding: $space-100 $space-200;
+      width: 100%;
+
+      .ds-table-checkbox {
+        margin-left: auto;
+      }
+    }
+
+    .ds-table__row--empty {
+      margin-bottom: 0;
+    }
+
+    .ds-table__cell--empty {
+      text-align: left;
+    }
+  }
+}

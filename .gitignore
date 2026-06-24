@@ -1,0 +1,7 @@
+# Workspace-level local artifacts
+.vscode/
+node_modules/
+.DS_Store
+
+# Generated reports in package
+my-design-system/coverage/

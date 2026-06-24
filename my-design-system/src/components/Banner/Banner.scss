@@ -1,0 +1,370 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-banner {
+  align-items: stretch;
+  border: 1px solid transparent;
+  border-radius: $radius-large;
+  display: grid;
+  gap: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ds-banner__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ds-banner__logo {
+  align-items: center;
+  border-radius: $radius-small;
+  display: inline-flex;
+  font-family: $font-family-en-mono;
+  font-size: 12px;
+  justify-content: center;
+  line-height: 1;
+  min-height: 96px;
+  min-width: 160px;
+  padding: $padding-action-s $padding-container-m;
+  width: fit-content;
+}
+
+.ds-banner__title,
+.ds-banner__description {
+  margin: 0;
+}
+
+.ds-banner__title {
+  font-family: $font-family-en-primary;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: $typography-letter-spacing-tracking-5;
+}
+
+.ds-banner__description {
+  font-family: $font-family-en-primary;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.ds-banner__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap-s;
+  margin-top: auto;
+}
+
+.ds-banner__badge {
+  align-items: center;
+  border-radius: 6px;
+  display: inline-flex;
+  font-family: $font-family-en-mono;
+  font-size: 12px;
+  height: 42px;
+  line-height: 1;
+  padding: 0 12px;
+}
+
+.ds-banner__media {
+  align-items: center;
+  border-radius: $radius-large;
+  display: flex;
+  justify-content: center;
+  min-height: 297px;
+  position: relative;
+}
+
+.ds-banner__media::before,
+.ds-banner__media::after {
+  content: '';
+  position: absolute;
+}
+
+.ds-banner__media::before {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.04));
+  border-radius: $radius-large;
+  height: 46%;
+  width: 58%;
+}
+
+.ds-banner__media::after {
+  border-bottom: 18px solid currentColor;
+  border-left: 20px solid transparent;
+  border-radius: 1px;
+  border-right: 20px solid transparent;
+  bottom: 36%;
+  color: rgba(255, 255, 255, 0.16);
+  width: 0;
+}
+
+.ds-banner__media-image {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.ds-banner--media-right,
+.ds-banner--media-left {
+  gap: $gap-xxl;
+  grid-template-columns: minmax(0, 728px) minmax(0, 520px);
+}
+
+.ds-banner--media-left {
+
+  .ds-banner__content {
+    order: 2;
+  }
+
+  .ds-banner__media {
+    order: 1;
+  }
+}
+
+.ds-banner--stacked {
+  gap: $gap-l;
+  grid-template-columns: 1fr;
+
+  .ds-banner__media {
+    min-height: 297px;
+  }
+}
+
+.ds-banner--large {
+  min-height: 648px;
+  padding: $padding-container-xl;
+
+  .ds-banner__content {
+    gap: $gap-xl;
+    padding: 0;
+  }
+
+  .ds-banner__title {
+    font: $heading-h1;
+  }
+
+  .ds-banner__description {
+    font: $body-paragraph-large;
+    max-width: 400px;
+  }
+}
+
+.ds-banner--medium {
+  min-height: 560px;
+  padding: $padding-container-l;
+
+  .ds-banner__content {
+    gap: $gap-l;
+    padding: 0;
+  }
+
+  .ds-banner__title {
+    font: $heading-h2;
+  }
+
+  .ds-banner__description {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 400px;
+  }
+}
+
+.ds-banner--small {
+  min-height: 704px;
+  padding: $padding-action-m;
+
+  .ds-banner__content {
+    gap: $gap-l;
+    padding: 0;
+  }
+
+  .ds-banner__title {
+    font: $heading-h3;
+    line-height: 1.2;
+  }
+
+  .ds-banner__description {
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 354px;
+  }
+
+  .ds-banner__badges {
+    gap: $gap-s;
+  }
+
+  .ds-banner__badge {
+    height: 42px;
+    padding: 0 12px;
+  }
+
+  .ds-banner__logo {
+    min-height: 72px;
+    min-width: 120px;
+    padding: $padding-action-s $padding-action-m;
+  }
+
+  .ds-banner__media {
+    min-height: 297px;
+  }
+}
+
+@mixin ds-banner-theme-light {
+  background: $mapping-system-slate-surface-primary;
+  border-color: $mapping-system-slate-border-tertiary;
+
+  .ds-banner__content {
+    background: $mapping-system-slate-surface-primary;
+  }
+
+  .ds-banner__logo {
+    background: $mapping-system-slate-background-primary;
+    color: $mapping-system-slate-text-on-primary;
+  }
+
+  .ds-banner__title {
+    color: $mapping-system-slate-text-primary;
+  }
+
+  .ds-banner__description {
+    color: $mapping-system-slate-text-secondary;
+  }
+
+  .ds-banner__badge {
+    background: $mapping-system-slate-background-primary;
+    color: $mapping-system-slate-text-on-primary;
+  }
+
+  .ds-banner__media {
+    background: $mapping-system-slate-surface-secondary;
+  }
+
+  .ds-banner__media::after {
+    color: rgba(42, 60, 80, 0.26);
+  }
+}
+
+@mixin ds-banner-theme-dark {
+  background: $mapping-system-slate-background-primary;
+  border-color: $mapping-system-slate-background-secondary;
+
+  .ds-banner__content {
+    background: $mapping-system-slate-background-secondary;
+  }
+
+  .ds-banner__logo {
+    background: $mapping-system-slate-text-on-primary;
+    color: $mapping-system-slate-background-primary;
+  }
+
+  .ds-banner__title {
+    color: $mapping-system-slate-text-on-primary;
+  }
+
+  .ds-banner__description {
+    color: $color-system-gray-300;
+  }
+
+  .ds-banner__badge {
+    background: $mapping-system-slate-text-on-primary;
+    color: $mapping-system-slate-background-primary;
+  }
+
+  .ds-banner__media {
+    background: $mapping-system-slate-background-primary;
+  }
+}
+
+.ds-banner--light {
+  @include ds-banner-theme-light;
+}
+
+.ds-banner--dark {
+  @include ds-banner-theme-dark;
+}
+
+// Global toggle (Storybook toolbar / app-level data-theme): apply the dark
+// theme to banners that don't explicitly force a light/dark variant.
+:root[data-theme='dark'] .ds-banner:not(.ds-banner--light):not(.ds-banner--dark),
+.theme-dark .ds-banner:not(.ds-banner--light):not(.ds-banner--dark) {
+  @include ds-banner-theme-dark;
+}
+
+@media (max-width: 1200px) {
+  .ds-banner--large,
+  .ds-banner--medium {
+    padding: $padding-container-m;
+  }
+
+  .ds-banner--media-right,
+  .ds-banner--media-left {
+    gap: $gap-l;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 40%);
+  }
+
+  .ds-banner--large {
+    min-height: 560px;
+
+    .ds-banner__title {
+      font: $heading-h2;
+    }
+
+    .ds-banner__description {
+      font-size: 18px;
+      line-height: 1.5;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .ds-banner {
+    grid-template-columns: 1fr;
+  }
+
+  .ds-banner--media-left,
+  .ds-banner--media-right {
+    gap: $gap-l;
+
+    .ds-banner__content,
+    .ds-banner__media {
+      order: initial;
+    }
+  }
+
+  .ds-banner--large,
+  .ds-banner--medium,
+  .ds-banner--small {
+    min-height: unset;
+    padding: $padding-action-m;
+
+    .ds-banner__content {
+      gap: $gap-l;
+    }
+
+    .ds-banner__title {
+      font: $heading-h3;
+      line-height: 1.2;
+    }
+
+    .ds-banner__description {
+      font-size: $body-paragraph-size-default * 1px;
+      max-width: none;
+    }
+
+    .ds-banner__media {
+      min-height: 240px;
+      width: 100%;
+    }
+
+    .ds-banner__logo {
+      min-height: 64px;
+      min-width: 120px;
+      padding: $padding-action-xs $padding-action-m;
+    }
+
+    .ds-banner__badge {
+      height: 36px;
+      font-size: 11px;
+      padding: 0 10px;
+    }
+  }
+}

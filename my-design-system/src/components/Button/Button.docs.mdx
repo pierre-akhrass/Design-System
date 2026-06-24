@@ -1,0 +1,86 @@
+import { Meta, Title, Subtitle, Description, Primary, Controls, Stories, Source } from '@storybook/addon-docs/blocks'
+import * as ButtonStories from './Button.stories'
+
+<Meta of={ButtonStories} name="Docs" />
+
+<Title>Button</Title>
+<Subtitle>An accessible, token-driven action component with three visual variants and explicit interaction states.</Subtitle>
+
+## Overview
+
+The `Button` is the most fundamental interactive primitive in this design system. It supports three **variants** (`filled`, `outlined`, `plain`), every interactive **state** (`default`, `focus`, `hover`, `pressed`, `disabled`), an optional **leading icon**, and an **icon-only** mode. All visual properties are sourced from design tokens so the component automatically follows brand and semantic theme changes.
+
+## How it was built
+
+### 1. Component anatomy
+
+The component is a single `<button>` with optional icon and label spans:
+
+```tsx
+<button className="ds-button ds-button--{variant} ds-button--{state}" disabled={...}>
+  {icon && <span className="ds-button__icon">{icon}</span>}
+  {!iconOnly && children && <span className="ds-button__label">{children}</span>}
+</button>
+```
+
+### 2. Public API
+
+```ts
+type ButtonVariant = 'filled' | 'outlined' | 'plain'
+type ButtonState   = 'default' | 'focus' | 'hover' | 'pressed' | 'disabled'
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  state?:    ButtonState
+  iconOnly?: boolean
+  icon?:     ReactNode
+  variant?:  ButtonVariant
+  children?: ReactNode
+}
+```
+
+The `state` prop forces a visual state (useful for design QA / Storybook matrices). Real interaction CSS pseudo-classes (`:hover`, `:focus-visible`, `:active`, `:disabled`) are also wired so the button behaves correctly at runtime regardless of the `state` prop.
+
+### 3. Tokens used
+
+All values come from `src/styles/tokens/_variables.scss`:
+
+| Concern | Token |
+|---|---|
+| Height (md) | `$dimensions-button-height-md` |
+| Border radius | `$radius-medium` |
+| Font | `$ui-font-family`, `$ui-font-weight-strong` |
+| Padding | `$padding-action-s`, `$padding-action-m` |
+| Filled bg / fg | `$mapping-system-slate-background-primary`, `$mapping-system-slate-text-on-primary` |
+| Outlined border | `$mapping-system-slate-border-secondary` |
+| Disabled | `$mapping-system-disabled-*` |
+| Focus ring | `$mapping-system-focus-border-secondary` |
+| Shadow color | `$mapping-system-shadow-light` / `-medium` |
+
+### 4. Shadow / elevation system
+
+Four reusable Sass mixins encode the elevation language:
+
+- `ds-button-shadow-default` — resting elevation
+- `ds-button-shadow-focus`   — focus ring
+- `ds-button-shadow-hover`   — lifted
+- `ds-button-shadow-pressed` — inset press
+
+These are composed per-variant to avoid duplication.
+
+### 5. Accessibility
+
+- Always renders a real `<button>` (keyboard + screen-reader friendly).
+- `:focus-visible` activates a visible focus ring; mouse focus is suppressed.
+- `iconOnly` consumers must pass `aria-label` for an accessible name.
+- `disabled` is forwarded to the DOM and removes pointer events via CSS.
+
+## Playground
+
+Use the controls below to explore every prop combination interactively.
+
+<Primary />
+<Controls />
+
+## All stories
+
+<Stories />

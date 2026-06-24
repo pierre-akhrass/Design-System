@@ -1,0 +1,282 @@
+@use '../../styles/tokens/variables' as *;
+// -----------------------------------------------------------------------------
+// Navbar
+//
+// Responsive primary navigation surface.
+//   ≥ 769px : inline layout (logo, items menubar, actions visible).
+//   ≤ 768px : burger menu — items + actions collapse behind a side
+//             slide-in drawer that is styled like the <Sidebar> component
+//             (auto-derived from the navbar's own children + actions, or
+//             a custom node passed via the `mobileMenu` prop).
+// -----------------------------------------------------------------------------
+.ds-navbar {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  // NOTE: intentionally no `position: relative` / `z-index` here so the
+  // fixed-positioned drawer and burger participate in the root stacking
+  // context instead of being trapped inside the navbar.
+}
+.ds-navbar__bar {
+  display: flex;
+  width: 100%;
+  height: $space-1200;
+  padding: 8px $padding-container-m;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  gap: $padding-container-m;
+  // NOTE: intentionally no stacking context here.
+}
+/* ---------- Color mode: DARK (default) ---------- */
+.ds-navbar--mode-dark {
+  background: $mapping-system-slate-background-secondary;
+  color: $mapping-system-slate-text-on-primary;
+  .ds-navbar__logo,
+  .ds-navbar__actions,
+  .ds-navbar__burger {
+    color: $mapping-system-slate-text-on-primary;
+  }
+}
+/* ---------- Color mode: LIGHT ---------- */
+.ds-navbar--mode-light {
+  background: $mapping-system-slate-surface-tertiary;
+  color: $mapping-system-slate-text-primary;
+  .ds-navbar__logo,
+  .ds-navbar__actions,
+  .ds-navbar__burger {
+    color: $mapping-system-slate-text-primary;
+  }
+}
+.ds-navbar__logo {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.ds-navbar__logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.ds-navbar__logo-img {
+  display: block;
+  height: 32px;
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
+.ds-navbar__items {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-2xs;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+.ds-navbar__actions {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-2xs;
+  flex-shrink: 0;
+}
+
+/* Icon-only action link — bare <a> wrapping an SVG. Mirrors
+   `.ds-sidebar__footer-link` so the navbar bar, the mobile drawer footer
+   (a real <Sidebar>), and the standalone Sidebar all render identical icons. */
+.ds-navbar__action-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  text-decoration: none;
+  border-radius: $radius-medium;
+  padding: 4px;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+  &:hover { opacity: 0.7; }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+.ds-navbar__menu {
+  position: relative;
+  display: inline-flex;
+}
+.ds-navbar__menu-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  // transparent padding acts as a hover bridge between trigger and panel
+  padding-top: 8px;
+  z-index: 1000;
+  min-width: 220px;
+}
+/* ---------- Burger button (hidden on desktop) ---------- */
+.ds-navbar__burger {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: $radius-medium;
+  cursor: pointer;
+  color: inherit;
+  &:hover {
+    background: rgba($mapping-system-slate-text-on-primary, 0.08);
+  }
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+  }
+}
+.ds-navbar--mode-light .ds-navbar__burger:hover {
+  background: rgba($mapping-system-slate-text-primary, 0.06);
+}
+/* ---------- Backdrop & slide-in drawer (mobile only) ---------- */
+.ds-navbar__backdrop {
+  display: none;
+}
+.ds-navbar__mobile-drawer {
+  display: none;
+}
+/* ---------- Tablet & smaller (≤ 1024px): tighter spacing ---------- */
+// Goal: keep every NavItem / NavbarMenu on a single inline row by
+// shrinking the link font-size, padding and gaps. No wrap.
+@media (max-width: 1024px) {
+  .ds-navbar__bar {
+    padding: 8px $padding-container-s;
+    gap: $padding-container-s;
+  }
+  .ds-navbar__items {
+    flex-wrap: nowrap;
+    gap: 2px;
+    // NOTE: do NOT set `overflow: hidden` here — it clips absolutely-positioned
+    // NavbarMenu dropdown panels (which sit below the bar) so they never show.
+  }
+  // Tighter NavItem typography + horizontal padding so links pack inline.
+  .ds-navbar__items .ds-nav-item {
+    font-size: 13px;
+    padding-left: 8px;
+    padding-right: 8px;
+    white-space: nowrap;
+  }
+  .ds-navbar__actions {
+    gap: 12px;
+  }
+}
+/* ---------- Mobile (≤ 768px): burger + slide-in drawer ---------- */
+@media (max-width: 768px) {
+  .ds-navbar__bar {
+    padding: 8px $padding-container-xs;
+    gap: $padding-container-xs;
+  }
+  // Hide inline items + actions; everything moves into the drawer.
+  // !important guards against any inline / hover state on a NavbarMenu
+  // that was left open at desktop width before resize.
+  .ds-navbar__items,
+  .ds-navbar__actions,
+  .ds-navbar__menu,
+  .ds-navbar__menu-panel {
+    display: none !important;
+  }
+  // Show the burger and lift it above the drawer so it can act as the
+  // close affordance while the drawer is open.
+  .ds-navbar__burger {
+    display: inline-flex;
+    position: relative;
+    z-index: 1101;
+  }
+  // Backdrop — full-viewport scrim behind the drawer.
+  .ds-navbar__backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba($mapping-system-slate-background-primary-hover, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 200ms ease, visibility 0s linear 200ms;
+    z-index: 1099;
+  }
+  // Drawer panel — slides in from the configured side.
+  .ds-navbar__mobile-drawer {
+    display: block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: min(86vw, 360px);
+    z-index: 1100;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 240ms cubic-bezier(0.2, 0, 0, 1),
+                visibility 0s linear 240ms;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 24px 64px $mapping-system-shadow-strong;
+    background: $mapping-system-slate-surface-primary;
+  }
+  // Dark-mode drawer surface so there's no flash of light bg before the
+  // Sidebar paints its own background.
+  .ds-navbar--mode-dark .ds-navbar__mobile-drawer {
+    background: $mapping-system-slate-background-secondary;
+  }
+  // Slide direction: right (default).
+  .ds-navbar--drawer-right .ds-navbar__mobile-drawer {
+    right: 0;
+    left: auto;
+    transform: translateX(100%);
+  }
+  // Slide direction: left.
+  .ds-navbar--drawer-left .ds-navbar__mobile-drawer {
+    left: 0;
+    right: auto;
+    transform: translateX(-100%);
+  }
+  // ----- OPEN state -----
+  .ds-navbar--mobile-open {
+    .ds-navbar__backdrop {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity 200ms ease;
+    }
+    .ds-navbar__mobile-drawer {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      transition: transform 240ms cubic-bezier(0.2, 0, 0, 1);
+    }
+  }
+  // Make any <Sidebar> rendered inside the drawer fill the panel
+  // (instead of using its default 320px max-width / rounded card look).
+  .ds-navbar__mobile-drawer .ds-sidebar {
+    max-width: none;
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  // Inside the drawer, the Sidebar should flow naturally instead of pinning
+  // its footer to the viewport bottom. This way, expanding a dropdown pushes
+  // the actions/footer down with the rest of the items.
+  .ds-navbar__mobile-drawer .ds-sidebar__nav {
+    flex: 0 0 auto;
+  }
+  .ds-navbar__mobile-drawer .ds-sidebar__footer {
+    margin-top: $gap-s;
+  }
+}
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ds-navbar__backdrop,
+  .ds-navbar__mobile-drawer {
+    transition: none;
+  }
+}

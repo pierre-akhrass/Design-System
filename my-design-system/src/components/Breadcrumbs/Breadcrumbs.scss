@@ -1,0 +1,73 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-breadcrumbs {
+  display: inline-flex;
+  align-items: center;
+  font-family: $ui-font-family;
+  color: $mapping-system-slate-text-primary;
+}
+
+.ds-breadcrumbs__list {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $gap-2xs;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ds-breadcrumbs__list-item {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-2xs;
+}
+
+.ds-breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: $gap-2xs;
+  color: $mapping-system-slate-text-primary;
+  text-decoration: none;
+  line-height: 1.4;
+  border-radius: $radius-small;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+a.ds-breadcrumbs__item {
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 $depth-025 $mapping-system-focus-border-secondary;
+  }
+}
+
+.ds-breadcrumbs__item--ancestor {
+  color: $mapping-system-slate-text-primary;
+}
+
+.ds-breadcrumbs__item--collapsed {
+  color: $mapping-system-slate-text-primary;
+}
+
+.ds-breadcrumbs__item--current {
+  color: $mapping-system-slate-text-secondary;
+  font-weight: $ui-font-weight-strong;
+  cursor: default;
+}
+
+.ds-breadcrumbs__separator {
+  display: inline-flex;
+  align-items: center;
+  color: $mapping-system-slate-text-secondary;
+  line-height: 0;
+}
+
+.ds-breadcrumbs__separator-icon {
+  display: block;
+}

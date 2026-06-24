@@ -1,0 +1,12 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-pagination-doc {
+  display: grid;
+  gap: 24px;
+}
+
+.ds-pagination-doc__dark-row {
+  background: $mapping-system-slate-background-primary;
+  border-radius: 12px;
+  padding: 16px;
+}

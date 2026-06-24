@@ -1,0 +1,114 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-accordion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.ds-accordion__item {
+  border-bottom: $size-stroke-border-width-1 solid;
+}
+
+.ds-accordion__header {
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  gap: $gap-s;
+  justify-content: space-between;
+  padding: $padding-action-s 0;
+  width: 100%;
+}
+
+.ds-accordion__title,
+.ds-accordion__content {
+  margin: 0;
+}
+
+.ds-accordion__title {
+  font: $heading-h6;
+  letter-spacing: $typography-letter-spacing-tracking-1;
+  text-align: left;
+}
+
+.ds-accordion__icon {
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.ds-accordion__icon svg {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.ds-accordion__item.is-open .ds-accordion__icon svg {
+  transform: rotate(180deg);
+}
+
+.ds-accordion__content {
+  font-family: $font-family-en-primary;
+  font-size: $space-200;
+  font-weight: 400;
+  letter-spacing: $typography-letter-spacing-tracking-1;
+  line-height: 1.5;
+  max-width: 560px;
+  padding: 0 $space-1000 $padding-action-m 0;
+}
+
+.ds-accordion--light {
+  .ds-accordion__item {
+    border-bottom-color: $mapping-system-slate-border-secondary;
+  }
+
+  .ds-accordion__title {
+    color: $mapping-system-slate-text-primary;
+  }
+
+  .ds-accordion__content {
+    color: $mapping-system-slate-text-secondary;
+  }
+
+  .ds-accordion__icon {
+    color: $mapping-system-slate-text-primary;
+  }
+}
+
+.ds-accordion--dark {
+  .ds-accordion__item {
+    border-bottom-color: $mapping-system-slate-border-primary;
+  }
+
+  .ds-accordion__title {
+    color: $color-system-gray-100;
+  }
+
+  .ds-accordion__content {
+    color: $color-system-gray-300;
+  }
+
+  .ds-accordion__icon {
+    color: $color-system-gray-100;
+  }
+}
+
+@media (max-width: 900px) {
+  .ds-accordion__header {
+    gap: $gap-xs;
+    padding: $padding-action-xs 0;
+  }
+
+  .ds-accordion__title {
+    font-size: $heading-size-subtitle * 1px;
+    line-height: 1.2;
+  }
+
+  .ds-accordion__content {
+    font-size: $body-paragraph-size-default * 1px;
+    max-width: 100%;
+    padding: 0 0 $padding-action-s;
+  }
+}

@@ -1,0 +1,124 @@
+@use '../../styles/tokens/variables' as *;
+
+.ds-accordion-figma {
+  border: 1px solid $color-system-black-opacity-10;
+  border-radius: 16px;
+  max-width: 906px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ds-accordion-figma--light {
+  background: $color-system-slate-50;
+  color: $mapping-system-slate-text-primary;
+
+  .ds-accordion-figma__header {
+    background: $color-system-slate-200;
+    color: $mapping-system-slate-text-primary;
+  }
+}
+
+.ds-accordion-figma--dark {
+  background: $color-system-slate-1000;
+  color: $color-system-gray-100;
+
+  .ds-accordion-figma__header {
+    background: $color-system-slate-700;
+    color: $color-system-gray-100;
+  }
+}
+
+.ds-accordion-figma__header {
+  align-items: center;
+  display: flex;
+  font-family: $font-family-en-primary;
+  font-size: $space-200;
+  justify-content: space-between;
+  line-height: 1.5;
+  padding: $padding-action-m calc(#{$display-size-l} * 1px);
+}
+
+.ds-accordion-figma__header-muted {
+  opacity: 0.7;
+}
+
+.ds-accordion-figma__content {
+  padding: $space-700 calc(#{$display-size-l} * 1px) 72px;
+}
+
+.ds-accordion-doc {
+  --accordion-doc-title: #292929;
+  --accordion-doc-text: #545454;
+  --accordion-doc-divider: #bcbcbc;
+  --accordion-chip-bg: #2a3c50;
+  --accordion-chip-text: #f5f7fa;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.ds-accordion-doc--dark {
+  --accordion-doc-title: #ececec;
+  --accordion-doc-text: #9d9d9d;
+  --accordion-doc-divider: #545454;
+  --accordion-chip-bg: #91a2b1;
+  --accordion-chip-text: #2a3c50;
+}
+
+.ds-accordion-doc__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.ds-accordion-doc__title {
+  color: var(--accordion-doc-title);
+  font: $display-m;
+  letter-spacing: $typography-letter-spacing-tracking-5;
+  margin: 0;
+}
+
+.ds-accordion-doc__description {
+  color: var(--accordion-doc-text);
+  font-family: $font-family-en-primary;
+  font-size: $space-300;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 650px;
+}
+
+.ds-accordion-doc__divider {
+  border-top: 1px solid var(--accordion-doc-divider);
+  width: 100%;
+}
+
+.ds-accordion-doc__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ds-accordion-doc__row {
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+}
+
+.ds-accordion-doc__chip {
+  align-items: center;
+  background: var(--accordion-chip-bg);
+  border-radius: 10px;
+  color: var(--accordion-chip-text);
+  display: inline-flex;
+  font-family: $font-family-en-mono;
+  font-size: $space-200;
+  line-height: 1;
+  margin-top: 16px;
+  min-width: 56px;
+  padding: $padding-action-xs 10px;
+}
+
+.ds-accordion-doc__component {
+  flex: 1;
+}

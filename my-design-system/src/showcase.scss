@@ -1,0 +1,123 @@
+@use './styles/tokens/variables' as *;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Showcase page — dev preview only, not published
+// ─────────────────────────────────────────────────────────────────────────────
+
+.showcase-page {
+  margin: 0 auto;
+  max-width: 1060px;
+  padding: $gap-xxl $gap-l;
+}
+
+// ─── Page header ──────────────────────────────────────────────────────────────
+
+.showcase-page__header {
+  margin-bottom: $gap-xxl;
+  padding-bottom: $gap-l;
+  border-bottom: 1px solid $schema-border-secondary;
+}
+
+.showcase-page__eyebrow {
+  color: $schema-text-tertiary;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 $gap-3xs;
+}
+
+.showcase-page__title {
+  color: $schema-text-primary;
+  font-family: $ui-font-family;
+  font-size: 36px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 $gap-3xs;
+}
+
+.showcase-page__subtitle {
+  color: $schema-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 540px;
+}
+
+// ─── Page sections ────────────────────────────────────────────────────────────
+
+.showcase-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-xxl;
+}
+
+.showcase-section {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-l;
+}
+
+.showcase-section__header {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-3xs;
+  padding-bottom: $gap-m;
+  border-bottom: 1px solid $schema-border-tertiary;
+}
+
+.showcase-section__badge {
+  align-self: flex-start;
+  background-color: $mapping-brand-teal-blue-surface-primary;
+  border: 1px solid $mapping-brand-teal-blue-surface-secondary;
+  border-radius: #{$radius-full}px;
+  color: $mapping-brand-teal-blue-background-primary;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: 0.07em;
+  padding: 3px 12px;
+  text-transform: uppercase;
+}
+
+.showcase-section__title {
+  color: $schema-text-primary;
+  font-family: $ui-font-family;
+  font-size: 24px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.showcase-section__desc {
+  color: $schema-text-secondary;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-medium}px;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 540px;
+}
+
+// ─── Demo canvas (Buttons preview area) ──────────────────────────────────────
+
+.showcase-demo {
+  align-items: center;
+  background-color: $schema-surface-secondary;
+  border: 1px solid $schema-border-secondary;
+  border-radius: $radius-large;
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap-s;
+  padding: $gap-l;
+}
+
+// ─── Section divider ─────────────────────────────────────────────────────────
+
+.showcase-divider {
+  border: none;
+  border-top: 1px solid $schema-border-secondary;
+  margin: 0;
+}

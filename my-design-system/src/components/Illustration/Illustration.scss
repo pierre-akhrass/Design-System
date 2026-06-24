@@ -1,0 +1,58 @@
+@use '../../styles/tokens/variables' as *;
+
+// ─── Theme mixins ────────────────────────────────────────────────────────────
+// Keeps visual values in one place — referenced by both the static
+// class path (for Storybook prop-forced state) AND the media-query
+// path (for automatic system-level color scheme), matching the same
+// dual-state pattern used by Button.
+@mixin ds-illustration-theme-light {
+  color: $mapping-brand-teal-blue-background-primary; // #003e7e — dark navy on light bg
+}
+
+@mixin ds-illustration-theme-dark {
+  color: $mapping-system-slate-text-on-primary; // #ffffff — white on dark bg
+}
+
+// ─── Base ────────────────────────────────────────────────────────────────────
+.ds-illustration {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  // Default falls back to light theme
+  @include ds-illustration-theme-light;
+
+  &__svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  // ─── Theme: static class (prop-forced — used by Storybook controls) ────────
+  // Applied when theme="light" is set explicitly
+  &--light {
+    @include ds-illustration-theme-light;
+  }
+
+  // Applied when theme="dark" is set explicitly
+  &--dark {
+    @include ds-illustration-theme-dark;
+  }
+}
+
+// ─── Theme: CSS media query (real browser color scheme auto-detection) ───────
+// Mirrors the static-class behaviour for automatic system dark mode,
+// the same way Button uses :hover/:focus/:active alongside static classes.
+@media (prefers-color-scheme: dark) {
+  .ds-illustration:not(.ds-illustration--light):not(.ds-illustration--dark) {
+    @include ds-illustration-theme-dark;
+  }
+}
+
+// ─── Theme: global toggle (Storybook toolbar / app-level data-theme) ─────────
+:root[data-theme='dark'] .ds-illustration:not(.ds-illustration--light):not(.ds-illustration--dark),
+.theme-dark .ds-illustration:not(.ds-illustration--light):not(.ds-illustration--dark) {
+  @include ds-illustration-theme-dark;
+}
