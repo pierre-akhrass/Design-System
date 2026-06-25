@@ -21,7 +21,7 @@
   border: 0;
   border-radius: $radius-medium;
   background: transparent;
-  color: var(--sds-color-text-default-default);
+  color: $color-system-gray-700;
 
   /* Label / large / default — shared by tier-1 and tier-2 */
   font-family: $ui-font-family;
@@ -66,12 +66,12 @@
  */
 .ds-nav-item--tier-1 {
   height: $space-800;
-  padding: $gap-2xs $padding-action-xs;
+  padding: 8px $space-200;
   justify-content: center;
 }
 .ds-nav-item--tier-2 {
   height: $space-600;
-  padding: $gap-2xs $padding-action-s;
+  padding: $space-100 $space-600;
 }
 
 /* ---------- Nesting / Level ----------
@@ -94,14 +94,13 @@
 .ds-nav-item--shape-pill {
   &.ds-nav-item--hover,
   &:hover {
-    background: var(--sds-color-background-default-default);
-    color: var(--sds-color-text-default-default);
+    background: $color-system-slate-100;
+    
   }
   &.ds-nav-item--active,
   &.ds-nav-item--selected,
   &:active {
-    background: var(--sds-color-background-default-tertiary);
-    color: var(--sds-color-text-default-default);
+    background: $color-system-slate-200;
   }
 }
 
@@ -115,7 +114,7 @@
 .ds-nav-item--shape-line {
   border-radius: $radius-none;
   border-bottom: $size-stroke-border-width-2 solid transparent;
-  color: var(--sds-color-text-default-default);
+  color: $color-system-gray-700;
 
   &.ds-nav-item--hover,
   &:hover {
@@ -129,7 +128,7 @@
     background: transparent;
     color: var(--sds-color-text-default-default);
     border-radius: $radius-none;
-    border-bottom-color: var(--sds-color-border-brand-secondary);
+    border-bottom-color: $color-system-gray-600;
     box-shadow: none;
   }
 }
@@ -154,7 +153,7 @@
     color: $mapping-system-slate-text-on-primary;
     &.ds-nav-item--active,
     &.ds-nav-item--selected {
-      border-bottom-color: var(--sds-color-border-brand-secondary);
+      border-bottom-color: $color-system-gray-600;
     }
   }
 }
