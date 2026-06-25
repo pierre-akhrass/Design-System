@@ -16,7 +16,7 @@
   max-width: 320px;
   min-height: 480px;
   padding: $padding-container-s $padding-container-xs;
-  background: $mapping-system-slate-surface-primary;
+  background: $color-system-slate-50;
   border-radius: $radius-large;
   box-sizing: border-box;
   font-family: $ui-font-family;
@@ -25,8 +25,8 @@
 }
 
 .ds-sidebar--mode-dark {
-  background: $mapping-system-slate-background-secondary;
-  color: $mapping-system-slate-text-on-primary;
+  background: $color-system-slate-900;
+  color: $color-system-white-white;
 }
 
 /* ---------- Logo ---------- */
