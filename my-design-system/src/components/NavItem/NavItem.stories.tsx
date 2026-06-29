@@ -120,14 +120,14 @@ All colors and spacing come from the design-token layer defined in
 | ---------- | ----------------------------------------------- | ------------------------------------ |
 | Text       | \`$color-system-gray-700\`                        | Default label/icon color (light)     |
 | Text       | \`var(--sds-color-text-default-default)\`          | Line-shape label color               |
-| Text       | \`$mapping-system-slate-text-on-primary\`          | Dark-mode label/icon color           |
+| Text       | \`$color-system-white-white\`          | Dark-mode label/icon color           |
 | Background | \`$color-system-slate-100\`                        | Hover/active pill background (light) |
 | Background | \`var(--sds-color-background-default-default)\`    | Line-shape hover pill background     |
-| Background | \`$mapping-system-slate-background-secondary\`     | Dark-mode hover background           |
-| Background | \`$mapping-system-slate-background-secondary-hover\` | Dark-mode active background        |
+| Background | \`$color-system-slate-600\`     | Dark-mode hover background           |
+| Background | \`$color-system-slate-700\` | Dark-mode active background        |
 | Border     | \`$color-system-gray-600\`                         | Active line underline (both modes)   |
 | Border     | \`$size-stroke-border-width-2\`                    | Line-shape bottom border width       |
-| Focus      | \`$mapping-system-focus-border-secondary\`         | Focus ring color                     |
+| Focus      | \`$color-system-blue-400\`         | Focus ring color                     |
 | Depth      | \`$depth-025\`                                    | Focus ring thickness                 |
 | Spacing    | \`$space-800\`                                    | Tier 1 height                        |
 | Spacing    | \`$space-600\`                                    | Tier 2 / Nested height               |

@@ -187,13 +187,13 @@ All colors and spacing come from the design-token layer defined in
 | Background | \`$color-system-slate-900\`                      | Dark-mode card background      |
 | Text       | \`var(--sds-color-text-default-default)\`         | Default body text              |
 | Text       | \`$color-system-white-white\`                    | Dark-mode text                 |
-| Text       | \`$mapping-system-slate-text-tertiary\`           | Category headings (light)      |
-| Text       | \`$mapping-system-slate-text-on-tertiary\`        | Category headings (dark)       |
-| Text       | \`$mapping-system-slate-text-secondary\`          | Footer icons (light)           |
-| Text       | \`$mapping-system-slate-text-on-primary\`         | Footer icons (dark)            |
-| Border     | \`$mapping-system-slate-border-tertiary\`         | Divider (light)                |
-| Border     | \`$mapping-system-slate-border-primary\`          | Divider (dark)                 |
-| Focus      | \`$mapping-system-focus-border-secondary\`        | Focus ring on footer links     |
+| Text       | \`$color-system-gray-600\`           | Category headings (light)      |
+| Text       | \`$color-system-gray-900\`        | Category headings (dark)       |
+| Text       | \`$color-system-gray-700\`          | Footer icons (light)           |
+| Text       | \`$color-system-white-white\`         | Footer icons (dark)            |
+| Border     | \`$color-system-gray-200\`         | Divider (light)                |
+| Border     | \`$color-system-gray-600\`          | Divider (dark)                 |
+| Focus      | \`$color-system-blue-400\`        | Focus ring on footer links     |
 | Spacing    | \`$padding-container-s\`, \`$padding-container-xs\` | Card padding                   |
 | Spacing    | \`$padding-action-s\`                            | Inner row padding              |
 | Spacing    | \`$gap-2xs\`, \`$gap-3xs\`, \`$gap-xs\`, \`$gap-s\`, \`$gap-m\`, \`$gap-l\` | Various gaps   |

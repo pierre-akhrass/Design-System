@@ -23,7 +23,7 @@
 }
 
 .ds-testimonials__label {
-  color: $mapping-system-slate-text-secondary;
+  color: $color-system-gray-700;
   font-family: $font-family-en-primary;
   font-size: 12px;
   font-weight: 600;
@@ -33,7 +33,7 @@
 
 .ds-testimonials__heading {
   margin: 0;
-  color: $mapping-system-slate-text-primary;
+  color: $color-system-gray-900;
   font-feature-settings: 'case' on;
   font-family: $heading-font-family;
   font-size: #{$heading-size-h3}px;
@@ -71,15 +71,15 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  color: $mapping-system-slate-text-tertiary;
+  color: $color-system-gray-600;
   transition: color 0.2s;
 
   &--active {
-    color: $mapping-system-slate-text-primary;
+    color: $color-system-gray-900;
   }
 
   &--active .ds-testimonials__page-line {
-    background: $mapping-system-slate-text-primary;
+    background: $color-system-gray-900;
   }
 }
 
@@ -94,7 +94,7 @@
 .ds-testimonials__page-line {
   width: 2px;
   flex: 1;
-  background: $mapping-system-slate-border-tertiary;
+  background: $color-system-gray-200;
   transition: background 0.2s;
 }
 
@@ -123,7 +123,7 @@
   height: 100%;
   min-height: 240px;
   background: $color-system-slate-100;
-  color: $mapping-system-slate-icon-tertiary;
+  color: $color-system-gray-600;
 }
 
 /* ---- Content ---- */
@@ -139,7 +139,7 @@
 }
 
 .ds-testimonials__quote-icon {
-  color: $mapping-system-slate-icon-secondary;
+  color: $color-system-gray-700;
   flex-shrink: 0;
 }
 
@@ -147,7 +147,7 @@
   margin: 0;
   border: none;
   padding: 0;
-  color: $mapping-system-slate-text-secondary;
+  color: $color-system-gray-700;
   font-family: $heading-font-family;
   font-size: 32px;
   font-weight: $heading-font-weight-light;
@@ -163,7 +163,7 @@
 }
 
 .ds-testimonials__author-name {
-  color: $mapping-system-slate-text-primary;
+  color: $color-system-gray-900;
   font-family: $font-family-en-primary;
   font-size: 14px;
   font-weight: 700;
@@ -171,7 +171,7 @@
 }
 
 .ds-testimonials__author-role {
-  color: $mapping-system-slate-text-tertiary;
+  color: $color-system-gray-600;
   font-family: $font-family-en-primary;
   font-size: 12px;
   font-weight: 400;
@@ -272,7 +272,7 @@
     border: none;
     padding: 0;
     cursor: pointer;
-    color: $mapping-system-slate-text-secondary;
+    color: $color-system-gray-700;
     font-family: $font-family-en-primary;
     font-size: 14px;
     font-weight: 500;
@@ -315,12 +315,12 @@
     border-radius: 50%;
     border: none;
     padding: 0;
-    background: $mapping-system-slate-border-tertiary;
+    background: $color-system-gray-200;
     cursor: pointer;
     transition: background 0.2s;
 
     &--active {
-      background: $mapping-system-slate-text-primary;
+      background: $color-system-gray-900;
     }
   }
 }

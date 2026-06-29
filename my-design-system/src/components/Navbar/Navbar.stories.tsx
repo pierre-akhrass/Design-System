@@ -200,9 +200,9 @@ too. Pass a custom \`mobileMenu\` node to override.
 ### Theming
 All colors come from the slate token set defined in
 \`src/styles/tokens/_variables.scss\` (e.g.
-\`$mapping-system-slate-background-secondary\`,
-\`$mapping-system-slate-text-on-primary\`,
-\`$mapping-system-focus-border-secondary\`). No hardcoded color values — swap
+\`$color-system-slate-600\`,
+\`$color-system-white-white\`,
+\`$color-system-blue-400\`). No hardcoded color values — swap
 the token layer to retheme the component (and the Navbar's mobile drawer).
 ### Responsive behavior
 | Viewport         | Layout                                                                                  |

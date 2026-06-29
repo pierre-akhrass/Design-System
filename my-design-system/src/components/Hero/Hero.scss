@@ -73,7 +73,7 @@
   
 }
 .ds-hero--mode-dark .ds-hero__nav-link {
-  color: $mapping-system-slate-text-primary;
+  color: $color-system-gray-900;
   background: none !important;
 }
 
@@ -122,7 +122,7 @@
   gap: 24px 34px;
   flex-wrap: wrap;
   opacity: 0.9;
-  background: $mapping-system-slate-background-primary-hover;
+  background: $color-system-slate-900;
   color: $color-system-white-white;
   font-size: 13px;
 }
@@ -139,7 +139,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: $mapping-system-slate-text-secondary;
+  color: $color-system-gray-700;
   font-family: $font-family-en-primary;
   font-size: 16px;
   font-style: normal;
@@ -159,7 +159,7 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 48px;
-  background: $mapping-system-slate-background-secondary;
+  background: $color-system-slate-600;
   color: $color-system-white-white;
 }
 .ds-hero__split-content {
@@ -221,7 +221,7 @@
   opacity: 1;
 }
 .ds-hero--section-hero .ds-hero__page--active {
-  color: $mapping-system-slate-background-secondary-hover;
+  color: $color-system-slate-700;
   font-weight: 700;
 }
 .ds-hero--section-hero .ds-hero__progress {
@@ -237,7 +237,7 @@
   background: none;
   border: 0;
   padding: 0;
-  color: $mapping-system-slate-text-tertiary;
+  color: $color-system-gray-600;
   cursor: pointer;
   opacity: 0.6;
   leading-trim: both;
@@ -267,7 +267,7 @@
 /* Light mode                              */
 /* -------------------------------------- */
 .ds-hero--mode-light {
-  color: $mapping-system-slate-background-secondary-hover;
+  color: $color-system-slate-700;
 
   .ds-hero__title { color: $color-system-white-white; }
   .ds-hero__subtitle { opacity: 1; color: $color-system-white-white; }
@@ -281,25 +281,25 @@
 
   .ds-hero__brand {
     background: $color-system-white-opacity-90;
-    color: $mapping-system-slate-background-secondary-hover;
+    color: $color-system-slate-700;
   }
   .ds-hero__brand-logo {
-    background: $mapping-system-slate-background-secondary-hover;
+    background: $color-system-slate-700;
     color: $color-system-white-white;
   }
 
   &.ds-hero--split .ds-hero__split-panel {
-    background: $mapping-system-slate-background-secondary-hover;
+    background: $color-system-slate-700;
     color: $color-system-white-white;
   }
   &.ds-hero--split .ds-hero__status {
     opacity: 0.9;
-    background: $mapping-system-slate-surface-primary;
-    color: $mapping-system-slate-text-primary;
+    background: $color-system-slate-50;
+    color: $color-system-gray-900;
   }
 
   .ds-hero__pagination {
-    color: $mapping-system-slate-text-on-secondary;
+    color: $color-system-white-white;
     background: var(--sds-color-background-default-tertiary);
   }
   .ds-hero__progress { background: $mapping-brand-teal-blue-border-tertiary; }
@@ -312,21 +312,21 @@
 .ds-hero--mode-dark {
   color: $color-system-white-white;
 
-  .ds-hero__title { color: $mapping-system-slate-text-primary; }
-  .ds-hero__subtitle { color: $mapping-system-slate-text-primary; }
+  .ds-hero__title { color: $color-system-gray-900; }
+  .ds-hero__subtitle { color: $color-system-gray-900; }
 
   &.ds-hero--section-hero .ds-hero__actions .ds-button {
-    background: $mapping-system-slate-surface-tertiary;
-    color: $mapping-system-slate-text-primary;
+    background: $color-system-slate-200;
+    color: $color-system-gray-900;
   }
 
   &.ds-hero--split .ds-hero__split-panel {
-    background: $mapping-system-slate-surface-tertiary;
+    background: $color-system-slate-200;
   }
 
   &.ds-hero--split .ds-hero__actions .ds-button {
-    background: $mapping-system-slate-background-tertiary;
-    color: $mapping-system-slate-text-primary;
+    background: $color-system-slate-400;
+    color: $color-system-gray-900;
     border: none;
   }
 }
@@ -391,8 +391,8 @@
   }
 
   .ds-hero--mode-dark.ds-hero--section-hero .ds-hero__actions .ds-button {
-    background: $mapping-system-slate-surface-tertiary;
-    color: $mapping-system-slate-text-primary;
+    background: $color-system-slate-200;
+    color: $color-system-gray-900;
   }
 
   .ds-hero__title {
@@ -453,11 +453,11 @@
 
   .ds-hero--mode-light.ds-hero--split .ds-hero__pagination {
     background: $color-system-white-white;
-    color: $mapping-system-slate-background-secondary-hover;
+    color: $color-system-slate-700;
   }
 
   .ds-hero--mode-dark.ds-hero--split .ds-hero__pagination {
     background: $color-system-white-white;
-    color: $mapping-system-slate-background-secondary-hover;
+    color: $color-system-slate-700;
   }
 }

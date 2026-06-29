@@ -14,7 +14,7 @@
   transition: border-color 200ms ease, box-shadow 200ms ease;
 
   &--placeholder {
-    background: $mapping-system-slate-surface-primary;
+    background: $color-system-slate-50;
   }
 
   &--focused {
@@ -34,7 +34,7 @@
   font-size: 12px;
   font-weight: 400;
   line-height: 150%;
-  color: $mapping-system-slate-text-tertiary;
+  color: $color-system-gray-600;
 }
 
 // Input
@@ -48,13 +48,13 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;
-  color: $mapping-system-slate-text-secondary;
+  color: $color-system-gray-700;
 
   &::placeholder {
-    color: $mapping-system-slate-text-primary;
+    color: $color-system-gray-900;
   }
 
   &::selection {
-    background: $mapping-system-slate-background-tertiary;
+    background: $color-system-slate-400;
   }
 }

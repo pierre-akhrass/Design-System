@@ -39,7 +39,7 @@
 
 .ds-nav-item:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 $depth-025 $mapping-system-focus-border-secondary;
+  box-shadow: 0 0 0 $depth-025 $color-system-blue-400;
 }
 
 .ds-nav-item__icon {
@@ -135,22 +135,22 @@
 
 /* ---------- Color mode: DARK ---------- */
 .ds-nav-item--mode-dark {
-  color: $mapping-system-slate-text-on-primary;
+  color: $color-system-white-white;
   &.ds-nav-item--shape-pill {
     &.ds-nav-item--hover,
     &:hover {
-      background: $mapping-system-slate-background-secondary;
-      color: $mapping-system-slate-text-on-primary;
+      background: $color-system-slate-600;
+      color: $color-system-white-white;
     }
     &.ds-nav-item--active,
     &.ds-nav-item--selected,
     &:active {
-      background: $mapping-system-slate-background-secondary-hover;
-      color: $mapping-system-slate-text-on-primary;
+      background: $color-system-slate-700;
+      color: $color-system-white-white;
     }
   }
   &.ds-nav-item--shape-line {
-    color: $mapping-system-slate-text-on-primary;
+    color: $color-system-white-white;
     &.ds-nav-item--active,
     &.ds-nav-item--selected {
       border-bottom-color: $color-system-gray-600;

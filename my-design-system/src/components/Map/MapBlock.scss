@@ -32,7 +32,7 @@
   padding: $padding-container-l;
   border-radius: $radius-large;
   overflow: hidden;          // clip the panned/zoomed surface
-  background-color: $mapping-system-slate-background-secondary;
+  background-color: $color-system-slate-600;
   box-sizing: border-box;
   font-family: $ui-font-family;
   // Default interaction affordance: grab cursor + disable native gestures
@@ -62,7 +62,7 @@
 
 /* ---------- modes ---------- */
 .ds-map-block--mode-dark {
-  color: $mapping-system-slate-text-on-primary;
+  color: $color-system-white-white;
   // Subtle bottom-to-top scrim so the header text stays legible over the map.
   // Sits *above* the panning surface but *below* the header/controls.
   &::before {
@@ -79,7 +79,7 @@
   }
 }
 .ds-map-block--mode-light {
-  color: $mapping-system-slate-text-primary;
+  color: $color-system-gray-900;
 }
 
 /* ---------- Header (top-left) ---------- */
@@ -161,7 +161,7 @@
   padding: 4px 10px;
   border-radius: 999px;
   background: rgba(20, 31, 46, 0.65);
-  color: $mapping-system-slate-text-on-primary;
+  color: $color-system-white-white;
   font-family: $ui-font-family;
   font-size: 12px;
   font-weight: $ui-font-weight-default;
@@ -212,7 +212,7 @@
 .ds-map-block__label:focus-visible {
   outline: none;
   .ds-map-block__label-pill {
-    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+    box-shadow: 0 0 0 2px $color-system-blue-400;
   }
 }
 
@@ -229,7 +229,7 @@
   gap: $gap-2xs;
   padding: 8px 12px;
   background: rgba(255, 255, 255, 0.95);
-  color: $mapping-system-slate-text-primary;
+  color: $color-system-gray-900;
   border-radius: $radius-medium;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   cursor: text;
@@ -247,7 +247,7 @@
 
   svg {
     flex-shrink: 0;
-    color: $mapping-system-slate-text-secondary;
+    color: $color-system-gray-700;
   }
 }
 
@@ -269,7 +269,7 @@
   }
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px $mapping-system-focus-border-secondary;
+    box-shadow: 0 0 0 2px $color-system-blue-400;
   }
 }
 
@@ -285,7 +285,7 @@
   width: 44px;
   padding: 6px 0;
   background: rgba(20, 31, 46, 0.85);
-  color: $mapping-system-slate-text-on-primary;
+  color: $color-system-white-white;
   border-radius: $radius-medium;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   z-index: 6;
@@ -315,7 +315,7 @@
   }
   &:focus-visible {
     outline: none;
-    box-shadow: inset 0 0 0 2px $mapping-system-focus-border-secondary;
+    box-shadow: inset 0 0 0 2px $color-system-blue-400;
   }
   &:disabled {
     opacity: 0.4;
@@ -336,11 +336,11 @@
 .ds-map-block--mode-light {
   .ds-map-block__label-pill {
     background: rgba(255, 255, 255, 0.9);
-    color: $mapping-system-slate-text-primary;
+    color: $color-system-gray-900;
   }
   .ds-map-block__controls {
     background: rgba(255, 255, 255, 0.95);
-    color: $mapping-system-slate-text-primary;
+    color: $color-system-gray-900;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   }
   .ds-map-block__control:hover:not(:disabled) {

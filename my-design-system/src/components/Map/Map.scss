@@ -115,8 +115,8 @@
   background: var(--sds-color-background-default-default, #E9ECF0);
   box-shadow:
     0 4px var(--sds-size-depth-100, 6px) var(--sds-size-depth-negative-100, -2px)
-      var(--Mapping-System-Shadow-Medium, rgba(35, 47, 55, 0.1)),
-    0 10px 15px -3px var(--Mapping-System-Shadow-Medium, rgba(35, 47, 55, 0.1));
+      $color-system-shadow-opacity-10,
+    0 10px 15px -3px $color-system-shadow-opacity-10;
   box-sizing: border-box;
   overflow: hidden;
   z-index: 10;

@@ -83,10 +83,10 @@ All colors and spacing come from the design-token layer defined in
 
 | Category   | Token                                      | Usage                              |
 | ---------- | ------------------------------------------ | ---------------------------------- |
-| Text       | \`$mapping-system-slate-text-primary\`        | Default item & link color          |
+| Text       | \`$color-system-gray-900\`        | Default item & link color          |
 | Text       | \`var(--sds-color-text-default-default)\`     | Ancestor & collapsed item color    |
 | Text       | \`var(--sds-color-text-default-secondary)\`   | Current item & separator color     |
-| Focus      | \`$mapping-system-focus-border-secondary\`    | Focus ring on links                |
+| Focus      | \`$color-system-blue-400\`    | Focus ring on links                |
 | Spacing    | \`$gap-2xs\`                                 | Gap between items & separators     |
 | Radius     | \`$radius-small\`                            | Link border-radius                 |
 | Depth      | \`$depth-025\`                               | Focus ring width                   |

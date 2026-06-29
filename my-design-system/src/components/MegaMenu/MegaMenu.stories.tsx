@@ -172,11 +172,11 @@ Prefer JSX? Compose with \`<MegaMenuColumn>\` (and optionally
 ### Theming
 All colors come from the slate token set in
 \`src/styles/tokens/_variables.scss\` (e.g.
-\`$mapping-system-slate-surface-primary\`,
-\`$mapping-system-slate-background-secondary\`,
-\`$mapping-system-slate-text-on-primary\`,
-\`$mapping-system-slate-border-tertiary\`,
-\`$mapping-system-focus-border-secondary\`). **No hardcoded color values** —
+\`$color-system-slate-50\`,
+\`$color-system-slate-600\`,
+\`$color-system-white-white\`,
+\`$color-system-gray-200\`,
+\`$color-system-blue-400\`). **No hardcoded color values** —
 swap the token layer to retheme.
 
 ### Accessibility
