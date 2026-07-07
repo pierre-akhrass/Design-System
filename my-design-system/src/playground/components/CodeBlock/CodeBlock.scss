@@ -1,0 +1,108 @@
+@use '../../../styles/tokens/variables' as *;
+
+$cb-bg:      #080f18;
+$cb-border:  rgba(255, 255, 255, 0.07);
+$pg-accent:  #3fb0bc;
+$pg-text-sec: #91a2b1;
+
+// ── Wrapper ───────────────────────────────────────────────────────────────────
+
+.pg-codeblock {
+  background: $cb-bg;
+  border-top: 1px solid $cb-border;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  // ── Header ────────────────────────────────────────────────────────────────
+
+  &__header {
+    align-items: center;
+    border-bottom: 1px solid $cb-border;
+    display: flex;
+    height: 36px;
+    justify-content: space-between;
+    padding: 0 14px;
+  }
+
+  &__label {
+    align-items: center;
+    color: rgba(145, 162, 177, 0.55);
+    display: flex;
+    font-family: $ui-font-family;
+    font-size: 10px;
+    font-weight: $ui-font-weight-strong;
+    gap: 6px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__copy {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 5px;
+    color: $pg-text-sec;
+    cursor: pointer;
+    display: flex;
+    font-family: $ui-font-family;
+    font-size: 11px;
+    font-weight: $ui-font-weight-medium;
+    gap: 5px;
+    padding: 4px 10px;
+    transition: background 0.14s ease, color 0.14s ease, border-color 0.14s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #f5f7fa;
+    }
+
+    &--done {
+      background: rgba(63, 176, 188, 0.1);
+      border-color: rgba(63, 176, 188, 0.25);
+      color: $pg-accent;
+
+      &:hover {
+        background: rgba(63, 176, 188, 0.14);
+        color: $pg-accent;
+      }
+    }
+  }
+
+  // ── Pre / Code ────────────────────────────────────────────────────────────
+
+  &__pre {
+    background: transparent !important;
+    font-family: 'Roboto Mono', ui-monospace, 'SFMono-Regular', monospace;
+    font-size: 12.5px;
+    line-height: 1.75;
+    margin: 0 !important;
+    overflow-x: auto;
+    padding: 16px !important;
+
+    code {
+      font-family: inherit;
+    }
+  }
+}
+
+// ── Prism token theme (custom dark palette) ───────────────────────────────────
+
+.token {
+  &.keyword        { color: #a78bfa; }   // violet   — import, from, const
+  &.string,
+  &.attr-value     { color: #86efac; }   // green    — string literals & attr values
+  &.punctuation    { color: #6b7f96; }   // slate    — {}();,
+  &.operator       { color: #6b7f96; }
+  &.tag            { color: #7dd3fc; }   // sky blue — <Tag />, <svg>
+  &.attr-name      { color: #93c5fd; }   // blue     — prop names
+  &.comment        { color: #3d5166; font-style: italic; }
+  &.function       { color: #fcd34d; }   // amber    — function calls
+  &.number         { color: #fb923c; }   // orange   — numbers
+  &.class-name,
+  &.maybe-class-name { color: #fcd34d; } // amber    — PascalCase component names
+  &.plain,
+  &.property       { color: #e2e8f0; }   // near-white
+  &.script         { color: #e2e8f0; }
+  &.language-jsx   { color: #e2e8f0; }
+}

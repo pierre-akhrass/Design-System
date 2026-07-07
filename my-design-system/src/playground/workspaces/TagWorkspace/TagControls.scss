@@ -1,0 +1,339 @@
+@use '../../../styles/tokens/variables' as *;
+
+$pg-border:    rgba(255, 255, 255, 0.07);
+$pg-text-pri:  #f5f7fa;
+$pg-text-sec:  #91a2b1;
+$pg-accent:    #3fb0bc;
+$pg-surface-2: #1a2738;
+
+// ── Root ──────────────────────────────────────────────────────────────────────
+
+.tag-controls {
+  display: flex;
+  flex-direction: column;
+  font-family: $ui-font-family;
+  gap: 2px;
+  padding: 0 4px;
+}
+
+// ── Section label ─────────────────────────────────────────────────────────────
+
+.ctrl-section-label {
+  color: rgba(145, 162, 177, 0.5);
+  display: block;
+  font-size: 10px;
+  font-weight: $ui-font-weight-strong;
+  letter-spacing: 0.08em;
+  padding: 10px 12px 4px;
+  text-transform: uppercase;
+}
+
+// ── Divider ───────────────────────────────────────────────────────────────────
+
+.ctrl-divider {
+  border: none;
+  border-top: 1px solid $pg-border;
+  margin: 6px 0 0;
+}
+
+// ── Control row ───────────────────────────────────────────────────────────────
+
+.ctrl-row {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+  min-height: 34px;
+  padding: 3px 12px;
+
+  &__label {
+    align-items: center;
+    color: $pg-text-sec;
+    display: flex;
+    font-family: ui-monospace, 'Roboto Mono', monospace;
+    font-size: 11.5px;
+    gap: 5px;
+    min-width: 72px;
+  }
+
+  &__badge {
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: $ui-font-weight-strong;
+    letter-spacing: 0.05em;
+    padding: 1px 5px;
+    text-transform: uppercase;
+
+    &--req {
+      background: rgba(63, 176, 188, 0.12);
+      border: 1px solid rgba(63, 176, 188, 0.25);
+      color: $pg-accent;
+    }
+  }
+
+  &__control {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    min-width: 0;
+  }
+}
+
+// ── Text input ────────────────────────────────────────────────────────────────
+
+.ctrl-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  color: $pg-text-pri;
+  font-family: $ui-font-family;
+  font-size: 12.5px;
+  height: 30px;
+  outline: none;
+  padding: 0 10px;
+  transition: border-color 0.14s ease;
+
+  &::placeholder {
+    color: rgba(145, 162, 177, 0.4);
+  }
+
+  &:focus {
+    border-color: rgba(63, 176, 188, 0.5);
+  }
+
+  &--full {
+    width: 100%;
+  }
+}
+
+// ── Segmented control ─────────────────────────────────────────────────────────
+
+.ctrl-seg {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+
+  &__btn {
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    color: $pg-text-sec;
+    cursor: pointer;
+    font-family: $ui-font-family;
+    font-size: 11.5px;
+    font-weight: $ui-font-weight-default;
+    padding: 4px 9px;
+    transition: background 0.12s ease, color 0.12s ease;
+    white-space: nowrap;
+
+    &:hover {
+      color: $pg-text-pri;
+    }
+
+    &--active {
+      background: $pg-surface-2;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: $pg-text-pri;
+      font-weight: $ui-font-weight-medium;
+    }
+  }
+}
+
+// ── Toggle switch ─────────────────────────────────────────────────────────────
+
+.ctrl-toggle {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 6px;
+  height: 26px;
+  padding: 0 8px 0 4px;
+  position: relative;
+  transition: background 0.18s ease, border-color 0.18s ease;
+
+  &--on {
+    background: rgba(63, 176, 188, 0.15);
+    border-color: rgba(63, 176, 188, 0.35);
+
+    .ctrl-toggle__knob {
+      background: $pg-accent;
+      transform: translateX(0);
+    }
+  }
+
+  &__knob {
+    background: rgba(145, 162, 177, 0.5);
+    border-radius: 50%;
+    flex-shrink: 0;
+    height: 16px;
+    transition: background 0.18s ease, transform 0.18s ease;
+    width: 16px;
+  }
+
+  &__label {
+    color: $pg-text-sec;
+    font-family: $ui-font-family;
+    font-size: 11px;
+    font-weight: $ui-font-weight-medium;
+    min-width: 18px;
+
+    .ctrl-toggle--on & {
+      color: $pg-accent;
+    }
+  }
+}
+
+// ── Color row ─────────────────────────────────────────────────────────────────
+
+.ctrl-color {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 6px;
+  min-width: 0;
+
+  &__swatch {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 5px;
+    cursor: pointer;
+    flex-shrink: 0;
+    height: 26px;
+    padding: 1px;
+    width: 26px;
+    background: transparent;
+
+    &::-webkit-color-swatch-wrapper { padding: 0; }
+    &::-webkit-color-swatch { border: none; border-radius: 3px; }
+  }
+
+  &__text {
+    flex: 1;
+    min-width: 0;
+    font-family: ui-monospace, 'Roboto Mono', monospace;
+    font-size: 11.5px;
+    height: 30px;
+  }
+
+  &__clear {
+    background: transparent;
+    border: none;
+    color: rgba(145, 162, 177, 0.4);
+    cursor: pointer;
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 2px 4px;
+    transition: color 0.12s ease;
+
+    &:hover {
+      color: #f5f7fa;
+    }
+  }
+}
+
+// ── Stack variant (label above, full-width control below) ─────────────────────
+
+.ctrl-row--stack {
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+  min-height: unset;
+  padding: 6px 12px;
+
+  .ctrl-row__control {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+// ── Disabled variant (border-style / border-color when no width is set) ────────
+
+.ctrl-row--disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+// ── Token segmented control ───────────────────────────────────────────────────
+
+.ctrl-token-seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  width: 100%;
+
+  &__btn {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 5px;
+    color: $pg-text-sec;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 38px;
+    padding: 5px 7px;
+    transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.07);
+      color: $pg-text-pri;
+
+      .ctrl-token-seg__sub {
+        color: rgba(145, 162, 177, 0.7);
+      }
+    }
+
+    &--active {
+      background: rgba(63, 176, 188, 0.12);
+      border-color: rgba(63, 176, 188, 0.3);
+      color: $pg-accent;
+
+      .ctrl-token-seg__sub {
+        color: rgba(63, 176, 188, 0.65);
+      }
+    }
+  }
+
+  &__label {
+    font-family: $ui-font-family;
+    font-size: 11px;
+    font-weight: $ui-font-weight-medium;
+    line-height: 1;
+  }
+
+  &__sub {
+    color: rgba(145, 162, 177, 0.4);
+    font-family: ui-monospace, 'Roboto Mono', monospace;
+    font-size: 9px;
+    line-height: 1;
+    transition: color 0.12s ease;
+  }
+}
+
+// ── Reset button ──────────────────────────────────────────────────────────────
+
+.ctrl-reset-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  color: rgba(145, 162, 177, 0.6);
+  cursor: pointer;
+  font-family: $ui-font-family;
+  font-size: 11px;
+  margin: 8px 12px 0;
+  padding: 6px 12px;
+  text-align: center;
+  transition: background 0.14s ease, color 0.14s ease;
+  width: calc(100% - 24px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #f5f7fa;
+  }
+}

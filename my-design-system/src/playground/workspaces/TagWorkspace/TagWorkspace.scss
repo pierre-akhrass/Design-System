@@ -1,0 +1,15 @@
+.tag-ws {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+
+  // Center column: canvas stacked above code block
+  &__main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,89 @@
+@use '../../../styles/tokens/variables' as *;
+
+$pg-accent:   #3fb0bc;
+$pg-border:   rgba(255, 255, 255, 0.07);
+$pg-text-pri: #f5f7fa;
+$pg-text-sec: #91a2b1;
+$pg-surface:  #141f2e;
+
+.pg-sidebar {
+  background: $pg-surface;
+  border-right: 1px solid $pg-border;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  overflow-y: auto;
+  padding: 12px 0 20px;
+  width: 220px;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+
+    & + & {
+      margin-top: 8px;
+      border-top: 1px solid $pg-border;
+      padding-top: 12px;
+    }
+  }
+
+  &__group-label {
+    color: rgba(145, 162, 177, 0.55);
+    font-family: $ui-font-family;
+    font-size: 10px;
+    font-weight: $ui-font-weight-strong;
+    letter-spacing: 0.09em;
+    padding: 0 16px 6px;
+    text-transform: uppercase;
+  }
+
+  // ── Item ───────────────────────────────────────────────────────────────────
+
+  &__item {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: $pg-text-sec;
+    cursor: pointer;
+    display: flex;
+    font-family: $ui-font-family;
+    font-size: 13px;
+    font-weight: $ui-font-weight-default;
+    gap: 9px;
+    margin: 1px 8px;
+    padding: 8px 10px;
+    text-align: left;
+    transition: background 0.14s ease, color 0.14s ease;
+    width: calc(100% - 16px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: $pg-text-pri;
+    }
+
+    &--active {
+      background: rgba(63, 176, 188, 0.1);
+      color: $pg-accent;
+      font-weight: $ui-font-weight-medium;
+
+      &:hover {
+        background: rgba(63, 176, 188, 0.14);
+        color: $pg-accent;
+      }
+
+      .pg-sidebar__item-dot {
+        background: $pg-accent;
+      }
+    }
+  }
+
+  &__item-dot {
+    background: rgba(145, 162, 177, 0.35);
+    border-radius: 50%;
+    flex-shrink: 0;
+    height: 6px;
+    transition: background 0.14s ease;
+    width: 6px;
+  }
+}
