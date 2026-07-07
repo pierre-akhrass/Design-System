@@ -1,0 +1,22 @@
+import type { FC } from 'react'
+import { TagWorkspace } from './TagWorkspace/TagWorkspace'
+
+export interface WorkspaceEntry {
+  id: string
+  label: string
+  group?: string
+  component: FC
+}
+
+/**
+ * Central registry of all component workspaces.
+ * To add a new component: create its Workspace folder, then add an entry here.
+ */
+export const registry: WorkspaceEntry[] = [
+  {
+    id: 'tag',
+    label: 'Tag',
+    group: 'Components',
+    component: TagWorkspace,
+  },
+]

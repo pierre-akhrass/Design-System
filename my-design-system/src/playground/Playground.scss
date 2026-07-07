@@ -1,0 +1,85 @@
+@use '../styles/tokens/variables' as *;
+
+// ── Shell variables ───────────────────────────────────────────────────────────
+$pg-topbar-h:   56px;
+$pg-accent:     #6366f1;
+$pg-border:     rgba(0, 0, 0, 0.07);
+$pg-text-pri:   #141f2e;
+$pg-text-sec:   #6e8296;
+$pg-bg:         #f0f2f5;
+$pg-surface:    #ffffff;
+$pg-font:       'Inter', system-ui, sans-serif;
+
+// ── Shell root ────────────────────────────────────────────────────────────────
+
+.pg {
+  background: $pg-bg;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  font-family: $pg-font;
+}
+
+// ── Top bar ───────────────────────────────────────────────────────────────────
+
+.pg__topbar {
+  align-items: center;
+  background: $pg-surface;
+  border-bottom: 1px solid $pg-border;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-shrink: 0;
+  gap: 12px;
+  height: $pg-topbar-h;
+  padding: 0 22px;
+
+  &-logo {
+    align-items: center;
+    color: $pg-accent;
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &-title {
+    color: $pg-text-pri;
+    font-family: $pg-font;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  &-accent {
+    color: $pg-accent;
+  }
+
+  &-badge {
+    background: rgba(99, 102, 241, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 99px;
+    color: $pg-accent;
+    font-family: $pg-font;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    margin-left: auto;
+    padding: 3px 10px;
+  }
+}
+
+// ── Body ──────────────────────────────────────────────────────────────────────
+
+.pg__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pg__workspace {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
