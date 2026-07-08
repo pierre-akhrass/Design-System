@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import { TagWorkspace } from './TagWorkspace/TagWorkspace'
 import { TooltipWorkspace } from './TooltipWorkspace/TooltipWorkspace'
 import { AvatarWorkspace } from './AvatarWorkspace/AvatarWorkspace'
+import { FooterWorkspace } from './FooterWorkspace/FooterWorkspace'
 
 export interface WorkspaceEntry {
   id: string
@@ -32,5 +33,11 @@ export const registry: WorkspaceEntry[] = [
     label: 'Avatar',
     group: 'Components',
     component: AvatarWorkspace,
+  },
+  {
+    id: 'footer',
+    label: 'Footer',
+    group: 'Components',
+    component: FooterWorkspace,
   },
 ]
