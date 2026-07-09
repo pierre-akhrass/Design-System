@@ -1,4 +1,5 @@
 import type { NavbarConfig, NavbarLinkEntry, NavbarActionEntry } from './navbarCodeGen'
+import type { NavbarMenuRow } from '../../../components/Navbar'
 import { DEFAULT_LINKS, DEFAULT_ACTIONS } from './navbarCodeGen'
 import { TOKENS } from '../../designTokens'
 import './NavbarControls.scss'
@@ -151,6 +152,29 @@ export const NavbarControls = ({ config, onChange }: NavbarControlsProps) => {
     set('links', [...config.links, entry])
   }
 
+  // ── Dropdown row helpers ──────────────────────────────────────────
+  const updateRow = (linkIdx: number, rowIdx: number, patch: Partial<NavbarMenuRow>) => {
+    const links = [...config.links]
+    const rows = [...(links[linkIdx].rows || [])]
+    rows[rowIdx] = { ...rows[rowIdx], ...patch } as NavbarMenuRow
+    links[linkIdx] = { ...links[linkIdx], rows }
+    set('links', links)
+  }
+  const removeRow = (linkIdx: number, rowIdx: number) => {
+    const links = [...config.links]
+    links[linkIdx] = { ...links[linkIdx], rows: (links[linkIdx].rows || []).filter((_, i) => i !== rowIdx) }
+    set('links', links)
+  }
+  const addRow = (linkIdx: number, kind: 'item' | 'divider' | 'button') => {
+    const links = [...config.links]
+    const rows = [...(links[linkIdx].rows || [])]
+    if (kind === 'divider') rows.push({ kind: 'divider' })
+    else if (kind === 'button') rows.push({ kind: 'button', label: 'Action', variant: 'filled' })
+    else rows.push({ kind: 'item', label: `Item ${rows.length + 1}` })
+    links[linkIdx] = { ...links[linkIdx], rows }
+    set('links', links)
+  }
+
   // ── Action helpers ────────────────────────────────────────────────
   const updateAction = (idx: number, patch: Partial<NavbarActionEntry>) => {
     const actions = [...config.actions]
@@ -197,6 +221,39 @@ export const NavbarControls = ({ config, onChange }: NavbarControlsProps) => {
               placeholder="Label"
               spellCheck={false}
             />
+            {link.type === 'dropdown' && (
+              <div className="navbar-controls__rows">
+                {(link.rows || []).map((row, rIdx) => (
+                  <div key={rIdx} className="navbar-controls__row">
+                    <select
+                      className="ctrl-input navbar-controls__row-kind"
+                      value={row.kind}
+                      onChange={(e) => updateRow(idx, rIdx, { kind: e.target.value as 'item' | 'divider' | 'button' })}
+                    >
+                      <option value="item">Item</option>
+                      <option value="divider">Divider</option>
+                      <option value="button">Button</option>
+                    </select>
+                    {row.kind !== 'divider' && (
+                      <input
+                        className="ctrl-input navbar-controls__row-label"
+                        type="text"
+                        value={(row as { label?: string }).label || ''}
+                        onChange={(e) => updateRow(idx, rIdx, { label: e.target.value })}
+                        placeholder="Label"
+                        spellCheck={false}
+                      />
+                    )}
+                    <button className="navbar-controls__item-remove" onClick={() => removeRow(idx, rIdx)} type="button" title="Remove row">✕</button>
+                  </div>
+                ))}
+                <div className="navbar-controls__row-actions">
+                  <button className="navbar-controls__add-btn" onClick={() => addRow(idx, 'item')} type="button">+ Item</button>
+                  <button className="navbar-controls__add-btn" onClick={() => addRow(idx, 'divider')} type="button">+ Divider</button>
+                  <button className="navbar-controls__add-btn" onClick={() => addRow(idx, 'button')} type="button">+ Button</button>
+                </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

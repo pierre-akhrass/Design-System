@@ -17,6 +17,39 @@
     padding: 6px 8px;
   }
 
+  &__rows {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+    padding-top: 6px;
+  }
+
+  &__row {
+    align-items: center;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__row-kind {
+    font-size: 10px;
+    padding: 2px 3px;
+    width: 60px;
+  }
+
+  &__row-label {
+    flex: 1;
+    font-size: 11px;
+    padding: 2px 5px;
+  }
+
+  &__row-actions {
+    display: flex;
+    gap: 3px;
+    margin-top: 2px;
+  }
+
   &__item-header {
     align-items: center;
     display: flex;
