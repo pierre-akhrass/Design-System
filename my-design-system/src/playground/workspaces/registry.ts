@@ -97,8 +97,6 @@ export const registry: WorkspaceEntry[] = [
     group: 'Inputs',
     component: SearchWorkspace,
   },
-<<<<<<< Updated upstream
-=======
   {
     id: 'dropdown',
     label: 'Dropdown',
@@ -111,5 +109,4 @@ export const registry: WorkspaceEntry[] = [
     group: 'Components',
     component: MapWorkspace,
   },
->>>>>>> Stashed changes
 ]
