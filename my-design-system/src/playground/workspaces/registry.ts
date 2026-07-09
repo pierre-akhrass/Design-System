@@ -5,6 +5,7 @@ import { RadioWorkspace } from './RadioWorkspace/RadioWorkspace'
 import { SwitchWorkspace } from './SwitchWorkspace/SwitchWorkspace'
 import { TextAreaWorkspace } from './TextAreaWorkspace/TextAreaWorkspace'
 import { SearchWorkspace } from './SearchWorkspace/SearchWorkspace'
+import { DropdownWorkspace } from './DropdownWorkspace/DropdownWorkspace'
 import { MapWorkspace } from './MapWorkspace/MapWorkspace'
 import { CardWorkspace } from './CardWorkspace/CardWorkspace'
 import { CarouselWorkspace } from './CarouselWorkspace/CarouselWorkspace'
@@ -96,4 +97,19 @@ export const registry: WorkspaceEntry[] = [
     group: 'Inputs',
     component: SearchWorkspace,
   },
+<<<<<<< Updated upstream
+=======
+  {
+    id: 'dropdown',
+    label: 'Dropdown',
+    group: 'Components',
+    component: DropdownWorkspace,
+  },
+  {
+    id: 'map',
+    label: 'Map',
+    group: 'Components',
+    component: MapWorkspace,
+  },
+>>>>>>> Stashed changes
 ]
