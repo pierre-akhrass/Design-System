@@ -6,6 +6,7 @@ import { SwitchWorkspace } from './SwitchWorkspace/SwitchWorkspace'
 import { TextAreaWorkspace } from './TextAreaWorkspace/TextAreaWorkspace'
 import { SearchWorkspace } from './SearchWorkspace/SearchWorkspace'
 import { DropdownWorkspace } from './DropdownWorkspace/DropdownWorkspace'
+import { NavbarWorkspace } from './NavbarWorkspace/NavbarWorkspace'
 import { MapWorkspace } from './MapWorkspace/MapWorkspace'
 import { CardWorkspace } from './CardWorkspace/CardWorkspace'
 import { CarouselWorkspace } from './CarouselWorkspace/CarouselWorkspace'
@@ -100,13 +101,13 @@ export const registry: WorkspaceEntry[] = [
   {
     id: 'dropdown',
     label: 'Dropdown',
-    group: 'Components',
+    group: 'Navigation',
     component: DropdownWorkspace,
   },
   {
-    id: 'map',
-    label: 'Map',
-    group: 'Components',
-    component: MapWorkspace,
+    id: 'navbar',
+    label: 'Navbar',
+    group: 'Navigation',
+    component: NavbarWorkspace,
   },
 ]
