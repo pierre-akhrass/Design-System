@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Sidebar } from './components/Sidebar/Sidebar'
 import { registry } from './workspaces/registry'
+import '../styles/global.scss'
 import './Playground.scss'
 
 export const Playground = () => {

@@ -13,6 +13,8 @@ import { CarouselWorkspace } from './CarouselWorkspace/CarouselWorkspace'
 import { ListWorkspace } from './ListWorkspace/ListWorkspace'
 import { SocialMediaWorkspace } from './SocialMediaWorkspace/SocialMediaWorkspace'
 import { DialogWorkspace } from './DialogWorkspace/DialogWorkspace'
+import { BreadcrumbsWorkspace } from './BreadcrumbsWorkspace/BreadcrumbsWorkspace'
+import { MegaMenuWorkspace } from './MegaMenuWorkspace/MegaMenuWorkspace'
 
 export interface WorkspaceEntry {
   id: string
@@ -109,5 +111,17 @@ export const registry: WorkspaceEntry[] = [
     label: 'Navbar',
     group: 'Navigation',
     component: NavbarWorkspace,
+  },
+  {
+    id: 'breadcrumbs',
+    label: 'Breadcrumbs',
+    group: 'Navigation',
+    component: BreadcrumbsWorkspace,
+  },
+  {
+    id: 'megamenu',
+    label: 'MegaMenu',
+    group: 'Navigation',
+    component: MegaMenuWorkspace,
   },
 ]
