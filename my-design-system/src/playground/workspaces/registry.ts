@@ -3,6 +3,7 @@ import { TagWorkspace } from './TagWorkspace/TagWorkspace'
 import { TooltipWorkspace } from './TooltipWorkspace/TooltipWorkspace'
 import { AvatarWorkspace } from './AvatarWorkspace/AvatarWorkspace'
 import { FooterWorkspace } from './FooterWorkspace/FooterWorkspace'
+import { FormWorkspace } from './FormWorkspace/FormWorkspace'
 
 export interface WorkspaceEntry {
   id: string
@@ -39,5 +40,11 @@ export const registry: WorkspaceEntry[] = [
     label: 'Footer',
     group: 'Components',
     component: FooterWorkspace,
+  },
+  {
+    id: 'form',
+    label: 'Form',
+    group: 'Components',
+    component: FormWorkspace,
   },
 ]
