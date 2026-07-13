@@ -1,4 +1,4 @@
-import { useState, type HTMLAttributes } from 'react'
+import { useState, type CSSProperties, type HTMLAttributes } from 'react'
 import './Testimonials.scss'
 
 export interface TestimonialItem {
@@ -23,6 +23,18 @@ export interface TestimonialsProps extends HTMLAttributes<HTMLDivElement> {
   testimonials: TestimonialItem[]
   /** Show or hide the slider/pagination */
   showSlider?: boolean
+  /** Override section background color */
+  bgColor?: string
+  /** Override text/icon color across testimonial content */
+  textColor?: string
+  /** Override horizontal padding */
+  paddingX?: string
+  /** Override vertical padding */
+  paddingY?: string
+  /** Override horizontal margin */
+  marginX?: string
+  /** Override vertical margin */
+  marginY?: string
 }
 
 const QuoteIcon = () => (
@@ -58,7 +70,14 @@ export const Testimonials = ({
   heading = 'A word from our community',
   testimonials,
   showSlider = true,
+  bgColor,
+  textColor,
+  paddingX,
+  paddingY,
+  marginX,
+  marginY,
   className,
+  style,
   ...rest
 }: TestimonialsProps) => {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -71,8 +90,18 @@ export const Testimonials = ({
   const goPrev = () => setActiveIndex(activeIndex <= 0 ? total - 1 : activeIndex - 1)
   const goNext = () => setActiveIndex(activeIndex >= total - 1 ? 0 : activeIndex + 1)
 
+  const inlineStyle: CSSProperties = {
+    ...(bgColor && { backgroundColor: bgColor }),
+    ...(textColor && { ['--ds-testimonials-text-color' as string]: textColor }),
+    ...(paddingX && { paddingInline: paddingX }),
+    ...(paddingY && { paddingBlock: paddingY }),
+    ...(marginX && { marginInline: marginX }),
+    ...(marginY && { marginBlock: marginY }),
+    ...style,
+  }
+
   return (
-    <section className={`ds-testimonials${className ? ` ${className}` : ''}`} {...rest}>
+    <section className={`ds-testimonials${className ? ` ${className}` : ''}`} style={inlineStyle} {...rest}>
       {/* Header */}
       <div className="ds-testimonials__header">
         <span className="ds-testimonials__label">{label}</span>

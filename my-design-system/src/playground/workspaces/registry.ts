@@ -15,6 +15,7 @@ import { SocialMediaWorkspace } from './SocialMediaWorkspace/SocialMediaWorkspac
 import { DialogWorkspace } from './DialogWorkspace/DialogWorkspace'
 import { BreadcrumbsWorkspace } from './BreadcrumbsWorkspace/BreadcrumbsWorkspace'
 import { MegaMenuWorkspace } from './MegaMenuWorkspace/MegaMenuWorkspace'
+import { TestimonialsWorkspace } from './TestimonialsWorkspace/TestimonialsWorkspace'
 
 export interface WorkspaceEntry {
   id: string
@@ -123,5 +124,11 @@ export const registry: WorkspaceEntry[] = [
     label: 'MegaMenu',
     group: 'Navigation',
     component: MegaMenuWorkspace,
+  },
+  {
+    id: 'testimonials',
+    label: 'Testimonials',
+    group: 'Components',
+    component: TestimonialsWorkspace,
   },
 ]

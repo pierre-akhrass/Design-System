@@ -1,0 +1,126 @@
+@use '../TagWorkspace/TagControls.scss';
+
+.testimonials-controls {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, sans-serif;
+  gap: 2px;
+  padding: 0 4px;
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding: 0 12px;
+  }
+
+  &__card {
+    background: rgba(0, 0, 0, 0.025);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 6px 8px;
+  }
+
+  &__card-header {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+  }
+
+  &__name {
+    flex: 1;
+    font-size: 11px;
+    padding: 2px 5px;
+  }
+
+  &__remove {
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: rgba(60, 80, 100, 0.45);
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    height: 18px;
+    justify-content: center;
+    width: 18px;
+
+    &:hover {
+      color: #e53e3e;
+    }
+  }
+
+  &__quote {
+    min-height: 72px;
+  }
+
+  &__color-row {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  &__color-swatch {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    cursor: pointer;
+    flex-shrink: 0;
+    height: 26px;
+    padding: 1px;
+    width: 26px;
+
+    &::-webkit-color-swatch-wrapper { padding: 0; }
+    &::-webkit-color-swatch { border: none; border-radius: 3px; }
+  }
+
+  &__color-input {
+    flex: 1;
+    min-width: 0;
+
+    &--active {
+      border-color: rgba(99, 102, 241, 0.45);
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 4px;
+    padding: 0 12px;
+  }
+
+  &__action-btn {
+    background: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    color: rgba(60, 80, 100, 0.6);
+    cursor: pointer;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 8px;
+    transition: background 0.12s, color 0.12s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.04);
+      color: #141f2e;
+    }
+
+    &--reset {
+      color: rgba(220, 80, 60, 0.7);
+      margin-left: auto;
+
+      &:hover {
+        background: rgba(220, 80, 60, 0.06);
+        color: #c0392b;
+      }
+    }
+  }
+}
