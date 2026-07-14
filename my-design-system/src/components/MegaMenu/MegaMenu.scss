@@ -21,7 +21,7 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   gap: $gap-2xs;
   box-sizing: border-box;
   font-family: $ui-font-family;
-  color: $mapping-system-slate-text-primary;
+  color: var(--sds-mega-menu-text-color, $mapping-system-slate-text-primary);
 
   // ----- Style (matches Figma "Style" inspector exactly) -----
   // Bottom-only radius — the top edge butts up against the navbar trigger.
@@ -45,7 +45,7 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   font-weight: $heading-font-weight-bold;
   line-height: 1.2;
   letter-spacing: $letter-spacing-tracking-2;
-  color: $mapping-system-slate-text-secondary;
+  color: var(--sds-mega-menu-title-color, $mapping-system-slate-text-secondary);
 }
 
 /* ---------- Body grid: columns + optional card ---------- */
