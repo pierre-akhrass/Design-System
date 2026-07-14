@@ -8,6 +8,8 @@ import { TextAreaControls } from './TextAreaControls'
 import { textAreaCodeGen, defaultTextAreaConfig } from './textAreaCodeGen'
 import type { TextAreaConfig } from './textAreaCodeGen'
 import './TextAreaWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -178,6 +180,12 @@ export const TextAreaWorkspace = () => {
         </div>
 
         <CodeBlock code={textAreaCodeGen(config)} />
+
+        <PublishBar
+          componentId="textarea"
+          componentLabel="TextArea"
+          override={buildWorkspaceOverride('textarea', config, '.ds-textarea')}
+        />
       </div>
 
       <ControlPanel>

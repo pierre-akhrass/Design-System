@@ -8,6 +8,8 @@ import { DialogControls } from './DialogControls'
 import { dialogCodeGen, defaultDialogConfig } from './dialogCodeGen'
 import type { DialogConfig } from './dialogCodeGen'
 import './DialogWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -158,6 +160,12 @@ export const DialogWorkspace = () => {
         </div>
 
         <CodeBlock code={dialogCodeGen(config)} />
+
+        <PublishBar
+          componentId="dialog"
+          componentLabel="Dialog"
+          override={buildWorkspaceOverride('dialog', config, '.ds-dialog')}
+        />
       </div>
 
       <ControlPanel>

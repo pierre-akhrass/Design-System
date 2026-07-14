@@ -9,6 +9,8 @@ import { NavbarControls } from './NavbarControls'
 import { navbarCodeGen, defaultNavbarConfig } from './navbarCodeGen'
 import type { NavbarConfig } from './navbarCodeGen'
 import './NavbarWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 // ── Icons (same as Navbar.stories) ────────────────────────────────────────────
 
@@ -239,6 +241,12 @@ export const NavbarWorkspace = () => {
         </div>
 
         <CodeBlock code={navbarCodeGen(config)} />
+
+        <PublishBar
+          componentId="navbar"
+          componentLabel="Navbar"
+          override={buildWorkspaceOverride('navbar', config, '.ds-navbar')}
+        />
       </div>
 
       <ControlPanel>

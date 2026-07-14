@@ -8,6 +8,8 @@ import { CodeBlock } from '../../components/CodeBlock/CodeBlock'
 import { CardControls } from './CardControls'
 import { cardCodeGen, defaultCardConfig } from './cardCodeGen'
 import type { CardConfig } from './cardCodeGen'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import './CardWorkspace.scss'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
@@ -167,6 +169,12 @@ export const CardWorkspace = () => {
         </div>
 
         <CodeBlock code={cardCodeGen(config)} />
+
+        <PublishBar
+          componentId="card"
+          componentLabel="Card"
+          override={buildWorkspaceOverride('card', config, '.ds-card')}
+        />
       </div>
 
       <ControlPanel>

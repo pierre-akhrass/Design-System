@@ -8,6 +8,8 @@ import { TestimonialsControls } from './TestimonialsControls'
 import { defaultTestimonialsConfig, testimonialsCodeGen } from './testimonialsCodeGen'
 import type { TestimonialsConfig } from './testimonialsCodeGen'
 import './TestimonialsWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -175,6 +177,12 @@ export const TestimonialsWorkspace = () => {
         </div>
 
         <CodeBlock code={testimonialsCodeGen(config)} />
+
+        <PublishBar
+          componentId="testimonials"
+          componentLabel="Testimonials"
+          override={buildWorkspaceOverride('testimonials', config, '.ds-testimonials')}
+        />
       </div>
 
       <ControlPanel>

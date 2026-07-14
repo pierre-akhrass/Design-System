@@ -8,6 +8,8 @@ import { MegaMenuControls } from './MegaMenuControls'
 import { megaMenuCodeGen, defaultMegaMenuConfig } from './megaMenuCodeGen'
 import type { MegaMenuConfig } from './megaMenuCodeGen'
 import './MegaMenuWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -188,6 +190,12 @@ export const MegaMenuWorkspace = () => {
         </div>
 
         <CodeBlock code={megaMenuCodeGen(config)} />
+
+        <PublishBar
+          componentId="mega-menu"
+          componentLabel="MegaMenu"
+          override={buildWorkspaceOverride('mega-menu', config, '.ds-mega-menu')}
+        />
       </div>
 
       <ControlPanel>

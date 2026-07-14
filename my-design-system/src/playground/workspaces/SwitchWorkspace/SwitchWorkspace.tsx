@@ -8,6 +8,8 @@ import { SwitchControls } from './SwitchControls'
 import { switchCodeGen, defaultSwitchConfig } from './switchCodeGen'
 import type { SwitchConfig } from './switchCodeGen'
 import './SwitchWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -184,6 +186,12 @@ export const SwitchWorkspace = () => {
         </div>
 
         <CodeBlock code={switchCodeGen(config)} />
+
+        <PublishBar
+          componentId="switch"
+          componentLabel="Switch"
+          override={buildWorkspaceOverride('switch', config, '.ds-switch')}
+        />
       </div>
 
       <ControlPanel>

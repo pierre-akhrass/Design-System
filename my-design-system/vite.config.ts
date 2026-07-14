@@ -22,6 +22,15 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
   ],
+  server: {
+    proxy: {
+      // Forward theme API calls to the local backend stub (npm run theme-server)
+      '/api/design-theme': {
+        target: 'http://localhost:4000',
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     copyPublicDir: false,
     lib: {

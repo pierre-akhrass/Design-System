@@ -7,6 +7,8 @@ import { ListControls } from './ListControls'
 import { listCodeGen, defaultListConfig } from './listCodeGen'
 import type { ListConfig } from './listCodeGen'
 import './ListWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -156,6 +158,12 @@ export const ListWorkspace = () => {
         </div>
 
         <CodeBlock code={listCodeGen(config)} />
+
+        <PublishBar
+          componentId="list"
+          componentLabel="List"
+          override={buildWorkspaceOverride('list', config, '.ds-list')}
+        />
       </div>
 
       <ControlPanel>

@@ -8,6 +8,8 @@ import { CheckboxControls } from './CheckboxControls'
 import { checkboxCodeGen, defaultCheckboxConfig } from './checkboxCodeGen'
 import type { CheckboxConfig } from './checkboxCodeGen'
 import './CheckboxWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -185,6 +187,12 @@ export const CheckboxWorkspace = () => {
         </div>
 
         <CodeBlock code={checkboxCodeGen(config)} />
+
+        <PublishBar
+          componentId="checkbox"
+          componentLabel="Checkbox"
+          override={buildWorkspaceOverride('checkbox', config, '.ds-checkbox')}
+        />
       </div>
 
       <ControlPanel>

@@ -7,6 +7,8 @@ import { SearchControls } from './SearchControls'
 import { searchCodeGen, defaultSearchConfig } from './searchCodeGen'
 import type { SearchConfig } from './searchCodeGen'
 import './SearchWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -171,6 +173,12 @@ export const SearchWorkspace = () => {
         </div>
 
         <CodeBlock code={searchCodeGen(config)} />
+
+        <PublishBar
+          componentId="search"
+          componentLabel="Search"
+          override={buildWorkspaceOverride('search', config, '.ds-search')}
+        />
       </div>
 
       <ControlPanel>

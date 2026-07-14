@@ -35,7 +35,9 @@
     "test-a11y": "vitest --project storybook run",
     "visual-test": "chromatic --exit-once-uploaded",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "theme-server": "node server/themeServer.mjs",
+    "dev:full": "node server/themeServer.mjs & vite"
   },
   "peerDependencies": {
     "react": ">=18.0.0",

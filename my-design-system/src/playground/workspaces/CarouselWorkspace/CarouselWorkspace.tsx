@@ -7,6 +7,8 @@ import { CarouselControls } from './CarouselControls'
 import { carouselCodeGen, defaultCarouselConfig } from './carouselCodeGen'
 import type { CarouselConfig } from './carouselCodeGen'
 import './CarouselWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -153,6 +155,12 @@ export const CarouselWorkspace = () => {
         </div>
 
         <CodeBlock code={carouselCodeGen(config)} />
+
+        <PublishBar
+          componentId="carousel"
+          componentLabel="Carousel"
+          override={buildWorkspaceOverride('carousel', config, '.ds-carousel')}
+        />
       </div>
 
       <ControlPanel>

@@ -10,6 +10,8 @@ import { DropdownControls } from './DropdownControls'
 import { dropdownCodeGen, defaultDropdownConfig } from './dropdownCodeGen'
 import type { DropdownConfig } from './dropdownCodeGen'
 import './DropdownWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -164,6 +166,12 @@ export const DropdownWorkspace = () => {
         </div>
 
         <CodeBlock code={dropdownCodeGen(config)} />
+
+        <PublishBar
+          componentId="dropdown"
+          componentLabel="Dropdown"
+          override={buildWorkspaceOverride('dropdown', config, '.ds-dropdown')}
+        />
       </div>
 
       <ControlPanel>

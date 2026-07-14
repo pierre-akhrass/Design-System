@@ -8,6 +8,8 @@ import { RadioControls } from './RadioControls'
 import { radioCodeGen, defaultRadioConfig } from './radioCodeGen'
 import type { RadioConfig } from './radioCodeGen'
 import './RadioWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -185,6 +187,12 @@ export const RadioWorkspace = () => {
         </div>
 
         <CodeBlock code={radioCodeGen(config)} />
+
+        <PublishBar
+          componentId="radio"
+          componentLabel="Radio"
+          override={buildWorkspaceOverride('radio', config, '.ds-radio')}
+        />
       </div>
 
       <ControlPanel>

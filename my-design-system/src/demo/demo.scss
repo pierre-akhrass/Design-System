@@ -1,0 +1,49 @@
+.demo {
+  box-sizing: border-box;
+  margin: 0 auto;
+  max-width: 920px;
+  padding: 48px 24px 80px;
+
+  &__header { margin-bottom: 40px; }
+
+  &__title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0 0 10px;
+  }
+
+  &__lead {
+    color: #5b6b7c;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 620px;
+  }
+
+  &__section { margin-top: 40px; }
+
+  &__section-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #8595a5;
+    margin: 0 0 16px;
+  }
+
+  &__row {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
