@@ -29,6 +29,7 @@ const VAR_MAP: Record<string, Record<string, string>> = {
 }
 
 const ENDPOINT = 'http://localhost:4000/api/write-scss'
+const READ_ENDPOINT = 'http://localhost:4000/api/read-scss'
 
 export interface WriteScssResult {
   ok: boolean
@@ -75,11 +76,54 @@ export async function writeScssToSource(
     })
     const data = (await res.json()) as WriteScssResult
     return data
-  } catch (err) {
+  } catch {
     return {
       ok: false,
       updated: [],
       missing: [],
+      error:
+        'Could not reach the theme server. Start it with "npm run theme-server" (or "npm run dev:full").',
+    }
+  }
+}
+
+export interface ReadScssResult {
+  ok: boolean
+  /** Config fields resolved from the SCSS file, ready to merge into state. */
+  config: Record<string, string>
+  file?: string
+  error?: string
+}
+
+/**
+ * Read the current colour values from a component's SCSS source and map the
+ * CSS custom properties back onto the workspace's config field names.
+ *
+ * This is the reverse of writeScssToSource: it lets edits made directly in the
+ * `.scss` file flow back into the playground UI. Requires the theme server.
+ */
+export async function readScssFromSource(componentId: string): Promise<ReadScssResult> {
+  const map = VAR_MAP[componentId]
+  if (!map) {
+    return { ok: false, config: {}, error: `No SCSS mapping for '${componentId}'` }
+  }
+  try {
+    const res = await fetch(`${READ_ENDPOINT}?componentId=${encodeURIComponent(componentId)}`)
+    const data = (await res.json()) as { ok?: boolean; file?: string; vars?: Record<string, string>; error?: string }
+    if (!res.ok || !data.vars) {
+      return { ok: false, config: {}, file: data.file, error: data.error ?? 'Read failed' }
+    }
+    // Invert the field->cssVar map to cssVar->field, then pull matching values.
+    const config: Record<string, string> = {}
+    for (const [field, cssVar] of Object.entries(map)) {
+      const value = data.vars[cssVar]
+      if (typeof value === 'string' && value.trim()) config[field] = value.trim()
+    }
+    return { ok: true, config, file: data.file }
+  } catch {
+    return {
+      ok: false,
+      config: {},
       error:
         'Could not reach the theme server. Start it with "npm run theme-server" (or "npm run dev:full").',
     }
