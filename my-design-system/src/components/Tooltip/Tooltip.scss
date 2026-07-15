@@ -127,7 +127,7 @@
 }
 
 .ds-tooltip--left {
-  text-align: left;
+  text-align: center;
 
   // Arrow at right, points right toward target
   &::before {
@@ -149,7 +149,7 @@
 }
 
 .ds-tooltip--right {
-  text-align: left;
+  text-align: center;
 
   // Arrow at left, points left toward target
   &::before {
