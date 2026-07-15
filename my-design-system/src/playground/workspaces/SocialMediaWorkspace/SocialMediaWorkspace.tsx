@@ -10,6 +10,7 @@ import './SocialMediaWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -67,6 +68,9 @@ const SocialMediaPreview = ({ config, theme }: { config: SocialMediaConfig; them
 
 export const SocialMediaWorkspace = () => {
   const [config, setConfig] = useState<SocialMediaConfig>(() => readHashConfig() ?? loadDraft<SocialMediaConfig>("social-media") ?? defaultSocialMediaConfig)
+
+  // Pull colour values from SocialMediaPost.scss into the UI (reverse sync).
+  useScssSync<SocialMediaConfig>('social-media', setConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 

@@ -10,6 +10,7 @@ import './ListWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -72,6 +73,9 @@ const ListPreview = ({ config, theme }: { config: ListConfig; theme: ListConfig[
 
 export const ListWorkspace = () => {
   const [config, setConfig] = useState<ListConfig>(() => readHashConfig() ?? loadDraft<ListConfig>("list") ?? defaultListConfig)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<ListConfig>('list', setConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 

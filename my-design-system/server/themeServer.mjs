@@ -26,6 +26,7 @@ const DATA_FILE = join(__dirname, 'published-theme.json')
 const PORT = process.env.THEME_PORT ? Number(process.env.THEME_PORT) : 4000
 const ROUTE = '/api/design-theme'
 const SCSS_ROUTE = '/api/write-scss'
+const READ_SCSS_ROUTE = '/api/read-scss'
 
 // Map a playground component id → its source .scss file (relative to repo).
 const SCSS_FILES = {
@@ -76,6 +77,26 @@ function applyScssVars(source, vars) {
     }
   }
   return { source: out, updated, missing }
+}
+
+/**
+ * Read the FIRST value of every `--ds-*` CSS custom property declared in a
+ * .scss source. Returns a map { '--ds-card-bg': '#fff', ... }.
+ * SCSS interpolations like `#{$token}` and raw `$tokens` are skipped since
+ * they aren't literal colours the playground can display.
+ */
+function readScssVars(source) {
+  const vars = {}
+  const re = /(--[\w-]+)\s*:\s*([^;]+);/g
+  let m
+  while ((m = re.exec(source)) !== null) {
+    const name = m[1]
+    const value = m[2].trim()
+    if (name in vars) continue // keep only the first declaration
+    if (value.includes('#{') || value.includes('$')) continue // skip SCSS interp
+    vars[name] = value
+  }
+  return vars
 }
 
 
@@ -137,6 +158,31 @@ const server = createServer(async (req, res) => {
     setCors(res)
     res.writeHead(204)
     res.end()
+    return
+  }
+
+  // ── Read SCSS from disk ─────────────────────────────────────────────
+  if (url === READ_SCSS_ROUTE) {
+    if (req.method !== 'GET') {
+      sendJson(res, 405, { error: 'Method not allowed' })
+      return
+    }
+    const componentId = new URL(req.url, 'http://localhost').searchParams.get('componentId')
+    if (!componentId) {
+      sendJson(res, 400, { error: 'Expected ?componentId=' })
+      return
+    }
+    const rel = SCSS_FILES[componentId]
+    if (!rel) {
+      sendJson(res, 404, { error: `No SCSS file mapped for '${componentId}'` })
+      return
+    }
+    try {
+      const source = await readFile(join(REPO_ROOT, rel), 'utf8')
+      sendJson(res, 200, { ok: true, file: rel, vars: readScssVars(source) })
+    } catch {
+      sendJson(res, 404, { error: `SCSS file not found: ${rel}` })
+    }
     return
   }
 

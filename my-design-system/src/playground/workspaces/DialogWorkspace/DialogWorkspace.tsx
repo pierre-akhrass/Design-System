@@ -11,6 +11,7 @@ import './DialogWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -84,6 +85,9 @@ const DialogPanelPreview = ({ config, theme }: { config: DialogConfig; theme: Di
 
 export const DialogWorkspace = () => {
   const [config, setConfig] = useState<DialogConfig>(() => readHashConfig() ?? loadDraft<DialogConfig>("dialog") ?? defaultDialogConfig)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<DialogConfig>('dialog', setConfig)
   const [open, setOpen] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
