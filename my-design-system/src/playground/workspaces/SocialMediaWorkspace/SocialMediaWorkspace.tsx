@@ -9,6 +9,7 @@ import type { SocialMediaConfig } from './socialMediaCodeGen'
 import './SocialMediaWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -65,7 +66,7 @@ const SocialMediaPreview = ({ config, theme }: { config: SocialMediaConfig; them
 // ── SocialMediaWorkspace ─────────────────────────────────────────────────────
 
 export const SocialMediaWorkspace = () => {
-  const [config, setConfig] = useState<SocialMediaConfig>(() => readHashConfig() ?? defaultSocialMediaConfig)
+  const [config, setConfig] = useState<SocialMediaConfig>(() => readHashConfig() ?? loadDraft<SocialMediaConfig>("social-media") ?? defaultSocialMediaConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -155,6 +156,7 @@ export const SocialMediaWorkspace = () => {
 
         <PublishBar
           componentId="social-media"
+          draftConfig={config}
           componentLabel="Social Media"
           override={buildWorkspaceOverride('social-media', config, '.ds-social-media-post')}
         />

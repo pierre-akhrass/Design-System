@@ -1,5 +1,7 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Map/Map.scss
 .ds-map {
+  --ds-map-bg: transparent;
+  --ds-map-fg: #292929;
   position: relative;
   display: flex;
   width: var(--sds-responsive-device-width, 100%);
@@ -10,19 +12,23 @@
   justify-content: space-between;
   align-items: flex-start;
   border-radius: 12px;
+  background-color: var(--ds-map-bg);
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
   box-sizing: border-box;
   font-family: inherit;
+  color: var(--ds-map-fg);
 }
 
 /* ---------- modes ---------- */
 .ds-map--mode-light {
-  color: #292929;
+  --ds-map-fg: #292929;
+  color: var(--ds-map-fg);
 }
 .ds-map--mode-dark {
-  color: #292929; /* pin / text color on map */
+  --ds-map-fg: #292929; /* pin / text color on map */
+  color: var(--ds-map-fg);
 }
 
 /* ---------- header card ---------- */

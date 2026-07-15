@@ -9,6 +9,7 @@ import type { SearchConfig } from './searchCodeGen'
 import './SearchWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -43,7 +44,7 @@ function readHashConfig(): SearchConfig | null {
 }
 
 export const SearchWorkspace = () => {
-  const [config, setConfig] = useState<SearchConfig>(() => readHashConfig() ?? defaultSearchConfig)
+  const [config, setConfig] = useState<SearchConfig>(() => readHashConfig() ?? loadDraft<SearchConfig>("search") ?? defaultSearchConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -176,6 +177,7 @@ export const SearchWorkspace = () => {
 
         <PublishBar
           componentId="search"
+          draftConfig={config}
           componentLabel="Search"
           override={buildWorkspaceOverride('search', config, '.ds-search')}
         />

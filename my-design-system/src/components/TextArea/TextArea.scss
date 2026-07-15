@@ -1,6 +1,8 @@
 @use '../../styles/tokens/variables' as *;
 
 .ds-textarea {
+  --ds-textarea-bg: #{$color-system-white-white};
+  --ds-textarea-fg: #{$mapping-system-slate-text-secondary};
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -10,7 +12,7 @@
   padding: 12px 16px;
   border-radius: 12px;
   border: 1px solid $color-system-gray-300;
-  background: $color-system-white-white;
+  background: var(--ds-textarea-bg);
   transition: border-color 200ms ease, box-shadow 200ms ease;
 
   &--placeholder {
@@ -48,7 +50,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 150%;
-  color: $mapping-system-slate-text-secondary;
+  color: var(--ds-textarea-fg);
 
   &::placeholder {
     color: $mapping-system-slate-text-primary;

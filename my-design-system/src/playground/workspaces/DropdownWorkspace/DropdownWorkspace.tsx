@@ -12,6 +12,7 @@ import type { DropdownConfig } from './dropdownCodeGen'
 import './DropdownWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -51,7 +52,7 @@ function readHashConfig(): DropdownConfig | null {
 }
 
 export const DropdownWorkspace = () => {
-  const [config, setConfig] = useState<DropdownConfig>(() => readHashConfig() ?? defaultDropdownConfig)
+  const [config, setConfig] = useState<DropdownConfig>(() => readHashConfig() ?? loadDraft<DropdownConfig>("dropdown") ?? defaultDropdownConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -169,6 +170,7 @@ export const DropdownWorkspace = () => {
 
         <PublishBar
           componentId="dropdown"
+          draftConfig={config}
           componentLabel="Dropdown"
           override={buildWorkspaceOverride('dropdown', config, '.ds-dropdown')}
         />

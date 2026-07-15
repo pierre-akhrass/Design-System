@@ -9,6 +9,7 @@ import type { ListConfig } from './listCodeGen'
 import './ListWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -70,7 +71,7 @@ const ListPreview = ({ config, theme }: { config: ListConfig; theme: ListConfig[
 // ── ListWorkspace ─────────────────────────────────────────────────────────────
 
 export const ListWorkspace = () => {
-  const [config, setConfig] = useState<ListConfig>(() => readHashConfig() ?? defaultListConfig)
+  const [config, setConfig] = useState<ListConfig>(() => readHashConfig() ?? loadDraft<ListConfig>("list") ?? defaultListConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -161,6 +162,7 @@ export const ListWorkspace = () => {
 
         <PublishBar
           componentId="list"
+          draftConfig={config}
           componentLabel="List"
           override={buildWorkspaceOverride('list', config, '.ds-list')}
         />

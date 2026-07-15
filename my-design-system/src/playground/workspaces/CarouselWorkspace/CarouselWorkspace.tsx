@@ -9,6 +9,7 @@ import type { CarouselConfig } from './carouselCodeGen'
 import './CarouselWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -67,7 +68,7 @@ const CarouselPreview = ({ config, theme }: { config: CarouselConfig; theme: Car
 // ── CarouselWorkspace ─────────────────────────────────────────────────────────
 
 export const CarouselWorkspace = () => {
-  const [config, setConfig] = useState<CarouselConfig>(() => readHashConfig() ?? defaultCarouselConfig)
+  const [config, setConfig] = useState<CarouselConfig>(() => readHashConfig() ?? loadDraft<CarouselConfig>("carousel") ?? defaultCarouselConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -158,6 +159,7 @@ export const CarouselWorkspace = () => {
 
         <PublishBar
           componentId="carousel"
+          draftConfig={config}
           componentLabel="Carousel"
           override={buildWorkspaceOverride('carousel', config, '.ds-carousel')}
         />

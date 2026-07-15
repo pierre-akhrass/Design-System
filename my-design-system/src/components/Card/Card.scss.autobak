@@ -6,7 +6,7 @@
  * ========================================================================= */
 .ds-card {
   // ----- Light theme tokens -----
-  --ds-card-bg: #229157;
+  --ds-card-bg: #1c54fd;
   --ds-card-fg: #ff0f0f;
   --ds-card-fg-muted: #{$mapping-system-slate-text-secondary};
   --ds-card-fg-subtle: #{$mapping-system-slate-text-tertiary};

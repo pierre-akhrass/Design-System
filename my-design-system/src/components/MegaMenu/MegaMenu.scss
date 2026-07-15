@@ -21,12 +21,14 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   gap: $gap-2xs;
   box-sizing: border-box;
   font-family: $ui-font-family;
-  color: $mapping-system-slate-text-primary;
+  --ds-mega-menu-bg: var(--sds-color-background-default-tertiary);
+  --ds-mega-menu-fg: #{$mapping-system-slate-text-primary};
+  color: var(--ds-mega-menu-fg);
 
   // ----- Style (matches Figma "Style" inspector exactly) -----
   // Bottom-only radius — the top edge butts up against the navbar trigger.
   border-radius: 0 0 $radius-medium $radius-medium;
-  background: var(--sds-color-background-default-tertiary);
+  background: var(--ds-mega-menu-bg);
 
   /* Box Shadow/shadow-md */
   box-shadow:
@@ -287,8 +289,10 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
 
 /* ---------- Color mode: DARK ---------- */
 .ds-mega-menu--mode-dark {
-  background: $mapping-system-slate-background-secondary;
-  color: $mapping-system-slate-text-on-primary;
+  --ds-mega-menu-bg: #{$mapping-system-slate-background-secondary};
+  --ds-mega-menu-fg: #{$mapping-system-slate-text-on-primary};
+  background: var(--ds-mega-menu-bg);
+  color: var(--ds-mega-menu-fg);
 
   .ds-mega-menu__category {
     color: $mapping-system-slate-text-on-tertiary;

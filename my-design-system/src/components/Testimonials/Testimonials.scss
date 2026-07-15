@@ -1,6 +1,7 @@
 @use '../../styles/tokens/variables' as *;
 
 .ds-testimonials {
+  --ds-testimonials-bg: #{$color-system-slate-50};
   display: flex;
   width: 1440px;
   max-width: 100%;
@@ -9,7 +10,7 @@
   align-items: flex-start;
   gap: 48px;
   box-sizing: border-box;
-  background: $color-system-slate-50;
+  background: var(--ds-testimonials-bg);
 }
 
 /* ---- Header ---- */

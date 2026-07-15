@@ -42,6 +42,20 @@
     }
   }
 
+  &__draft-tag {
+    background: rgba(234, 179, 8, 0.14);
+    border: 1px solid rgba(234, 179, 8, 0.35);
+    border-radius: 999px;
+    color: #a16207;
+    flex-shrink: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 2px 8px;
+    text-transform: uppercase;
+  }
+
   &__actions {
     display: flex;
     flex-shrink: 0;

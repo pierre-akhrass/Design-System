@@ -10,6 +10,7 @@ import type { TestimonialsConfig } from './testimonialsCodeGen'
 import './TestimonialsWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -65,7 +66,7 @@ function mapItems(cfg: TestimonialsConfig): TestimonialItem[] {
 }
 
 export const TestimonialsWorkspace = () => {
-  const [config, setConfig] = useState<TestimonialsConfig>(() => readHashConfig() ?? defaultTestimonialsConfig)
+  const [config, setConfig] = useState<TestimonialsConfig>(() => readHashConfig() ?? loadDraft<TestimonialsConfig>("testimonials") ?? defaultTestimonialsConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -180,6 +181,7 @@ export const TestimonialsWorkspace = () => {
 
         <PublishBar
           componentId="testimonials"
+          draftConfig={config}
           componentLabel="Testimonials"
           override={buildWorkspaceOverride('testimonials', config, '.ds-testimonials')}
         />

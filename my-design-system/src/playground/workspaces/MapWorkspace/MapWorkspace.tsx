@@ -11,6 +11,7 @@ import mapImg from '../../../assets/map.png'
 import './MapWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -71,7 +72,7 @@ function readHashConfig(): MapConfig | null {
 // ── Workspace ────────────────────────────────────────────────────────────────
 
 export const MapWorkspace = () => {
-  const [config, setConfig] = useState<MapConfig>(() => readHashConfig() ?? defaultMapConfig)
+  const [config, setConfig] = useState<MapConfig>(() => readHashConfig() ?? loadDraft<MapConfig>("map") ?? defaultMapConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -215,6 +216,7 @@ export const MapWorkspace = () => {
 
         <PublishBar
           componentId="map"
+          draftConfig={config}
           componentLabel="Map"
           override={buildWorkspaceOverride('map', config, '.ds-map')}
         />

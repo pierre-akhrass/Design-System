@@ -10,6 +10,7 @@ import type { TextAreaConfig } from './textAreaCodeGen'
 import './TextAreaWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -44,7 +45,7 @@ function readHashConfig(): TextAreaConfig | null {
 }
 
 export const TextAreaWorkspace = () => {
-  const [config, setConfig] = useState<TextAreaConfig>(() => readHashConfig() ?? defaultTextAreaConfig)
+  const [config, setConfig] = useState<TextAreaConfig>(() => readHashConfig() ?? loadDraft<TextAreaConfig>("textarea") ?? defaultTextAreaConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -183,6 +184,7 @@ export const TextAreaWorkspace = () => {
 
         <PublishBar
           componentId="textarea"
+          draftConfig={config}
           componentLabel="TextArea"
           override={buildWorkspaceOverride('textarea', config, '.ds-textarea')}
         />

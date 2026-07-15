@@ -10,6 +10,7 @@ import type { DialogConfig } from './dialogCodeGen'
 import './DialogWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -82,7 +83,7 @@ const DialogPanelPreview = ({ config, theme }: { config: DialogConfig; theme: Di
 // ── DialogWorkspace ───────────────────────────────────────────────────────────
 
 export const DialogWorkspace = () => {
-  const [config, setConfig] = useState<DialogConfig>(() => readHashConfig() ?? defaultDialogConfig)
+  const [config, setConfig] = useState<DialogConfig>(() => readHashConfig() ?? loadDraft<DialogConfig>("dialog") ?? defaultDialogConfig)
   const [open, setOpen] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -163,6 +164,7 @@ export const DialogWorkspace = () => {
 
         <PublishBar
           componentId="dialog"
+          draftConfig={config}
           componentLabel="Dialog"
           override={buildWorkspaceOverride('dialog', config, '.ds-dialog')}
         />

@@ -31,22 +31,26 @@
 }
 /* ---------- Color mode: DARK (default) ---------- */
 .ds-navbar--mode-dark {
-  background: $mapping-system-slate-background-secondary;
-  color: $mapping-system-slate-text-on-primary;
+  --ds-navbar-bg: #{$mapping-system-slate-background-secondary};
+  --ds-navbar-fg: #{$mapping-system-slate-text-on-primary};
+  background: var(--ds-navbar-bg);
+  color: var(--ds-navbar-fg);
   .ds-navbar__logo,
   .ds-navbar__actions,
   .ds-navbar__burger {
-    color: $mapping-system-slate-text-on-primary;
+    color: var(--ds-navbar-fg);
   }
 }
 /* ---------- Color mode: LIGHT ---------- */
 .ds-navbar--mode-light {
-  background: $mapping-system-slate-surface-tertiary;
-  color: $mapping-system-slate-text-primary;
+  --ds-navbar-bg: #{$mapping-system-slate-surface-tertiary};
+  --ds-navbar-fg: #{$mapping-system-slate-text-primary};
+  background: var(--ds-navbar-bg);
+  color: var(--ds-navbar-fg);
   .ds-navbar__logo,
   .ds-navbar__actions,
   .ds-navbar__burger {
-    color: $mapping-system-slate-text-primary;
+    color: var(--ds-navbar-fg);
   }
 }
 .ds-navbar__logo {

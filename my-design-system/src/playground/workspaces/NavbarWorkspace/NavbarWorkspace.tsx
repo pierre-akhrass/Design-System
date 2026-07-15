@@ -11,6 +11,7 @@ import type { NavbarConfig } from './navbarCodeGen'
 import './NavbarWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Icons (same as Navbar.stories) ────────────────────────────────────────────
 
@@ -113,7 +114,7 @@ function readHashConfig(): NavbarConfig | null {
 // ── Workspace ─────────────────────────────────────────────────────────────────
 
 export const NavbarWorkspace = () => {
-  const [config, setConfig] = useState<NavbarConfig>(() => readHashConfig() ?? defaultNavbarConfig)
+  const [config, setConfig] = useState<NavbarConfig>(() => readHashConfig() ?? loadDraft<NavbarConfig>("navbar") ?? defaultNavbarConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -244,6 +245,7 @@ export const NavbarWorkspace = () => {
 
         <PublishBar
           componentId="navbar"
+          draftConfig={config}
           componentLabel="Navbar"
           override={buildWorkspaceOverride('navbar', config, '.ds-navbar')}
         />
