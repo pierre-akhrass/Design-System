@@ -10,6 +10,16 @@ import {
   List,
   ListItem,
   SocialMediaPost,
+  Avatar,
+  AvatarGroup,
+  Footer,
+  Form,
+  FormInput,
+  FormSelect,
+  FormTextarea,
+  FormCheckbox,
+  FormActions,
+  Tooltip,
 } from '../index'
 import {
   applyPublishedTheme,
@@ -89,15 +99,36 @@ function DemoPage() {
   const socShowPag = typeof social.showPagination === 'boolean' ? social.showPagination : true
   const socTheme = social.theme === 'dark' ? 'dark' : 'light'
 
+  const avatar = usePublishedProps(theme, 'avatar')
+  const avatarTheme = avatar.theme === 'dark' ? 'dark' : avatar.theme === 'light' ? 'light' : undefined
+  const avatarSize = (typeof avatar.size === 'string' ? avatar.size : 'medium') as 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge'
+
+  const tooltip = usePublishedProps(theme, 'tooltip')
+  const tooltipTheme = tooltip.theme === 'dark' ? 'dark' : tooltip.theme === 'light' ? 'light' : undefined
+  const tooltipPlacement = (typeof tooltip.placement === 'string' ? tooltip.placement : 'top') as 'top' | 'bottom' | 'left' | 'right'
+
+  const form = usePublishedProps(theme, 'form')
+  const formTheme = form.theme === 'dark' ? 'dark' : 'light'
+  const formInputCount = typeof form.inputCount === 'number' ? form.inputCount : 2
+  const formShowTextarea = typeof form.showTextarea === 'boolean' ? form.showTextarea : true
+  const formShowSelect = typeof form.showSelect === 'boolean' ? form.showSelect : false
+  const formShowCheckbox = typeof form.showCheckbox === 'boolean' ? form.showCheckbox : true
+  const formActionsTone = form.actionsTone === 'brand' ? 'brand' : 'neutral'
+
+  const footer = usePublishedProps(theme, 'footer')
+  const footerTheme = footer.theme === 'dark' ? 'dark' : 'light'
+  const footerShowNewsletter = typeof footer.showNewsletterBar === 'boolean' ? footer.showNewsletterBar : false
+  const footerNavCount = typeof footer.navColumnCount === 'number' ? Math.max(1, Math.min(5, footer.navColumnCount)) : 3
+
   return (
     <main className="demo">
       <header className="demo__header">
         <h1 className="demo__title">My Frontend Page</h1>
         <p className="demo__lead">
           These are real design-system components. Publish a change in the
-          Playground (colours, spacing, or structural options like slide count,
-          list variant, or social platform), then switch back to this tab — the
-          change shows up here automatically.
+          Playground — colours, spacing, CSS variables, or structural options
+          like slide count, list variant, form fields, or footer theme — then
+          switch back to this tab and the change shows up here automatically.
         </p>
       </header>
 
@@ -206,6 +237,76 @@ function DemoPage() {
             <Button onClick={() => setDialogOpen(false)}>Confirm</Button>
           </Dialog.Actions>
         </Dialog>
+      </section>
+
+      <section className="demo__section">
+        <h2 className="demo__section-title">Avatar</h2>
+        <div className="demo__row">
+          <Avatar type="initial" initials="A" size={avatarSize} theme={avatarTheme} />
+          <Avatar type="initial" initials="BC" size="large" theme={avatarTheme} />
+          <AvatarGroup spacing="overlap">
+            <Avatar type="initial" initials="A" size="small" theme={avatarTheme} />
+            <Avatar type="initial" initials="B" size="small" theme={avatarTheme} />
+            <Avatar type="initial" initials="C" size="small" theme={avatarTheme} />
+          </AvatarGroup>
+        </div>
+      </section>
+
+      <section className="demo__section">
+        <h2 className="demo__section-title">Tooltip</h2>
+        <div className="demo__row">
+          <Tooltip title="Tooltip" body="Appears above" placement="top" theme={tooltipTheme} />
+          <Tooltip title="Tooltip" body="Appears below" placement="bottom" theme={tooltipTheme} />
+          <Tooltip title="Tooltip" body="Matches playground" placement={tooltipPlacement} theme={tooltipTheme} />
+        </div>
+      </section>
+
+      <section className="demo__section">
+        <h2 className="demo__section-title">Form</h2>
+        <div style={{ maxWidth: 480 }}>
+          <Form theme={formTheme}>
+            <FormInput label="Full Name" placeholder="Enter your full name" />
+            {formInputCount >= 2 && (
+              <FormInput label="Email Address" placeholder="Enter your email" />
+            )}
+            {formShowSelect && (
+              <FormSelect
+                label="Subject"
+                options={[
+                  { value: 'general', label: 'General Enquiry' },
+                  { value: 'support', label: 'Technical Support' },
+                ]}
+              />
+            )}
+            {formShowTextarea && (
+              <FormTextarea label="Message" placeholder="Write your message here…" rows={4} />
+            )}
+            {formShowCheckbox && (
+              <FormCheckbox label="I agree to the Terms & Conditions" />
+            )}
+            <FormActions primaryLabel="Submit" secondaryLabel="Cancel" primaryTone={formActionsTone} />
+          </Form>
+        </div>
+      </section>
+
+      <section className="demo__section">
+        <h2 className="demo__section-title">Footer</h2>
+        <Footer
+          theme={footerTheme}
+          showNewsletterBar={footerShowNewsletter}
+          showOpeningHours={false}
+          navColumns={Array.from({ length: footerNavCount }, (_, i) => ({
+            title: (['Explore', 'Support', 'Legal', 'Company', 'More'][i] ?? `Section ${i + 1}`),
+            links: [{ label: 'Home' }, { label: 'About' }, { label: 'Contact' }],
+          }))}
+          socialLinks={[
+            { platform: 'instagram', ariaLabel: 'Instagram' },
+            { platform: 'linkedin', ariaLabel: 'LinkedIn' },
+            { platform: 'x', ariaLabel: 'X (Twitter)' },
+          ]}
+          legalLinks={[{ label: 'Privacy Policy' }, { label: 'Terms & Conditions' }]}
+          copyright="©2026. All Rights Reserved."
+        />
       </section>
     </main>
   )

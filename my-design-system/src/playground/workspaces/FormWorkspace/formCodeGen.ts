@@ -116,7 +116,7 @@ export const defaultFormConfig: FormConfig = {
   varRadius: '',
   varFieldMinHeight: '',
   varFieldRadius: '',
-  varMaxWidth: '',,
+  varMaxWidth: '',
 
   customClass: '',
   customId: '',

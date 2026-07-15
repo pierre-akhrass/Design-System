@@ -26,6 +26,18 @@ const VAR_MAP: Record<string, Record<string, string>> = {
   list: { textColor: '--ds-list-fg' },
   search: { textColor: '--ds-search-fg' },
   'social-media': { cardBg: '--ds-smp-card-bg', textColor: '--ds-smp-card-fg' },
+  // Form exposes all its theme colours as CSS custom properties on .ds-form
+  form: {
+    varSurface:      '--ds-form-surface',
+    varBorder:       '--ds-form-border',
+    varFieldBg:      '--ds-form-field-bg',
+    varFieldBorder:  '--ds-form-field-border',
+    varFocusBorder:  '--ds-form-field-border-focus',
+    varTextPrimary:  '--ds-form-text-primary',
+    varTextTertiary: '--ds-form-text-tertiary',
+    varAccent:       '--ds-form-accent',
+    varDanger:       '--ds-form-danger',
+  },
 }
 
 const ENDPOINT = 'http://localhost:4000/api/write-scss'

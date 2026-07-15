@@ -9,6 +9,9 @@ import { TooltipControls } from './TooltipControls'
 import { tooltipCodeGen, defaultTooltipConfig } from './tooltipCodeGen'
 import type { TooltipConfig } from './tooltipCodeGen'
 import './TooltipWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -76,7 +79,7 @@ const LinkIcon = ({ copied }: { copied: boolean }) =>
 // ── TooltipWorkspace ──────────────────────────────────────────────────────────
 
 export const TooltipWorkspace = () => {
-  const [config, setConfig] = useState<TooltipConfig>(() => readHashConfig() ?? defaultTooltipConfig)
+  const [config, setConfig] = useState<TooltipConfig>(() => readHashConfig() ?? loadDraft<TooltipConfig>('tooltip') ?? defaultTooltipConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -165,6 +168,13 @@ export const TooltipWorkspace = () => {
         </div>
 
         <CodeBlock code={tooltipCodeGen(config)} />
+
+        <PublishBar
+          componentId="tooltip"
+          draftConfig={config}
+          componentLabel="Tooltip"
+          override={buildWorkspaceOverride('tooltip', config, '.ds-tooltip')}
+        />
       </div>
 
       {/* ── Right: control panel ─────────────────────────────────────── */}

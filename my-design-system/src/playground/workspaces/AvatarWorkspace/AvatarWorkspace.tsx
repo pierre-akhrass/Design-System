@@ -8,6 +8,9 @@ import { AvatarControls } from './AvatarControls'
 import { avatarViewCodeGen, defaultAvatarConfig } from './avatarCodeGen'
 import type { AvatarConfig } from './avatarCodeGen'
 import './AvatarWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Sample data for AvatarGroup ───────────────────────────────────────────────
 
@@ -151,7 +154,7 @@ const LinkIcon = ({ copied }: { copied: boolean }) =>
 // ── AvatarWorkspace ───────────────────────────────────────────────────────────
 
 export const AvatarWorkspace = () => {
-  const [config, setConfig]     = useState<AvatarConfig>(() => readHashConfig() ?? defaultAvatarConfig)
+  const [config, setConfig]     = useState<AvatarConfig>(() => readHashConfig() ?? loadDraft<AvatarConfig>('avatar') ?? defaultAvatarConfig)
   const [compare, setCompare]   = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -246,6 +249,13 @@ export const AvatarWorkspace = () => {
         </div>
 
         <CodeBlock code={avatarViewCodeGen(config)} />
+
+        <PublishBar
+          componentId="avatar"
+          draftConfig={config}
+          componentLabel="Avatar"
+          override={buildWorkspaceOverride('avatar', config, '.ds-avatar')}
+        />
       </div>
 
       {/* ── Right: control panel ─────────────────────────────────────── */}

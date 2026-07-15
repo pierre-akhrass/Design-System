@@ -11,6 +11,9 @@ import { FormControls } from './FormControls'
 import { formCodeGen, defaultFormConfig, buildCssVarEntries } from './formCodeGen'
 import type { FormConfig } from './formCodeGen'
 import './FormWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Demo select options ───────────────────────────────────────────────────────
 
@@ -130,7 +133,7 @@ const LinkIcon = ({ copied }: { copied: boolean }) =>
 // ── FormWorkspace ─────────────────────────────────────────────────────────────
 
 export const FormWorkspace = () => {
-  const [config, setConfig]         = useState<FormConfig>(() => readHashConfig() ?? defaultFormConfig)
+  const [config, setConfig]         = useState<FormConfig>(() => readHashConfig() ?? loadDraft<FormConfig>('form') ?? defaultFormConfig)
   const [compare, setCompare]       = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -205,6 +208,13 @@ export const FormWorkspace = () => {
         </div>
 
         <CodeBlock code={formCodeGen(config)} />
+
+        <PublishBar
+          componentId="form"
+          draftConfig={config}
+          componentLabel="Form"
+          override={buildWorkspaceOverride('form', config, '.ds-form')}
+        />
       </div>
 
       {/* ── Right: control panel ─────────────────────────────────────── */}

@@ -8,6 +8,9 @@ import { FooterControls } from './FooterControls'
 import { footerCodeGen, defaultFooterConfig } from './footerCodeGen'
 import type { FooterConfig } from './footerCodeGen'
 import './FooterWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Sample opening hours (matches Footer.tsx defaults) ────────────────────────
 
@@ -127,7 +130,7 @@ const LinkIcon = ({ copied }: { copied: boolean }) =>
 // ── FooterWorkspace ───────────────────────────────────────────────────────────
 
 export const FooterWorkspace = () => {
-  const [config, setConfig]     = useState<FooterConfig>(() => readHashConfig() ?? defaultFooterConfig)
+  const [config, setConfig]     = useState<FooterConfig>(() => readHashConfig() ?? loadDraft<FooterConfig>('footer') ?? defaultFooterConfig)
   const [linkCopied, setLinkCopied] = useState(false)
 
   // Keep URL hash in sync
@@ -219,6 +222,13 @@ export const FooterWorkspace = () => {
         </div>
 
         <CodeBlock code={footerCodeGen(config)} />
+
+        <PublishBar
+          componentId="footer"
+          draftConfig={config}
+          componentLabel="Footer"
+          override={buildWorkspaceOverride('footer', config, '.ds-footer')}
+        />
       </div>
 
       {/* ── Right: control panel ─────────────────────────────────────── */}
