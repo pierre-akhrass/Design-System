@@ -20,12 +20,56 @@ const VAR_MAP: Record<string, Record<string, string>> = {
   // Only components whose .scss defines real CSS custom properties for colour
   // are listed; those are the ones we can rewrite safely by a value swap. The
   // config field names differ per workspace (e.g. Carousel stores `slideBg`).
-  card: { bgColor: '--ds-card-bg', textColor: '--ds-card-fg' },
-  carousel: { slideBg: '--ds-carousel-slide-bg', textColor: '--ds-carousel-fg' },
-  dialog: { bgColor: '--ds-dialog-bg', textColor: '--ds-dialog-fg' },
-  list: { textColor: '--ds-list-fg' },
+  card: {
+    bgColor: '--ds-card-bg',
+    textColor: '--ds-card-fg',
+    borderRadius: '--ds-card-radius',
+    borderWidth: '--ds-card-border-width',
+    borderStyle: '--ds-card-border-style',
+    borderColor: '--ds-card-border',
+    paddingX: '--ds-card-body-padding-x',
+    paddingY: '--ds-card-body-padding-y',
+    gap: '--ds-card-body-gap',
+  },
+  carousel: {
+    slideBg: '--ds-carousel-slide-bg',
+    textColor: '--ds-carousel-fg',
+    gap: '--ds-carousel-track-gap',
+    slideRadius: '--ds-carousel-slide-radius',
+    buttonRadius: '--ds-carousel-button-radius',
+    borderWidth: '--ds-carousel-slide-border-width',
+    borderStyle: '--ds-carousel-slide-border-style',
+    borderColor: '--ds-carousel-slide-border-color',
+  },
+  dialog: {
+    bgColor: '--ds-dialog-bg',
+    textColor: '--ds-dialog-fg',
+    borderRadius: '--ds-dialog-radius',
+    padding: '--ds-dialog-padding',
+    gap: '--ds-dialog-gap',
+    borderWidth: '--ds-dialog-border-width',
+    borderStyle: '--ds-dialog-border-style',
+    borderColor: '--ds-dialog-border-color',
+  },
+  list: {
+    textColor: '--ds-list-fg',
+    gap: '--ds-list-gap',
+    itemPadding: '--ds-list-item-padding',
+    itemRadius: '--ds-list-item-radius',
+    borderWidth: '--ds-list-item-border-width',
+    borderStyle: '--ds-list-item-border-style',
+    borderColor: '--ds-list-item-border-color',
+  },
   search: { textColor: '--ds-search-fg' },
-  'social-media': { cardBg: '--ds-smp-card-bg', textColor: '--ds-smp-card-fg' },
+  'social-media': {
+    cardBg: '--ds-smp-card-bg',
+    textColor: '--ds-smp-card-fg',
+    radius: '--ds-smp-radius',
+    textPadding: '--ds-smp-text-padding',
+    borderWidth: '--ds-smp-border-width',
+    borderStyle: '--ds-smp-border-style',
+    borderColor: '--ds-smp-border-color',
+  },
 }
 
 const ENDPOINT = 'http://localhost:4000/api/write-scss'

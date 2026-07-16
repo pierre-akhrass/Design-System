@@ -15,6 +15,14 @@
   --ds-dialog-shadow: rgba(20, 31, 46, 0.18);
   --ds-dialog-scrim: rgba(20, 31, 46, 0.55);
 
+  // ----- Layout tokens (literal values so the playground can sync them) -----
+  --ds-dialog-radius: 16px;            // mirrors $radius-large
+  --ds-dialog-padding: 32px;           // mirrors $space-400
+  --ds-dialog-gap: 16px;               // mirrors $space-200
+  --ds-dialog-border-width: 0px;
+  --ds-dialog-border-style: solid;
+  --ds-dialog-border-color: var(--ds-dialog-border);
+
   background: transparent;
   border: none;
   color: var(--ds-dialog-fg);
@@ -73,7 +81,8 @@
  * ========================================================================= */
 .ds-dialog__panel {
   background: var(--ds-dialog-bg);
-  border-radius: $radius-large;
+  border: var(--ds-dialog-border-width) var(--ds-dialog-border-style) var(--ds-dialog-border-color);
+  border-radius: var(--ds-dialog-radius);
   box-shadow:
     0 12px 24px -8px var(--ds-dialog-shadow),
     0 24px 48px -12px var(--ds-dialog-shadow);
@@ -81,11 +90,11 @@
   color: var(--ds-dialog-fg);
   display: flex;
   flex-direction: column;
-  gap: $space-200;
+  gap: var(--ds-dialog-gap);
   margin: $space-300;
   max-height: calc(100vh - #{$space-300} * 2);
   overflow: hidden;
-  padding: $space-400;
+  padding: var(--ds-dialog-padding);
   width: calc(100% - #{$space-300} * 2);
   animation: ds-dialog-pop 180ms ease-out;
 }

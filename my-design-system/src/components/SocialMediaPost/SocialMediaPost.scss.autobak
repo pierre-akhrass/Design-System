@@ -2,7 +2,7 @@
 
 .ds-social-media-post {
   // Light theme (default)
-  --ds-smp-card-bg: #000000;
+  --ds-smp-card-bg: green;
   --ds-smp-card-fg: #9f3c3c;
   --ds-smp-badge-bg: transparent;
   --ds-smp-badge-fg: #{$mapping-system-slate-text-primary};

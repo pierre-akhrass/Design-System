@@ -12,6 +12,14 @@
   );
   --ds-carousel-button-hover: #{$mapping-system-black-200};
 
+  // ----- Layout tokens (literal values so the playground can sync them) -----
+  --ds-carousel-track-gap: 10px;
+  --ds-carousel-slide-radius: 0px;
+  --ds-carousel-button-radius: 8px;      // mirrors $radius-medium
+  --ds-carousel-slide-border-width: 0px;
+  --ds-carousel-slide-border-style: solid;
+  --ds-carousel-slide-border-color: #3fb0bc;
+
   color: var(--ds-carousel-fg);
   font-family: $ui-font-family;
   position: relative;
@@ -38,7 +46,7 @@
 .ds-carousel__track {
   align-items: center;
   display: flex;
-  gap: 10px;
+  gap: var(--ds-carousel-track-gap);
   overflow-x: auto;
   scroll-behavior: smooth;
   scrollbar-width: none;
@@ -56,6 +64,8 @@
 .ds-carousel__slide {
   align-items: center;
   background-color: var(--ds-carousel-slide-bg);
+  border: var(--ds-carousel-slide-border-width) var(--ds-carousel-slide-border-style) var(--ds-carousel-slide-border-color);
+  border-radius: var(--ds-carousel-slide-radius);
   display: flex;
   flex: 0 0 248px;
   flex-shrink: 0;
@@ -104,7 +114,7 @@
   align-items: center;
   background: transparent;
   border: none;
-  border-radius: $radius-medium;
+  border-radius: var(--ds-carousel-button-radius);
   color: var(--ds-carousel-fg);
   cursor: pointer;
   display: inline-flex;
