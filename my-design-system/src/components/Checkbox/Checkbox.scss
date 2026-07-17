@@ -1,11 +1,13 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Checkbox/Checkbox.scss
 .ds-checkbox {
+  --ds-checkbox-bg: var(--sds-color-background-brand-default, #1e2c3e);
+  --ds-checkbox-fg: var(--sds-color-text-default-secondary, #292929);
   display: inline-flex;
   align-items: flex-start;
   gap: 12px;
   cursor: pointer;
   font-family: var(--UI-Font-Family, 'Noto Sans', inherit);
-  color: var(--sds-color-text-default-secondary, #292929);
+  color: var(--ds-checkbox-fg);
   user-select: none;
 }
 .ds-checkbox--placement-right {
@@ -44,8 +46,8 @@
 /* States */
 .ds-checkbox--checked .ds-checkbox__box,
 .ds-checkbox--indeterminate .ds-checkbox__box {
-  background: var(--sds-color-background-brand-default, #1e2c3e);
-  border-color: var(--sds-color-background-brand-default, #1e2c3e);
+  background: var(--ds-checkbox-bg);
+  border-color: var(--ds-checkbox-bg);
   color: #ffffff;
 }
 
@@ -82,7 +84,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--sds-color-text-default-secondary, #292929);
+  color: var(--ds-checkbox-fg);
 }
 .ds-checkbox__description {
   font-size: 14px;

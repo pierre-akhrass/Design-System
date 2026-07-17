@@ -8,6 +8,9 @@ import { RadioControls } from './RadioControls'
 import { radioCodeGen, defaultRadioConfig } from './radioCodeGen'
 import type { RadioConfig } from './radioCodeGen'
 import './RadioWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -42,7 +45,7 @@ function readHashConfig(): RadioConfig | null {
 }
 
 export const RadioWorkspace = () => {
-  const [config, setConfig] = useState<RadioConfig>(() => readHashConfig() ?? defaultRadioConfig)
+  const [config, setConfig] = useState<RadioConfig>(() => readHashConfig() ?? loadDraft<RadioConfig>("radio") ?? defaultRadioConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -185,6 +188,13 @@ export const RadioWorkspace = () => {
         </div>
 
         <CodeBlock code={radioCodeGen(config)} />
+
+        <PublishBar
+          componentId="radio"
+          draftConfig={config}
+          componentLabel="Radio"
+          override={buildWorkspaceOverride('radio', config, '.ds-radio')}
+        />
       </div>
 
       <ControlPanel>

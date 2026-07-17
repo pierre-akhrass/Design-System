@@ -8,6 +8,10 @@ import { DialogControls } from './DialogControls'
 import { dialogCodeGen, defaultDialogConfig } from './dialogCodeGen'
 import type { DialogConfig } from './dialogCodeGen'
 import './DialogWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -80,7 +84,10 @@ const DialogPanelPreview = ({ config, theme }: { config: DialogConfig; theme: Di
 // ── DialogWorkspace ───────────────────────────────────────────────────────────
 
 export const DialogWorkspace = () => {
-  const [config, setConfig] = useState<DialogConfig>(() => readHashConfig() ?? defaultDialogConfig)
+  const [config, setConfig] = useState<DialogConfig>(() => readHashConfig() ?? loadDraft<DialogConfig>("dialog") ?? defaultDialogConfig)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<DialogConfig>('dialog', setConfig)
   const [open, setOpen] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -158,6 +165,13 @@ export const DialogWorkspace = () => {
         </div>
 
         <CodeBlock code={dialogCodeGen(config)} />
+
+        <PublishBar
+          componentId="dialog"
+          draftConfig={config}
+          componentLabel="Dialog"
+          override={buildWorkspaceOverride('dialog', config, '.ds-dialog')}
+        />
       </div>
 
       <ControlPanel>

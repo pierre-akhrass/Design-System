@@ -6,11 +6,11 @@
  * ========================================================================= */
 .ds-card {
   // ----- Light theme tokens -----
-  --ds-card-bg: #26ab66;
+  --ds-card-bg: #229157;
   --ds-card-fg: #ff0f0f;
   --ds-card-fg-muted: #{$mapping-system-slate-text-secondary};
   --ds-card-fg-subtle: #{$mapping-system-slate-text-tertiary};
-  --ds-card-border: var(--ds-list-item-border);
+  --ds-card-border: #{$mapping-system-slate-border-tertiary};
   --ds-card-shadow: rgba(35, 47, 55, 0.08);
 
   --ds-card-media-bg: #{$mapping-system-slate-surface-tertiary};

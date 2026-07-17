@@ -7,6 +7,10 @@ import { SearchControls } from './SearchControls'
 import { searchCodeGen, defaultSearchConfig } from './searchCodeGen'
 import type { SearchConfig } from './searchCodeGen'
 import './SearchWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -41,7 +45,10 @@ function readHashConfig(): SearchConfig | null {
 }
 
 export const SearchWorkspace = () => {
-  const [config, setConfig] = useState<SearchConfig>(() => readHashConfig() ?? defaultSearchConfig)
+  const [config, setConfig] = useState<SearchConfig>(() => readHashConfig() ?? loadDraft<SearchConfig>("search") ?? defaultSearchConfig)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<SearchConfig>('search', setConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -171,6 +178,13 @@ export const SearchWorkspace = () => {
         </div>
 
         <CodeBlock code={searchCodeGen(config)} />
+
+        <PublishBar
+          componentId="search"
+          draftConfig={config}
+          componentLabel="Search"
+          override={buildWorkspaceOverride('search', config, '.ds-search')}
+        />
       </div>
 
       <ControlPanel>

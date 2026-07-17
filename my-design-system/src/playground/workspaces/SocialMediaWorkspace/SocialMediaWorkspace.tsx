@@ -7,6 +7,10 @@ import { SocialMediaControls } from './SocialMediaControls'
 import { socialMediaCodeGen, defaultSocialMediaConfig } from './socialMediaCodeGen'
 import type { SocialMediaConfig } from './socialMediaCodeGen'
 import './SocialMediaWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -63,7 +67,10 @@ const SocialMediaPreview = ({ config, theme }: { config: SocialMediaConfig; them
 // ── SocialMediaWorkspace ─────────────────────────────────────────────────────
 
 export const SocialMediaWorkspace = () => {
-  const [config, setConfig] = useState<SocialMediaConfig>(() => readHashConfig() ?? defaultSocialMediaConfig)
+  const [config, setConfig] = useState<SocialMediaConfig>(() => readHashConfig() ?? loadDraft<SocialMediaConfig>("social-media") ?? defaultSocialMediaConfig)
+
+  // Pull colour values from SocialMediaPost.scss into the UI (reverse sync).
+  useScssSync<SocialMediaConfig>('social-media', setConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -150,6 +157,13 @@ export const SocialMediaWorkspace = () => {
         </div>
 
         <CodeBlock code={socialMediaCodeGen(config)} />
+
+        <PublishBar
+          componentId="social-media"
+          draftConfig={config}
+          componentLabel="Social Media"
+          override={buildWorkspaceOverride('social-media', config, '.ds-social-media-post')}
+        />
       </div>
 
       <ControlPanel>

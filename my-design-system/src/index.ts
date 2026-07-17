@@ -251,3 +251,24 @@ export { TextBlock } from './components/TextBlock'
 export type { TextBlockProps, TextBlockTheme } from './components/TextBlock'
 export { Tooltip } from './components/Tooltip'
 export type { TooltipProps, TooltipPlacement, TooltipTheme } from './components/Tooltip'
+
+// ── Published theme runtime ─────────────────────────────────────────────────────
+// Applies overrides published from the playground to every component instance.
+// Auto-runs on import; can also be called manually (e.g. for SSR).
+export {
+  applyPublishedTheme,
+  loadPublishedTheme,
+  savePublishedTheme,
+  publishComponentOverride,
+  clearComponentOverride,
+  resetPublishedTheme,
+  publishedThemeToCss,
+  emptyPublishedTheme,
+  PUBLISHED_THEME_VERSION,
+  configurePublishedThemeEndpoint,
+  hasPublishedThemeEndpoint,
+  fetchPublishedTheme,
+  publishThemeToServer,
+  hydratePublishedTheme,
+} from './theme/publishedTheme'
+export type { ComponentOverride, PublishedTheme } from './theme/publishedTheme'

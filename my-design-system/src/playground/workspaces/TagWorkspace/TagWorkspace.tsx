@@ -9,6 +9,9 @@ import { TagControls } from './TagControls'
 import { tagCodeGen, defaultTagConfig } from './tagCodeGen'
 import type { TagConfig } from './tagCodeGen'
 import './TagWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 // ── Star icon (matches Tag.stories.tsx) ───────────────────────────────────────
 
@@ -107,7 +110,7 @@ const LinkIcon = ({ copied }: { copied: boolean }) =>
 // ── TagWorkspace ──────────────────────────────────────────────────────────────
 
 export const TagWorkspace = () => {
-  const [config, setConfig] = useState<TagConfig>(() => readHashConfig() ?? defaultTagConfig)
+  const [config, setConfig] = useState<TagConfig>(() => readHashConfig() ?? loadDraft<TagConfig>("tag") ?? defaultTagConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -194,6 +197,13 @@ export const TagWorkspace = () => {
         </div>
 
         <CodeBlock code={tagCodeGen(config)} />
+
+        <PublishBar
+          componentId="tag"
+          draftConfig={config}
+          componentLabel="Tag"
+          override={buildWorkspaceOverride('tag', config, '.ds-tag')}
+        />
       </div>
 
       {/* ── Right: control panel ─────────────────────────────────────── */}

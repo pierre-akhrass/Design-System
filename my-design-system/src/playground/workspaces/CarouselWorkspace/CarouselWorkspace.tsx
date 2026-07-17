@@ -7,6 +7,10 @@ import { CarouselControls } from './CarouselControls'
 import { carouselCodeGen, defaultCarouselConfig } from './carouselCodeGen'
 import type { CarouselConfig } from './carouselCodeGen'
 import './CarouselWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -65,7 +69,10 @@ const CarouselPreview = ({ config, theme }: { config: CarouselConfig; theme: Car
 // ── CarouselWorkspace ─────────────────────────────────────────────────────────
 
 export const CarouselWorkspace = () => {
-  const [config, setConfig] = useState<CarouselConfig>(() => readHashConfig() ?? defaultCarouselConfig)
+  const [config, setConfig] = useState<CarouselConfig>(() => readHashConfig() ?? loadDraft<CarouselConfig>("carousel") ?? defaultCarouselConfig)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<CarouselConfig>('carousel', setConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -153,6 +160,13 @@ export const CarouselWorkspace = () => {
         </div>
 
         <CodeBlock code={carouselCodeGen(config)} />
+
+        <PublishBar
+          componentId="carousel"
+          draftConfig={config}
+          componentLabel="Carousel"
+          override={buildWorkspaceOverride('carousel', config, '.ds-carousel')}
+        />
       </div>
 
       <ControlPanel>

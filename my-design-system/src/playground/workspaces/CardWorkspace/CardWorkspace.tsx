@@ -8,6 +8,10 @@ import { CodeBlock } from '../../components/CodeBlock/CodeBlock'
 import { CardControls } from './CardControls'
 import { cardCodeGen, defaultCardConfig } from './cardCodeGen'
 import type { CardConfig } from './cardCodeGen'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 import './CardWorkspace.scss'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
@@ -99,7 +103,10 @@ const CardPreview = ({ config, theme }: { config: CardConfig; theme: CardConfig[
 // ── CardWorkspace ─────────────────────────────────────────────────────────────
 
 export const CardWorkspace = () => {
-  const [config, setConfig] = useState<CardConfig>(() => readHashConfig() ?? defaultCardConfig)
+  const [config, setConfig] = useState<CardConfig>(() => readHashConfig() ?? loadDraft<CardConfig>("card") ?? defaultCardConfig)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<CardConfig>('card', setConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -167,6 +174,13 @@ export const CardWorkspace = () => {
         </div>
 
         <CodeBlock code={cardCodeGen(config)} />
+
+        <PublishBar
+          componentId="card"
+          draftConfig={config}
+          componentLabel="Card"
+          override={buildWorkspaceOverride('card', config, '.ds-card')}
+        />
       </div>
 
       <ControlPanel>

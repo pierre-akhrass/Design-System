@@ -1,11 +1,13 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Switch/Switch.scss
 .ds-switch {
+  --ds-switch-bg: #141F2E;
+  --ds-switch-fg: var(--sds-color-text-default-secondary, #292929);
   display: inline-flex;
   align-items: flex-start;
   gap: var(--sds-size-space-300, 12px);
   cursor: pointer;
   font-family: var(--UI-Font-Family, 'Noto Sans', inherit);
-  color: var(--sds-color-text-default-secondary, #292929);
+  color: var(--ds-switch-fg);
   user-select: none;
 }
 .ds-switch--placement-right {
@@ -58,7 +60,7 @@
 
 /* Checked state */
 .ds-switch--checked .ds-switch__track {
-  background: #141F2E;
+  background: var(--ds-switch-bg);
   border-color: #6B6B6B;
 }
 .ds-switch--checked .ds-switch__knob {
@@ -89,7 +91,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--sds-color-text-default-secondary, #292929);
+  color: var(--ds-switch-fg);
 }
 .ds-switch__description {
   font-size: 14px;

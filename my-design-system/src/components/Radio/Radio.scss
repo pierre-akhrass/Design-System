@@ -1,11 +1,12 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Radio/Radio.scss
 .ds-radio {
+  --ds-radio-fg: var(--sds-color-text-default-secondary, #292929);
   display: inline-flex;
   align-items: flex-start;
   gap: var(--sds-size-space-300, 12px);
   cursor: pointer;
   font-family: var(--UI-Font-Family, 'Noto Sans', inherit);
-  color: var(--sds-color-text-default-secondary, #292929);
+  color: var(--ds-radio-fg);
   user-select: none;
 }
 .ds-radio--placement-right {
@@ -62,7 +63,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
-  color: var(--sds-color-text-default-secondary, #292929);
+  color: var(--ds-radio-fg);
 }
 .ds-radio__description {
   font-size: 14px;

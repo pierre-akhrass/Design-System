@@ -8,6 +8,9 @@ import { BreadcrumbsControls } from './BreadcrumbsControls'
 import { breadcrumbsCodeGen, defaultBreadcrumbsConfig } from './breadcrumbsCodeGen'
 import type { BreadcrumbsConfig } from './breadcrumbsCodeGen'
 import './BreadcrumbsWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -64,7 +67,7 @@ function buildItems(config: BreadcrumbsConfig): BreadcrumbItemData[] {
 }
 
 export const BreadcrumbsWorkspace = () => {
-  const [config, setConfig] = useState<BreadcrumbsConfig>(() => readHashConfig() ?? defaultBreadcrumbsConfig)
+  const [config, setConfig] = useState<BreadcrumbsConfig>(() => readHashConfig() ?? loadDraft<BreadcrumbsConfig>("breadcrumbs") ?? defaultBreadcrumbsConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -133,6 +136,13 @@ export const BreadcrumbsWorkspace = () => {
         </div>
 
         <CodeBlock code={breadcrumbsCodeGen(config)} />
+
+        <PublishBar
+          componentId="breadcrumbs"
+          draftConfig={config}
+          componentLabel="Breadcrumbs"
+          override={buildWorkspaceOverride('breadcrumbs', config, '.ds-breadcrumbs')}
+        />
       </div>
 
       <ControlPanel>

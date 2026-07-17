@@ -8,6 +8,9 @@ import { CheckboxControls } from './CheckboxControls'
 import { checkboxCodeGen, defaultCheckboxConfig } from './checkboxCodeGen'
 import type { CheckboxConfig } from './checkboxCodeGen'
 import './CheckboxWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -42,7 +45,7 @@ function readHashConfig(): CheckboxConfig | null {
 }
 
 export const CheckboxWorkspace = () => {
-  const [config, setConfig] = useState<CheckboxConfig>(() => readHashConfig() ?? defaultCheckboxConfig)
+  const [config, setConfig] = useState<CheckboxConfig>(() => readHashConfig() ?? loadDraft<CheckboxConfig>("checkbox") ?? defaultCheckboxConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -185,6 +188,13 @@ export const CheckboxWorkspace = () => {
         </div>
 
         <CodeBlock code={checkboxCodeGen(config)} />
+
+        <PublishBar
+          componentId="checkbox"
+          draftConfig={config}
+          componentLabel="Checkbox"
+          override={buildWorkspaceOverride('checkbox', config, '.ds-checkbox')}
+        />
       </div>
 
       <ControlPanel>

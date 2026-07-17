@@ -7,6 +7,10 @@ import { ListControls } from './ListControls'
 import { listCodeGen, defaultListConfig } from './listCodeGen'
 import type { ListConfig } from './listCodeGen'
 import './ListWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -68,7 +72,10 @@ const ListPreview = ({ config, theme }: { config: ListConfig; theme: ListConfig[
 // ── ListWorkspace ─────────────────────────────────────────────────────────────
 
 export const ListWorkspace = () => {
-  const [config, setConfig] = useState<ListConfig>(() => readHashConfig() ?? defaultListConfig)
+  const [config, setConfig] = useState<ListConfig>(() => readHashConfig() ?? loadDraft<ListConfig>("list") ?? defaultListConfig)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<ListConfig>('list', setConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
@@ -156,6 +163,13 @@ export const ListWorkspace = () => {
         </div>
 
         <CodeBlock code={listCodeGen(config)} />
+
+        <PublishBar
+          componentId="list"
+          draftConfig={config}
+          componentLabel="List"
+          override={buildWorkspaceOverride('list', config, '.ds-list')}
+        />
       </div>
 
       <ControlPanel>
