@@ -76,6 +76,22 @@ import { Breadcrumbs } from '@company/design-system'
 - The current page uses \`aria-current="page"\` instead of a link.
 - The chevron separator is \`aria-hidden\`.
 - A collapsed item exposes an \`aria-label\` (\`"Show collapsed breadcrumbs"\`) when interactive.
+
+### Theming
+All colors and spacing come from the design-token layer defined in
+\`src/styles/tokens/_variables.scss\`. Tokens used:
+
+| Category   | Token                                      | Usage                              |
+| ---------- | ------------------------------------------ | ---------------------------------- |
+| Text       | \`$color-system-gray-900\`        | Default item & link color          |
+| Text       | \`var(--sds-color-text-default-default)\`     | Ancestor & collapsed item color    |
+| Text       | \`var(--sds-color-text-default-secondary)\`   | Current item & separator color     |
+| Focus      | \`$color-system-blue-400\`    | Focus ring on links                |
+| Spacing    | \`$gap-2xs\`                                 | Gap between items & separators     |
+| Radius     | \`$radius-small\`                            | Link border-radius                 |
+| Depth      | \`$depth-025\`                               | Focus ring width                   |
+| Typography | \`$ui-font-family\`                          | All text                           |
+| Typography | \`$ui-font-weight-strong\`                   | Current item font weight           |
         `.trim(),
       },
     },

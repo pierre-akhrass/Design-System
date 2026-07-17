@@ -134,6 +134,6 @@ export const Playground: Story = {
     }],
 
     mode: "light",
-    variant: "split"
+    variant: "section-hero"
   }
 }

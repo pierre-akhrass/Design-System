@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  border-radius: 12px;
+  border-radius: 0px;
   background-position: 50% 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -103,18 +103,22 @@
   position: absolute;
   transform: translate(16px, -100%);
   display: flex;
-  width: 464px;
-  height: 305px;
-  min-width: 240px;
-  padding: var(--sds-size-space-600, 24px);
+  width: 340px;
+  height: auto;
+  min-width: 200px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  padding: 16px;
   align-items: center;
-  gap: var(--sds-size-space-200, 8px);
+  gap: 8px;
   border-radius: var(--Size-Radius-Medium, 8px);
   background: var(--sds-color-background-default-default, #E9ECF0);
   box-shadow:
     0 4px var(--sds-size-depth-100, 6px) var(--sds-size-depth-negative-100, -2px)
-      var(--Mapping-System-Shadow-Medium, rgba(35, 47, 55, 0.1)),
-    0 10px 15px -3px var(--Mapping-System-Shadow-Medium, rgba(35, 47, 55, 0.1));
+      $color-system-shadow-opacity-10,
+    0 10px 15px -3px $color-system-shadow-opacity-10;
+  box-sizing: border-box;
+  overflow: hidden;
   z-index: 10;
 }
 .ds-map__popup-close {
@@ -140,9 +144,9 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  flex: 1 0 0;
+  flex: 0 0 100px;
   align-self: stretch;
-  border-radius: var(--radius-lg, 12px);
+  border-radius: 8px;
   background: #d2d9e0;
   overflow: hidden;
 }
@@ -158,28 +162,33 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 8px;
+  gap: 6px;
 }
 .ds-map__popup-title {
   font-weight: 700;
-  font-size: 18px;
+  font-size: 15px;
   color: var(--sds-color-text-default-secondary, #292929);
 }
 .ds-map__popup-desc {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--sds-color-text-default-default, #4a4a4a);
-  line-height: 1.5;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 /* CTA inside popup — uses shared Button component */
 .ds-map__popup-cta {
   display: flex;
-  width: 147px;
-  height: var(--dimensions-button-height-md, 48px);
-  padding: var(--padding-action-s, 16px) var(--padding-action-m, 24px);
+  width: auto;
+  height: var(--dimensions-button-height-sm, 36px);
+  padding: 8px 16px;
   justify-content: center;
   align-items: center;
-  gap: var(--gap-2xs, 8px);
+  gap: 6px;
+  font-size: 13px;
 }
 
 /* ---------- filter bar ---------- */
@@ -406,60 +415,117 @@
   }
 
   .ds-map__popup {
-    width: 380px;
-    height: auto;
-    min-height: 240px;
+    width: 280px;
+    padding: 12px;
+  }
+  .ds-map__popup-thumb {
+    flex: 0 0 80px;
+  }
+  .ds-map__popup-title {
+    font-size: 14px;
+  }
+  .ds-map__popup-desc {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+  }
+  .ds-map__popup-cta {
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 12px;
   }
 }
 
 @media (max-width: 640px) {
   .ds-map {
-    /* Switch from a fixed-height card to a flowing column so the absolute
-       overlays can flatten into the natural top/bottom stack. */
     height: auto;
-    min-height: 540px;
-    padding: 16px;
-    gap: 16px;
+    min-height: 440px;
+    padding: 10px;
+    gap: 10px;
   }
 
-  /* Header drops into the column flow so it sits full-width at the top. */
+  /* Header — compact card */
   .ds-map__header {
     position: static;
     width: 100%;
     max-width: none;
-    padding: 16px;
-    gap: 8px;
+    padding: 10px 12px;
+    gap: 4px;
     box-sizing: border-box;
   }
-  .ds-map__header-title { font-size: 22px; letter-spacing: -0.5px; }
-  .ds-map__header-desc  { font-size: 14px; -webkit-line-clamp: 2; }
+  .ds-map__header-title { font-size: 16px; letter-spacing: -0.3px; }
+  .ds-map__header-desc  { font-size: 12px; -webkit-line-clamp: 2; }
 
-  /* Filter bar also drops into flow at the bottom; stack the selects. */
+  /* Filter bar — compact */
   .ds-map__filters {
     position: static;
     width: 100%;
     max-width: none;
-    padding: 32px 16px 16px;
+    padding: 20px 10px 10px;
+    gap: 6px;
   }
-  .ds-map__filters-row { flex-direction: column; }
+  .ds-map__filters::before {
+    top: 10px;
+    width: 28px;
+    height: 3px;
+  }
+  .ds-map__filters-row { flex-direction: column; gap: 6px; }
+  .ds-map__search {
+    min-height: 36px;
+    padding: 4px 12px;
+    font-size: 13px;
+  }
+  .ds-map__select select {
+    min-height: 36px;
+    padding: 4px 32px 4px 12px;
+    font-size: 13px;
+  }
 
-  /* Pin the popup to the viewport's bottom edge so it's always reachable
-     no matter where the active pin sits on the map. */
+  /* Popup — small bottom sheet */
   .ds-map__popup {
     position: fixed;
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
     top: auto;
     width: auto;
-    height: auto;
-    min-height: 220px;
+    max-width: calc(100vw - 16px);
+    max-height: 200px;
+    padding: 10px;
+    gap: 6px;
     transform: none !important;
     z-index: 100;
   }
-  .ds-map__popup-thumb { min-width: 96px; max-width: 120px; }
+  .ds-map__popup-thumb {
+    flex: 0 0 64px;
+    border-radius: 6px;
+  }
+  .ds-map__popup-title {
+    font-size: 13px;
+  }
+  .ds-map__popup-desc {
+    font-size: 11px;
+    -webkit-line-clamp: 4;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .ds-map__popup-cta {
+    height: 26px;
+    padding: 4px 10px;
+    font-size: 11px;
+  }
+  .ds-map__popup-close {
+    width: 18px;
+    height: 18px;
+    top: 4px;
+    right: 4px;
+  }
+  .ds-map__popup-close svg {
+    width: 12px;
+    height: 12px;
+  }
 
-  /* Shrink pin glyphs so they don't overwhelm a smaller map surface. */
-  .ds-map__pin svg { width: 36px; height: 36px; }
-  .ds-map__pin--active { transform: translate(-50%, -100%) scale(1.4); }
+  /* Shrink pin glyphs */
+  .ds-map__pin svg { width: 28px; height: 28px; }
+  .ds-map__pin--active { transform: translate(-50%, -100%) scale(1.3); }
 }

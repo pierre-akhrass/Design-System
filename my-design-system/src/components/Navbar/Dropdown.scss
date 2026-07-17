@@ -7,10 +7,10 @@
   padding: $padding-container-xs;
   gap: $space-050;
   border-radius: $radius-medium;
-  background: $mapping-system-slate-surface-tertiary;
+  background: $color-system-slate-200;
   box-shadow:
-    0 2px $depth-100 $depth-negative-025 $mapping-system-shadow-medium,
-    0 4px $depth-100 $depth-negative-025 $mapping-system-shadow-medium;
+    0 2px $depth-100 $depth-negative-025 $color-system-shadow-opacity-10,
+    0 4px $depth-100 $depth-negative-025 $color-system-shadow-opacity-10;
 
   > * {
     width: 100%;
@@ -20,17 +20,17 @@
 .ds-dropdown__divider {
   width: 100%;
   height: 1px;
-  background: $mapping-system-slate-background-tertiary;
+  background: $color-system-slate-400;
   opacity: 0.4;
   margin: $space-050 0;
   border: 0;
 }
 
 .ds-dropdown--mode-dark {
-  background: $mapping-system-black-400;
+  background: $color-system-black-opacity-30;
 
   .ds-dropdown__divider {
-    background: $mapping-system-slate-background-secondary;
+    background: $color-system-slate-600;
     opacity: 1;
   }
 }

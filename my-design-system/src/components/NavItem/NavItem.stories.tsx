@@ -112,8 +112,36 @@ border-bottom: 2px solid var(--sds-color-border-brand-secondary);
 \`\`\`
 
 ### Theming
-Hover/active/text colors come from CSS custom properties defined in
-\`src/styles/global.scss\`. Override them on \`:root\` or a section element to retheme
+All colors and spacing come from the design-token layer defined in
+\`src/styles/tokens/_variables.scss\` and CSS custom properties from
+\`src/styles/global.scss\`. Tokens used:
+
+| Category   | Token                                           | Usage                                |
+| ---------- | ----------------------------------------------- | ------------------------------------ |
+| Text       | \`$color-system-gray-700\`                        | Default label/icon color (light)     |
+| Text       | \`var(--sds-color-text-default-default)\`          | Line-shape label color               |
+| Text       | \`$color-system-white-white\`          | Dark-mode label/icon color           |
+| Background | \`$color-system-slate-100\`                        | Hover/active pill background (light) |
+| Background | \`var(--sds-color-background-default-default)\`    | Line-shape hover pill background     |
+| Background | \`$color-system-slate-600\`     | Dark-mode hover background           |
+| Background | \`$color-system-slate-700\` | Dark-mode active background        |
+| Border     | \`$color-system-gray-600\`                         | Active line underline (both modes)   |
+| Border     | \`$size-stroke-border-width-2\`                    | Line-shape bottom border width       |
+| Focus      | \`$color-system-blue-400\`         | Focus ring color                     |
+| Depth      | \`$depth-025\`                                    | Focus ring thickness                 |
+| Spacing    | \`$space-800\`                                    | Tier 1 height                        |
+| Spacing    | \`$space-600\`                                    | Tier 2 / Nested height               |
+| Spacing    | \`$space-200\`, \`$space-100\`                      | Internal padding                     |
+| Spacing    | \`$gap-2xs\`                                      | Icon-to-label gap, Tier 2 padding    |
+| Spacing    | \`$padding-action-xl\`                            | Tier 2 horizontal padding            |
+| Radius     | \`$radius-medium\`                                | Pill border-radius                   |
+| Radius     | \`$radius-none\`                                  | Line-shape (no rounding)             |
+| Typography | \`$ui-font-family\`                               | Font family                          |
+| Typography | \`$ui-size-large\`                                | Font size (16px)                     |
+| Typography | \`$ui-font-weight-default\`                       | Font weight (400)                    |
+| Typography | \`$letter-spacing-tracking-1\`                    | Letter spacing                       |
+
+Override the CSS custom properties on \`:root\` or a section element to retheme
 every consumer — no component edits required.
 
 \`\`\`css
@@ -206,8 +234,8 @@ export const Playground: Story = {
   },
   args: {
     label: 'Tier 1 Label',
-    state: 'Default',
-    orientation: 'Vertical',
+    state: "Active Pill",
+    orientation: "Horizontal",
     nesting: 'Parent',
     hierarchy: 'Tier 1',
     iconLeft: false,

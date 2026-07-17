@@ -9,7 +9,7 @@
 // `columns + card` (desktop) → `columns / card` (tablet) → stacked (mobile).
 // -----------------------------------------------------------------------------
 
-$mega-menu-divider: $mapping-system-slate-border-tertiary;
+$mega-menu-divider: $color-system-gray-200;
 
 .ds-mega-menu {
   // ----- Layout (matches Figma "Layout" inspector exactly) -----
@@ -21,7 +21,7 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   gap: $gap-2xs;
   box-sizing: border-box;
   font-family: $ui-font-family;
-  color: var(--sds-mega-menu-text-color, $mapping-system-slate-text-primary);
+  color: $color-system-gray-900;
 
   // ----- Style (matches Figma "Style" inspector exactly) -----
   // Bottom-only radius — the top edge butts up against the navbar trigger.
@@ -30,8 +30,8 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
 
   /* Box Shadow/shadow-md */
   box-shadow:
-    0 2px $depth-100 $depth-negative-025 $mapping-system-shadow-medium,
-    0 4px $depth-100 $depth-negative-025 $mapping-system-shadow-medium;
+    0 2px $depth-100 $depth-negative-025 $color-system-shadow-opacity-10,
+    0 4px $depth-100 $depth-negative-025 $color-system-shadow-opacity-10;
 }
 
 /* ---------- Title ---------- */
@@ -45,7 +45,7 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   font-weight: $heading-font-weight-bold;
   line-height: 1.2;
   letter-spacing: $letter-spacing-tracking-2;
-  color: var(--sds-mega-menu-title-color, $mapping-system-slate-text-secondary);
+  color: $color-system-gray-700;
 }
 
 /* ---------- Body grid: columns + optional card ---------- */
@@ -170,7 +170,7 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   &:hover { opacity: 0.9; }
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 $depth-025 $mapping-system-focus-border-secondary;
+    box-shadow: 0 0 0 $depth-025 $color-system-blue-400;
     border-radius: $radius-medium;
   }
 }
@@ -187,11 +187,11 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   gap: $gap-2xs;
   max-width: 100%; // graceful shrink inside narrow slots (tablet / mobile)
   aspect-ratio: 4 / 3;
-  background: $mapping-system-slate-surface-secondary;
+  background: $color-system-slate-100;
   // Style: border-radius: var(--radius-none);
   border-radius: $radius-none;
   overflow: hidden;
-  color: $mapping-system-slate-text-tertiary;
+  color: $color-system-gray-600;
 
   img {
     width: 100%;
@@ -205,7 +205,7 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
   width: 60%;
   height: auto;
   max-height: 70%;
-  color: $mapping-system-slate-text-tertiary;
+  color: $color-system-gray-600;
 }
 
 .ds-mega-menu__card-body {
@@ -287,30 +287,30 @@ $mega-menu-divider: $mapping-system-slate-border-tertiary;
 
 /* ---------- Color mode: DARK ---------- */
 .ds-mega-menu--mode-dark {
-  background: $mapping-system-slate-background-secondary;
-  color: $mapping-system-slate-text-on-primary;
+  background: $color-system-slate-600;
+  color: $color-system-white-white;
 
   .ds-mega-menu__category {
-    color: $mapping-system-slate-text-on-tertiary;
+    color: $color-system-gray-900;
     opacity: 0.7;
   }
 
   .ds-mega-menu__link-item {
-    border-bottom-color: $mapping-system-slate-border-primary;
+    border-bottom-color: $color-system-gray-600;
   }
 
   .ds-mega-menu__card-image {
-    background: $mapping-system-slate-background-secondary-hover;
-    color: $mapping-system-slate-text-on-primary;
+    background: $color-system-slate-700;
+    color: $color-system-white-white;
   }
 
   .ds-mega-menu__card-image-placeholder {
-    color: $mapping-system-slate-text-on-primary;
+    color: $color-system-white-white;
     opacity: 0.4;
   }
 
   .ds-mega-menu__card-text {
-    color: $mapping-system-slate-text-on-primary;
+    color: $color-system-white-white;
     opacity: 0.8;
   }
 }

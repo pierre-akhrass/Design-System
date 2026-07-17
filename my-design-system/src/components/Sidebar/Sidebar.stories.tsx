@@ -178,15 +178,33 @@ import {
 \`\`\`
 
 ### Theming
-All colors come from the slate token set defined in
-\`src/styles/tokens/_variables.scss\` (e.g.
-\`$mapping-system-slate-surface-primary\`,
-\`$mapping-system-slate-background-secondary\`,
-\`$mapping-system-slate-text-on-primary\`,
-\`$mapping-system-slate-border-primary\`,
-\`$mapping-system-focus-border-secondary\`). **No hardcoded color values** —
-swap the token layer to retheme the component (and, by extension, the
-Navbar's mobile drawer which renders this same Sidebar).
+All colors and spacing come from the design-token layer defined in
+\`src/styles/tokens/_variables.scss\`. Tokens used:
+
+| Category   | Token                                          | Usage                          |
+| ---------- | ---------------------------------------------- | ------------------------------ |
+| Background | \`$color-system-slate-50\`                       | Light-mode card background     |
+| Background | \`$color-system-slate-900\`                      | Dark-mode card background      |
+| Text       | \`var(--sds-color-text-default-default)\`         | Default body text              |
+| Text       | \`$color-system-white-white\`                    | Dark-mode text                 |
+| Text       | \`$color-system-gray-600\`           | Category headings (light)      |
+| Text       | \`$color-system-gray-900\`        | Category headings (dark)       |
+| Text       | \`$color-system-gray-700\`          | Footer icons (light)           |
+| Text       | \`$color-system-white-white\`         | Footer icons (dark)            |
+| Border     | \`$color-system-gray-200\`         | Divider (light)                |
+| Border     | \`$color-system-gray-600\`          | Divider (dark)                 |
+| Focus      | \`$color-system-blue-400\`        | Focus ring on footer links     |
+| Spacing    | \`$padding-container-s\`, \`$padding-container-xs\` | Card padding                   |
+| Spacing    | \`$padding-action-s\`                            | Inner row padding              |
+| Spacing    | \`$gap-2xs\`, \`$gap-3xs\`, \`$gap-xs\`, \`$gap-s\`, \`$gap-m\`, \`$gap-l\` | Various gaps   |
+| Radius     | \`$radius-large\`                                | Card corners                   |
+| Radius     | \`$radius-medium\`                               | Footer link focus ring         |
+| Typography | \`$ui-font-family\`                              | All text                       |
+| Typography | \`$ui-font-weight-strong\`                       | Logo text, category headings   |
+
+**No hardcoded color values** — swap the token layer to retheme the
+component (and, by extension, the Navbar's mobile drawer which renders
+this same Sidebar).
 
 ### Accessibility
 - Rendered inside an \`<aside>\` landmark with a localizable \`aria-label\` (default \`"Sidebar"\`).

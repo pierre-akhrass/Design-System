@@ -4,7 +4,7 @@
   display: inline-flex;
   align-items: center;
   font-family: $ui-font-family;
-  color: $mapping-system-slate-text-primary;
+  color: $color-system-gray-900;
 }
 
 .ds-breadcrumbs__list {
@@ -27,7 +27,7 @@
   display: inline-flex;
   align-items: center;
   gap: $gap-2xs;
-  color: $mapping-system-slate-text-primary;
+  color: $color-system-gray-900;
   text-decoration: none;
   line-height: 1.4;
   border-radius: $radius-small;
@@ -43,20 +43,20 @@ a.ds-breadcrumbs__item {
 
   &:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 $depth-025 $mapping-system-focus-border-secondary;
+    box-shadow: 0 0 0 $depth-025 $color-system-blue-400;
   }
 }
 
 .ds-breadcrumbs__item--ancestor {
-  color: $mapping-system-slate-text-primary;
+  color: var(--sds-color-text-default-default);
 }
 
 .ds-breadcrumbs__item--collapsed {
-  color: $mapping-system-slate-text-primary;
+  color: var(--sds-color-text-default-default);
 }
 
 .ds-breadcrumbs__item--current {
-  color: $mapping-system-slate-text-secondary;
+  color: var(--sds-color-text-default-secondary);
   font-weight: $ui-font-weight-strong;
   cursor: default;
 }
@@ -64,7 +64,7 @@ a.ds-breadcrumbs__item {
 .ds-breadcrumbs__separator {
   display: inline-flex;
   align-items: center;
-  color: $mapping-system-slate-text-secondary;
+  color: var(--sds-color-text-default-secondary);
   line-height: 0;
 }
 

@@ -1,6 +1,9 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Map/Map.tsx
 import {
+  useCallback,
+  useEffect,
   useMemo,
+  useRef,
   useState,
   type CSSProperties,
   type HTMLAttributes,
@@ -152,6 +155,8 @@ export const Map = ({
   const [country, setCountry] = useState('')
   const [project, setProject] = useState('')
   const [internalActive, setInternalActive] = useState<string | undefined>()
+  const popupRef = useRef<HTMLDivElement>(null)
+  const mapRef = useRef<HTMLDivElement>(null)
 
   const active = activePinId ?? internalActive
   const activePin = pins.find((p) => p.id === active)
@@ -176,6 +181,29 @@ export const Map = ({
 
   const classes = ['ds-map', `ds-map--mode-${mode}`, className].filter(Boolean).join(' ')
 
+  /** Clamp popup so it never overflows the viewport */
+  const clampPopup = useCallback(() => {
+    const popup = popupRef.current
+    if (!popup) return
+    const rect = popup.getBoundingClientRect()
+    const pad = 8
+    let dx = 0
+    let dy = 0
+    if (rect.right > window.innerWidth - pad) dx = window.innerWidth - pad - rect.right
+    if (rect.left < pad) dx = pad - rect.left
+    if (rect.bottom > window.innerHeight - pad) dy = window.innerHeight - pad - rect.bottom
+    if (rect.top < pad) dy = pad - rect.top
+    if (dx !== 0 || dy !== 0) {
+      const cur = popup.getBoundingClientRect()
+      popup.style.left = `${parseFloat(popup.style.left || '0') + (dx / (mapRef.current?.offsetWidth || 1)) * 100}%`
+      popup.style.top = `${cur.top + dy - (mapRef.current?.getBoundingClientRect().top || 0)}px`
+    }
+  }, [])
+
+  useEffect(() => {
+    clampPopup()
+  }, [activePin, clampPopup])
+
   const containerStyle: CSSProperties = {
     ...(mapImage
       ? {
@@ -191,7 +219,7 @@ export const Map = ({
   }
 
   return (
-    <div className={classes} style={containerStyle} {...props}>
+    <div ref={mapRef} className={classes} style={containerStyle} {...props}>
       {/* Header card block (top-left) */}
       {(title || description) && (
         <div className="ds-map__header">
@@ -217,14 +245,15 @@ export const Map = ({
         </button>
       ))}
 
-      {/* Popup card next to active pin (auto-flip to stay inside viewport) */}
+      {/* Popup card next to active pin — clamped within viewport */}
       {activePin && (() => {
-        const flipX = activePin.x > 55
-        const flipY = activePin.y < 45
-        const tx = flipX ? 'calc(-100% - 16px)' : '16px'
-        const ty = flipY ? '16px' : '-100%'
+        const flipX = activePin.x > 50
+        const flipY = activePin.y < 40
+        const tx = flipX ? 'calc(-100% - 12px)' : '12px'
+        const ty = flipY ? '12px' : '-100%'
         return (
           <div
+            ref={popupRef}
             className="ds-map__popup"
             style={{
               left: `${activePin.x}%`,
