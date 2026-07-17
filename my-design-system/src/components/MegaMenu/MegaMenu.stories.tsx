@@ -6,6 +6,8 @@ import type {
   MegaMenuColumnConfig,
   MegaMenuLink,
 } from './MegaMenu'
+import { COLOR_TOKENS } from '../../playground/colors'
+import { TOKENS } from '../../playground/designTokens'
 
 // ----- icons (kept inline so the story stays self-contained) -----
 const StarIcon = () => (
@@ -78,6 +80,14 @@ type PlaygroundArgs = {
   columns: ColumnEntry[]
   /** Set to `null` (clear all fields) to hide the card slot. */
   card: CardEntry
+  // Token-based styling
+  paddingX: string
+  paddingY: string
+  marginX: string
+  marginY: string
+  bgColor: string
+  textColor: string
+  titleColor: string
 }
 
 const meta: Meta<PlaygroundArgs> = {
@@ -216,6 +226,141 @@ swap the token layer to retheme.
         'Clear `title`, `subtitle`, `body` and `buttonLabel` to hide the card body, ' +
         'or clear every field to hide the card entirely.',
     },
+    // Spacing tokens
+    paddingX: {
+      control: 'select',
+      options: [
+        'default',
+        `xs ${TOKENS.paddingContainer.xs}`,
+        `s ${TOKENS.paddingContainer.s}`,
+        `m ${TOKENS.paddingContainer.m}`,
+        `l ${TOKENS.paddingContainer.l}`,
+        `xl ${TOKENS.paddingContainer.xl}`,
+      ],
+      description: 'Horizontal padding from container scale.',
+    },
+    paddingY: {
+      control: 'select',
+      options: [
+        'default',
+        `050 ${TOKENS.space['050']}`,
+        `100 ${TOKENS.space['100']}`,
+        `200 ${TOKENS.space['200']}`,
+        `300 ${TOKENS.space['300']}`,
+        `400 ${TOKENS.space['400']}`,
+        `500 ${TOKENS.space['500']}`,
+        `600 ${TOKENS.space['600']}`,
+      ],
+      description: 'Vertical padding from space scale.',
+    },
+    marginX: {
+      control: 'select',
+      options: [
+        'default',
+        `0 ${TOKENS.space['0']}`,
+        `050 ${TOKENS.space['050']}`,
+        `100 ${TOKENS.space['100']}`,
+        `200 ${TOKENS.space['200']}`,
+        `300 ${TOKENS.space['300']}`,
+        `400 ${TOKENS.space['400']}`,
+      ],
+      description: 'Horizontal margin from space scale.',
+    },
+    marginY: {
+      control: 'select',
+      options: [
+        'default',
+        `0 ${TOKENS.space['0']}`,
+        `050 ${TOKENS.space['050']}`,
+        `100 ${TOKENS.space['100']}`,
+        `200 ${TOKENS.space['200']}`,
+        `300 ${TOKENS.space['300']}`,
+      ],
+      description: 'Vertical margin from space scale.',
+    },
+    // Color tokens
+    bgColor: {
+      control: 'select',
+      options: [
+        'default',
+        // System Slate
+        `Slate Surface Primary ${COLOR_TOKENS.systemSlate.surface.primary}`,
+        `Slate Surface Secondary ${COLOR_TOKENS.systemSlate.surface.secondary}`,
+        `Slate Surface Tertiary ${COLOR_TOKENS.systemSlate.surface.tertiary}`,
+        `Slate Background Primary ${COLOR_TOKENS.systemSlate.background.primary}`,
+        `Slate Background Secondary ${COLOR_TOKENS.systemSlate.background.secondary}`,
+        // System Neutral
+        `Neutral Surface Primary ${COLOR_TOKENS.systemNeutral.surface.primary}`,
+        `Neutral Background Primary ${COLOR_TOKENS.systemNeutral.background.primary}`,
+        `Neutral Background Secondary ${COLOR_TOKENS.systemNeutral.background.secondary}`,
+        // System Success
+        `Success Surface Primary ${COLOR_TOKENS.systemSuccess.surface.primary}`,
+        `Success Background Primary ${COLOR_TOKENS.systemSuccess.background.primary}`,
+        // Brand Teal Blue
+        `Teal Blue Surface Primary ${COLOR_TOKENS.brandTealBlue.surface.primary}`,
+        `Teal Blue Background Primary ${COLOR_TOKENS.brandTealBlue.background.primary}`,
+        `Teal Blue Background Secondary ${COLOR_TOKENS.brandTealBlue.background.secondary}`,
+        // Brand Dark Turquoise
+        `Dark Turquoise Surface Primary ${COLOR_TOKENS.brandDarkTurquoise.surface.primary}`,
+        `Dark Turquoise Background Primary ${COLOR_TOKENS.brandDarkTurquoise.background.primary}`,
+        // Brand Pale Blue
+        `Pale Blue Surface Primary ${COLOR_TOKENS.brandPaleBlue.surface.primary}`,
+        `Pale Blue Background Primary ${COLOR_TOKENS.brandPaleBlue.background.primary}`,
+      ],
+      description: 'Background color with actual hex value.',
+    },
+    textColor: {
+      control: 'select',
+      options: [
+        'default',
+        // System Slate
+        `Slate Text Primary ${COLOR_TOKENS.systemSlate.text.primary}`,
+        `Slate Text Secondary ${COLOR_TOKENS.systemSlate.text.secondary}`,
+        `Slate Text Tertiary ${COLOR_TOKENS.systemSlate.text.tertiary}`,
+        `Slate Text On Primary ${COLOR_TOKENS.systemSlate.text.onPrimary}`,
+        // System Neutral
+        `Neutral Text Primary ${COLOR_TOKENS.systemNeutral.text.primary}`,
+        `Neutral Text Secondary ${COLOR_TOKENS.systemNeutral.text.secondary}`,
+        `Neutral Text On Primary ${COLOR_TOKENS.systemNeutral.text.onPrimary}`,
+        // System Success
+        `Success Text Primary ${COLOR_TOKENS.systemSuccess.text.primary}`,
+        `Success Text Secondary ${COLOR_TOKENS.systemSuccess.text.secondary}`,
+        // Brand Teal Blue
+        `Teal Blue Text Primary ${COLOR_TOKENS.brandTealBlue.text.primary}`,
+        `Teal Blue Text Secondary ${COLOR_TOKENS.brandTealBlue.text.secondary}`,
+        `Teal Blue Text On Primary ${COLOR_TOKENS.brandTealBlue.text.onPrimary}`,
+        // Brand Dark Turquoise
+        `Dark Turquoise Text Primary ${COLOR_TOKENS.brandDarkTurquoise.text.primary}`,
+        `Dark Turquoise Text Secondary ${COLOR_TOKENS.brandDarkTurquoise.text.secondary}`,
+        // Brand Pale Blue
+        `Pale Blue Text Primary ${COLOR_TOKENS.brandPaleBlue.text.primary}`,
+        `Pale Blue Text Secondary ${COLOR_TOKENS.brandPaleBlue.text.secondary}`,
+      ],
+      description: 'Text / link color with actual hex value.',
+    },
+    titleColor: {
+      control: 'select',
+      options: [
+        'default',
+        // System Slate
+        `Slate Text Primary ${COLOR_TOKENS.systemSlate.text.primary}`,
+        `Slate Text Secondary ${COLOR_TOKENS.systemSlate.text.secondary}`,
+        `Slate Text Tertiary ${COLOR_TOKENS.systemSlate.text.tertiary}`,
+        // System Neutral
+        `Neutral Text Primary ${COLOR_TOKENS.systemNeutral.text.primary}`,
+        `Neutral Text Secondary ${COLOR_TOKENS.systemNeutral.text.secondary}`,
+        // Brand Teal Blue
+        `Teal Blue Text Primary ${COLOR_TOKENS.brandTealBlue.text.primary}`,
+        `Teal Blue Text Secondary ${COLOR_TOKENS.brandTealBlue.text.secondary}`,
+        // Brand Dark Turquoise
+        `Dark Turquoise Text Primary ${COLOR_TOKENS.brandDarkTurquoise.text.primary}`,
+        `Dark Turquoise Text Secondary ${COLOR_TOKENS.brandDarkTurquoise.text.secondary}`,
+        // Brand Pale Blue
+        `Pale Blue Text Primary ${COLOR_TOKENS.brandPaleBlue.text.primary}`,
+        `Pale Blue Text Secondary ${COLOR_TOKENS.brandPaleBlue.text.secondary}`,
+      ],
+      description: 'Title heading color with actual hex value.',
+    },
   },
 }
 export default meta
@@ -232,8 +377,15 @@ export const Playground: Story = {
     },
   },
   args: {
-    colorMode: 'light',
+    colorMode: "light",
     title: 'Our Products',
+    paddingX: `m ${TOKENS.paddingContainer.m}`,
+    paddingY: `400 ${TOKENS.space['400']}`,
+    marginX: 'default',
+    marginY: 'default',
+    bgColor: 'default',
+    textColor: "Neutral Text Secondary #545454",
+    titleColor: "Teal Blue Text Secondary #144284",
     columns: [
       {
         title: 'POPULAR',
@@ -284,7 +436,7 @@ export const Playground: Story = {
       buttonHref: '#changelog',
     },
   },
-  render: ({ colorMode, title, columns, card }) => {
+  render: ({ colorMode, title, columns, card, paddingX, paddingY, marginX, marginY, bgColor, textColor, titleColor }) => {
     // Resolve each editable column into a real MegaMenuColumnConfig by
     // swapping the string `icon` key for the matching SVG ReactNode from the
     // ICONS registry. Icons without a matching key are silently dropped so a
@@ -316,11 +468,45 @@ export const Playground: Story = {
       Boolean(card?.body) ||
       Boolean(card?.buttonLabel)
 
+    // Extract hex color from option string (e.g., "Slate Text Primary #292929" → "#292929")
+    const extractHexColor = (option: string) => {
+      if (option === 'default') return undefined
+      const match = option.match(/#[0-9a-fA-F]{6}/)
+      return match ? match[0] : undefined
+    }
+
+    // Extract spacing value from option string (e.g., "m 32px" → "32px")
+    const extractSpacingValue = (option: string) => {
+      if (option === 'default') return undefined
+      const parts = option.split(' ')
+      return parts[1] || undefined // Return the value part after token name
+    }
+
+    const bgColorValue = extractHexColor(bgColor)
+    const textColorValue = extractHexColor(textColor)
+    const titleColorValue = extractHexColor(titleColor)
+    const paddingXValue = extractSpacingValue(paddingX)
+    const paddingYValue = extractSpacingValue(paddingY)
+    const marginXValue = extractSpacingValue(marginX)
+    const marginYValue = extractSpacingValue(marginY)
+
+    // Build inline styles from token selections
+    const styles = {
+      paddingInline: paddingXValue,
+      paddingBlock: paddingYValue,
+      marginInline: marginXValue,
+      marginBlock: marginYValue,
+      backgroundColor: bgColorValue,
+      '--sds-mega-menu-text-color': textColorValue,
+      '--sds-mega-menu-title-color': titleColorValue,
+    } as React.CSSProperties
+
     return (
       <MegaMenu
         colorMode={colorMode}
         title={title || undefined}
         columns={resolvedColumns}
+        style={styles}
         card={
           hasCardContent
             ? {
