@@ -1,14 +1,21 @@
 @use '../styles/tokens/variables' as *;
 
 // ── Shell variables ───────────────────────────────────────────────────────────
-$pg-topbar-h:   56px;
+$pg-topbar-h:   52px;
 $pg-accent:     #6366f1;
+$pg-accent-2:   #8b5cf6;
 $pg-border:     rgba(0, 0, 0, 0.07);
 $pg-text-pri:   #141f2e;
 $pg-text-sec:   #6e8296;
 $pg-bg:         #f0f2f5;
 $pg-surface:    #ffffff;
 $pg-font:       'Inter', system-ui, sans-serif;
+
+// ── Topbar surface tokens ─────────────────────────────────────────────────────
+$topbar-bg:       #0f172a;
+$topbar-border:   rgba(255, 255, 255, 0.06);
+$topbar-text:     #e2e8f0;
+$topbar-text-dim: rgba(148, 163, 184, 0.7);
 
 // ── Shell root ────────────────────────────────────────────────────────────────
 
@@ -20,6 +27,155 @@ $pg-font:       'Inter', system-ui, sans-serif;
   overflow: hidden;
   font-family: $pg-font;
 }
+
+// ── Top bar ───────────────────────────────────────────────────────────────────
+
+.pg__topbar {
+  align-items: center;
+  background: $topbar-bg;
+  border-bottom: 1px solid $topbar-border;
+  box-shadow: 0 1px 0 rgba(99, 102, 241, 0.35), 0 4px 16px rgba(0, 0, 0, 0.22);
+  display: flex;
+  flex-shrink: 0;
+  gap: 10px;
+  height: $pg-topbar-h;
+  padding: 0 20px;
+  position: relative;
+
+  // Accent gradient line at very bottom
+  &::after {
+    background: linear-gradient(90deg, $pg-accent 0%, $pg-accent-2 100%);
+    bottom: 0;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
+
+  &-logo {
+    align-items: center;
+    background: linear-gradient(135deg, $pg-accent 0%, $pg-accent-2 100%);
+    border-radius: 8px;
+    color: #ffffff;
+    display: flex;
+    flex-shrink: 0;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
+  }
+
+  &-title {
+    color: $topbar-text;
+    font-family: $pg-font;
+    font-size: 13.5px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  &-accent {
+    color: #a5b4fc;
+    font-weight: 700;
+  }
+
+  // Vertical divider
+  &-sep {
+    background: $topbar-border;
+    flex-shrink: 0;
+    height: 20px;
+    width: 1px;
+  }
+
+  &-demo {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    color: $topbar-text-dim;
+    cursor: pointer;
+    display: flex;
+    font-family: $pg-font;
+    font-size: 12px;
+    font-weight: 500;
+    gap: 6px;
+    margin-left: auto;
+    padding: 5px 11px;
+    text-decoration: none;
+    transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.18);
+      color: $topbar-text;
+    }
+  }
+
+  &-publish {
+    align-items: center;
+    background: rgba(99, 102, 241, 0.18);
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    border-radius: 7px;
+    color: #a5b4fc;
+    cursor: pointer;
+    display: flex;
+    font-family: $pg-font;
+    font-size: 12px;
+    font-weight: 500;
+    gap: 6px;
+    padding: 5px 11px;
+    transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+
+    &:hover {
+      background: rgba(99, 102, 241, 0.28);
+      border-color: rgba(99, 102, 241, 0.6);
+      color: #c7d2fe;
+    }
+
+    &-count {
+      align-items: center;
+      background: $pg-accent;
+      border-radius: 99px;
+      color: #ffffff;
+      display: inline-flex;
+      font-size: 10px;
+      font-weight: 700;
+      height: 16px;
+      justify-content: center;
+      min-width: 16px;
+      padding: 0 4px;
+    }
+  }
+
+  &-badge {
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 99px;
+    color: #a5b4fc;
+    font-family: $pg-font;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 2px 9px;
+  }
+}
+
+// ── Body ──────────────────────────────────────────────────────────────────────
+
+.pg__body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.pg__workspace {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
 
 // ── Top bar ───────────────────────────────────────────────────────────────────
 
