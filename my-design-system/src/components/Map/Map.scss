@@ -1,4 +1,7 @@
 // filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Map/Map.scss
+@use '../../styles/tokens/variables' as *;
+
+// filepath: /Users/serenejaber/Documents/GitHub/Design-System/my-design-system/src/components/Map/Map.scss
 .ds-map {
   position: relative;
   display: flex;

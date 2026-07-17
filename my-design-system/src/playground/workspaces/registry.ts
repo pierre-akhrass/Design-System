@@ -7,6 +7,7 @@ import { TextAreaWorkspace } from './TextAreaWorkspace/TextAreaWorkspace'
 import { SearchWorkspace } from './SearchWorkspace/SearchWorkspace'
 import { DropdownWorkspace } from './DropdownWorkspace/DropdownWorkspace'
 import { NavbarWorkspace } from './NavbarWorkspace/NavbarWorkspace'
+import { NavItemWorkspace } from './NavItemWorkspace/NavItemWorkspace'
 import { MapWorkspace } from './MapWorkspace/MapWorkspace'
 import { CardWorkspace } from './CardWorkspace/CardWorkspace'
 import { CarouselWorkspace } from './CarouselWorkspace/CarouselWorkspace'
@@ -112,6 +113,12 @@ export const registry: WorkspaceEntry[] = [
     label: 'Navbar',
     group: 'Navigation',
     component: NavbarWorkspace,
+  },
+  {
+    id: 'navitem',
+    label: 'NavItem',
+    group: 'Navigation',
+    component: NavItemWorkspace,
   },
   {
     id: 'breadcrumbs',
