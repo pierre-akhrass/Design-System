@@ -13,8 +13,8 @@
   }
 
   &__pin-card {
-    background: rgba(0, 0, 0, 0.025);
-    border: 1px solid rgba(0, 0, 0, 0.06);
+    background: var(--pg-input-bg);
+    border: 1px solid var(--pg-border);
     border-radius: 6px;
     padding: 8px;
   }
@@ -27,7 +27,7 @@
   }
 
   &__pin-index {
-    color: rgba(60, 80, 100, 0.45);
+    color: var(--pg-muted);
     font-size: 10px;
     font-weight: 600;
   }
@@ -35,7 +35,7 @@
   &__pin-remove {
     background: none;
     border: none;
-    color: rgba(60, 80, 100, 0.4);
+    color: var(--pg-text-sec);
     cursor: pointer;
     font-size: 12px;
     line-height: 1;
@@ -59,7 +59,7 @@
   }
 
   &__pin-sep {
-    color: rgba(60, 80, 100, 0.4);
+    color: var(--pg-text-sec);
     font-size: 10px;
   }
 
@@ -72,9 +72,9 @@
   &__pin-add,
   &__pin-reset {
     background: transparent;
-    border: 1px dashed rgba(0, 0, 0, 0.12);
+    border: 1px dashed var(--pg-border-strong);
     border-radius: 5px;
-    color: rgba(60, 80, 100, 0.6);
+    color: var(--pg-text-sec);
     cursor: pointer;
     flex: 1;
     font-family: 'Inter', system-ui, sans-serif;
@@ -84,8 +84,8 @@
     transition: background 0.14s, border-color 0.14s;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.2);
+      background: var(--pg-input-bg);
+      border-color: var(--pg-border-strong);
     }
   }
 }

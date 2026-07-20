@@ -1,6 +1,5 @@
 $avatar-ws-font: 'Inter', system-ui, sans-serif;
 $avatar-ws-accent: #6366f1;
-$avatar-ws-border: rgba(0, 0, 0, 0.07);
 
 .avatar-ws {
   display: flex;
@@ -17,12 +16,12 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
     overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.13) transparent;
+    scrollbar-color: var(--pg-scrollbar) transparent;
 
     &::-webkit-scrollbar         { width: 4px; }
     &::-webkit-scrollbar-track   { background: transparent; }
-    &::-webkit-scrollbar-thumb   { background: rgba(0, 0, 0, 0.13); border-radius: 10px; }
-    &::-webkit-scrollbar-thumb:hover { background: rgba(0, 0, 0, 0.26); }
+    &::-webkit-scrollbar-thumb   { background: var(--pg-scrollbar); border-radius: 10px; }
+    &::-webkit-scrollbar-thumb:hover { background: var(--pg-border-strong); }
   }
 
   // Canvas area — flex row so two canvases sit side by side in compare mode
@@ -33,15 +32,15 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
     overflow: hidden;
 
     .pg-canvas + .pg-canvas {
-      border-left: 1px solid $avatar-ws-border;
+      border-left: 1px solid var(--pg-border);
     }
   }
 
   // Toolbar
   &__toolbar {
     align-items: center;
-    background: #ffffff;
-    border-bottom: 1px solid $avatar-ws-border;
+    background: var(--pg-surface);
+    border-bottom: 1px solid var(--pg-border);
     display: flex;
     flex-shrink: 0;
     height: 44px;
@@ -56,7 +55,7 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
   }
 
   &__toolbar-label {
-    color: rgba(60, 80, 100, 0.38);
+    color: var(--pg-muted);
     font-family: $avatar-ws-font;
     font-size: 10px;
     font-weight: 600;
@@ -72,9 +71,9 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
   &__toolbar-btn {
     align-items: center;
     background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--pg-seg-border);
     border-radius: 5px;
-    color: rgba(60, 80, 100, 0.55);
+    color: var(--pg-text-sec);
     cursor: pointer;
     display: flex;
     font-family: $avatar-ws-font;
@@ -85,8 +84,8 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
     transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.04);
-      color: #141f2e;
+      background: var(--pg-input-bg);
+      color: var(--pg-text-pri);
     }
 
     &--active {
@@ -105,8 +104,8 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
 
   &__view-switcher {
     align-items: center;
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: var(--pg-input-bg);
+    border: 1px solid var(--pg-seg-border);
     border-radius: 6px;
     display: flex;
     gap: 2px;
@@ -118,7 +117,7 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
     background: transparent;
     border: none;
     border-radius: 4px;
-    color: rgba(60, 80, 100, 0.5);
+    color: var(--pg-text-sec);
     cursor: pointer;
     font-family: $avatar-ws-font;
     font-size: 11px;
@@ -128,14 +127,14 @@ $avatar-ws-border: rgba(0, 0, 0, 0.07);
     white-space: nowrap;
 
     &:hover {
-      color: #141f2e;
+      color: var(--pg-text-pri);
     }
 
     &--active {
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.10);
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border-strong);
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
-      color: #141f2e;
+      color: var(--pg-text-pri);
     }
   }
 }

@@ -10,8 +10,16 @@ export const Playground = () => {
   const [activeId, setActiveId] = useState(registry[0].id)
   const [managerOpen, setManagerOpen] = useState(false)
   const [publishedIds, setPublishedIds] = useState<string[]>([])
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    try { return localStorage.getItem('pg-theme') === 'dark' } catch { return false }
+  })
   const activeEntry = registry.find((w) => w.id === activeId) ?? registry[0]
   const WorkspaceComponent = activeEntry.component
+
+  // Persist dark mode preference
+  useEffect(() => {
+    try { localStorage.setItem('pg-theme', darkMode ? 'dark' : 'light') } catch {}
+  }, [darkMode])
 
   // Track which component ids currently have published overrides.
   useEffect(() => {
@@ -29,7 +37,7 @@ export const Playground = () => {
   }, [])
 
   return (
-    <div className="pg">
+    <div className={`pg${darkMode ? ' pg--dark' : ''}`}>
       {/* ── Top bar ──────────────────────────────────────────────────── */}
       <header className="pg__topbar">
         <span className="pg__topbar-logo" aria-hidden="true">
@@ -73,6 +81,26 @@ export const Playground = () => {
           Published
           {publishedIds.length > 0 && (
             <span className="pg__topbar-publish-count">{publishedIds.length}</span>
+          )}
+        </button>
+        <button
+          className="pg__topbar-theme-toggle"
+          onClick={() => setDarkMode((d) => !d)}
+          type="button"
+          title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+        >
+          {darkMode ? (
+            /* Sun icon */
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2M20 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" strokeLinecap="round" />
+            </svg>
+          ) : (
+            /* Moon icon */
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           )}
         </button>
         <span className="pg__topbar-badge">v0.1</span>

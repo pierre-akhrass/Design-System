@@ -1,17 +1,12 @@
 @use '../styles/tokens/variables' as *;
 
-// ── Shell variables ───────────────────────────────────────────────────────────
+// ── Shell variables (static / topbar) ────────────────────────────────────────
 $pg-topbar-h:   52px;
 $pg-accent:     #6366f1;
 $pg-accent-2:   #8b5cf6;
-$pg-border:     rgba(0, 0, 0, 0.07);
-$pg-text-pri:   #141f2e;
-$pg-text-sec:   #6e8296;
-$pg-bg:         #f0f2f5;
-$pg-surface:    #ffffff;
 $pg-font:       'Inter', system-ui, sans-serif;
 
-// ── Topbar surface tokens ─────────────────────────────────────────────────────
+// ── Topbar surface tokens (always dark) ──────────────────────────────────────
 $topbar-bg:       #0f172a;
 $topbar-border:   rgba(255, 255, 255, 0.06);
 $topbar-text:     #e2e8f0;
@@ -20,7 +15,41 @@ $topbar-text-dim: rgba(148, 163, 184, 0.7);
 // ── Shell root ────────────────────────────────────────────────────────────────
 
 .pg {
-  background: $pg-bg;
+  // ── Light mode tokens (default) ───────────────────────────────────────────
+  --pg-bg:            #f0f2f5;
+  --pg-surface:       #ffffff;
+  --pg-surface-2:     #f8f9fb;
+  --pg-text-pri:      #141f2e;
+  --pg-text-sec:      #6e8296;
+  --pg-border:        rgba(0, 0, 0, 0.07);
+  --pg-border-strong: rgba(0, 0, 0, 0.12);
+  --pg-input-bg:      rgba(0, 0, 0, 0.04);
+  --pg-input-border:  rgba(0, 0, 0, 0.12);
+  --pg-seg-bg:        rgba(0, 0, 0, 0.06);
+  --pg-seg-border:    rgba(0, 0, 0, 0.08);
+  --pg-seg-active:    #edf0f3;
+  --pg-muted:         rgba(60, 80, 100, 0.38);
+  --pg-scrollbar:     rgba(0, 0, 0, 0.1);
+
+  // ── Dark mode overrides ───────────────────────────────────────────────────
+  &--dark {
+    --pg-bg:            #0d1526;
+    --pg-surface:       #162033;
+    --pg-surface-2:     #0f1a2e;
+    --pg-text-pri:      #e2e8f0;
+    --pg-text-sec:      #94a3b8;
+    --pg-border:        rgba(255, 255, 255, 0.08);
+    --pg-border-strong: rgba(255, 255, 255, 0.14);
+    --pg-input-bg:      rgba(255, 255, 255, 0.05);
+    --pg-input-border:  rgba(255, 255, 255, 0.12);
+    --pg-seg-bg:        rgba(255, 255, 255, 0.06);
+    --pg-seg-border:    rgba(255, 255, 255, 0.08);
+    --pg-seg-active:    rgba(255, 255, 255, 0.11);
+    --pg-muted:         rgba(148, 163, 184, 0.55);
+    --pg-scrollbar:     rgba(255, 255, 255, 0.1);
+  }
+
+  background: var(--pg-bg);
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -158,129 +187,32 @@ $topbar-text-dim: rgba(148, 163, 184, 0.7);
     letter-spacing: 0.02em;
     padding: 2px 9px;
   }
-}
 
-// ── Body ──────────────────────────────────────────────────────────────────────
-
-.pg__body {
-  display: flex;
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-}
-
-.pg__workspace {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
-}
-
-
-// ── Top bar ───────────────────────────────────────────────────────────────────
-
-.pg__topbar {
-  align-items: center;
-  background: $pg-surface;
-  border-bottom: 1px solid $pg-border;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  display: flex;
-  flex-shrink: 0;
-  gap: 12px;
-  height: $pg-topbar-h;
-  padding: 0 22px;
-
-  &-logo {
+  // ── Dashboard theme toggle ────────────────────────────────────────────────
+  &-theme-toggle {
     align-items: center;
-    color: $pg-accent;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    color: $topbar-text-dim;
+    cursor: pointer;
     display: flex;
     flex-shrink: 0;
-  }
-
-  &-title {
-    color: $pg-text-pri;
-    font-family: $pg-font;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    margin: 0;
-  }
-
-  &-accent {
-    color: $pg-accent;
-  }
-
-  &-demo {
-    align-items: center;
-    background: transparent;
-    border: 1px solid $pg-border;
-    border-radius: 7px;
-    color: $pg-text-sec;
-    cursor: pointer;
-    display: flex;
-    font-family: $pg-font;
-    font-size: 12px;
-    font-weight: 500;
-    gap: 6px;
-    margin-left: auto;
-    padding: 6px 11px;
-    text-decoration: none;
+    height: 30px;
+    justify-content: center;
+    padding: 0 8px;
     transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+    width: 30px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.16);
-      color: $pg-text-pri;
-    }
-  }
-
-  &-publish {
-    align-items: center;
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    border-radius: 7px;
-    color: $pg-accent;
-    cursor: pointer;
-    display: flex;
-    font-family: $pg-font;
-    font-size: 12px;
-    font-weight: 500;
-    gap: 6px;
-    margin-left: 0;
-    padding: 6px 11px;
-    transition: background 0.14s ease, border-color 0.14s ease;
-
-    &:hover {
-      background: rgba(99, 102, 241, 0.14);
-      border-color: rgba(99, 102, 241, 0.35);
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: $topbar-text;
     }
 
-    &-count {
-      align-items: center;
-      background: $pg-accent;
-      border-radius: 99px;
-      color: #ffffff;
-      display: inline-flex;
-      font-size: 10px;
-      font-weight: 600;
-      height: 16px;
-      justify-content: center;
-      min-width: 16px;
-      padding: 0 4px;
+    svg {
+      flex-shrink: 0;
     }
-  }
-
-  &-badge {
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    border-radius: 99px;
-    color: $pg-accent;
-    font-family: $pg-font;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    margin-left: 0;
-    padding: 3px 10px;
   }
 }
 
@@ -299,3 +231,6 @@ $topbar-text-dim: rgba(148, 163, 184, 0.7);
   min-width: 0;
   overflow: hidden;
 }
+
+
+
