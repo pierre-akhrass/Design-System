@@ -13,6 +13,7 @@ export const Playground = () => {
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     try { return localStorage.getItem('pg-theme') === 'dark' } catch { return false }
   })
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const activeEntry = registry.find((w) => w.id === activeId) ?? registry[0]
   const WorkspaceComponent = activeEntry.component
 
@@ -20,6 +21,11 @@ export const Playground = () => {
   useEffect(() => {
     try { localStorage.setItem('pg-theme', darkMode ? 'dark' : 'light') } catch {}
   }, [darkMode])
+
+  // Update browser tab title when active component changes
+  useEffect(() => {
+    document.title = `${activeEntry.label} – DS Playground`
+  }, [activeEntry.label])
 
   // Track which component ids currently have published overrides.
   useEffect(() => {
@@ -54,6 +60,14 @@ export const Playground = () => {
 
         <span className="pg__topbar-sep" aria-hidden="true" />
 
+        {/* Active component breadcrumb */}
+        <span className="pg__topbar-component">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" style={{opacity:0.4}}>
+            <polyline points="9 18 15 12 9 6" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          {activeEntry.label}
+        </span>
+
         <a
           className="pg__topbar-demo"
           href="/demo.html"
@@ -80,7 +94,9 @@ export const Playground = () => {
           </svg>
           Published
           {publishedIds.length > 0 && (
-            <span className="pg__topbar-publish-count">{publishedIds.length}</span>
+            <span className="pg__topbar-publish-count">
+              {publishedIds.length} / {registry.length}
+            </span>
           )}
         </button>
         <button
@@ -113,6 +129,8 @@ export const Playground = () => {
           activeId={activeId}
           publishedIds={publishedIds}
           onSelect={setActiveId}
+          collapsed={sidebarCollapsed}
+          onCollapse={() => setSidebarCollapsed(c => !c)}
         />
         <div className="pg__workspace">
           <WorkspaceComponent />

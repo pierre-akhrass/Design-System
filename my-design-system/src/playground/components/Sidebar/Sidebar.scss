@@ -152,6 +152,59 @@ $pg-font:   'Inter', system-ui, sans-serif;
     width: 6px;
   }
 
+  // ── Search match highlight ────────────────────────────────────────────────
+
+  &__match {
+    background: transparent;
+    color: $pg-accent;
+    font-weight: 700;
+  }
+
+  // ── Collapse / expand buttons ─────────────────────────────────────────────
+
+  &__collapse-btn,
+  &__expand-btn {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 5px;
+    color: var(--pg-muted);
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    padding: 3px 2px;
+    transition: background 0.1s, color 0.1s;
+
+    &:hover {
+      background: var(--pg-input-bg);
+      color: var(--pg-text-pri);
+    }
+  }
+
+  // ── Collapsed state (thin strip) ─────────────────────────────────────────
+
+  &--collapsed {
+    align-items: center;
+    background: var(--pg-surface);
+    border-right: 1px solid var(--pg-border);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding-top: 12px;
+    width: 36px;
+
+    .pg-sidebar__expand-btn {
+      color: var(--pg-muted);
+      height: 28px;
+      width: 28px;
+
+      &:hover { color: var(--pg-text-pri); }
+    }
+  }
+
   // ── Empty state ───────────────────────────────────────────────────────────
 
   &__empty {
