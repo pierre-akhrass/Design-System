@@ -16,7 +16,14 @@
   --ds-smp-tag-bg: #{$mapping-system-slate-background-primary};
   --ds-smp-tag-fg: #{$mapping-system-slate-text-on-primary};
 
-  border-radius: $radius-medium;
+  // ----- Layout tokens (literal values so the playground can sync them) -----
+  --ds-smp-radius: 8px;              // mirrors $radius-medium
+  --ds-smp-text-padding: 16px;      // mirrors $padding-action-s
+  --ds-smp-border-width: 0px;
+  --ds-smp-border-style: solid;
+  --ds-smp-border-color: #3fb0bc;
+
+  border-radius: var(--ds-smp-radius);
   color: var(--ds-smp-card-fg);
   display: block;
   font-family: $ui-font-family;
@@ -58,7 +65,8 @@
 
 .ds-social-media-post__media {
   background-color: var(--ds-smp-card-bg);
-  border-radius: $radius-medium;
+  border: var(--ds-smp-border-width) var(--ds-smp-border-style) var(--ds-smp-border-color);
+  border-radius: var(--ds-smp-radius);
   overflow: hidden;
   position: relative;
 }
@@ -170,7 +178,7 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 280px;
-  padding: $padding-action-s;
+  padding: var(--ds-smp-text-padding);
 }
 
 .ds-social-media-post__text {

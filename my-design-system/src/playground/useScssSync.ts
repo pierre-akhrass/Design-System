@@ -45,14 +45,13 @@ export function useScssSync<T>(
       })
     }
 
-    // Initial hydrate, then refresh whenever the tab is refocused (e.g. after
-    // the user edits the .scss in their editor and switches back).
+    // Hydrate once on mount only. We intentionally do NOT re-pull on window
+    // focus: re-pulling overwrote the user's in-progress edits (e.g. after the
+    // native colour picker briefly stole focus), which made changes appear to
+    // "not apply" until publishing.
     void pull()
-    const onFocus = () => void pull()
-    window.addEventListener('focus', onFocus)
     return () => {
       cancelled = true
-      window.removeEventListener('focus', onFocus)
     }
   }, [componentId, setConfig])
 }

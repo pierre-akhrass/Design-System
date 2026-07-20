@@ -40,6 +40,38 @@ export const TOKENS = {
     '2xs': '8px',   // $gap-2xs
     xs:    '12px',  // $gap-xs
     s:     '16px',  // $gap-s
+    m:     '24px',  // $gap-m
+    l:     '32px',  // $gap-l
+    xl:    '48px',  // $gap-xl
+    xxl:   '64px',  // $gap-xxl
+  },
+
+  // $space-* (spacing scale)
+  space: {
+    '0':    '0px',
+    '050':  '4px',   // $space-050
+    '100':  '8px',   // $space-100
+    '150':  '12px',  // $space-150
+    '200':  '16px',  // $space-200
+    '250':  '20px',  // $space-250
+    '300':  '24px',  // $space-300
+    '400':  '32px',  // $space-400
+    '500':  '40px',  // $space-500
+    '600':  '48px',  // $space-600
+    '700':  '56px',  // $space-700
+    '800':  '64px',  // $space-800
+    '1000': '80px',  // $space-1000
+    '1200': '96px',  // $space-1200
+    '1600': '120px', // $space-1600
+  },
+
+  // $padding-container-* (responsive padding)
+  paddingContainer: {
+    xs: '16px',  // $padding-container-xs
+    s:  '24px',  // $padding-container-s
+    m:  '32px',  // $padding-container-m
+    l:  '48px',  // $padding-container-l
+    xl: '64px',  // $padding-container-xl
   },
 
   // $size-stroke-border-width-*

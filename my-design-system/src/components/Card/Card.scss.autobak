@@ -6,7 +6,7 @@
  * ========================================================================= */
 .ds-card {
   // ----- Light theme tokens -----
-  --ds-card-bg: #1c54fd;
+  --ds-card-bg: #229157;
   --ds-card-fg: #ff0f0f;
   --ds-card-fg-muted: #{$mapping-system-slate-text-secondary};
   --ds-card-fg-subtle: #{$mapping-system-slate-text-tertiary};
@@ -27,9 +27,17 @@
 
   --ds-card-link-fg: #{$mapping-system-slate-text-primary};
 
+  // ----- Layout tokens (literal values so the playground can sync them) -----
+  --ds-card-radius: 16px;
+  --ds-card-border-width: 4px;
+  --ds-card-border-style: solid;
+  --ds-card-body-padding-x: 24px;
+  --ds-card-body-padding-y: 24px;
+  --ds-card-body-gap: 12px;
+
   background-color: var(--ds-card-bg);
-  border: 1px solid var(--ds-card-border);
-  border-radius: $radius-large;
+  border: var(--ds-card-border-width) var(--ds-card-border-style) var(--ds-card-border);
+  border-radius: var(--ds-card-radius);
   box-shadow: 0 2px 4px 0 var(--ds-card-shadow);
   box-sizing: border-box;
   color: var(--ds-card-fg);
@@ -92,8 +100,8 @@
   display: flex;
   flex: 1 1 auto;
   flex-direction: column;
-  gap: $space-150;
-  padding: $space-300;
+  gap: var(--ds-card-body-gap);
+  padding: var(--ds-card-body-padding-y) var(--ds-card-body-padding-x);
 }
 
 .ds-card--horizontal > .ds-card__body {
