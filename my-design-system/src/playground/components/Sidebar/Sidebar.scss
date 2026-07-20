@@ -1,4 +1,4 @@
-@use '../../../styles/tokens/variables' as *;
+﻿@use '../../../styles/tokens/variables' as *;
 
 $pg-accent:   #6366f1;
 $pg-border:   rgba(0, 0, 0, 0.07);
@@ -170,75 +170,3 @@ $pg-font:     'Inter', system-ui, sans-serif;
   }
 }
 
-
-  &__group {
-    display: flex;
-    flex-direction: column;
-
-    & + & {
-      margin-top: 8px;
-      border-top: 1px solid $pg-border;
-      padding-top: 12px;
-    }
-  }
-
-  &__group-label {
-    color: rgba(60, 80, 100, 0.38);
-    font-family: $pg-font;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.07em;
-    padding: 0 16px 6px;
-    text-transform: uppercase;
-  }
-
-  // ── Item ───────────────────────────────────────────────────────────────────
-
-  &__item {
-    align-items: center;
-    background: transparent;
-    border: none;
-    border-radius: 6px;
-    color: $pg-text-sec;
-    cursor: pointer;
-    display: flex;
-    font-family: $pg-font;
-    font-size: 13px;
-    font-weight: 400;
-    gap: 9px;
-    margin: 1px 8px;
-    padding: 8px 10px;
-    text-align: left;
-    transition: background 0.14s ease, color 0.14s ease;
-    width: calc(100% - 16px);
-
-    &:hover {
-      background: rgba(0, 0, 0, 0.04);
-      color: $pg-text-pri;
-    }
-
-    &--active {
-      background: rgba(99, 102, 241, 0.08);
-      color: $pg-accent;
-      font-weight: 500;
-
-      &:hover {
-        background: rgba(99, 102, 241, 0.12);
-        color: $pg-accent;
-      }
-
-      .pg-sidebar__item-dot {
-        background: $pg-accent;
-      }
-    }
-  }
-
-  &__item-dot {
-    background: rgba(60, 80, 100, 0.18);
-    border-radius: 50%;
-    flex-shrink: 0;
-    height: 6px;
-    transition: background 0.14s ease;
-    width: 6px;
-  }
-}

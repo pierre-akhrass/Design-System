@@ -42,6 +42,10 @@ export interface FooterConfig {
   showYoutube: boolean
   showX: boolean
 
+  // ── Colour overrides ('' = use design token default) ──────────────────
+  bgColor:   string     // --ds-footer-bg   (main footer background)
+  textColor: string     // --ds-footer-text (primary text colour)
+
   // ── Custom CSS ──────────────────────────────────────────────────────────
   customClass: string
   customId: string
@@ -81,6 +85,9 @@ export const defaultFooterConfig: FooterConfig = {
   customClass: '',
   customId: '',
   customCss: '',
+
+  bgColor: '',
+  textColor: '',
 }
 
 // ── Sample data (mirrors Footer.tsx defaults) ─────────────────────────────────

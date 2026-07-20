@@ -3,7 +3,12 @@
 // ─── Footer ───────────────────────────────────────────────────────────────────
 
 .ds-footer {
-  background-color: $mapping-system-slate-surface-primary;
+  // Colour tokens — can be patched by the playground theme-server
+  --ds-footer-bg:   #{$mapping-system-slate-surface-primary};
+  --ds-footer-text: #{$mapping-system-slate-text-primary};
+
+  background-color: var(--ds-footer-bg);
+  color: var(--ds-footer-text);
   display: flex;
   flex-direction: column;
   font-family: $ui-font-family;

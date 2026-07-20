@@ -12,6 +12,7 @@ import './TagWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Star icon (matches Tag.stories.tsx) ───────────────────────────────────────
 
@@ -113,6 +114,9 @@ export const TagWorkspace = () => {
   const [config, setConfig] = useState<TagConfig>(() => readHashConfig() ?? loadDraft<TagConfig>("tag") ?? defaultTagConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<TagConfig>('tag', setConfig)
 
   // Keep URL hash in sync with config
   useEffect(() => {

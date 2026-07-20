@@ -14,6 +14,7 @@ import './FormWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Demo select options ───────────────────────────────────────────────────────
 
@@ -136,6 +137,9 @@ export const FormWorkspace = () => {
   const [config, setConfig]         = useState<FormConfig>(() => readHashConfig() ?? loadDraft<FormConfig>('form') ?? defaultFormConfig)
   const [compare, setCompare]       = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<FormConfig>('form', setConfig)
 
   useEffect(() => {
     window.location.hash = encodeConfig(config)

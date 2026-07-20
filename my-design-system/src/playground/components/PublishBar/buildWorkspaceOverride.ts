@@ -222,11 +222,13 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       break
     }
     case 'avatar': {
-      // Avatar exposes no colour/spacing overrides in config; published via customCss only
+      if (bg) r.push(`.ds-avatar--initial, .ds-avatar--shape { --ds-avatar-bg: ${bg} !important; }`)
+      if (fg) r.push(`.ds-avatar__initials, .ds-avatar__shape { --ds-avatar-fg: ${fg} !important; }`)
       break
     }
     case 'footer': {
-      // Footer exposes no colour overrides in config; published via customCss only
+      if (bg) r.push(`.ds-footer { --ds-footer-bg: ${bg} !important; }`)
+      if (fg) r.push(`.ds-footer { --ds-footer-text: ${fg} !important; }`)
       break
     }
     case 'form': {

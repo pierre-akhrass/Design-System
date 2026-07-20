@@ -11,6 +11,7 @@ import './FooterWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Sample opening hours (matches Footer.tsx defaults) ────────────────────────
 
@@ -133,10 +134,26 @@ export const FooterWorkspace = () => {
   const [config, setConfig]     = useState<FooterConfig>(() => readHashConfig() ?? loadDraft<FooterConfig>('footer') ?? defaultFooterConfig)
   const [linkCopied, setLinkCopied] = useState(false)
 
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<FooterConfig>('footer', setConfig)
+
   // Keep URL hash in sync
   useEffect(() => {
     window.location.hash = encodeConfig(config)
   }, [config])
+
+  // Inject footer colour overrides as a live <style> block
+  useEffect(() => {
+    const rules: string[] = []
+    if (config.bgColor)   rules.push(`.ds-footer { --ds-footer-bg: ${config.bgColor} !important; }`)
+    if (config.textColor) rules.push(`.ds-footer { --ds-footer-text: ${config.textColor} !important; }`)
+    if (!rules.length) return
+    const el = document.createElement('style')
+    el.setAttribute('data-pg-footer-override', '')
+    el.textContent = rules.join('\n')
+    document.head.appendChild(el)
+    return () => { el.remove() }
+  }, [config.bgColor, config.textColor])
 
   // Inject custom CSS as a live <style> block
   useEffect(() => {

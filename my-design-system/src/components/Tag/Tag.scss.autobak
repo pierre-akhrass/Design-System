@@ -3,7 +3,7 @@
 // ── Light theme ───────────────────────────────────────────────────────────────
 
 @mixin ds-tag-theme-light {
-  --ds-tag-bg: #3a7c92; // #d2d9e0
+  --ds-tag-bg: #{$mapping-system-slate-surface-tertiary}; // #d2d9e0
   --ds-tag-fg: #{$mapping-system-slate-text-primary}; // #292929
   background-color: var(--ds-tag-bg);
   color: var(--ds-tag-fg);

@@ -11,6 +11,7 @@ import './AvatarWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Sample data for AvatarGroup ───────────────────────────────────────────────
 
@@ -158,10 +159,26 @@ export const AvatarWorkspace = () => {
   const [compare, setCompare]   = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<AvatarConfig>('avatar', setConfig)
+
   // Keep URL hash in sync
   useEffect(() => {
     window.location.hash = encodeConfig(config)
   }, [config])
+
+  // Inject avatar colour overrides as a live <style> block
+  useEffect(() => {
+    const rules: string[] = []
+    if (config.bgColor)   rules.push(`.ds-avatar--initial, .ds-avatar--shape { --ds-avatar-bg: ${config.bgColor} !important; }`)
+    if (config.textColor) rules.push(`.ds-avatar__initials, .ds-avatar__shape { --ds-avatar-fg: ${config.textColor} !important; }`)
+    if (!rules.length) return
+    const el = document.createElement('style')
+    el.setAttribute('data-pg-avatar-override', '')
+    el.textContent = rules.join('\n')
+    document.head.appendChild(el)
+    return () => { el.remove() }
+  }, [config.bgColor, config.textColor])
 
   // Inject custom CSS as a live <style> block
   useEffect(() => {

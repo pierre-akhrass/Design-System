@@ -6,7 +6,7 @@
 
 .ds-avatar {
   // Colour tokens — can be patched by the playground theme-server
-  --ds-avatar-bg: #3a7c92;
+  --ds-avatar-bg: #{$mapping-brand-teal-blue-background-tertiary};
   --ds-avatar-fg: #{$mapping-brand-teal-blue-text-primary};
 
   align-items: center;

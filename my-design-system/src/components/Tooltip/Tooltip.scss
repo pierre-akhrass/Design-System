@@ -27,36 +27,38 @@
 // Tooltip is dark on a light page
 
 @mixin ds-tooltip-theme-light {
-  background-color: $mapping-system-slate-background-primary; // #141f2e
-  border-color:     $mapping-system-slate-border-secondary;   // #bcbcbc
-  color:            $mapping-system-slate-text-on-primary;    // #ffffff
-  @include ds-tooltip-arrows(
-    $mapping-system-slate-background-primary,
-    $mapping-system-slate-border-secondary
-  );
+  --ds-tooltip-bg:     #{$mapping-system-slate-background-primary}; // #141f2e
+  --ds-tooltip-border: #{$mapping-system-slate-border-secondary};   // #bcbcbc
+  --ds-tooltip-fg:     #{$mapping-system-slate-text-on-primary};    // #ffffff
 }
 
 // ── Dark theme ────────────────────────────────────────────────────────────────
 // Tooltip is light on a dark page (inverted for contrast)
 
 @mixin ds-tooltip-theme-dark {
-  background-color: $mapping-system-slate-surface-tertiary; // #d2d9e0
-  border-color:     $mapping-system-slate-text-secondary;   // #545454
-  color:            $mapping-system-slate-text-primary;     // #292929
-  @include ds-tooltip-arrows(
-    $mapping-system-slate-surface-tertiary,
-    $mapping-system-slate-text-secondary
-  );
+  --ds-tooltip-bg:     #{$mapping-system-slate-surface-tertiary}; // #d2d9e0
+  --ds-tooltip-border: #{$mapping-system-slate-text-secondary};   // #545454
+  --ds-tooltip-fg:     #{$mapping-system-slate-text-primary};     // #292929
 }
 
 // ── Base ──────────────────────────────────────────────────────────────────────
 
 .ds-tooltip {
-  border:        $size-stroke-border-width-1 solid;
-  border-radius: $radius-small; // 4px
+  // Colour tokens — can be patched by the playground theme-server
+  @include ds-tooltip-theme-light;
+  // Arrow colours follow the CSS custom properties automatically
+  @include ds-tooltip-arrows(
+    $mapping-system-slate-background-primary,
+    $mapping-system-slate-border-secondary
+  );
+
+  background-color: var(--ds-tooltip-bg);
+  border:           $size-stroke-border-width-1 solid var(--ds-tooltip-border);
+  border-radius:    $radius-small; // 4px
   box-shadow:
     $depth-0 $depth-025 $depth-050 $mapping-system-shadow-medium,
     $depth-0 $depth-025 $depth-050 $mapping-system-shadow-light;
+  color:          var(--ds-tooltip-fg);
   display:        inline-flex;
   flex-direction: column;
   gap:            $gap-3xs;       // 4px
@@ -74,9 +76,6 @@
     position: absolute;
     width: 0;
   }
-
-  // Default (no explicit theme): light
-  @include ds-tooltip-theme-light;
 }
 
 // ── Placement — arrow shapes ──────────────────────────────────────────────────

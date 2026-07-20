@@ -94,6 +94,16 @@ const SIZE_OPTIONS: SegOpt[] = [
   { value: 'xlarge', label: 'xl' },
 ]
 
+// ── ColorRow ──────────────────────────────────────────────────────────────────
+
+const ColorRow = ({ value, defaultSwatch = '#cccccc', onChange, onClear }: { value: string; defaultSwatch?: string; onChange: (v: string) => void; onClear?: () => void }) => (
+  <div className="ctrl-color">
+    <input className="ctrl-color__swatch" type="color" value={value || defaultSwatch} onChange={(e) => onChange(e.target.value)} title="Pick a color" />
+    <input className="ctrl-color__text ctrl-input" type="text" value={value} placeholder="—" onChange={(e) => onChange(e.target.value)} spellCheck={false} />
+    {value && onClear && <button className="ctrl-color__clear" onClick={onClear} type="button" aria-label="Clear color">✕</button>}
+  </div>
+)
+
 // ── AvatarControls ────────────────────────────────────────────────────────────
 
 export const AvatarControls = ({ config, onChange }: AvatarControlsProps) => {
@@ -357,6 +367,38 @@ export const AvatarControls = ({ config, onChange }: AvatarControlsProps) => {
             </ControlRow>
           )}
         </>
+      )}
+
+      {/* ── Color overrides ──────────────────────────────────── */}
+      <Divider />
+      <SectionLabel>Color overrides</SectionLabel>
+
+      <ControlRow label="bgColor">
+        <ColorRow
+          value={config.bgColor}
+          defaultSwatch="#d0e8f0"
+          onChange={(v) => set('bgColor', v)}
+          onClear={() => set('bgColor', '')}
+        />
+      </ControlRow>
+
+      <ControlRow label="textColor">
+        <ColorRow
+          value={config.textColor}
+          defaultSwatch="#1e6a8a"
+          onChange={(v) => set('textColor', v)}
+          onClear={() => set('textColor', '')}
+        />
+      </ControlRow>
+
+      {(config.bgColor || config.textColor) && (
+        <button
+          className="ctrl-reset-btn"
+          onClick={() => onChange({ ...config, bgColor: '', textColor: '' })}
+          type="button"
+        >
+          Reset color overrides
+        </button>
       )}
 
       {/* ── Custom CSS (always visible) ─────────────────────────── */}

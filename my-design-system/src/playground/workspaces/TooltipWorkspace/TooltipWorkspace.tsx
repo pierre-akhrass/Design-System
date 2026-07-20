@@ -12,6 +12,7 @@ import './TooltipWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -82,6 +83,9 @@ export const TooltipWorkspace = () => {
   const [config, setConfig] = useState<TooltipConfig>(() => readHashConfig() ?? loadDraft<TooltipConfig>('tooltip') ?? defaultTooltipConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
+
+  // Pull colour values from the component's .scss into the UI (reverse sync).
+  useScssSync<TooltipConfig>('tooltip', setConfig)
 
   // Keep URL hash in sync with config
   useEffect(() => {

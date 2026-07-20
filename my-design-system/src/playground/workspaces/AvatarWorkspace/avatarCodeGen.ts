@@ -36,6 +36,10 @@ export interface AvatarConfig {
   blockSrc: string
   blockInitials: string
 
+  // ── Colour overrides ('' = use design token default) ──────────────────
+  bgColor:   string     // --ds-avatar-bg  (initial / shape background)
+  textColor: string     // --ds-avatar-fg  (initials / icon colour)
+
   // ── Custom CSS ───────────────────────────────────────────────────────────
   customClass: string
   customId: string
@@ -69,6 +73,9 @@ export const defaultAvatarConfig: AvatarConfig = {
   customClass: '',
   customId: '',
   customCss: '',
+
+  bgColor: '',
+  textColor: '',
 }
 
 // ── Internal helpers ──────────────────────────────────────────────────────────

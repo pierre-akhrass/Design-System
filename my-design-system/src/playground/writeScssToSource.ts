@@ -61,6 +61,34 @@ const VAR_MAP: Record<string, Record<string, string>> = {
     borderColor: '--ds-list-item-border-color',
   },
   search: { textColor: '--ds-search-fg' },
+  tag: {
+    bgColor:   '--ds-tag-bg',
+    textColor: '--ds-tag-fg',
+  },
+  tooltip: {
+    bgColor:     '--ds-tooltip-bg',
+    borderColor: '--ds-tooltip-border',
+    textColor:   '--ds-tooltip-fg',
+  },
+  avatar: {
+    bgColor:   '--ds-avatar-bg',
+    textColor: '--ds-avatar-fg',
+  },
+  form: {
+    varSurface:      '--ds-form-surface',
+    varBorder:       '--ds-form-border',
+    varFieldBg:      '--ds-form-field-bg',
+    varFieldBorder:  '--ds-form-field-border',
+    varFocusBorder:  '--ds-form-field-border-focus',
+    varTextPrimary:  '--ds-form-text-primary',
+    varTextTertiary: '--ds-form-text-tertiary',
+    varAccent:       '--ds-form-accent',
+    varDanger:       '--ds-form-danger',
+  },
+  footer: {
+    bgColor:   '--ds-footer-bg',
+    textColor: '--ds-footer-text',
+  },
   'social-media': {
     cardBg: '--ds-smp-card-bg',
     textColor: '--ds-smp-card-fg',
