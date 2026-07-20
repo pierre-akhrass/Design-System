@@ -25,6 +25,13 @@ export interface DialogConfig {
   borderWidth: string
   borderStyle: string
   borderColor: string
+  // Typography + effects — '' means "use the design token"
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   // CSS targeting
   customClass: string
   customId: string
@@ -49,9 +56,25 @@ export const defaultDialogConfig: DialogConfig = {
   borderWidth: '',
   borderStyle: '',
   borderColor: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',
+}
+
+function typoDecls(cfg: DialogConfig): string {
+  const p: string[] = []
+  if (cfg.fontFamily) p.push(`font-family: ${cfg.fontFamily}`)
+  if (cfg.fontSize) p.push(`font-size: ${cfg.fontSize}`)
+  if (cfg.fontWeight) p.push(`font-weight: ${cfg.fontWeight}`)
+  if (cfg.letterSpacing) p.push(`letter-spacing: ${cfg.letterSpacing}`)
+  if (cfg.textTransform && cfg.textTransform !== 'none') p.push(`text-transform: ${cfg.textTransform}`)
+  return p.join('; ')
 }
 
 export function dialogCodeGen(cfg: DialogConfig): string {
@@ -77,6 +100,8 @@ export function dialogCodeGen(cfg: DialogConfig): string {
   if (cfg.borderWidth) {
     cssRules.push(`.ds-dialog__panel { border: ${cfg.borderWidth} ${cfg.borderStyle || 'solid'} ${cfg.borderColor || '#3fb0bc'}; }`)
   }
+  { const t = typoDecls(cfg); if (t) cssRules.push(`.ds-dialog__panel, .ds-dialog__title, .ds-dialog__text { ${t}; }`) }
+  if (cfg.shadow) cssRules.push(`.ds-dialog__panel { box-shadow: ${cfg.shadow}; }`)
 
   const headerProps = [`title="${cfg.title}"`]
   if (cfg.showClose) headerProps.push(`onClose={() => setOpen(false)}`)

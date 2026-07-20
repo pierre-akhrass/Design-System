@@ -22,6 +22,13 @@ export interface CardConfig {
   borderWidth: string
   borderStyle: string
   borderColor: string
+  // Typography + effects — '' means "use the design token"
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   // CSS targeting
   customClass: string
   customId: string
@@ -46,6 +53,12 @@ export const defaultCardConfig: CardConfig = {
   borderWidth: '',
   borderStyle: '',
   borderColor: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',
@@ -69,6 +82,7 @@ export function cardCodeGen(cfg: CardConfig): string {
     styleEntries.push(`borderStyle: "${cfg.borderStyle || 'solid'}"`)
     if (cfg.borderColor) styleEntries.push(`borderColor: "${cfg.borderColor}"`)
   }
+  if (cfg.shadow) styleEntries.push(`boxShadow: "${cfg.shadow}"`)
   if (styleEntries.length > 0) {
     cardProps.push(`style={{ ${styleEntries.join(', ')} }}`)
   }
@@ -79,6 +93,11 @@ export function cardCodeGen(cfg: CardConfig): string {
   if (cfg.paddingY) bodyStyle.push(`paddingBlock: "${cfg.paddingY}"`)
   if (cfg.gap) bodyStyle.push(`gap: "${cfg.gap}"`)
   if (cfg.textColor) bodyStyle.push(`color: "${cfg.textColor}"`)
+  if (cfg.fontFamily) bodyStyle.push(`fontFamily: "${cfg.fontFamily}"`)
+  if (cfg.fontSize) bodyStyle.push(`fontSize: "${cfg.fontSize}"`)
+  if (cfg.fontWeight) bodyStyle.push(`fontWeight: "${cfg.fontWeight}"`)
+  if (cfg.letterSpacing) bodyStyle.push(`letterSpacing: "${cfg.letterSpacing}"`)
+  if (cfg.textTransform && cfg.textTransform !== 'none') bodyStyle.push(`textTransform: "${cfg.textTransform}"`)
   const bodyStyleStr = bodyStyle.length ? ` style={{ ${bodyStyle.join(', ')} }}` : ''
 
   const lines: string[] = []

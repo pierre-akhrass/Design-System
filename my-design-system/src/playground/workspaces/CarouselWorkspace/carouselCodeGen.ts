@@ -17,6 +17,13 @@ export interface CarouselConfig {
   borderWidth: string
   borderStyle: string
   borderColor: string
+  // Typography + effects — '' means "use the design token"
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   // CSS targeting
   customClass: string
   customId: string
@@ -38,9 +45,25 @@ export const defaultCarouselConfig: CarouselConfig = {
   borderWidth: '',
   borderStyle: '',
   borderColor: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',
+}
+
+function typoDecls(cfg: CarouselConfig): string {
+  const p: string[] = []
+  if (cfg.fontFamily) p.push(`font-family: ${cfg.fontFamily}`)
+  if (cfg.fontSize) p.push(`font-size: ${cfg.fontSize}`)
+  if (cfg.fontWeight) p.push(`font-weight: ${cfg.fontWeight}`)
+  if (cfg.letterSpacing) p.push(`letter-spacing: ${cfg.letterSpacing}`)
+  if (cfg.textTransform && cfg.textTransform !== 'none') p.push(`text-transform: ${cfg.textTransform}`)
+  return p.join('; ')
 }
 
 export function carouselCodeGen(cfg: CarouselConfig): string {
@@ -64,6 +87,8 @@ export function carouselCodeGen(cfg: CarouselConfig): string {
   if (cfg.borderWidth) {
     cssRules.push(`.ds-carousel__slide { border: ${cfg.borderWidth} ${cfg.borderStyle || 'solid'} ${cfg.borderColor || '#3fb0bc'}; }`)
   }
+  { const t = typoDecls(cfg); if (t) cssRules.push(`.ds-carousel, .ds-carousel__slide { ${t}; }`) }
+  if (cfg.shadow) cssRules.push(`.ds-carousel__slide { box-shadow: ${cfg.shadow}; }`)
 
   const lines: string[] = []
   lines.push(`import { Carousel, CarouselSlide } from '@company/design-system';`)

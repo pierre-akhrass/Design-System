@@ -80,4 +80,46 @@ export const TOKENS = {
     '2px': '2px',   // $size-stroke-border-width-2
     '4px': '4px',   // $size-stroke-border-width-4
   },
+
+  // Font families available in the design system (playground presets)
+  fontFamily: {
+    ui:      "'Noto Sans', system-ui, sans-serif",
+    heading: "'Nunito Sans', system-ui, sans-serif",
+    mono:    "'JetBrains Mono', ui-monospace, monospace",
+    serif:   "Georgia, 'Times New Roman', serif",
+    system:  "system-ui, -apple-system, sans-serif",
+  },
+
+  // Common font sizes (px)
+  fontSize: {
+    xs:  '12px',
+    sm:  '14px',
+    md:  '16px',
+    lg:  '20px',
+    xl:  '24px',
+  },
+
+  // Font weights
+  fontWeight: {
+    regular:  '400',
+    medium:   '500',
+    semibold: '600',
+    bold:     '700',
+  },
+
+  // Letter spacing
+  letterSpacing: {
+    tight:  '-0.02em',
+    normal: '0',
+    wide:   '0.04em',
+    wider:  '0.08em',
+  },
+
+  // Elevation / shadow presets
+  shadow: {
+    sm: '0 1px 2px rgba(20, 31, 46, 0.08)',
+    md: '0 4px 12px rgba(20, 31, 46, 0.12)',
+    lg: '0 12px 28px rgba(20, 31, 46, 0.18)',
+    xl: '0 24px 48px rgba(20, 31, 46, 0.22)',
+  },
 } as const

@@ -1,5 +1,6 @@
 import type { ListConfig } from './listCodeGen'
 import { TOKENS } from '../../designTokens'
+import { TypographyControls } from '../../TypographyControls'
 import './ListControls.scss'
 
 interface ListControlsProps {
@@ -195,6 +196,8 @@ export const ListControls = ({ config, onChange }: ListControlsProps) => {
       <ControlRow label="border-color" disabled={!config.borderWidth}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

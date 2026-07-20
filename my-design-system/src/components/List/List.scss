@@ -1,7 +1,7 @@
 @use '../../styles/tokens/variables' as *;
 
 .ds-list {
-  --ds-list-fg: #{$mapping-system-slate-text-primary};
+  --ds-list-fg: #9f3c3c;
   --ds-list-fg-muted: #{$mapping-system-slate-text-secondary};
   --ds-list-item-bg: transparent;
   --ds-list-item-hover-bg: #{$mapping-system-slate-surface-secondary};

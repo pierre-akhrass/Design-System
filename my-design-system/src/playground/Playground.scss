@@ -1,112 +1,131 @@
 @use '../styles/tokens/variables' as *;
+@use './theme' as pg;
 
 // ── Shell variables ───────────────────────────────────────────────────────────
-$pg-topbar-h:   56px;
-$pg-accent:     #6366f1;
-$pg-border:     rgba(0, 0, 0, 0.07);
-$pg-text-pri:   #141f2e;
-$pg-text-sec:   #6e8296;
-$pg-bg:         #f0f2f5;
-$pg-surface:    #ffffff;
-$pg-font:       'Inter', system-ui, sans-serif;
+$pg-topbar-h: 58px;
 
 // ── Shell root ────────────────────────────────────────────────────────────────
 
 .pg {
-  background: $pg-bg;
+  background: pg.$bg;
   display: flex;
   flex-direction: column;
   height: 100vh;
   overflow: hidden;
-  font-family: $pg-font;
+  font-family: pg.$font;
+
+  // Ambient mesh-gradient glow behind the whole app for depth.
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.1), transparent 42%),
+    radial-gradient(circle at 100% 0%, rgba(217, 70, 239, 0.07), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.06), transparent 45%);
 }
 
 // ── Top bar ───────────────────────────────────────────────────────────────────
 
 .pg__topbar {
   align-items: center;
-  background: $pg-surface;
-  border-bottom: 1px solid $pg-border;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid pg.$border;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, pg.$shadow-sm;
   display: flex;
   flex-shrink: 0;
   gap: 12px;
   height: $pg-topbar-h;
   padding: 0 22px;
+  position: relative;
+  z-index: 10;
 
   &-logo {
     align-items: center;
-    color: $pg-accent;
+    justify-content: center;
+    background: pg.$gradient;
+    border-radius: 9px;
+    box-shadow: pg.$shadow-glow;
+    color: #ffffff;
     display: flex;
     flex-shrink: 0;
+    height: 30px;
+    width: 30px;
   }
 
   &-title {
-    color: $pg-text-pri;
-    font-family: $pg-font;
+    color: pg.$text-pri;
+    font-family: pg.$font;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 650;
     letter-spacing: -0.02em;
     margin: 0;
   }
 
   &-accent {
-    color: $pg-accent;
+    background: pg.$gradient;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
   }
 
   &-demo {
     align-items: center;
-    background: transparent;
-    border: 1px solid $pg-border;
-    border-radius: 7px;
-    color: $pg-text-sec;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid pg.$border-strong;
+    border-radius: 9px;
+    color: pg.$text-sec;
     cursor: pointer;
     display: flex;
-    font-family: $pg-font;
+    font-family: pg.$font;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 550;
     gap: 6px;
     margin-left: auto;
-    padding: 6px 11px;
+    padding: 7px 12px;
     text-decoration: none;
-    transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+    transition: transform pg.$dur pg.$ease, background pg.$dur pg.$ease,
+      border-color pg.$dur pg.$ease, color pg.$dur pg.$ease, box-shadow pg.$dur pg.$ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.16);
-      color: $pg-text-pri;
+      background: #ffffff;
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: pg.$shadow-sm;
+      color: pg.$text-pri;
+      transform: translateY(-1px);
     }
   }
 
   &-publish {
     align-items: center;
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.2);
-    border-radius: 7px;
-    color: $pg-accent;
+    background: pg.$gradient-soft;
+    border: 1px solid rgba(99, 102, 241, 0.28);
+    border-radius: 9px;
+    color: pg.$accent-strong;
     cursor: pointer;
     display: flex;
-    font-family: $pg-font;
+    font-family: pg.$font;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     gap: 6px;
     margin-left: 0;
-    padding: 6px 11px;
-    transition: background 0.14s ease, border-color 0.14s ease;
+    padding: 7px 12px;
+    transition: transform pg.$dur pg.$ease, background pg.$dur pg.$ease,
+      border-color pg.$dur pg.$ease, box-shadow pg.$dur pg.$ease;
 
     &:hover {
-      background: rgba(99, 102, 241, 0.14);
-      border-color: rgba(99, 102, 241, 0.35);
+      border-color: rgba(99, 102, 241, 0.5);
+      box-shadow: pg.$shadow-sm;
+      transform: translateY(-1px);
     }
 
     &-count {
       align-items: center;
-      background: $pg-accent;
+      background: pg.$gradient;
       border-radius: 99px;
       color: #ffffff;
       display: inline-flex;
       font-size: 10px;
-      font-weight: 600;
+      font-weight: 700;
       height: 16px;
       justify-content: center;
       min-width: 16px;
@@ -115,16 +134,16 @@ $pg-font:       'Inter', system-ui, sans-serif;
   }
 
   &-badge {
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    background: pg.$gradient-soft;
+    border: 1px solid rgba(99, 102, 241, 0.28);
     border-radius: 99px;
-    color: $pg-accent;
-    font-family: $pg-font;
+    color: pg.$accent-strong;
+    font-family: pg.$font;
     font-size: 11px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: -0.01em;
     margin-left: 0;
-    padding: 3px 10px;
+    padding: 4px 11px;
   }
 }
 
@@ -135,6 +154,8 @@ $pg-font:       'Inter', system-ui, sans-serif;
   flex: 1;
   min-height: 0;
   overflow: hidden;
+  position: relative;
+  z-index: 1;
 }
 
 .pg__workspace {

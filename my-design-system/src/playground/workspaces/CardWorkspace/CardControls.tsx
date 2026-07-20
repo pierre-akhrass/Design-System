@@ -1,5 +1,6 @@
 import type { CardConfig } from './cardCodeGen'
 import { TOKENS } from '../../designTokens'
+import { TypographyControls } from '../../TypographyControls'
 import './CardControls.scss'
 
 interface CardControlsProps {
@@ -206,6 +207,8 @@ export const CardControls = ({ config, onChange }: CardControlsProps) => {
       <ControlRow label="border-color" disabled={!config.borderWidth}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>
