@@ -18,13 +18,39 @@ export interface TokenOption {
 
 // ── Option lists ──────────────────────────────────────────────────────────────
 
-export const FONT_FAMILY_OPTIONS: TokenOption[] = [
-  { value: '', label: 'token', sub: 'default' },
-  { value: TOKENS.fontFamily.ui, label: 'sans', sub: 'Noto' },
-  { value: TOKENS.fontFamily.heading, label: 'display', sub: 'Nunito' },
-  { value: TOKENS.fontFamily.serif, label: 'serif', sub: 'Georgia' },
-  { value: TOKENS.fontFamily.mono, label: 'mono', sub: 'JetBrains' },
-  { value: TOKENS.fontFamily.system, label: 'system', sub: 'UI' },
+/**
+ * Font-family options rendered as a <select> dropdown. `group` lets the UI show
+ * optgroups; `label` is what the user reads (in that font); `value` is the CSS
+ * font stack. An empty value means "use the component's design token".
+ */
+export interface FontOption extends TokenOption {
+  group: string
+}
+
+export const FONT_FAMILY_OPTIONS: FontOption[] = [
+  { value: '', label: 'Design token (default)', group: 'Design system' },
+  { value: TOKENS.fontFamily.ui, label: 'Noto Sans', group: 'Design system' },
+  { value: TOKENS.fontFamily.heading, label: 'Nunito Sans', group: 'Design system' },
+  { value: TOKENS.fontFamily.mono, label: 'JetBrains Mono', group: 'Design system' },
+  { value: TOKENS.fontFamily.system, label: 'System UI', group: 'Design system' },
+
+  { value: TOKENS.fontFamily.inter, label: 'Inter', group: 'Sans-serif' },
+  { value: TOKENS.fontFamily.helvetica, label: 'Helvetica Neue', group: 'Sans-serif' },
+  { value: TOKENS.fontFamily.arial, label: 'Arial', group: 'Sans-serif' },
+  { value: TOKENS.fontFamily.verdana, label: 'Verdana', group: 'Sans-serif' },
+  { value: TOKENS.fontFamily.tahoma, label: 'Tahoma', group: 'Sans-serif' },
+  { value: TOKENS.fontFamily.trebuchet, label: 'Trebuchet MS', group: 'Sans-serif' },
+  { value: TOKENS.fontFamily.gillsans, label: 'Gill Sans', group: 'Sans-serif' },
+
+  { value: TOKENS.fontFamily.serif, label: 'Georgia', group: 'Serif' },
+  { value: TOKENS.fontFamily.times, label: 'Times New Roman', group: 'Serif' },
+  { value: TOKENS.fontFamily.garamond, label: 'Garamond', group: 'Serif' },
+  { value: TOKENS.fontFamily.palatino, label: 'Palatino', group: 'Serif' },
+  { value: TOKENS.fontFamily.baskerville, label: 'Baskerville', group: 'Serif' },
+
+  { value: TOKENS.fontFamily.mono, label: 'JetBrains Mono', group: 'Monospace' },
+  { value: TOKENS.fontFamily.courier, label: 'Courier New', group: 'Monospace' },
+  { value: TOKENS.fontFamily.consolas, label: 'Consolas', group: 'Monospace' },
 ]
 
 const nn = (v: string) => v.replace('px', '')

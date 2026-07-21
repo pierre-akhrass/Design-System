@@ -84,7 +84,9 @@
         height: 20px;
         width: 3px;
         border-radius: 0 3px 3px 0;
-        background: pg.$gradient;
+        background: pg.$gradient-anim;
+        background-size: 100% 200%;
+        animation: pg-gradient-shift 4s linear infinite;
       }
 
       &:hover {
@@ -94,8 +96,8 @@
       }
 
       .pg-sidebar__item-dot {
+        animation: pg-pulse 2.4s pg.$ease infinite;
         background: pg.$gradient;
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.16);
       }
     }
   }

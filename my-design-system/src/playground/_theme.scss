@@ -38,3 +38,43 @@ $mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
 // ── Motion ────────────────────────────────────────────────────────────────────
 $ease: cubic-bezier(0.4, 0, 0.2, 1);
 $dur:  0.18s;
+$ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// A larger animated gradient used for moving/shimmer effects.
+$gradient-anim: linear-gradient(
+  110deg,
+  #6366f1 0%,
+  #8b5cf6 25%,
+  #d946ef 50%,
+  #8b5cf6 75%,
+  #6366f1 100%
+);
+
+// ════════════════════════════════════════════════════════════════════════════
+//  Shared keyframes (available to any file that @use's this partial)
+// ════════════════════════════════════════════════════════════════════════════
+
+@keyframes pg-gradient-shift {
+  0%   { background-position:   0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes pg-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(0, -14px, 0) scale(1.05); }
+}
+
+@keyframes pg-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.16); }
+  50%      { box-shadow: 0 0 0 5px rgba(99, 102, 241, 0.08); }
+}
+
+@keyframes pg-shimmer {
+  0%   { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(220%) skewX(-18deg); }
+}
+
+@keyframes pg-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

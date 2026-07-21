@@ -19,6 +19,20 @@ $pg-topbar-h: 58px;
     radial-gradient(circle at 0% 0%, rgba(99, 102, 241, 0.1), transparent 42%),
     radial-gradient(circle at 100% 0%, rgba(217, 70, 239, 0.07), transparent 40%),
     radial-gradient(circle at 100% 100%, rgba(139, 92, 246, 0.06), transparent 45%);
+  position: relative;
+
+  // Living gradient hairline across the very top of the app.
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: pg.$gradient-anim;
+    background-size: 200% 100%;
+    animation: pg-gradient-shift 6s linear infinite;
+    z-index: 20;
+    opacity: 0.9;
+  }
 }
 
 // ── Top bar ───────────────────────────────────────────────────────────────────
@@ -41,14 +55,38 @@ $pg-topbar-h: 58px;
   &-logo {
     align-items: center;
     justify-content: center;
-    background: pg.$gradient;
+    background: pg.$gradient-anim;
+    background-size: 200% 100%;
+    animation: pg-gradient-shift 5s linear infinite;
     border-radius: 9px;
     box-shadow: pg.$shadow-glow;
     color: #ffffff;
     display: flex;
     flex-shrink: 0;
     height: 30px;
+    overflow: hidden;
+    position: relative;
+    transition: transform pg.$dur pg.$ease-spring, box-shadow pg.$dur pg.$ease;
     width: 30px;
+
+    // Diagonal shimmer sweep.
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      transform: translateX(-120%) skewX(-18deg);
+    }
+
+    &:hover {
+      transform: rotate(-6deg) scale(1.08);
+      box-shadow: 0 8px 26px rgba(99, 102, 241, 0.42);
+
+      &::after { animation: pg-shimmer 0.9s pg.$ease; }
+    }
   }
 
   &-title {
@@ -61,7 +99,9 @@ $pg-topbar-h: 58px;
   }
 
   &-accent {
-    background: pg.$gradient;
+    background: pg.$gradient-anim;
+    background-size: 200% 100%;
+    animation: pg-gradient-shift 6s linear infinite;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -108,18 +148,36 @@ $pg-topbar-h: 58px;
     font-weight: 600;
     gap: 6px;
     margin-left: 0;
+    overflow: hidden;
     padding: 7px 12px;
+    position: relative;
     transition: transform pg.$dur pg.$ease, background pg.$dur pg.$ease,
       border-color pg.$dur pg.$ease, box-shadow pg.$dur pg.$ease;
 
+    // Shimmer sweep on hover.
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+      transform: translateX(-140%) skewX(-18deg);
+      pointer-events: none;
+    }
+
     &:hover {
       border-color: rgba(99, 102, 241, 0.5);
-      box-shadow: pg.$shadow-sm;
+      box-shadow: pg.$shadow-glow;
       transform: translateY(-1px);
+
+      &::after { animation: pg-shimmer 0.8s pg.$ease; }
     }
 
     &-count {
       align-items: center;
+      animation: pg-pulse 2s pg.$ease infinite;
       background: pg.$gradient;
       border-radius: 99px;
       color: #ffffff;
