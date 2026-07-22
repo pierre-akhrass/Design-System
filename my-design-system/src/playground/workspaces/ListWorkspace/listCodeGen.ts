@@ -18,6 +18,13 @@ export interface ListConfig {
   borderWidth: string
   borderStyle: string
   borderColor: string
+  // Typography + effects — '' means "use the design token"
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   // CSS targeting
   customClass: string
   customId: string
@@ -38,9 +45,25 @@ export const defaultListConfig: ListConfig = {
   borderWidth: '',
   borderStyle: '',
   borderColor: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',
+}
+
+function typoDecls(cfg: ListConfig): string {
+  const p: string[] = []
+  if (cfg.fontFamily) p.push(`font-family: ${cfg.fontFamily}`)
+  if (cfg.fontSize) p.push(`font-size: ${cfg.fontSize}`)
+  if (cfg.fontWeight) p.push(`font-weight: ${cfg.fontWeight}`)
+  if (cfg.letterSpacing) p.push(`letter-spacing: ${cfg.letterSpacing}`)
+  if (cfg.textTransform && cfg.textTransform !== 'none') p.push(`text-transform: ${cfg.textTransform}`)
+  return p.join('; ')
 }
 
 export function listCodeGen(cfg: ListConfig): string {
@@ -61,6 +84,8 @@ export function listCodeGen(cfg: ListConfig): string {
   if (cfg.borderWidth) {
     cssRules.push(`.ds-list__item { border: ${cfg.borderWidth} ${cfg.borderStyle || 'solid'} ${cfg.borderColor || '#3fb0bc'}; }`)
   }
+  { const t = typoDecls(cfg); if (t) cssRules.push(`.ds-list, .ds-list__label, .ds-list__description { ${t}; }`) }
+  if (cfg.shadow) cssRules.push(`.ds-list__item { box-shadow: ${cfg.shadow}; }`)
 
   const lines: string[] = []
   lines.push(`import { List, ListItem } from '@company/design-system';`)

@@ -1,5 +1,6 @@
 import type { SocialMediaConfig } from './socialMediaCodeGen'
 import { TOKENS } from '../../designTokens'
+import { TypographyControls } from '../../TypographyControls'
 import './SocialMediaControls.scss'
 
 interface SocialMediaControlsProps {
@@ -187,6 +188,8 @@ export const SocialMediaControls = ({ config, onChange }: SocialMediaControlsPro
       <ControlRow label="border-color" disabled={!config.borderWidth}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

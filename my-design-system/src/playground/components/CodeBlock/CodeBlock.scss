@@ -2,14 +2,17 @@
 
 $cb-bg:      #0b1120;
 $cb-border:  rgba(255, 255, 255, 0.07);
-$pg-accent:  #6366f1;
+$pg-accent:  #8b5cf6;
 $pg-font:    'Inter', system-ui, sans-serif;
 $pg-text-sec: #91a2b1;
 
 // ── Wrapper ───────────────────────────────────────────────────────────────────
 
 .pg-codeblock {
-  background: $cb-bg;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(99, 102, 241, 0.12), transparent 40%),
+    radial-gradient(circle at 92% 0%, rgba(217, 70, 239, 0.08), transparent 42%),
+    $cb-bg;
   border-top: 1px solid $cb-border;
   display: flex;
   flex-direction: column;
@@ -28,14 +31,18 @@ $pg-text-sec: #91a2b1;
 
   &__label {
     align-items: center;
-    color: rgba(145, 162, 177, 0.55);
+    color: rgba(145, 162, 177, 0.7);
     display: flex;
     font-family: $pg-font;
     font-size: 10px;
-    font-weight: 600;
-    gap: 6px;
+    font-weight: 700;
+    gap: 7px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+
+    svg {
+      color: #a78bfa;
+    }
   }
 
   &__copy {

@@ -100,13 +100,21 @@ export const ListWorkspace = () => {
     if (config.borderWidth) {
       rules.push(`.ds-list__item { border: ${config.borderWidth} ${config.borderStyle || 'solid'} ${config.borderColor || '#3fb0bc'} !important; }`)
     }
+    const typo: string[] = []
+    if (config.fontFamily) typo.push(`font-family: ${config.fontFamily} !important`)
+    if (config.fontSize) typo.push(`font-size: ${config.fontSize} !important`)
+    if (config.fontWeight) typo.push(`font-weight: ${config.fontWeight} !important`)
+    if (config.letterSpacing) typo.push(`letter-spacing: ${config.letterSpacing} !important`)
+    if (config.textTransform && config.textTransform !== 'none') typo.push(`text-transform: ${config.textTransform} !important`)
+    if (typo.length) rules.push(`.ds-list, .ds-list__label, .ds-list__description { ${typo.join('; ')}; }`)
+    if (config.shadow) rules.push(`.ds-list__item { box-shadow: ${config.shadow} !important; }`)
     if (!rules.length) return
     const el = document.createElement('style')
     el.setAttribute('data-pg-list-override', '')
     el.textContent = rules.join('\n')
     document.head.appendChild(el)
     return () => { el.remove() }
-  }, [config.textColor, config.itemHoverBg, config.gap, config.itemPadding, config.itemRadius, config.borderWidth, config.borderStyle, config.borderColor])
+  }, [config.textColor, config.itemHoverBg, config.gap, config.itemPadding, config.itemRadius, config.borderWidth, config.borderStyle, config.borderColor, config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow])
 
   // Inject Custom CSS as a live <style> block so real selectors work
   useEffect(() => {

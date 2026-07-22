@@ -80,4 +80,65 @@ export const TOKENS = {
     '2px': '2px',   // $size-stroke-border-width-2
     '4px': '4px',   // $size-stroke-border-width-4
   },
+
+  // Font families available in the design system + web-safe presets.
+  // The design-system fonts come first, followed by common web-safe stacks
+  // that render everywhere without loading extra assets.
+  fontFamily: {
+    // ── Design system ──
+    ui:        "'Noto Sans', system-ui, sans-serif",
+    heading:   "'Nunito Sans', system-ui, sans-serif",
+    mono:      "'JetBrains Mono', ui-monospace, monospace",
+    system:    "system-ui, -apple-system, sans-serif",
+    // ── Sans-serif ──
+    inter:     "'Inter', system-ui, sans-serif",
+    helvetica: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+    arial:     "Arial, Helvetica, sans-serif",
+    verdana:   "Verdana, Geneva, sans-serif",
+    tahoma:    "Tahoma, Geneva, sans-serif",
+    trebuchet: "'Trebuchet MS', Tahoma, sans-serif",
+    gillsans:  "'Gill Sans', 'Gill Sans MT', Calibri, sans-serif",
+    // ── Serif ──
+    serif:     "Georgia, 'Times New Roman', serif",
+    times:     "'Times New Roman', Times, serif",
+    garamond:  "Garamond, 'Times New Roman', serif",
+    palatino:  "'Palatino Linotype', 'Book Antiqua', Palatino, serif",
+    baskerville: "Baskerville, 'Baskerville Old Face', Georgia, serif",
+    // ── Monospace ──
+    courier:   "'Courier New', Courier, monospace",
+    consolas:  "Consolas, 'Courier New', monospace",
+  },
+
+  // Common font sizes (px)
+  fontSize: {
+    xs:  '12px',
+    sm:  '14px',
+    md:  '16px',
+    lg:  '20px',
+    xl:  '24px',
+  },
+
+  // Font weights
+  fontWeight: {
+    regular:  '400',
+    medium:   '500',
+    semibold: '600',
+    bold:     '700',
+  },
+
+  // Letter spacing
+  letterSpacing: {
+    tight:  '-0.02em',
+    normal: '0',
+    wide:   '0.04em',
+    wider:  '0.08em',
+  },
+
+  // Elevation / shadow presets
+  shadow: {
+    sm: '0 1px 2px rgba(20, 31, 46, 0.08)',
+    md: '0 4px 12px rgba(20, 31, 46, 0.12)',
+    lg: '0 12px 28px rgba(20, 31, 46, 0.18)',
+    xl: '0 24px 48px rgba(20, 31, 46, 0.22)',
+  },
 } as const

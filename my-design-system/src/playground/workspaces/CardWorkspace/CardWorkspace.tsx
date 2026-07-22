@@ -59,6 +59,7 @@ function buildCardStyle(config: CardConfig): CSSProperties {
       borderStyle: (config.borderStyle || 'solid') as CSSProperties['borderStyle'],
       ...(config.borderColor && { borderColor: config.borderColor }),
     }),
+    ...(config.shadow && { boxShadow: config.shadow }),
   }
 }
 
@@ -68,6 +69,11 @@ function buildBodyStyle(config: CardConfig): CSSProperties {
     ...(config.paddingY && { paddingBlock: config.paddingY }),
     ...(config.gap && { gap: config.gap }),
     ...(config.textColor && { color: config.textColor }),
+    ...(config.fontFamily && { fontFamily: config.fontFamily }),
+    ...(config.fontSize && { fontSize: config.fontSize }),
+    ...(config.fontWeight && { fontWeight: config.fontWeight as CSSProperties['fontWeight'] }),
+    ...(config.letterSpacing && { letterSpacing: config.letterSpacing }),
+    ...(config.textTransform && config.textTransform !== 'none' && { textTransform: config.textTransform as CSSProperties['textTransform'] }),
   }
 }
 

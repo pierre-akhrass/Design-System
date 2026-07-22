@@ -19,6 +19,18 @@ const s = (v: unknown): string => (typeof v === 'string' ? v : '')
 
 const DEFAULT_BORDER = '#3fb0bc'
 
+/** Compose typography declarations shared across components. */
+function typo(cfg: Cfg): string {
+  const parts: string[] = []
+  if (s(cfg.fontFamily)) parts.push(`font-family: ${s(cfg.fontFamily)} !important`)
+  if (s(cfg.fontSize)) parts.push(`font-size: ${s(cfg.fontSize)} !important`)
+  if (s(cfg.fontWeight)) parts.push(`font-weight: ${s(cfg.fontWeight)} !important`)
+  if (s(cfg.letterSpacing)) parts.push(`letter-spacing: ${s(cfg.letterSpacing)} !important`)
+  const tt = s(cfg.textTransform)
+  if (tt && tt !== 'none') parts.push(`text-transform: ${tt} !important`)
+  return parts.join('; ')
+}
+
 /** Compose a border shorthand the same way the previews do. */
 function border(cfg: Cfg): string | null {
   const w = s(cfg.borderWidth)
@@ -47,6 +59,8 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (py) r.push(`.ds-card__body { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-card__body { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-card { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-card__body, .ds-card__title, .ds-card__text { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-card { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'carousel': {
@@ -57,6 +71,8 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (s(cfg.slideRadius)) r.push(`.ds-carousel__slide { border-radius: ${s(cfg.slideRadius)} !important; }`)
       if (s(cfg.buttonRadius)) r.push(`.ds-carousel__button { border-radius: ${s(cfg.buttonRadius)} !important; }`)
       if (bd) r.push(`.ds-carousel__slide { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-carousel, .ds-carousel__slide { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-carousel__slide { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'checkbox': {
@@ -83,6 +99,8 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (s(cfg.padding)) r.push(`.ds-dialog__panel { padding: ${s(cfg.padding)} !important; }`)
       if (gap) r.push(`.ds-dialog__panel { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-dialog__panel { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-dialog__panel, .ds-dialog__title, .ds-dialog__text { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-dialog__panel { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'dropdown': {
@@ -104,6 +122,8 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (s(cfg.itemPadding)) r.push(`.ds-list__item { padding: ${s(cfg.itemPadding)} !important; }`)
       if (s(cfg.itemRadius)) r.push(`.ds-list__item { border-radius: ${s(cfg.itemRadius)} !important; }`)
       if (bd) r.push(`.ds-list__item { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-list, .ds-list__label, .ds-list__description { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-list__item { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'map': {
@@ -177,6 +197,8 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (s(cfg.radius)) r.push(`.ds-social-media-post__media { border-radius: ${s(cfg.radius)} !important; }`)
       if (s(cfg.textPadding)) r.push(`.ds-social-media-post__media--text { padding: ${s(cfg.textPadding)} !important; }`)
       if (bd) r.push(`.ds-social-media-post__media { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-social-media-post { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-social-media-post__media { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'switch': {

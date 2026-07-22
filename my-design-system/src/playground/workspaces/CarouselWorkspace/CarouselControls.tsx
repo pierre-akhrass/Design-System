@@ -1,5 +1,6 @@
 import type { CarouselConfig } from './carouselCodeGen'
 import { TOKENS } from '../../designTokens'
+import { TypographyControls } from '../../TypographyControls'
 import './CarouselControls.scss'
 
 interface CarouselControlsProps {
@@ -190,6 +191,8 @@ export const CarouselControls = ({ config, onChange }: CarouselControlsProps) =>
       <ControlRow label="border-color" disabled={!config.borderWidth}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>
