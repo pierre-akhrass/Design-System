@@ -64,6 +64,13 @@ export interface FormConfig {
   varMaxWidth: string        // --ds-form-max-width      (form max-width, default none)
 
   // ── Custom CSS ──────────────────────────────────────────────────────────
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   customCss: string
@@ -118,6 +125,12 @@ export const defaultFormConfig: FormConfig = {
   varFieldRadius: '',
   varMaxWidth: '',
 
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

@@ -41,6 +41,13 @@ export interface AvatarConfig {
   textColor: string     // --ds-avatar-fg  (initials / icon colour)
 
   // ── Custom CSS ───────────────────────────────────────────────────────────
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   customCss: string
@@ -70,6 +77,12 @@ export const defaultAvatarConfig: AvatarConfig = {
   blockSrc: 'https://i.pravatar.cc/150?img=1',
   blockInitials: 'J',
 
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

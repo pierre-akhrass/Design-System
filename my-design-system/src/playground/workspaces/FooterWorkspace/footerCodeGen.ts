@@ -47,6 +47,13 @@ export interface FooterConfig {
   textColor: string     // --ds-footer-text (primary text colour)
 
   // ── Custom CSS ──────────────────────────────────────────────────────────
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   customCss: string
@@ -82,6 +89,12 @@ export const defaultFooterConfig: FooterConfig = {
   showYoutube: true,
   showX: true,
 
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

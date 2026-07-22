@@ -1,6 +1,7 @@
 import type { SwitchConfig } from './switchCodeGen'
 import { TOKENS } from '../../designTokens'
 import './SwitchControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface SwitchControlsProps {
   config: SwitchConfig
@@ -237,6 +238,8 @@ export const SwitchControls = ({ config, onChange }: SwitchControlsProps) => {
       <ControlRow label="border-color" disabled={!hasBorder}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} disabled={!hasBorder} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

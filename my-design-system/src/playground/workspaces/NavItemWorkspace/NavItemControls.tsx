@@ -1,6 +1,7 @@
 import type { NavItemConfig } from './navItemCodeGen'
 import { TOKENS } from '../../designTokens'
 import './NavItemControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface NavItemControlsProps {
   config: NavItemConfig
@@ -439,6 +440,8 @@ export const NavItemControls = ({ config, onChange }: NavItemControlsProps) => {
           spellCheck={false}
         />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

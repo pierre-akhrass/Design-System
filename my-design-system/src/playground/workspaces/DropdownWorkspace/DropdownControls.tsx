@@ -2,6 +2,7 @@ import type { DropdownConfig, DropdownItemConfig } from './dropdownCodeGen'
 import { DEFAULT_ITEMS } from './dropdownCodeGen'
 import { TOKENS } from '../../designTokens'
 import './DropdownControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface DropdownControlsProps {
   config: DropdownConfig
@@ -263,6 +264,8 @@ export const DropdownControls = ({ config, onChange }: DropdownControlsProps) =>
       <ControlRow label="border-color" disabled={!hasBorder}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} disabled={!hasBorder} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

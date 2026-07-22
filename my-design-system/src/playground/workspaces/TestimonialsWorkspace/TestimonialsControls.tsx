@@ -2,6 +2,7 @@ import type { TestimonialsConfig, TestimonialsItemConfig } from './testimonialsC
 import { DEFAULT_TESTIMONIALS } from './testimonialsCodeGen'
 import { TOKENS } from '../../designTokens'
 import './TestimonialsControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface TestimonialsControlsProps {
   config: TestimonialsConfig
@@ -324,6 +325,8 @@ export const TestimonialsControls = ({ config, onChange }: TestimonialsControlsP
         <button className="testimonials-controls__action-btn" type="button" onClick={addItem}>+ Testimonial</button>
         <button className="testimonials-controls__action-btn testimonials-controls__action-btn--reset" type="button" onClick={resetItems}>Reset</button>
       </div>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

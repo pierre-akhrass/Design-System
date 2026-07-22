@@ -2,6 +2,7 @@ import type { MegaMenuConfig, MegaMenuColumnEntry, MegaMenuLinkEntry, MegaMenuCa
 import { DEFAULT_COLUMNS, DEFAULT_CARD } from './megaMenuCodeGen'
 import { TOKENS } from '../../designTokens'
 import './MegaMenuControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface MegaMenuControlsProps {
   config: MegaMenuConfig
@@ -306,6 +307,8 @@ export const MegaMenuControls = ({ config, onChange }: MegaMenuControlsProps) =>
       <ControlRow label="border-color" disabled={!config.borderWidth}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} disabled={!config.borderWidth} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

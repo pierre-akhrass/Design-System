@@ -61,6 +61,20 @@ const VAR_MAP: Record<string, Record<string, string>> = {
     borderColor: '--ds-list-item-border-color',
   },
   search: { textColor: '--ds-search-fg' },
+  checkbox: {
+    bgColor:   '--ds-checkbox-bg',
+    textColor: '--ds-checkbox-fg',
+  },
+  radio: {
+    textColor: '--ds-radio-fg',
+  },
+  switch: {
+    bgColor:   '--ds-switch-bg',
+    textColor: '--ds-switch-fg',
+  },
+  testimonials: {
+    bgColor: '--ds-testimonials-bg',
+  },
   tag: {
     bgColor:   '--ds-tag-bg',
     textColor: '--ds-tag-fg',

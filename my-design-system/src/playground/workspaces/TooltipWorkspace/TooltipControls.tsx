@@ -1,6 +1,7 @@
 import type { TooltipConfig } from './tooltipCodeGen'
 import { TOKENS } from '../../designTokens'
 import './TooltipControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface TooltipControlsProps {
   config: TooltipConfig
@@ -334,6 +335,8 @@ export const TooltipControls = ({ config, onChange }: TooltipControlsProps) => {
           Reset spacing overrides
         </button>
       )}
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

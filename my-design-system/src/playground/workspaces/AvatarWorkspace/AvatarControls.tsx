@@ -1,5 +1,6 @@
 import type { AvatarConfig } from './avatarCodeGen'
 import './AvatarControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface AvatarControlsProps {
   config: AvatarConfig
@@ -402,6 +403,8 @@ export const AvatarControls = ({ config, onChange }: AvatarControlsProps) => {
       )}
 
       {/* ── Custom CSS (always visible) ─────────────────────────── */}
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
+
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>
 

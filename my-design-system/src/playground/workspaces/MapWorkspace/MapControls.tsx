@@ -2,6 +2,7 @@ import type { MapConfig, MapPinConfig } from './mapCodeGen'
 import { DEFAULT_PINS } from './mapCodeGen'
 import { TOKENS } from '../../designTokens'
 import './MapControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface MapControlsProps {
   config: MapConfig
@@ -285,6 +286,8 @@ export const MapControls = ({ config, onChange }: MapControlsProps) => {
       <ControlRow label="border-color" disabled={!hasBorder}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} disabled={!hasBorder} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

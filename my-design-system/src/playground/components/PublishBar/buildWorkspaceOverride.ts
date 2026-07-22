@@ -75,13 +75,17 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (s(cfg.shadow)) r.push(`.ds-carousel__slide { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
+    case 'breadcrumbs': {
+      { const t = typo(cfg); if (t) r.push(`.ds-breadcrumbs, .ds-breadcrumbs__item, .ds-breadcrumbs__link { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-breadcrumbs { box-shadow: ${s(cfg.shadow)} !important; }`)
+      break
+    }
     case 'checkbox': {
       if (bg) {
         r.push(`.ds-checkbox__box { background: ${bg} !important; border-color: ${bg} !important; }`)
         r.push(`.ds-checkbox--checked .ds-checkbox__box, .ds-checkbox--indeterminate .ds-checkbox__box { background: ${bg} !important; border-color: ${bg} !important; }`)
       }
       if (fg) r.push(`.ds-checkbox__label, .ds-checkbox__description { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-checkbox { font-family: ${ff} !important; }`)
       if (rad) {
         r.push(`.ds-checkbox { border-radius: ${rad} !important; }`)
         r.push(`.ds-checkbox__box { border-radius: ${rad} !important; }`)
@@ -90,6 +94,8 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (py) r.push(`.ds-checkbox { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-checkbox { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-checkbox { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-checkbox, .ds-checkbox__label, .ds-checkbox__description { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-checkbox { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'dialog': {
@@ -106,12 +112,13 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
     case 'dropdown': {
       if (bg) r.push(`.ds-dropdown { background: ${bg} !important; }`)
       if (fg) r.push(`.ds-dropdown, .ds-dropdown .ds-nav-item { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-dropdown { font-family: ${ff} !important; }`)
       if (rad) r.push(`.ds-dropdown { border-radius: ${rad} !important; }`)
       if (px) r.push(`.ds-dropdown { padding-inline: ${px} !important; }`)
       if (py) r.push(`.ds-dropdown { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-dropdown { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-dropdown { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-dropdown { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-dropdown { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'list': {
@@ -129,33 +136,48 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
     case 'map': {
       if (bg) r.push(`.ds-map { background-color: ${bg} !important; }`)
       if (fg) r.push(`.ds-map, .ds-map__header-title, .ds-map__header-desc { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-map, .ds-map__header-title, .ds-map__header-desc { font-family: ${ff} !important; }`)
       if (rad) r.push(`.ds-map { border-radius: ${rad} !important; }`)
       if (px) r.push(`.ds-map { padding-inline: ${px} !important; }`)
       if (py) r.push(`.ds-map { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-map { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-map { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-map, .ds-map__header-title, .ds-map__header-desc { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-map { box-shadow: ${s(cfg.shadow)} !important; }`)
+      break
+    }
+    case 'nav-item': {
+      if (bg) r.push(`.ds-nav-item { background: ${bg} !important; }`)
+      if (fg) r.push(`.ds-nav-item { color: ${fg} !important; }`)
+      if (rad) r.push(`.ds-nav-item { border-radius: ${rad} !important; }`)
+      if (px) r.push(`.ds-nav-item { padding-inline: ${px} !important; }`)
+      if (py) r.push(`.ds-nav-item { padding-block: ${py} !important; }`)
+      if (gap) r.push(`.ds-nav-item { gap: ${gap} !important; }`)
+      if (bd) r.push(`.ds-nav-item { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-nav-item { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-nav-item { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'mega-menu': {
       if (bg) r.push(`.ds-mega-menu { background: ${bg} !important; }`)
       if (fg) r.push(`.ds-mega-menu, .ds-mega-menu .ds-nav-item { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-mega-menu { font-family: ${ff} !important; }`)
       if (rad) r.push(`.ds-mega-menu { border-radius: ${rad} !important; }`)
       if (px) r.push(`.ds-mega-menu { padding-inline: ${px} !important; }`)
       if (py) r.push(`.ds-mega-menu { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-mega-menu__body { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-mega-menu { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-mega-menu { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-mega-menu { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'navbar': {
       if (bg) r.push(`.ds-navbar { background: ${bg} !important; }`)
       if (fg) r.push(`.ds-navbar, .ds-navbar .ds-nav-item { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-navbar { font-family: ${ff} !important; }`)
       if (rad) r.push(`.ds-navbar { border-radius: ${rad} !important; }`)
       if (px) r.push(`.ds-navbar { padding-inline: ${px} !important; }`)
       if (py) r.push(`.ds-navbar { padding-block: ${py} !important; }`)
       if (bd) r.push(`.ds-navbar { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-navbar { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-navbar { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'radio': {
@@ -166,12 +188,13 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
         r.push(`.ds-radio__box svg path[fill="#BCBCBC"] { fill: ${bg} !important; }`)
       }
       if (fg) r.push(`.ds-radio__label, .ds-radio__description { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-radio { font-family: ${ff} !important; }`)
       if (rad) r.push(`.ds-radio { border-radius: ${rad} !important; }`)
       if (px) r.push(`.ds-radio { padding-inline: ${px} !important; }`)
       if (py) r.push(`.ds-radio { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-radio { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-radio { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-radio, .ds-radio__label, .ds-radio__description { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-radio { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'search': {
@@ -207,7 +230,6 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
         r.push(`.ds-switch--checked .ds-switch__track { background: ${bg} !important; border-color: ${bg} !important; }`)
       }
       if (fg) r.push(`.ds-switch__label, .ds-switch__description { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-switch { font-family: ${ff} !important; }`)
       if (rad) {
         r.push(`.ds-switch { border-radius: ${rad} !important; }`)
         r.push(`.ds-switch__track { border-radius: ${rad} !important; }`)
@@ -216,6 +238,8 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (py) r.push(`.ds-switch { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-switch { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-switch { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-switch, .ds-switch__label, .ds-switch__description { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-switch { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'tag': {
@@ -226,11 +250,15 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (py) r.push(`.ds-tag { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-tag { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-tag { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-tag { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-tag { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'testimonials': {
       if (bg) r.push(`.ds-testimonials, .ds-testimonial-card { background: ${bg} !important; }`)
       if (fg) r.push(`.ds-testimonials { --ds-testimonials-text-color: ${fg} !important; color: ${fg} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-testimonials, .ds-testimonial-card { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-testimonial-card { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'tooltip': {
@@ -241,16 +269,22 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (s(cfg.padding)) r.push(`.ds-tooltip { padding: ${s(cfg.padding)} !important; }`)
       if (gap) r.push(`.ds-tooltip { gap: ${gap} !important; }`)
       if (s(cfg.width)) r.push(`.ds-tooltip { width: ${s(cfg.width)} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-tooltip, .ds-tooltip__title, .ds-tooltip__body { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-tooltip { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'avatar': {
       if (bg) r.push(`.ds-avatar--initial, .ds-avatar--shape { --ds-avatar-bg: ${bg} !important; }`)
       if (fg) r.push(`.ds-avatar__initials, .ds-avatar__shape { --ds-avatar-fg: ${fg} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-avatar { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-avatar { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'footer': {
       if (bg) r.push(`.ds-footer { --ds-footer-bg: ${bg} !important; }`)
       if (fg) r.push(`.ds-footer { --ds-footer-text: ${fg} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-footer { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-footer { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     case 'form': {
@@ -278,12 +312,13 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
     case 'textarea': {
       if (bg) r.push(`.ds-textarea__input { background: ${bg} !important; }`)
       if (fg) r.push(`.ds-textarea__input, .ds-textarea__label { color: ${fg} !important; }`)
-      if (ff) r.push(`.ds-textarea__input, .ds-textarea__label { font-family: ${ff} !important; }`)
       if (rad) r.push(`.ds-textarea__input { border-radius: ${rad} !important; }`)
       if (px) r.push(`.ds-textarea__input { padding-inline: ${px} !important; }`)
       if (py) r.push(`.ds-textarea__input { padding-block: ${py} !important; }`)
       if (gap) r.push(`.ds-textarea { gap: ${gap} !important; }`)
       if (bd) r.push(`.ds-textarea__input { border: ${bd} !important; }`)
+      { const t = typo(cfg); if (t) r.push(`.ds-textarea__input, .ds-textarea__label { ${t}; }`) }
+      if (s(cfg.shadow)) r.push(`.ds-textarea__input { box-shadow: ${s(cfg.shadow)} !important; }`)
       break
     }
     default:
@@ -333,6 +368,17 @@ function propsFor(componentId: string, cfg: Cfg): Record<string, unknown> | unde
       set('hashtags', s(cfg.hashtags))
       set('showPagination', bool(cfg.showPagination))
       set('theme', s(cfg.theme))
+      break
+    }
+    case 'nav-item': {
+      set('label', s(cfg.label))
+      set('state', s(cfg.state))
+      set('orientation', s(cfg.orientation))
+      set('level', s(cfg.level))
+      set('hierarchy', s(cfg.hierarchy))
+      set('shape', s(cfg.shape))
+      set('colorMode', s(cfg.colorMode))
+      set('selected', bool(cfg.selected as boolean))
       break
     }
     case 'tooltip': {

@@ -16,6 +16,13 @@ export interface TagConfig {
   borderStyle: string
   borderColor: string
   // CSS targeting — optional class / id added to the component for selector-based styling
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   // Raw CSS injected as a live <style> block; use customClass / customId to write real selectors
@@ -37,6 +44,12 @@ export const defaultTagConfig: TagConfig = {
   borderWidth: '',
   borderStyle: '',
   borderColor: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

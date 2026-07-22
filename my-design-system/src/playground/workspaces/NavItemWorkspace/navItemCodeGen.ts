@@ -30,6 +30,13 @@ export interface NavItemConfig {
   borderStyle: string
   borderColor: string
   // CSS targeting
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   customCss: string
@@ -57,6 +64,12 @@ export const defaultNavItemConfig: NavItemConfig = {
   borderWidth: '',
   borderStyle: '',
   borderColor: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

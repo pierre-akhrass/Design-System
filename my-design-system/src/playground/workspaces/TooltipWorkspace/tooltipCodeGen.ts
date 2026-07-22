@@ -12,6 +12,13 @@ export interface TooltipConfig {
   gap: string
   width: string
   // CSS targeting — optional class / id added to the component for selector-based styling
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   // Raw CSS injected as a live <style> block; use customClass / customId to write real selectors
@@ -30,6 +37,12 @@ export const defaultTooltipConfig: TooltipConfig = {
   padding: '',
   gap: '',
   width: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

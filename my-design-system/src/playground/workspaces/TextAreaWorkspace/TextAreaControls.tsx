@@ -1,6 +1,7 @@
 import type { TextAreaConfig } from './textAreaCodeGen'
 import { TOKENS } from '../../designTokens'
 import './TextAreaControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface TextAreaControlsProps {
   config: TextAreaConfig
@@ -233,6 +234,8 @@ export const TextAreaControls = ({ config, onChange }: TextAreaControlsProps) =>
       <ControlRow label="border-color" disabled={!hasBorder}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} disabled={!hasBorder} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

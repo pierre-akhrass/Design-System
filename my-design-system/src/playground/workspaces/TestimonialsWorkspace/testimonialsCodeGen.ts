@@ -17,6 +17,13 @@ export interface TestimonialsConfig {
   paddingY: string
   marginX: string
   marginY: string
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   customCss: string
@@ -52,6 +59,12 @@ export const defaultTestimonialsConfig: TestimonialsConfig = {
   paddingY: '',
   marginX: '',
   marginY: '',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

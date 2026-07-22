@@ -11,6 +11,7 @@ import './RadioWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -49,6 +50,8 @@ export const RadioWorkspace = () => {
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
+  useScssSync<RadioConfig>('radio', setConfig)
+
   useEffect(() => { window.location.hash = encodeConfig(config) }, [config])
 
   const copyLink = () => {
@@ -81,6 +84,11 @@ export const RadioWorkspace = () => {
     if (config.fontFamily) {
       rules.push(`.ds-radio { font-family: ${config.fontFamily} !important; }`)
     }
+    if (config.fontSize) rules.push(`.ds-radio { font-size: ${config.fontSize} !important; }`)
+    if (config.fontWeight) rules.push(`.ds-radio { font-weight: ${config.fontWeight} !important; }`)
+    if (config.letterSpacing) rules.push(`.ds-radio { letter-spacing: ${config.letterSpacing} !important; }`)
+    if (config.textTransform && config.textTransform !== 'none') rules.push(`.ds-radio { text-transform: ${config.textTransform} !important; }`)
+    if (config.shadow) rules.push(`.ds-radio { box-shadow: ${config.shadow} !important; }`)
     if (config.borderRadius) {
       rules.push(`.ds-radio { border-radius: ${config.borderRadius} !important; }`)
     }
@@ -102,7 +110,7 @@ export const RadioWorkspace = () => {
     el.textContent = rules.join('\n')
     document.head.appendChild(el)
     return () => { el.remove() }
-  }, [config.bgColor, config.textColor, config.fontFamily, config.borderRadius, config.paddingX, config.paddingY, config.gap, config.borderWidth, config.borderStyle, config.borderColor])
+  }, [config.bgColor, config.textColor, config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow, config.borderRadius, config.paddingX, config.paddingY, config.gap, config.borderWidth, config.borderStyle, config.borderColor])
 
   return (
     <div className="radio-ws">

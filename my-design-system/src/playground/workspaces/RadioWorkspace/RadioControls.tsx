@@ -1,6 +1,7 @@
 import type { RadioConfig } from './radioCodeGen'
 import { TOKENS } from '../../designTokens'
 import './RadioControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface RadioControlsProps {
   config: RadioConfig
@@ -237,6 +238,8 @@ export const RadioControls = ({ config, onChange }: RadioControlsProps) => {
       <ControlRow label="border-color" disabled={!hasBorder}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} disabled={!hasBorder} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

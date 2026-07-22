@@ -1,6 +1,7 @@
 import type { TagConfig } from './tagCodeGen'
 import { TOKENS } from '../../designTokens'
 import './TagControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface TagControlsProps {
   config: TagConfig
@@ -422,6 +423,8 @@ export const TagControls = ({ config, onChange }: TagControlsProps) => {
           Reset border
         </button>
       )}
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

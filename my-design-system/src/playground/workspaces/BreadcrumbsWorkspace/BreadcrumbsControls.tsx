@@ -1,6 +1,7 @@
 import type { BreadcrumbsConfig, BreadcrumbItemEntry } from './breadcrumbsCodeGen'
 import { DEFAULT_ITEMS } from './breadcrumbsCodeGen'
 import './BreadcrumbsControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface BreadcrumbsControlsProps {
   config: BreadcrumbsConfig
@@ -91,6 +92,8 @@ export const BreadcrumbsControls = ({ config, onChange }: BreadcrumbsControlsPro
         <button className="breadcrumbs-controls__add-btn" onClick={addItem} type="button">+ Ancestor</button>
         <button className="breadcrumbs-controls__reset-btn" onClick={resetItems} type="button">Reset</button>
       </div>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

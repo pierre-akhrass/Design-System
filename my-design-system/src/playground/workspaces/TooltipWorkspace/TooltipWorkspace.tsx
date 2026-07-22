@@ -94,6 +94,22 @@ export const TooltipWorkspace = () => {
 
   // Inject customCss as a live <style> block so real CSS selectors work:
   // :hover, .ds-tooltip--top, #id, media queries, etc.
+  // Inject typography overrides as a live <style> block
+  useEffect(() => {
+    const rules: string[] = []
+    if (config.fontFamily) rules.push(`.ds-tooltip { font-family: ${config.fontFamily} !important; }`)
+    if (config.fontSize) rules.push(`.ds-tooltip { font-size: ${config.fontSize} !important; }`)
+    if (config.fontWeight) rules.push(`.ds-tooltip { font-weight: ${config.fontWeight} !important; }`)
+    if (config.letterSpacing) rules.push(`.ds-tooltip { letter-spacing: ${config.letterSpacing} !important; }`)
+    if (config.textTransform && config.textTransform !== 'none') rules.push(`.ds-tooltip { text-transform: ${config.textTransform} !important; }`)
+    if (config.shadow) rules.push(`.ds-tooltip { box-shadow: ${config.shadow} !important; }`)
+    if (!rules.length) return
+    const el = document.createElement('style')
+    el.setAttribute('data-pg-typo-override', '')
+    el.textContent = rules.join('\n')
+    document.head.appendChild(el)
+    return () => { el.remove() }
+  }, [config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow])
   useEffect(() => {
     if (!config.customCss.trim()) return
     const el = document.createElement('style')

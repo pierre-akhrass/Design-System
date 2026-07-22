@@ -83,6 +83,11 @@ export const SearchWorkspace = () => {
     if (config.fontFamily) {
       rules.push(`.ds-search, .ds-search__input { font-family: ${config.fontFamily} !important; }`)
     }
+    if (config.fontSize) rules.push(`.ds-search, .ds-search__input { font-size: ${config.fontSize} !important; }`)
+    if (config.fontWeight) rules.push(`.ds-search, .ds-search__input { font-weight: ${config.fontWeight} !important; }`)
+    if (config.letterSpacing) rules.push(`.ds-search, .ds-search__input { letter-spacing: ${config.letterSpacing} !important; }`)
+    if (config.textTransform && config.textTransform !== 'none') rules.push(`.ds-search, .ds-search__input { text-transform: ${config.textTransform} !important; }`)
+    if (config.shadow) rules.push(`.ds-search, .ds-search__input { box-shadow: ${config.shadow} !important; }`)
     if (config.borderRadius) {
       rules.push(`.ds-search { border-radius: ${config.borderRadius} !important; }`)
     }
@@ -104,7 +109,7 @@ export const SearchWorkspace = () => {
     el.textContent = rules.join('\n')
     document.head.appendChild(el)
     return () => { el.remove() }
-  }, [config.bgColor, config.textColor, config.fontFamily, config.borderRadius, config.paddingX, config.paddingY, config.gap, config.borderWidth, config.borderStyle, config.borderColor])
+  }, [config.bgColor, config.textColor, config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow, config.borderRadius, config.paddingX, config.paddingY, config.gap, config.borderWidth, config.borderStyle, config.borderColor])
 
   return (
     <div className="search-ws">

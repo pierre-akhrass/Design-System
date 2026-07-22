@@ -9,6 +9,13 @@ export interface BreadcrumbsConfig {
   items: BreadcrumbItemEntry[]
   showCollapsed: boolean
   currentLabel: string
+  // Typography + effects
+  fontFamily: string
+  fontSize: string
+  fontWeight: string
+  letterSpacing: string
+  textTransform: string
+  shadow: string
   customClass: string
   customId: string
   customCss: string
@@ -24,6 +31,12 @@ export const defaultBreadcrumbsConfig: BreadcrumbsConfig = {
   items: DEFAULT_ITEMS,
   showCollapsed: false,
   currentLabel: 'Current',
+  fontFamily: '',
+  fontSize: '',
+  fontWeight: '',
+  letterSpacing: '',
+  textTransform: 'none',
+  shadow: '',
   customClass: '',
   customId: '',
   customCss: '',

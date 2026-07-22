@@ -1,6 +1,7 @@
 import type { FormConfig } from './formCodeGen'
 import type { FormControlState } from '../../../components/Form'
 import './FormControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface FormControlsProps {
   config: FormConfig
@@ -558,6 +559,8 @@ export const FormControls = ({ config, onChange }: FormControlsProps) => {
       )}
 
       {/* ── Custom CSS ────────────────────────────────────────────── */}
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
+
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>
 

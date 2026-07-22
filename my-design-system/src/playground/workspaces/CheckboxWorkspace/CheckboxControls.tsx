@@ -1,6 +1,7 @@
 import type { CheckboxConfig } from './checkboxCodeGen'
 import { TOKENS } from '../../designTokens'
 import './CheckboxControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface CheckboxControlsProps {
   config: CheckboxConfig
@@ -237,6 +238,8 @@ export const CheckboxControls = ({ config, onChange }: CheckboxControlsProps) =>
       <ControlRow label="border-color" disabled={!hasBorder}>
         <ColorRow value={config.borderColor} defaultSwatch="#3fb0bc" onChange={(v) => set('borderColor', v)} onClear={() => set('borderColor', '')} disabled={!hasBorder} />
       </ControlRow>
+
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
 
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>

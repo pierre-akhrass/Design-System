@@ -11,6 +11,7 @@ import './TestimonialsWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 const CompareIcon = () => (
   <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
@@ -70,6 +71,8 @@ export const TestimonialsWorkspace = () => {
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
+  useScssSync<TestimonialsConfig>('testimonials', setConfig)
+
   useEffect(() => {
     window.location.hash = encodeConfig(config)
   }, [config])
@@ -81,6 +84,22 @@ export const TestimonialsWorkspace = () => {
     })
   }
 
+  // Inject typography overrides as a live <style> block
+  useEffect(() => {
+    const rules: string[] = []
+    if (config.fontFamily) rules.push(`.ds-testimonials { font-family: ${config.fontFamily} !important; }`)
+    if (config.fontSize) rules.push(`.ds-testimonials { font-size: ${config.fontSize} !important; }`)
+    if (config.fontWeight) rules.push(`.ds-testimonials { font-weight: ${config.fontWeight} !important; }`)
+    if (config.letterSpacing) rules.push(`.ds-testimonials { letter-spacing: ${config.letterSpacing} !important; }`)
+    if (config.textTransform && config.textTransform !== 'none') rules.push(`.ds-testimonials { text-transform: ${config.textTransform} !important; }`)
+    if (config.shadow) rules.push(`.ds-testimonials { box-shadow: ${config.shadow} !important; }`)
+    if (!rules.length) return
+    const el = document.createElement('style')
+    el.setAttribute('data-pg-typo-override', '')
+    el.textContent = rules.join('\n')
+    document.head.appendChild(el)
+    return () => { el.remove() }
+  }, [config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow])
   useEffect(() => {
     if (!config.customCss.trim()) return
     const el = document.createElement('style')

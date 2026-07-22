@@ -156,6 +156,22 @@ export const FooterWorkspace = () => {
   }, [config.bgColor, config.textColor])
 
   // Inject custom CSS as a live <style> block
+  // Inject typography overrides as a live <style> block
+  useEffect(() => {
+    const rules: string[] = []
+    if (config.fontFamily) rules.push(`.ds-footer { font-family: ${config.fontFamily} !important; }`)
+    if (config.fontSize) rules.push(`.ds-footer { font-size: ${config.fontSize} !important; }`)
+    if (config.fontWeight) rules.push(`.ds-footer { font-weight: ${config.fontWeight} !important; }`)
+    if (config.letterSpacing) rules.push(`.ds-footer { letter-spacing: ${config.letterSpacing} !important; }`)
+    if (config.textTransform && config.textTransform !== 'none') rules.push(`.ds-footer { text-transform: ${config.textTransform} !important; }`)
+    if (config.shadow) rules.push(`.ds-footer { box-shadow: ${config.shadow} !important; }`)
+    if (!rules.length) return
+    const el = document.createElement('style')
+    el.setAttribute('data-pg-typo-override', '')
+    el.textContent = rules.join('\n')
+    document.head.appendChild(el)
+    return () => { el.remove() }
+  }, [config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow])
   useEffect(() => {
     if (!config.customCss.trim()) return
     const el = document.createElement('style')

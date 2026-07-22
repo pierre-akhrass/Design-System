@@ -8,6 +8,10 @@ import { NavItemControls } from './NavItemControls'
 import { navItemCodeGen, defaultNavItemConfig } from './navItemCodeGen'
 import type { NavItemConfig } from './navItemCodeGen'
 import './NavItemWorkspace.scss'
+import { PublishBar } from '../../components/PublishBar/PublishBar'
+import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
+import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Toolbar icons ─────────────────────────────────────────────────────────────
 
@@ -115,9 +119,11 @@ const NavItemPreview = ({ config, colorMode }: { config: NavItemConfig; colorMod
 // ── NavItemWorkspace ──────────────────────────────────────────────────────────
 
 export const NavItemWorkspace = () => {
-  const [config, setConfig] = useState<NavItemConfig>(() => readHashConfig() ?? defaultNavItemConfig)
+  const [config, setConfig] = useState<NavItemConfig>(() => readHashConfig() ?? loadDraft<NavItemConfig>('nav-item') ?? defaultNavItemConfig)
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
+
+  useScssSync<NavItemConfig>('nav-item', setConfig)
 
   useEffect(() => {
     window.location.hash = encodeConfig(config)
@@ -131,6 +137,22 @@ export const NavItemWorkspace = () => {
   }
 
   // Inject Custom CSS
+  // Inject typography overrides as a live <style> block
+  useEffect(() => {
+    const rules: string[] = []
+    if (config.fontFamily) rules.push(`.ds-nav-item { font-family: ${config.fontFamily} !important; }`)
+    if (config.fontSize) rules.push(`.ds-nav-item { font-size: ${config.fontSize} !important; }`)
+    if (config.fontWeight) rules.push(`.ds-nav-item { font-weight: ${config.fontWeight} !important; }`)
+    if (config.letterSpacing) rules.push(`.ds-nav-item { letter-spacing: ${config.letterSpacing} !important; }`)
+    if (config.textTransform && config.textTransform !== 'none') rules.push(`.ds-nav-item { text-transform: ${config.textTransform} !important; }`)
+    if (config.shadow) rules.push(`.ds-nav-item { box-shadow: ${config.shadow} !important; }`)
+    if (!rules.length) return
+    const el = document.createElement('style')
+    el.setAttribute('data-pg-typo-override', '')
+    el.textContent = rules.join('\n')
+    document.head.appendChild(el)
+    return () => { el.remove() }
+  }, [config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow])
   useEffect(() => {
     if (!config.customCss.trim()) return
     const el = document.createElement('style')
@@ -187,6 +209,13 @@ export const NavItemWorkspace = () => {
         </div>
 
         <CodeBlock code={navItemCodeGen(config)} />
+
+        <PublishBar
+          componentId="nav-item"
+          draftConfig={config}
+          componentLabel="NavItem"
+          override={buildWorkspaceOverride('nav-item', config, '.ds-nav-item')}
+        />
       </div>
 
       <ControlPanel>

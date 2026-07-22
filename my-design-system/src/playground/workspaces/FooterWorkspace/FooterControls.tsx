@@ -1,5 +1,6 @@
 import type { FooterConfig } from './footerCodeGen'
 import './FooterControls.scss'
+import { TypographyControls } from '../../TypographyControls'
 
 interface FooterControlsProps {
   config: FooterConfig
@@ -368,6 +369,8 @@ export const FooterControls = ({ config, onChange }: FooterControlsProps) => {
       )}
 
       {/* ── Custom CSS ───────────────────────────────────────────── */}
+      <TypographyControls config={config} onChange={(patch) => onChange({ ...config, ...patch })} />
+
       <Divider />
       <SectionLabel>Custom CSS</SectionLabel>
 

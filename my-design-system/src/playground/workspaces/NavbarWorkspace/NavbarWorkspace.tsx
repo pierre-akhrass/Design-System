@@ -12,6 +12,7 @@ import './NavbarWorkspace.scss'
 import { PublishBar } from '../../components/PublishBar/PublishBar'
 import { buildWorkspaceOverride } from '../../components/PublishBar/buildWorkspaceOverride'
 import { loadDraft } from '../../draftStore'
+import { useScssSync } from '../../useScssSync'
 
 // ── Icons (same as Navbar.stories) ────────────────────────────────────────────
 
@@ -118,6 +119,8 @@ export const NavbarWorkspace = () => {
   const [compare, setCompare] = useState(false)
   const [linkCopied, setLinkCopied] = useState(false)
 
+  useScssSync<NavbarConfig>('navbar', setConfig)
+
   useEffect(() => { window.location.hash = encodeConfig(config) }, [config])
 
   const copyLink = () => {
@@ -141,6 +144,11 @@ export const NavbarWorkspace = () => {
     if (config.bgColor) rules.push(`.ds-navbar { background: ${config.bgColor} !important; }`)
     if (config.textColor) rules.push(`.ds-navbar, .ds-navbar .ds-nav-item { color: ${config.textColor} !important; }`)
     if (config.fontFamily) rules.push(`.ds-navbar { font-family: ${config.fontFamily} !important; }`)
+    if (config.fontSize) rules.push(`.ds-navbar { font-size: ${config.fontSize} !important; }`)
+    if (config.fontWeight) rules.push(`.ds-navbar { font-weight: ${config.fontWeight} !important; }`)
+    if (config.letterSpacing) rules.push(`.ds-navbar { letter-spacing: ${config.letterSpacing} !important; }`)
+    if (config.textTransform && config.textTransform !== 'none') rules.push(`.ds-navbar { text-transform: ${config.textTransform} !important; }`)
+    if (config.shadow) rules.push(`.ds-navbar { box-shadow: ${config.shadow} !important; }`)
     if (config.borderRadius) rules.push(`.ds-navbar { border-radius: ${config.borderRadius} !important; }`)
     if (config.paddingX) rules.push(`.ds-navbar { padding-inline: ${config.paddingX} !important; }`)
     if (config.paddingY) rules.push(`.ds-navbar { padding-block: ${config.paddingY} !important; }`)
@@ -151,7 +159,7 @@ export const NavbarWorkspace = () => {
     el.textContent = rules.join('\n')
     document.head.appendChild(el)
     return () => { el.remove() }
-  }, [config.bgColor, config.textColor, config.fontFamily, config.borderRadius, config.paddingX, config.paddingY, config.borderWidth, config.borderStyle, config.borderColor])
+  }, [config.bgColor, config.textColor, config.fontFamily, config.fontSize, config.fontWeight, config.letterSpacing, config.textTransform, config.shadow, config.borderRadius, config.paddingX, config.paddingY, config.borderWidth, config.borderStyle, config.borderColor])
 
   const resolveActions = (): NavbarActionLink[] =>
     config.actions.map((a, i) => ({
