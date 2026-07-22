@@ -1,10 +1,6 @@
 @use '../../../styles/tokens/variables' as *;
 
-$pg-border:    rgba(0, 0, 0, 0.07);
-$pg-text-pri:  #141f2e;
-$pg-text-sec:  #6e8296;
 $pg-accent:    #6366f1;
-$pg-surface-2: #edf0f3;
 $pg-font:      'Inter', system-ui, sans-serif;
 
 // ── Root ──────────────────────────────────────────────────────────────────────
@@ -21,7 +17,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
 
 .ctrl-section-label {
   align-items: center;
-  color: rgba(60, 80, 100, 0.45);
+  color: var(--pg-muted);
   display: flex;
   font-size: 10px;
   font-weight: $ui-font-weight-strong;
@@ -52,7 +48,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
 
 .ctrl-divider {
   border: none;
-  border-top: 1px solid $pg-border;
+  border-top: 1px solid var(--pg-border);
   margin: 6px 0 0;
 }
 
@@ -68,7 +64,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
 
   &__label {
     align-items: center;
-    color: $pg-text-sec;
+    color: var(--pg-text-sec);
     display: flex;
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 11.5px;
@@ -102,10 +98,10 @@ $pg-font:      'Inter', system-ui, sans-serif;
 // ── Text input ────────────────────────────────────────────────────────────────
 
 .ctrl-input {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: var(--pg-input-bg);
+  border: 1px solid var(--pg-input-border);
   border-radius: 6px;
-  color: $pg-text-pri;
+  color: var(--pg-text-pri);
   font-family: $pg-font;
   font-size: 12.5px;
   height: 30px;
@@ -114,7 +110,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   transition: border-color 0.14s ease;
 
   &::placeholder {
-    color: rgba(60, 80, 100, 0.35);
+    color: var(--pg-muted);
   }
 
   &:focus {
@@ -129,8 +125,8 @@ $pg-font:      'Inter', system-ui, sans-serif;
 // ── Segmented control ─────────────────────────────────────────────────────────
 
 .ctrl-seg {
-  background: rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: var(--pg-seg-bg);
+  border: 1px solid var(--pg-seg-border);
   border-radius: 7px;
   display: flex;
   gap: 2px;
@@ -140,7 +136,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
     background: transparent;
     border: none;
     border-radius: 5px;
-    color: $pg-text-sec;
+    color: var(--pg-text-sec);
     cursor: pointer;
     font-family: $pg-font;
     font-size: 11.5px;
@@ -150,13 +146,13 @@ $pg-font:      'Inter', system-ui, sans-serif;
     white-space: nowrap;
 
     &:hover {
-      color: $pg-text-pri;
+      color: var(--pg-text-pri);
     }
 
     &--active {
-      background: $pg-surface-2;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      color: $pg-text-pri;
+      background: var(--pg-seg-active);
+      border: 1px solid var(--pg-border-strong);
+      color: var(--pg-text-pri);
       font-weight: $ui-font-weight-medium;
     }
   }
@@ -166,8 +162,8 @@ $pg-font:      'Inter', system-ui, sans-serif;
 
 .ctrl-toggle {
   align-items: center;
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--pg-seg-bg);
+  border: 1px solid var(--pg-seg-border);
   border-radius: 20px;
   cursor: pointer;
   display: inline-flex;
@@ -188,7 +184,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   }
 
   &__knob {
-    background: rgba(60, 80, 100, 0.28);
+    background: var(--pg-muted);
     border-radius: 50%;
     flex-shrink: 0;
     height: 16px;
@@ -197,7 +193,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   }
 
   &__label {
-    color: $pg-text-sec;
+    color: var(--pg-text-sec);
     font-family: $pg-font;
     font-size: 11px;
     font-weight: $ui-font-weight-medium;
@@ -219,7 +215,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   min-width: 0;
 
   &__swatch {
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 1px solid var(--pg-border-strong);
     border-radius: 5px;
     cursor: pointer;
     flex-shrink: 0;
@@ -243,7 +239,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   &__clear {
     background: transparent;
     border: none;
-    color: rgba(60, 80, 100, 0.4);
+    color: var(--pg-muted);
     cursor: pointer;
     flex-shrink: 0;
     font-size: 11px;
@@ -251,7 +247,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
     transition: color 0.12s ease;
 
     &:hover {
-      color: $pg-text-pri;
+      color: var(--pg-text-pri);
     }
   }
 }
@@ -288,10 +284,10 @@ $pg-font:      'Inter', system-ui, sans-serif;
 
   &__btn {
     align-items: center;
-    background: rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: var(--pg-input-bg);
+    border: 1px solid var(--pg-seg-border);
     border-radius: 5px;
-    color: $pg-text-sec;
+    color: var(--pg-text-sec);
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -301,11 +297,11 @@ $pg-font:      'Inter', system-ui, sans-serif;
     transition: background 0.12s ease, color 0.12s ease, border-color 0.12s ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.07);
-      color: $pg-text-pri;
+      background: var(--pg-seg-bg);
+      color: var(--pg-text-pri);
 
       .ctrl-token-seg__sub {
-        color: rgba(60, 80, 100, 0.6);
+        color: var(--pg-text-sec);
       }
     }
 
@@ -328,7 +324,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   }
 
   &__sub {
-    color: rgba(60, 80, 100, 0.35);
+    color: var(--pg-muted);
     font-family: 'JetBrains Mono', ui-monospace, monospace;
     font-size: 9px;
     line-height: 1;
@@ -359,21 +355,21 @@ $pg-font:      'Inter', system-ui, sans-serif;
     padding: 0 8px;
 
     &::placeholder {
-      color: rgba(60, 80, 100, 0.28);
+      color: var(--pg-muted);
       font-size: 10px;
       letter-spacing: 0;
     }
 
     &--active {
       border-color: rgba(99, 102, 241, 0.45);
-      color: $pg-text-pri;
+      color: var(--pg-text-pri);
     }
   }
 
   &__clear {
     background: transparent;
     border: none;
-    color: rgba(60, 80, 100, 0.35);
+    color: var(--pg-muted);
     cursor: pointer;
     flex-shrink: 0;
     font-size: 10px;
@@ -381,7 +377,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
     transition: color 0.12s ease;
 
     &:hover {
-      color: $pg-text-pri;
+      color: var(--pg-text-pri);
     }
   }
 }
@@ -390,9 +386,9 @@ $pg-font:      'Inter', system-ui, sans-serif;
 
 .ctrl-reset-btn {
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  border: 1px solid var(--pg-border);
   border-radius: 6px;
-  color: rgba(60, 80, 100, 0.55);
+  color: var(--pg-text-sec);
   cursor: pointer;
   font-family: $pg-font;
   font-size: 11px;
@@ -403,8 +399,8 @@ $pg-font:      'Inter', system-ui, sans-serif;
   width: calc(100% - 24px);
 
   &:hover {
-    background: rgba(0, 0, 0, 0.04);
-    color: $pg-text-pri;
+    background: var(--pg-input-bg);
+    color: var(--pg-text-pri);
   }
 }
 
@@ -418,10 +414,10 @@ $pg-font:      'Inter', system-ui, sans-serif;
 }
 
 .ctrl-css-textarea {
-  background: rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--pg-input-bg);
+  border: 1px solid var(--pg-input-border);
   border-radius: 6px;
-  color: $pg-text-pri;
+  color: var(--pg-text-pri);
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 11px;
   line-height: 1.75;
@@ -433,7 +429,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   width: 100%;
 
   &::placeholder {
-    color: rgba(60, 80, 100, 0.28);
+    color: var(--pg-muted);
     line-height: 1.75;
   }
 
@@ -449,7 +445,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   padding: 0 2px;
 
   &__count {
-    color: rgba(60, 80, 100, 0.45);
+    color: var(--pg-muted);
     font-family: $pg-font;
     font-size: 10px;
   }
@@ -457,7 +453,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
   &__clear {
     background: transparent;
     border: none;
-    color: rgba(60, 80, 100, 0.45);
+    color: var(--pg-muted);
     cursor: pointer;
     font-family: $pg-font;
     font-size: 10px;
@@ -465,7 +461,7 @@ $pg-font:      'Inter', system-ui, sans-serif;
     transition: color 0.12s ease;
 
     &:hover {
-      color: $pg-text-pri;
+      color: var(--pg-text-pri);
     }
   }
 }

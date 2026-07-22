@@ -1,7 +1,7 @@
 .pg-publish {
   align-items: center;
-  background: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  background: var(--pg-surface);
+  border-top: 1px solid var(--pg-border);
   display: flex;
   flex-shrink: 0;
   gap: 12px;
@@ -16,7 +16,7 @@
   }
 
   &__dot {
-    background: rgba(60, 80, 100, 0.28);
+    background: var(--pg-muted);
     border-radius: 50%;
     flex-shrink: 0;
     height: 8px;
@@ -29,7 +29,7 @@
   }
 
   &__status {
-    color: rgba(60, 80, 100, 0.7);
+    color: var(--pg-text-sec);
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 12px;
     overflow: hidden;
@@ -37,7 +37,7 @@
     white-space: nowrap;
 
     strong {
-      color: #141f2e;
+      color: var(--pg-text-pri);
       font-weight: 600;
     }
   }
@@ -76,12 +76,12 @@
 
     &--ghost {
       background: transparent;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      color: rgba(60, 80, 100, 0.62);
+      border: 1px solid var(--pg-border-strong);
+      color: var(--pg-text-sec);
 
       &:hover {
-        background: rgba(0, 0, 0, 0.04);
-        color: #141f2e;
+        background: var(--pg-input-bg);
+        color: var(--pg-text-pri);
       }
     }
 

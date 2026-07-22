@@ -1,0 +1,273 @@
+@use '../../styles/tokens/variables' as *;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Base Avatar
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-avatar {
+  // Colour tokens — can be patched by the playground theme-server
+  --ds-avatar-bg: #{$mapping-brand-teal-blue-background-tertiary};
+  --ds-avatar-fg: #{$mapping-brand-teal-blue-text-primary};
+
+  align-items: center;
+  border-radius: #{$radius-full}px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Size Variants  (from $avatar-* tokens)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-avatar--xsmall { height: $avatar-x-small; width: $avatar-x-small; }
+.ds-avatar--small  { height: $avatar-small;   width: $avatar-small; }
+.ds-avatar--medium { height: $avatar-medium;  width: $avatar-medium; }
+.ds-avatar--large  { height: $avatar-large;   width: $avatar-large; }
+.ds-avatar--xlarge { height: $avatar-x-large; width: $avatar-x-large; }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Type: Initial
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-avatar--initial {
+  background-color: var(--ds-avatar-bg);
+}
+
+.ds-avatar__initials {
+  color: var(--ds-avatar-fg);
+  font-family: $ui-font-family;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.5;
+  text-align: center;
+  user-select: none;
+  width: 100%;
+}
+
+// Font size scales with avatar size
+.ds-avatar--xsmall .ds-avatar__initials,
+.ds-avatar--small .ds-avatar__initials {
+  font-size: #{$ui-size-small}px;
+}
+
+.ds-avatar--medium .ds-avatar__initials {
+  font-size: #{$ui-size-medium}px;
+}
+
+.ds-avatar--large .ds-avatar__initials {
+  font-size: #{$ui-size-large}px;
+}
+
+.ds-avatar--xlarge .ds-avatar__initials {
+  font-size: #{$ui-size-xlarge}px;
+  font-weight: $ui-font-weight-medium;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Type: Image
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-avatar__image {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Type: Shape  (SVG icon masked against a colored background)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-avatar--shape {
+  background-color: var(--ds-avatar-bg);
+}
+
+.ds-avatar__shape {
+  align-items: center;
+  color: var(--ds-avatar-fg);
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Avatar Group
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-avatar-group {
+  align-items: center;
+  display: flex;
+  gap: $gap-2xs;
+}
+
+.ds-avatar-group__avatars {
+  align-items: center;
+  display: flex;
+}
+
+// Overlap: avatars stack on each other with a subtle shadow separator
+.ds-avatar-group--overlap {
+  gap: $gap-2xs;
+
+  .ds-avatar-group__avatars .ds-avatar {
+    box-shadow:
+      0 $depth-012 $depth-050 $mapping-system-shadow-medium,
+      0 $depth-012 $depth-050 $mapping-system-shadow-light;
+    margin-right: $depth-negative-100;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+// Spaced: avatars sit side-by-side with a regular gap
+.ds-avatar-group--spaced {
+  .ds-avatar-group__avatars {
+    gap: $gap-2xs;
+  }
+}
+
+// Overflow count badge
+.ds-avatar-group__overflow {
+  align-items: center;
+  background-color: $mapping-system-neutral-surface-tertiary;
+  border-radius: #{$radius-full}px;
+  color: $mapping-system-neutral-text-secondary;
+  display: flex;
+  flex-shrink: 0;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-small}px;
+  font-weight: $ui-font-weight-medium;
+  height: $avatar-x-small;
+  justify-content: center;
+  min-width: $avatar-x-small;
+  overflow: hidden;
+  padding: 0 $padding-action-2xs;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Avatar Block  (avatar + title + optional description)
+// ─────────────────────────────────────────────────────────────────────────────
+
+.ds-avatar-block {
+  align-items: center;
+  display: flex;
+  gap: $gap-s;
+}
+
+.ds-avatar-block__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ds-avatar-block__title {
+  color: $mapping-system-slate-text-primary;
+  display: block;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-strong;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-avatar-block__description {
+  color: $mapping-system-slate-text-tertiary;
+  display: block;
+  font-family: $ui-font-family;
+  font-size: #{$ui-size-large}px;
+  font-weight: $ui-font-weight-default;
+  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ─── Image avatar: tinted background (visible on transparent/broken images) ──
+
+.ds-avatar--image {
+  background-color: $mapping-brand-teal-blue-surface-secondary; // #dae7f7 light blue
+}
+
+// ─── Theme mixins ─────────────────────────────────────────────────────────────
+// Dual-state: static class (.ds-avatar-*--dark) for prop-forced +
+//             @media (prefers-color-scheme: dark) for auto-detection
+
+// AvatarGroup overflow badge
+@mixin ds-avatar-group-theme-light {
+  .ds-avatar-group__overflow {
+    background-color: $mapping-system-neutral-surface-tertiary; // #d7d7d7
+    color: $mapping-system-neutral-text-secondary;              // #545454
+  }
+}
+
+@mixin ds-avatar-group-theme-dark {
+  .ds-avatar-group__overflow {
+    background-color: $color-system-gray-600; // #6b6b6b
+    color: $color-system-gray-100;            // #ececec
+  }
+}
+
+.ds-avatar-group--light { @include ds-avatar-group-theme-light; }
+.ds-avatar-group--dark  { @include ds-avatar-group-theme-dark; }
+
+@media (prefers-color-scheme: dark) {
+  .ds-avatar-group:not(.ds-avatar-group--light):not(.ds-avatar-group--dark) {
+    @include ds-avatar-group-theme-dark;
+  }
+}
+
+:root[data-theme='dark'] .ds-avatar-group:not(.ds-avatar-group--light):not(.ds-avatar-group--dark),
+.theme-dark .ds-avatar-group:not(.ds-avatar-group--light):not(.ds-avatar-group--dark) {
+  @include ds-avatar-group-theme-dark;
+}
+
+// AvatarBlock text
+@mixin ds-avatar-block-theme-light {
+  .ds-avatar-block__title       { color: $mapping-system-slate-text-primary; }   // #292929
+  .ds-avatar-block__description { color: $mapping-system-slate-text-tertiary; }  // #6b6b6b
+}
+
+@mixin ds-avatar-block-theme-dark {
+  .ds-avatar-block__title       { color: $color-system-gray-100; }  // #ececec
+  .ds-avatar-block__description { color: $color-system-gray-400; }  // #9d9d9d
+}
+
+.ds-avatar-block--light { @include ds-avatar-block-theme-light; }
+.ds-avatar-block--dark  { @include ds-avatar-block-theme-dark; }
+
+@media (prefers-color-scheme: dark) {
+  .ds-avatar-block:not(.ds-avatar-block--light):not(.ds-avatar-block--dark) {
+    @include ds-avatar-block-theme-dark;
+  }
+}
+
+:root[data-theme='dark'] .ds-avatar-block:not(.ds-avatar-block--light):not(.ds-avatar-block--dark),
+.theme-dark .ds-avatar-block:not(.ds-avatar-block--light):not(.ds-avatar-block--dark) {
+  @include ds-avatar-block-theme-dark;
+}
+
+// Image avatar: dark bg instead of light blue tint
+.ds-avatar--dark.ds-avatar--image {
+  background-color: $mapping-system-slate-background-secondary; // #2a3c50
+}
+
+@media (prefers-color-scheme: dark) {
+  .ds-avatar--image:not(.ds-avatar--light):not(.ds-avatar--dark) {
+    background-color: $mapping-system-slate-background-secondary;
+  }
+}
+
+:root[data-theme='dark'] .ds-avatar--image:not(.ds-avatar--light):not(.ds-avatar--dark),
+.theme-dark .ds-avatar--image:not(.ds-avatar--light):not(.ds-avatar--dark) {
+  background-color: $mapping-system-slate-background-secondary;
+}

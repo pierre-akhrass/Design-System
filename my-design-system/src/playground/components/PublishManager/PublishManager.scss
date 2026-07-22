@@ -1,8 +1,5 @@
 $pubman-w: 380px;
 $accent: #6366f1;
-$border: rgba(0, 0, 0, 0.08);
-$text-pri: #141f2e;
-$text-sec: #6e8296;
 $font: 'Inter', system-ui, sans-serif;
 
 // ── Scrim ─────────────────────────────────────────────────────────────────────
@@ -25,8 +22,8 @@ $font: 'Inter', system-ui, sans-serif;
 // ── Drawer ────────────────────────────────────────────────────────────────────
 
 .pg-pubman {
-  background: #ffffff;
-  border-left: 1px solid $border;
+  background: var(--pg-surface);
+  border-left: 1px solid var(--pg-border);
   bottom: 0;
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
   display: flex;
@@ -48,7 +45,7 @@ $font: 'Inter', system-ui, sans-serif;
   // ── Head ──
   &__head {
     align-items: flex-start;
-    border-bottom: 1px solid $border;
+    border-bottom: 1px solid var(--pg-border);
     display: flex;
     flex-shrink: 0;
     gap: 12px;
@@ -57,7 +54,7 @@ $font: 'Inter', system-ui, sans-serif;
   }
 
   &__title {
-    color: $text-pri;
+    color: var(--pg-text-pri);
     font-size: 15px;
     font-weight: 600;
     letter-spacing: -0.01em;
@@ -65,7 +62,7 @@ $font: 'Inter', system-ui, sans-serif;
   }
 
   &__subtitle {
-    color: $text-sec;
+    color: var(--pg-text-sec);
     font-size: 12px;
     margin: 3px 0 0;
   }
@@ -75,7 +72,7 @@ $font: 'Inter', system-ui, sans-serif;
     background: transparent;
     border: none;
     border-radius: 6px;
-    color: $text-sec;
+    color: var(--pg-text-sec);
     cursor: pointer;
     display: flex;
     flex-shrink: 0;
@@ -85,8 +82,8 @@ $font: 'Inter', system-ui, sans-serif;
     width: 30px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.05);
-      color: $text-pri;
+      background: var(--pg-input-bg);
+      color: var(--pg-text-pri);
     }
   }
 
@@ -99,7 +96,7 @@ $font: 'Inter', system-ui, sans-serif;
   }
 
   &__meta {
-    color: $text-sec;
+    color: var(--pg-text-sec);
     display: flex;
     flex-direction: column;
     font-size: 12px;
@@ -107,7 +104,7 @@ $font: 'Inter', system-ui, sans-serif;
     margin-bottom: 14px;
 
     strong {
-      color: $text-pri;
+      color: var(--pg-text-pri);
       font-weight: 600;
     }
 
@@ -128,7 +125,7 @@ $font: 'Inter', system-ui, sans-serif;
   }
 
   &__item {
-    border: 1px solid $border;
+    border: 1px solid var(--pg-border);
     border-radius: 9px;
     overflow: hidden;
     transition: border-color 0.14s ease;
@@ -156,13 +153,13 @@ $font: 'Inter', system-ui, sans-serif;
     text-align: left;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.02);
+      background: var(--pg-input-bg);
     }
   }
 
   &__chevron {
     align-items: center;
-    color: $text-sec;
+    color: var(--pg-text-sec);
     display: flex;
     flex-shrink: 0;
     transition: transform 0.18s ease;
@@ -173,14 +170,14 @@ $font: 'Inter', system-ui, sans-serif;
   }
 
   &__item-name {
-    color: $text-pri;
+    color: var(--pg-text-pri);
     flex-shrink: 0;
     font-size: 13px;
     font-weight: 600;
   }
 
   &__item-summary {
-    color: $text-sec;
+    color: var(--pg-text-sec);
     font-size: 11px;
     overflow: hidden;
     text-align: right;
@@ -193,8 +190,8 @@ $font: 'Inter', system-ui, sans-serif;
     align-items: center;
     background: transparent;
     border: none;
-    border-left: 1px solid $border;
-    color: $text-sec;
+    border-left: 1px solid var(--pg-border);
+    color: var(--pg-text-sec);
     cursor: pointer;
     display: flex;
     flex-shrink: 0;
@@ -236,14 +233,14 @@ $font: 'Inter', system-ui, sans-serif;
     }
 
     &-title {
-      color: $text-pri;
+      color: var(--pg-text-pri);
       font-size: 14px;
       font-weight: 600;
       margin: 0 0 6px;
     }
 
     &-text {
-      color: $text-sec;
+      color: var(--pg-text-sec);
       font-size: 12.5px;
       line-height: 1.55;
       margin: 0;
@@ -258,7 +255,7 @@ $font: 'Inter', system-ui, sans-serif;
 
   // ── Foot ──
   &__foot {
-    border-top: 1px solid $border;
+    border-top: 1px solid var(--pg-border);
     display: flex;
     flex-shrink: 0;
     gap: 8px;
@@ -268,9 +265,9 @@ $font: 'Inter', system-ui, sans-serif;
   &__foot-btn {
     align-items: center;
     background: transparent;
-    border: 1px solid $border;
+    border: 1px solid var(--pg-border);
     border-radius: 7px;
-    color: $text-pri;
+    color: var(--pg-text-pri);
     cursor: pointer;
     display: flex;
     flex: 1;
@@ -283,7 +280,7 @@ $font: 'Inter', system-ui, sans-serif;
     transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.04);
+      background: var(--pg-input-bg);
     }
 
     &--done {

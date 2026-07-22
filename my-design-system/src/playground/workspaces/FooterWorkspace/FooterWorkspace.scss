@@ -1,0 +1,180 @@
+$footer-ws-font:   'Inter', system-ui, sans-serif;
+$footer-ws-accent: #6366f1;
+
+// ── Root ──────────────────────────────────────────────────────────────────────
+
+.footer-ws {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+
+  // ── Center column ─────────────────────────────────────────────────────────
+
+  &__main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--pg-scrollbar) transparent;
+
+    &::-webkit-scrollbar         { width: 4px; }
+    &::-webkit-scrollbar-track   { background: transparent; }
+    &::-webkit-scrollbar-thumb   { background: var(--pg-scrollbar); border-radius: 10px; }
+    &::-webkit-scrollbar-thumb:hover { background: var(--pg-border-strong); }
+  }
+
+  // ── Toolbar ───────────────────────────────────────────────────────────────
+
+  &__toolbar {
+    align-items: center;
+    background: var(--pg-surface);
+    border-bottom: 1px solid var(--pg-border);
+    display: flex;
+    flex-shrink: 0;
+    height: 44px;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+
+  &__toolbar-left {
+    align-items: center;
+    display: flex;
+    gap: 0;
+  }
+
+  &__toolbar-label {
+    color: var(--pg-muted);
+    font-family: $footer-ws-font;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  &__toolbar-actions {
+    display: flex;
+    gap: 4px;
+  }
+
+  &__toolbar-btn {
+    align-items: center;
+    background: transparent;
+    border: 1px solid var(--pg-seg-border);
+    border-radius: 5px;
+    color: var(--pg-text-sec);
+    cursor: pointer;
+    display: flex;
+    font-family: $footer-ws-font;
+    font-size: 11px;
+    font-weight: 500;
+    gap: 5px;
+    padding: 4px 9px;
+    transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+
+    &:hover {
+      background: var(--pg-input-bg);
+      color: var(--pg-text-pri);
+    }
+
+    &--active {
+      background: rgba(99, 102, 241, 0.08);
+      border-color: rgba(99, 102, 241, 0.2);
+      color: $footer-ws-accent;
+
+      &:hover {
+        background: rgba(99, 102, 241, 0.12);
+        color: $footer-ws-accent;
+      }
+    }
+  }
+
+  // ── Theme quick-toggle ────────────────────────────────────────────────────
+
+  &__theme-switcher {
+    align-items: center;
+    background: var(--pg-input-bg);
+    border: 1px solid var(--pg-seg-border);
+    border-radius: 6px;
+    display: flex;
+    gap: 2px;
+    margin-left: 12px;
+    padding: 2px;
+  }
+
+  &__theme-btn {
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: var(--pg-text-sec);
+    cursor: pointer;
+    font-family: $footer-ws-font;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 10px;
+    transition: background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
+    white-space: nowrap;
+
+    &:hover { color: var(--pg-text-pri); }
+
+    &--active {
+      background: var(--pg-surface);
+      border: 1px solid var(--pg-border-strong);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07);
+      color: var(--pg-text-pri);
+    }
+  }
+
+  // ── Canvas area — full-width, scrollable ──────────────────────────────────
+  // The footer is a tall full-width component; limit height + scroll to see all.
+
+  &__canvas-area {
+    border-bottom: 1px solid var(--pg-border);
+    flex-shrink: 0;
+    max-height: 520px;
+    min-height: 160px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--pg-scrollbar) transparent;
+
+    &::-webkit-scrollbar         { width: 4px; }
+    &::-webkit-scrollbar-track   { background: transparent; }
+    &::-webkit-scrollbar-thumb   { background: var(--pg-scrollbar); border-radius: 10px; }
+    &::-webkit-scrollbar-thumb:hover { background: var(--pg-border-strong); }
+  }
+
+  // ── Canvas overrides — footer is full-width, no centering ─────────────────
+
+  .pg-canvas {
+    align-items: flex-start;
+    min-height: 0;
+
+    // Keep the dot grid but don't let it clip the footer
+    overflow: visible;
+  }
+
+  .pg-canvas__stage {
+    align-items: stretch;
+    justify-content: flex-start;
+    padding: 0;
+    width: 100%;
+  }
+
+  .pg-canvas__component {
+    width: 100%;
+  }
+
+  // Dimensions badge not useful for a full-width component
+  .pg-canvas__dims {
+    display: none;
+  }
+
+  // Canvas label: keep it visible but shift to top-right to avoid covering the footer header
+  .pg-canvas__label {
+    left: auto;
+    right: 14px;
+  }
+}

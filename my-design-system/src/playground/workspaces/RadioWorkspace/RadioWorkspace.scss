@@ -12,7 +12,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.13) transparent;
+    scrollbar-color: var(--pg-scrollbar) transparent;
   }
 
   &__canvas-area {
@@ -24,8 +24,8 @@
 
   &__toolbar {
     align-items: center;
-    background: #ffffff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    background: var(--pg-surface);
+    border-bottom: 1px solid var(--pg-border);
     display: flex;
     flex-shrink: 0;
     height: 38px;
@@ -34,7 +34,7 @@
   }
 
   &__toolbar-label {
-    color: rgba(60, 80, 100, 0.38);
+    color: var(--pg-muted);
     font-family: 'Inter', system-ui, sans-serif;
     font-size: 10px;
     font-weight: 600;
@@ -50,9 +50,9 @@
   &__toolbar-btn {
     align-items: center;
     background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--pg-seg-border);
     border-radius: 5px;
-    color: rgba(60, 80, 100, 0.55);
+    color: var(--pg-text-sec);
     cursor: pointer;
     display: flex;
     font-family: 'Inter', system-ui, sans-serif;
@@ -63,8 +63,8 @@
     transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.04);
-      color: #141f2e;
+      background: var(--pg-input-bg);
+      color: var(--pg-text-pri);
     }
 
     &--active {
@@ -80,6 +80,6 @@
   }
 
   &__canvas-area .pg-canvas + .pg-canvas {
-    border-left: 1px solid rgba(0, 0, 0, 0.07);
+    border-left: 1px solid var(--pg-border);
   }
 }

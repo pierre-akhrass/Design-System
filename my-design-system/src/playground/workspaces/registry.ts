@@ -17,6 +17,10 @@ import { DialogWorkspace } from './DialogWorkspace/DialogWorkspace'
 import { BreadcrumbsWorkspace } from './BreadcrumbsWorkspace/BreadcrumbsWorkspace'
 import { MegaMenuWorkspace } from './MegaMenuWorkspace/MegaMenuWorkspace'
 import { TestimonialsWorkspace } from './TestimonialsWorkspace/TestimonialsWorkspace'
+import { TooltipWorkspace } from './TooltipWorkspace/TooltipWorkspace'
+import { AvatarWorkspace } from './AvatarWorkspace/AvatarWorkspace'
+import { FooterWorkspace } from './FooterWorkspace/FooterWorkspace'
+import { FormWorkspace } from './FormWorkspace/FormWorkspace'
 
 export interface WorkspaceEntry {
   id: string
@@ -71,6 +75,36 @@ export const registry: WorkspaceEntry[] = [
     label: 'Map',
     group: 'Components',
     component: MapWorkspace,
+  },
+  {
+    id: 'tooltip',
+    label: 'Tooltip',
+    group: 'Components',
+    component: TooltipWorkspace,
+  },
+  {
+    id: 'avatar',
+    label: 'Avatar',
+    group: 'Components',
+    component: AvatarWorkspace,
+  },
+  {
+    id: 'footer',
+    label: 'Footer',
+    group: 'Components',
+    component: FooterWorkspace,
+  },
+  {
+    id: 'form',
+    label: 'Form',
+    group: 'Components',
+    component: FormWorkspace,
+  },
+  {
+    id: 'testimonials',
+    label: 'Testimonials',
+    group: 'Components',
+    component: TestimonialsWorkspace,
   },
   {
     id: 'checkbox',
@@ -131,11 +165,5 @@ export const registry: WorkspaceEntry[] = [
     label: 'MegaMenu',
     group: 'Navigation',
     component: MegaMenuWorkspace,
-  },
-  {
-    id: 'testimonials',
-    label: 'Testimonials',
-    group: 'Components',
-    component: TestimonialsWorkspace,
   },
 ]

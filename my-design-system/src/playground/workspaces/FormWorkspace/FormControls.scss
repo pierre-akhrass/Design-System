@@ -1,0 +1,12 @@
+@use '../../../styles/tokens/variables' as *;
+
+// The shared .ctrl-* primitive classes are defined globally in
+// TagWorkspace/TagControls.scss. This file only needs the root wrapper.
+
+.form-controls {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', system-ui, sans-serif;
+  gap: 2px;
+  padding: 0 4px;
+}

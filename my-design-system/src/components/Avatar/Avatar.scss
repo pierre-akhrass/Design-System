@@ -5,6 +5,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 .ds-avatar {
+  // Colour tokens — can be patched by the playground theme-server
+  --ds-avatar-bg: #3a7c92;
+  --ds-avatar-fg: #{$mapping-brand-teal-blue-text-primary};
+
   align-items: center;
   border-radius: #{$radius-full}px;
   display: flex;
@@ -29,11 +33,11 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 .ds-avatar--initial {
-  background-color: $mapping-brand-teal-blue-background-tertiary;
+  background-color: var(--ds-avatar-bg);
 }
 
 .ds-avatar__initials {
-  color: $mapping-brand-teal-blue-text-primary;
+  color: var(--ds-avatar-fg);
   font-family: $ui-font-family;
   font-weight: $ui-font-weight-strong;
   line-height: 1.5;
@@ -80,12 +84,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 .ds-avatar--shape {
-  background-color: $mapping-brand-teal-blue-background-tertiary;
+  background-color: var(--ds-avatar-bg);
 }
 
 .ds-avatar__shape {
   align-items: center;
-  color: $mapping-brand-teal-blue-background-primary;
+  color: var(--ds-avatar-fg);
   display: flex;
   height: 100%;
   justify-content: center;

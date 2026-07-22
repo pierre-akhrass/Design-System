@@ -211,6 +211,48 @@ function rulesFor(componentId: string, cfg: Cfg): string[] {
       if (fg) r.push(`.ds-testimonials { --ds-testimonials-text-color: ${fg} !important; color: ${fg} !important; }`)
       break
     }
+    case 'tooltip': {
+      if (bg) r.push(`.ds-tooltip { background: ${bg} !important; }`)
+      if (s(cfg.borderColor)) r.push(`.ds-tooltip { border-color: ${s(cfg.borderColor)} !important; }`)
+      if (fg) r.push(`.ds-tooltip, .ds-tooltip__title, .ds-tooltip__body { color: ${fg} !important; }`)
+      if (rad) r.push(`.ds-tooltip { border-radius: ${rad} !important; }`)
+      if (s(cfg.padding)) r.push(`.ds-tooltip { padding: ${s(cfg.padding)} !important; }`)
+      if (gap) r.push(`.ds-tooltip { gap: ${gap} !important; }`)
+      if (s(cfg.width)) r.push(`.ds-tooltip { width: ${s(cfg.width)} !important; }`)
+      break
+    }
+    case 'avatar': {
+      if (bg) r.push(`.ds-avatar--initial, .ds-avatar--shape { --ds-avatar-bg: ${bg} !important; }`)
+      if (fg) r.push(`.ds-avatar__initials, .ds-avatar__shape { --ds-avatar-fg: ${fg} !important; }`)
+      break
+    }
+    case 'footer': {
+      if (bg) r.push(`.ds-footer { --ds-footer-bg: ${bg} !important; }`)
+      if (fg) r.push(`.ds-footer { --ds-footer-text: ${fg} !important; }`)
+      break
+    }
+    case 'form': {
+      const formPairs: [string, string][] = [
+        ['--ds-form-surface',            s(cfg.varSurface)],
+        ['--ds-form-border',             s(cfg.varBorder)],
+        ['--ds-form-field-bg',           s(cfg.varFieldBg)],
+        ['--ds-form-field-border',       s(cfg.varFieldBorder)],
+        ['--ds-form-field-border-focus', s(cfg.varFocusBorder)],
+        ['--ds-form-text-primary',       s(cfg.varTextPrimary)],
+        ['--ds-form-text-tertiary',      s(cfg.varTextTertiary)],
+        ['--ds-form-accent',             s(cfg.varAccent)],
+        ['--ds-form-danger',             s(cfg.varDanger)],
+        ['--ds-form-padding',            s(cfg.varPadding) ? `${s(cfg.varPadding)}px` : ''],
+        ['--ds-form-gap',                s(cfg.varGap) ? `${s(cfg.varGap)}px` : ''],
+        ['--ds-form-radius',             s(cfg.varRadius) ? `${s(cfg.varRadius)}px` : ''],
+        ['--ds-form-field-min-height',   s(cfg.varFieldMinHeight) ? `${s(cfg.varFieldMinHeight)}px` : ''],
+        ['--ds-form-field-radius',       s(cfg.varFieldRadius) ? `${s(cfg.varFieldRadius)}px` : ''],
+        ['--ds-form-max-width',          s(cfg.varMaxWidth) ? `${s(cfg.varMaxWidth)}px` : ''],
+      ]
+      const fvars = formPairs.filter(([, v]) => v).map(([k, v]) => `${k}: ${v} !important;`)
+      if (fvars.length) r.push(`.ds-form { ${fvars.join(' ')} }`)
+      break
+    }
     case 'textarea': {
       if (bg) r.push(`.ds-textarea__input { background: ${bg} !important; }`)
       if (fg) r.push(`.ds-textarea__input, .ds-textarea__label { color: ${fg} !important; }`)
@@ -269,6 +311,34 @@ function propsFor(componentId: string, cfg: Cfg): Record<string, unknown> | unde
       set('hashtags', s(cfg.hashtags))
       set('showPagination', bool(cfg.showPagination))
       set('theme', s(cfg.theme))
+      break
+    }
+    case 'tooltip': {
+      set('placement', s(cfg.placement))
+      set('theme', s(cfg.theme))
+      break
+    }
+    case 'avatar': {
+      set('view', s(cfg.view))
+      set('type', s(cfg.type))
+      set('size', s(cfg.size))
+      set('theme', s(cfg.theme))
+      break
+    }
+    case 'form': {
+      set('theme', s(cfg.theme))
+      set('inputCount', num(cfg.inputCount as number))
+      set('showTextarea', bool(cfg.showTextarea as boolean))
+      set('showSelect', bool(cfg.showSelect as boolean))
+      set('showCheckbox', bool(cfg.showCheckbox as boolean))
+      set('actionsTone', s(cfg.actionsTone))
+      break
+    }
+    case 'footer': {
+      set('theme', s(cfg.theme))
+      set('showNewsletterBar', bool(cfg.showNewsletterBar as boolean))
+      set('showOpeningHours', bool(cfg.showOpeningHours as boolean))
+      set('navColumnCount', num(cfg.navColumnCount as number))
       break
     }
     default:

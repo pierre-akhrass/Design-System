@@ -1,19 +1,55 @@
 @use '../styles/tokens/variables' as *;
 
-// ── Shell variables ───────────────────────────────────────────────────────────
-$pg-topbar-h:   56px;
+// ── Shell variables (static / topbar) ────────────────────────────────────────
+$pg-topbar-h:   52px;
 $pg-accent:     #6366f1;
-$pg-border:     rgba(0, 0, 0, 0.07);
-$pg-text-pri:   #141f2e;
-$pg-text-sec:   #6e8296;
-$pg-bg:         #f0f2f5;
-$pg-surface:    #ffffff;
+$pg-accent-2:   #8b5cf6;
 $pg-font:       'Inter', system-ui, sans-serif;
+
+// ── Topbar surface tokens (always dark) ──────────────────────────────────────
+$topbar-bg:       #0f172a;
+$topbar-border:   rgba(255, 255, 255, 0.06);
+$topbar-text:     #e2e8f0;
+$topbar-text-dim: rgba(148, 163, 184, 0.7);
 
 // ── Shell root ────────────────────────────────────────────────────────────────
 
 .pg {
-  background: $pg-bg;
+  // ── Light mode tokens (default) ───────────────────────────────────────────
+  --pg-bg:            #f0f2f5;
+  --pg-surface:       #ffffff;
+  --pg-surface-2:     #f8f9fb;
+  --pg-text-pri:      #141f2e;
+  --pg-text-sec:      #6e8296;
+  --pg-border:        rgba(0, 0, 0, 0.07);
+  --pg-border-strong: rgba(0, 0, 0, 0.12);
+  --pg-input-bg:      rgba(0, 0, 0, 0.04);
+  --pg-input-border:  rgba(0, 0, 0, 0.12);
+  --pg-seg-bg:        rgba(0, 0, 0, 0.06);
+  --pg-seg-border:    rgba(0, 0, 0, 0.08);
+  --pg-seg-active:    #edf0f3;
+  --pg-muted:         rgba(60, 80, 100, 0.38);
+  --pg-scrollbar:     rgba(0, 0, 0, 0.1);
+
+  // ── Dark mode overrides ───────────────────────────────────────────────────
+  &--dark {
+    --pg-bg:            #0d1526;
+    --pg-surface:       #162033;
+    --pg-surface-2:     #0f1a2e;
+    --pg-text-pri:      #e2e8f0;
+    --pg-text-sec:      #94a3b8;
+    --pg-border:        rgba(255, 255, 255, 0.08);
+    --pg-border-strong: rgba(255, 255, 255, 0.14);
+    --pg-input-bg:      rgba(255, 255, 255, 0.05);
+    --pg-input-border:  rgba(255, 255, 255, 0.12);
+    --pg-seg-bg:        rgba(255, 255, 255, 0.06);
+    --pg-seg-border:    rgba(255, 255, 255, 0.08);
+    --pg-seg-active:    rgba(255, 255, 255, 0.11);
+    --pg-muted:         rgba(148, 163, 184, 0.55);
+    --pg-scrollbar:     rgba(255, 255, 255, 0.1);
+  }
+
+  background: var(--pg-bg);
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -25,41 +61,80 @@ $pg-font:       'Inter', system-ui, sans-serif;
 
 .pg__topbar {
   align-items: center;
-  background: $pg-surface;
-  border-bottom: 1px solid $pg-border;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  background: $topbar-bg;
+  border-bottom: 1px solid $topbar-border;
+  box-shadow: 0 1px 0 rgba(99, 102, 241, 0.35), 0 4px 16px rgba(0, 0, 0, 0.22);
   display: flex;
   flex-shrink: 0;
-  gap: 12px;
+  gap: 10px;
   height: $pg-topbar-h;
-  padding: 0 22px;
+  padding: 0 20px;
+  position: relative;
+
+  // Accent gradient line at very bottom
+  &::after {
+    background: linear-gradient(90deg, $pg-accent 0%, $pg-accent-2 100%);
+    bottom: 0;
+    content: '';
+    height: 2px;
+    left: 0;
+    position: absolute;
+    right: 0;
+  }
 
   &-logo {
     align-items: center;
-    color: $pg-accent;
+    background: linear-gradient(135deg, $pg-accent 0%, $pg-accent-2 100%);
+    border-radius: 8px;
+    color: #ffffff;
     display: flex;
     flex-shrink: 0;
+    height: 30px;
+    justify-content: center;
+    width: 30px;
   }
 
   &-title {
-    color: $pg-text-pri;
+    color: $topbar-text;
     font-family: $pg-font;
-    font-size: 14px;
+    font-size: 13.5px;
     font-weight: 600;
     letter-spacing: -0.02em;
     margin: 0;
   }
 
   &-accent {
-    color: $pg-accent;
+    color: #a5b4fc;
+    font-weight: 700;
+  }
+
+  // Vertical divider
+  &-sep {
+    background: $topbar-border;
+    flex-shrink: 0;
+    height: 20px;
+    width: 1px;
+  }
+
+  // Active component breadcrumb
+  &-component {
+    align-items: center;
+    color: $topbar-text-dim;
+    display: flex;
+    font-family: $pg-font;
+    font-size: 12.5px;
+    font-weight: 500;
+    gap: 5px;
+    letter-spacing: 0;
+    white-space: nowrap;
   }
 
   &-demo {
     align-items: center;
-    background: transparent;
-    border: 1px solid $pg-border;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 7px;
-    color: $pg-text-sec;
+    color: $topbar-text-dim;
     cursor: pointer;
     display: flex;
     font-family: $pg-font;
@@ -67,36 +142,36 @@ $pg-font:       'Inter', system-ui, sans-serif;
     font-weight: 500;
     gap: 6px;
     margin-left: auto;
-    padding: 6px 11px;
+    padding: 5px 11px;
     text-decoration: none;
     transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.04);
-      border-color: rgba(0, 0, 0, 0.16);
-      color: $pg-text-pri;
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.18);
+      color: $topbar-text;
     }
   }
 
   &-publish {
     align-items: center;
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    background: rgba(99, 102, 241, 0.18);
+    border: 1px solid rgba(99, 102, 241, 0.4);
     border-radius: 7px;
-    color: $pg-accent;
+    color: #a5b4fc;
     cursor: pointer;
     display: flex;
     font-family: $pg-font;
     font-size: 12px;
     font-weight: 500;
     gap: 6px;
-    margin-left: 0;
-    padding: 6px 11px;
-    transition: background 0.14s ease, border-color 0.14s ease;
+    padding: 5px 11px;
+    transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
 
     &:hover {
-      background: rgba(99, 102, 241, 0.14);
-      border-color: rgba(99, 102, 241, 0.35);
+      background: rgba(99, 102, 241, 0.28);
+      border-color: rgba(99, 102, 241, 0.6);
+      color: #c7d2fe;
     }
 
     &-count {
@@ -106,7 +181,7 @@ $pg-font:       'Inter', system-ui, sans-serif;
       color: #ffffff;
       display: inline-flex;
       font-size: 10px;
-      font-weight: 600;
+      font-weight: 700;
       height: 16px;
       justify-content: center;
       min-width: 16px;
@@ -115,16 +190,42 @@ $pg-font:       'Inter', system-ui, sans-serif;
   }
 
   &-badge {
-    background: rgba(99, 102, 241, 0.08);
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    background: rgba(99, 102, 241, 0.15);
+    border: 1px solid rgba(99, 102, 241, 0.3);
     border-radius: 99px;
-    color: $pg-accent;
+    color: #a5b4fc;
     font-family: $pg-font;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    margin-left: 0;
-    padding: 3px 10px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 2px 9px;
+  }
+
+  // ── Dashboard theme toggle ────────────────────────────────────────────────
+  &-theme-toggle {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 7px;
+    color: $topbar-text-dim;
+    cursor: pointer;
+    display: flex;
+    flex-shrink: 0;
+    height: 30px;
+    justify-content: center;
+    padding: 0 8px;
+    transition: background 0.14s ease, border-color 0.14s ease, color 0.14s ease;
+    width: 30px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.2);
+      color: $topbar-text;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
   }
 }
 
@@ -143,3 +244,6 @@ $pg-font:       'Inter', system-ui, sans-serif;
   min-width: 0;
   overflow: hidden;
 }
+
+
+
